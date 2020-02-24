@@ -1,10 +1,12 @@
 name: Node.js CI
 
-on: [push]
-
+on: 
+  push:
+    branches:
+      - prove
+      - develop
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     strategy:
