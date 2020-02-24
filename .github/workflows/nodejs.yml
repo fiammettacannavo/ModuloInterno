@@ -19,10 +19,13 @@ jobs:
       uses: actions/checkout@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: cd training-module
     - run: npm install
+      working-directory: training-module
     - run: npm run build --if-present
+      working-directory: training-module
     - run: npm install --save jest
+      working-directory: training-module
     - run: npm test
+      working-directory: training-module
       env:
         CI: true
