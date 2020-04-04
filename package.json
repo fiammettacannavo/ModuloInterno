@@ -19,6 +19,7 @@
         "@types/jquery": "^3.3.34",
         "babel": "^6.23.0",
         "mobx": "^5.15.4",
-        "mobx-react": "^6.1.8"
+        "mobx-react": "^6.1.8",
+        "typescript": "^3.7.5"
     }
 }
