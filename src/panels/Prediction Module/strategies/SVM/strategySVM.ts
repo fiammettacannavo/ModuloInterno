@@ -1,4 +1,4 @@
-import { Strategy } from './strategy';
+import { Strategy } from '../strategy';
 import { Data, Predictor } from 'utils/dataTypes';
 
 export class StrategySVM implements Strategy {

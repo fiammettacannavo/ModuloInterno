@@ -1,0 +1,37 @@
+{
+    "type": "app",
+    "name": "Prediction App",
+    "id": "prediction-app",
+
+    "info": {
+        "author": {
+            "name": "ProApes",
+            "url": "https://github.com/Kero2375/ProApes"
+        },
+        "logos": {
+            "small": "img/logo.png",
+            "large": "img/logo.png"
+        },
+        "version": "1.0.0",
+        "updated": "2020-04-04"
+    },
+
+    "includes": [{
+            "type": "page",
+            "name": "Import",
+            "path": "/plugins/prediction-app/?page=import",
+            "role": "Editor",
+            "addToNav": true,
+            "defaultNav": true
+        },
+        {
+            "type": "panel",
+            "name": "Prediction Module"
+        }
+    ],
+
+    "dependencies": {
+        "grafanaVersion": "6.7.x",
+        "plugins": []
+    }
+}
