@@ -33,3 +33,9 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+    - name: fix code coverage paths
+      run: |
+        sed -i 's/home/runner/work/ModuloInterno/ModuloInterno/github/workspace/g' lcov.info
+        sed -i 's/home/runner/work/ModuloInterno/ModuloInterno/github/workspace/g' sonar-cloud-reporter.xml
+      working-directory: ./coverage
+      
