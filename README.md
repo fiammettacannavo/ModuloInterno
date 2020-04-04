@@ -1,2 +1,21 @@
-# ProApes
-Gruppo di lavoro del corso di Ingegneria del Software, primo lotto, anno accademico 2019-2020.
+# Simple App Plugin
+
+This is just a stub to show how you can create a basic visualization plugin.
+
+To work with this plugin run:
+```
+yarn dev
+```
+
+or
+```
+yarn watch
+```
+
+This will run linting tools and apply prettier fix.
+
+
+To build the plugin run:
+```
+yarn build
+```
