@@ -7,34 +7,36 @@ import { Model } from './model';
 import { PanelView } from './panelView';
 
 export class Controller extends PureComponent<PanelProps<Props>> {
-  model: Model = Model.getInstance();
+    model: Model = Model.getInstance();
 
-  constructor(props: PanelProps) {
-    super(props);
-  }
-
-  updateData() {
-    if (this.props.data.series.length > 0) {
-      this.model.setPredictor(this.props.options.predictor);
-      this.model.data = Data.fromSeries(this.props.data.series);
+    constructor(props: PanelProps) {
+        super(props);
     }
-  }
 
-  setToPredict = (n: any) => {
-    //controlli se 0|1
-    this.props.options.predictor.opt.toPredict = n;
-    console.log('to predict: ' + this.props.options.predictor.opt.toPredict);
-  };
+    updateData() {
+        if (this.props.data.series.length > 0) {
+            this.model.setPredictor(this.props.options.predictor);
+            this.model.data = Data.fromSeries(this.props.data.series);
+        }
+    }
 
-  render() {
-    //TODO: forse da mettere in un controller??
-    this.model.setData(Data.fromSeries(this.props.data.series));
-    this.model.setPredictor(this.props.options.predictor || 0);
-    this.model.predict(this.props.options.predictor.opt?.toPredict || 0);
-    this.model.saveToInflux();
+    setToPredict = (n: any) => {
+        //controlli se 0|1
+        this.props.options.predictor.opt.toPredict = n;
+        console.log('to predict: ' + this.props.options.predictor.opt.toPredict);
+    };
 
-    const { predictor } = this.props.options;
+    render() {
+        //TODO: forse da mettere in un controller??
+        this.model.setData(Data.fromSeries(this.props.data.series));
+        this.model.setPredictor(this.props.options.predictor || 0);
+        this.model.predict(this.props.options.predictor.opt?.toPredict || 0);
+        this.model.saveToInflux();
 
-    return <PanelView algorithm={predictor.algorithm} coefficients={predictor.coefficients} opt={predictor.opt} setToPreditct={this.setToPredict} />;
-  }
+        const { predictor } = this.props.options;
+
+        return (
+            <PanelView algorithm={predictor.algorithm} coefficients={predictor.coefficients} opt={predictor.opt} setToPreditct={this.setToPredict} />
+        );
+    }
 }

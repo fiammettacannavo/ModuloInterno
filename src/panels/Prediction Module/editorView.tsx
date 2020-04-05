@@ -6,18 +6,15 @@ import './strategies/strategies';
 import { configs } from './strategies/strategies';
 
 export class EditorView extends PureComponent<PanelEditorProps<Props>> {
+    render() {
+        const Config = configs[this.props.options.predictor.algorithm];
 
-  render() {
-    const Config = configs[this.props.options.predictor.algorithm];
-
-    return (
-      <div>
-        <PanelOptionsGrid>
-          <Config
-            data={this.props.data}
-            options={this.props.options} />
-        </PanelOptionsGrid>
-      </div>
-    );
-  }
+        return (
+            <div>
+                <PanelOptionsGrid>
+                    <Config data={this.props.data} options={this.props.options} />
+                </PanelOptionsGrid>
+            </div>
+        );
+    }
 }

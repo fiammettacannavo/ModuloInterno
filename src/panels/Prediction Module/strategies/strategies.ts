@@ -6,11 +6,11 @@ import { ConfigRL } from './RL/configRL';
 import { ConfigSVM } from './SVM/configSVM';
 
 export const strategies: { [index: string]: Strategy } = {
-  "RL": new StrategyRL(),
-  "SVM": new StrategySVM(),
+    RL: new StrategyRL(),
+    SVM: new StrategySVM(),
 };
 
 export const configs: { [index: string]: typeof PureComponent } = {
-  "RL": ConfigRL,
-  "SVM": ConfigSVM,
+    RL: ConfigRL,
+    SVM: ConfigSVM,
 };

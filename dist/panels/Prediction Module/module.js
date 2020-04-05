@@ -681,9 +681,12 @@ function (_super) {
   ConfigRL.prototype.render = function () {
     var _this = this;
 
-    if (!this.props.options.predictor.opt) this.props.options.predictor.opt = {
-      toPredict: 0
-    };
+    if (!this.props.options.predictor.opt) {
+      this.props.options.predictor.opt = {
+        toPredict: 0
+      };
+    }
+
     console.log(this.props);
     return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_grafana_ui__WEBPACK_IMPORTED_MODULE_2__["PanelOptionsGroup"], {
       title: "RL"
@@ -696,7 +699,6 @@ function (_super) {
     }, this.renderQueryOptions()));
   };
 
-  ;
   return ConfigRL;
 }(react__WEBPACK_IMPORTED_MODULE_1__["PureComponent"]);
 
@@ -858,12 +860,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var strategies = {
-  "RL": new _RL_strategyRL__WEBPACK_IMPORTED_MODULE_0__["StrategyRL"](),
-  "SVM": new _SVM_strategySVM__WEBPACK_IMPORTED_MODULE_1__["StrategySVM"]()
+  RL: new _RL_strategyRL__WEBPACK_IMPORTED_MODULE_0__["StrategyRL"](),
+  SVM: new _SVM_strategySVM__WEBPACK_IMPORTED_MODULE_1__["StrategySVM"]()
 };
 var configs = {
-  "RL": _RL_configRL__WEBPACK_IMPORTED_MODULE_2__["ConfigRL"],
-  "SVM": _SVM_configSVM__WEBPACK_IMPORTED_MODULE_3__["ConfigSVM"]
+  RL: _RL_configRL__WEBPACK_IMPORTED_MODULE_2__["ConfigRL"],
+  SVM: _SVM_configSVM__WEBPACK_IMPORTED_MODULE_3__["ConfigSVM"]
 };
 
 /***/ }),

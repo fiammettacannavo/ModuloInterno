@@ -3,8 +3,7 @@ import { Props } from '../../props';
 import { PanelOptionsGroup } from '@grafana/ui';
 import { PanelEditorProps } from '@grafana/data';
 
-export class ConfigSVM extends PureComponent<PanelEditorProps<Props>>{
-
+export class ConfigSVM extends PureComponent<PanelEditorProps<Props>> {
     render() {
         return (
             <PanelOptionsGroup title="SVM">
@@ -12,5 +11,4 @@ export class ConfigSVM extends PureComponent<PanelEditorProps<Props>>{
             </PanelOptionsGroup>
         );
     }
-
 }
