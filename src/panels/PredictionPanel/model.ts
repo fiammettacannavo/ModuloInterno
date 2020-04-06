@@ -31,10 +31,11 @@ export class Model {
         }
         this.data.predicted = this.strategy?.predict(this.data, this.predictor, this.opt);
 
-        if (this.data.predicted)
+        if (this.data.predicted) {
             return this.data.predicted[this.data.predicted.length - 1][1];
-        else
+        } else {
             return;
+        }
     }
 
     async saveToInflux() {

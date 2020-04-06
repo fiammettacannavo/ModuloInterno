@@ -426,7 +426,12 @@ function () {
     }
 
     this.data.predicted = (_a = this.strategy) === null || _a === void 0 ? void 0 : _a.predict(this.data, this.predictor, this.opt);
-    if (this.data.predicted) return this.data.predicted[this.data.predicted.length - 1][1];else return;
+
+    if (this.data.predicted) {
+      return this.data.predicted[this.data.predicted.length - 1][1];
+    } else {
+      return;
+    }
   };
 
   Model.prototype.saveToInflux = function () {
@@ -614,23 +619,33 @@ function (_super) {
     _this.pause = function () {
       _this.props.pause();
 
-      if (_this.btn_stop) _this.btn_stop.hidden = true;
-      if (_this.btn_start) _this.btn_start.hidden = false;
+      if (_this.btn_stop) {
+        _this.btn_stop.hidden = true;
+      }
+
+      if (_this.btn_start) {
+        _this.btn_start.hidden = false;
+      }
     };
 
     _this.start = function () {
       _this.props.start();
 
-      if (_this.btn_stop) _this.btn_stop.hidden = false;
-      if (_this.btn_start) _this.btn_start.hidden = true;
+      if (_this.btn_stop) {
+        _this.btn_stop.hidden = false;
+      }
+
+      if (_this.btn_start) {
+        _this.btn_start.hidden = true;
+      }
     };
 
     return _this;
   }
 
   PanelView.prototype.componentDidMount = function () {
-    this.btn_stop = document.getElementById("btn_stop");
-    this.btn_start = document.getElementById("btn_start");
+    this.btn_stop = document.getElementById('btn_stop');
+    this.btn_start = document.getElementById('btn_start');
   };
 
   PanelView.prototype.render = function () {
@@ -641,18 +656,18 @@ function (_super) {
         lastValue = _a.lastValue;
     return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("pre", null, "Log ", '\n', "- Algorithm: ", algorithm + '\n', "- Coefficients: ", coefficients + '\n', opt != null ? '- Options: ' + JSON.stringify(opt) + '\n' : ''), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
       style: {
-        textAlign: "center"
+        textAlign: 'center'
       }
     }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h1", null, lastValue), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
       id: "btn_stop",
       className: "btn btn-danger",
       onClick: this.pause
-    }, " Stop "), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+    }, 'Stop'), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
       id: "btn_start",
       className: "btn btn-success",
       onClick: this.start,
       hidden: true
-    }, " Start ")));
+    }, 'Strat')));
   };
 
   return PanelView;
