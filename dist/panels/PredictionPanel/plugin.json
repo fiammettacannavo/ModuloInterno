@@ -1,7 +1,7 @@
 {
     "type": "panel",
-    "name": "Prediction Module",
-    "id": "prediction-module",
+    "name": "Prediction Panel",
+    "id": "prediction-panel",
     "dataFormats": ["time_series"],
     "refresh": "5s",
     "info": {

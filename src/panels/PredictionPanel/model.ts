@@ -1,19 +1,12 @@
 import { Data, Predictor } from 'utils/dataTypes';
 import { strategies } from './strategies/strategies';
-import { Strategy } from './strategies/strategy';
+import { Strategy } from './strategies/interfaces/strategy';
 
 export class Model {
     data?: Data;
     predictor?: Predictor;
-    algorithm?: Strategy;
-    static model: Model;
-
-    static getInstance() {
-        if (!Model.model) {
-            Model.model = new Model();
-        }
-        return Model.model;
-    }
+    strategy?: Strategy;
+    opt: any;
 
     setData(data: Data) {
         this.data = data;
@@ -22,18 +15,21 @@ export class Model {
     setPredictor(predictor: Predictor) {
         this.predictor = predictor;
         try {
-            this.algorithm = strategies[predictor.algorithm];
-            console.log(this.algorithm);
+            this.strategy = strategies[predictor.algorithm];
         } catch (e) {
             throw new Error('Wrong algorithm');
         }
     }
 
-    predict(toPredict: number) {
-        if (!this.predictor || !this.data) {
+    setOpt(opt: any) {
+        this.opt = opt;
+    }
+
+    predict() {
+        if (!this.data || !this.predictor) {
             throw new Error('predictor not found');
         }
-        this.data.predicted = this.algorithm?.predict(this.data, this.predictor, { toPredict: toPredict });
+        this.data.predicted = this.strategy?.predict(this.data, this.predictor, this.opt);
     }
 
     async saveToInflux() {
@@ -44,10 +40,7 @@ export class Model {
         this.data.predicted.forEach((meas: number[]) => {
             $.post({
                 url: 'http://localhost:8086/write?db=telegraf',
-                data: 'prediction value=' + meas[1] + ' ' + meas[0] + '000000', //this.props.timeRange.from.toISOString() + "'",
-                success: () => {
-                    //console.log("done");
-                },
+                data: 'prediction value=' + meas[1] + ' ' + meas[0] + '000000', // + zeros for wrong time format
             });
         });
     }

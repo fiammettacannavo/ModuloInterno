@@ -1,8 +1,8 @@
 import { PanelPlugin } from '@grafana/data';
-import { Controller } from './controller';
+import { PanelController } from './panelController';
 import { EditorView } from './editorView';
 
-export const plugin = new PanelPlugin(Controller)
+export const plugin = new PanelPlugin(PanelController)
     .setDefaults({
         predictor: {
             algorithm: '',

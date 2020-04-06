@@ -1,7 +1,7 @@
 import { PureComponent } from 'react';
 import { StrategyRL } from './RL/strategyRL';
 import { StrategySVM } from './SVM/strategySVM';
-import { Strategy } from './strategy';
+import { Strategy } from './interfaces/strategy';
 import { ConfigRL } from './RL/configRL';
 import { ConfigSVM } from './SVM/configSVM';
 

@@ -4,18 +4,15 @@ import { PanelOptionsGroup } from '@grafana/ui';
 import { PanelEditorProps } from '@grafana/data';
 
 export class ConfigRL extends PureComponent<PanelEditorProps<Props>> {
-    getSeriesName() {
+    getSeriesNames() {
         return this.props.data.series.map(serie => {
             return serie.name || 'unknown';
         });
     }
 
     renderQueryOptions() {
-        const seriesName = this.getSeriesName();
+        const seriesName = this.getSeriesNames();
         const { opt } = this.props.options.predictor;
-        if (opt.toPredict === null) {
-            throw Error('Missing option');
-        }
 
         const options: JSX.Element[] = [];
         for (const i of seriesName.keys()) {

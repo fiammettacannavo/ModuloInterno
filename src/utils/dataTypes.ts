@@ -41,7 +41,6 @@ export class Predictor {
     algorithm!: string;
     coefficients!: number[];
     function?: string[];
-    accuracy?: {};
     opt?: any;
 
     static fromJSON(str: string | undefined): Predictor {

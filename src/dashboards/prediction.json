@@ -92,7 +92,7 @@
             "timeFrom": null,
             "timeRegions": [],
             "timeShift": null,
-            "title": "Prediction",
+            "title": "Prediction Graph",
             "tooltip": {
                 "shared": true,
                 "sort": 0,
@@ -219,8 +219,8 @@
             ],
             "timeFrom": null,
             "timeShift": null,
-            "title": "My Panel",
-            "type": "prediction-module"
+            "title": "Prediction Settings",
+            "type": "prediction-panel"
         }
     ],
     "refresh": "5s",

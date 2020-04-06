@@ -81,7 +81,7 @@ define(["@grafana/data","@grafana/ui","react"], function(__WEBPACK_EXTERNAL_MODU
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./panels/Prediction Module/module.ts");
+/******/ 	return __webpack_require__(__webpack_require__.s = "./panels/PredictionPanel/module.ts");
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -334,82 +334,10 @@ function __classPrivateFieldSet(receiver, privateMap, value) {
 
 /***/ }),
 
-/***/ "./panels/Prediction Module/controller.tsx":
-/*!*************************************************!*\
-  !*** ./panels/Prediction Module/controller.tsx ***!
-  \*************************************************/
-/*! exports provided: Controller */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Controller", function() { return Controller; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../node_modules/tslib/tslib.es6.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var utils_dataTypes__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! utils/dataTypes */ "./utils/dataTypes.ts");
-/* harmony import */ var _model__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./model */ "./panels/Prediction Module/model.ts");
-/* harmony import */ var _panelView__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./panelView */ "./panels/Prediction Module/panelView.tsx");
-
-
-
-
-
-
-var Controller =
-/** @class */
-function (_super) {
-  Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"])(Controller, _super);
-
-  function Controller(props) {
-    var _this = _super.call(this, props) || this;
-
-    _this.model = _model__WEBPACK_IMPORTED_MODULE_3__["Model"].getInstance();
-
-    _this.setToPredict = function (n) {
-      //controlli se 0|1
-      _this.props.options.predictor.opt.toPredict = n;
-      console.log('to predict: ' + _this.props.options.predictor.opt.toPredict);
-    };
-
-    return _this;
-  }
-
-  Controller.prototype.updateData = function () {
-    if (this.props.data.series.length > 0) {
-      this.model.setPredictor(this.props.options.predictor);
-      this.model.data = utils_dataTypes__WEBPACK_IMPORTED_MODULE_2__["Data"].fromSeries(this.props.data.series);
-    }
-  };
-
-  Controller.prototype.render = function () {
-    var _a; //TODO: forse da mettere in un controller??
-
-
-    this.model.setData(utils_dataTypes__WEBPACK_IMPORTED_MODULE_2__["Data"].fromSeries(this.props.data.series));
-    this.model.setPredictor(this.props.options.predictor || 0);
-    this.model.predict(((_a = this.props.options.predictor.opt) === null || _a === void 0 ? void 0 : _a.toPredict) || 0);
-    this.model.saveToInflux();
-    var predictor = this.props.options.predictor;
-    return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_panelView__WEBPACK_IMPORTED_MODULE_4__["PanelView"], {
-      algorithm: predictor.algorithm,
-      coefficients: predictor.coefficients,
-      opt: predictor.opt,
-      setToPreditct: this.setToPredict
-    });
-  };
-
-  return Controller;
-}(react__WEBPACK_IMPORTED_MODULE_1__["PureComponent"]);
-
-
-
-/***/ }),
-
-/***/ "./panels/Prediction Module/editorView.tsx":
-/*!*************************************************!*\
-  !*** ./panels/Prediction Module/editorView.tsx ***!
-  \*************************************************/
+/***/ "./panels/PredictionPanel/editorView.tsx":
+/*!***********************************************!*\
+  !*** ./panels/PredictionPanel/editorView.tsx ***!
+  \***********************************************/
 /*! exports provided: EditorView */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -421,7 +349,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _grafana_ui__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @grafana/ui */ "@grafana/ui");
 /* harmony import */ var _grafana_ui__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_grafana_ui__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _strategies_strategies__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./strategies/strategies */ "./panels/Prediction Module/strategies/strategies.ts");
+/* harmony import */ var _strategies_strategies__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./strategies/strategies */ "./panels/PredictionPanel/strategies/strategies.ts");
 
 
 
@@ -452,10 +380,10 @@ function (_super) {
 
 /***/ }),
 
-/***/ "./panels/Prediction Module/model.ts":
-/*!*******************************************!*\
-  !*** ./panels/Prediction Module/model.ts ***!
-  \*******************************************/
+/***/ "./panels/PredictionPanel/model.ts":
+/*!*****************************************!*\
+  !*** ./panels/PredictionPanel/model.ts ***!
+  \*****************************************/
 /*! exports provided: Model */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -463,7 +391,7 @@ function (_super) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Model", function() { return Model; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _strategies_strategies__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./strategies/strategies */ "./panels/Prediction Module/strategies/strategies.ts");
+/* harmony import */ var _strategies_strategies__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./strategies/strategies */ "./panels/PredictionPanel/strategies/strategies.ts");
 
 
 
@@ -471,14 +399,6 @@ var Model =
 /** @class */
 function () {
   function Model() {}
-
-  Model.getInstance = function () {
-    if (!Model.model) {
-      Model.model = new Model();
-    }
-
-    return Model.model;
-  };
 
   Model.prototype.setData = function (data) {
     this.data = data;
@@ -488,23 +408,24 @@ function () {
     this.predictor = predictor;
 
     try {
-      this.algorithm = _strategies_strategies__WEBPACK_IMPORTED_MODULE_1__["strategies"][predictor.algorithm];
-      console.log(this.algorithm);
+      this.strategy = _strategies_strategies__WEBPACK_IMPORTED_MODULE_1__["strategies"][predictor.algorithm];
     } catch (e) {
       throw new Error('Wrong algorithm');
     }
   };
 
-  Model.prototype.predict = function (toPredict) {
+  Model.prototype.setOpt = function (opt) {
+    this.opt = opt;
+  };
+
+  Model.prototype.predict = function () {
     var _a;
 
-    if (!this.predictor || !this.data) {
+    if (!this.data || !this.predictor) {
       throw new Error('predictor not found');
     }
 
-    this.data.predicted = (_a = this.algorithm) === null || _a === void 0 ? void 0 : _a.predict(this.data, this.predictor, {
-      toPredict: toPredict
-    });
+    this.data.predicted = (_a = this.strategy) === null || _a === void 0 ? void 0 : _a.predict(this.data, this.predictor, this.opt);
   };
 
   Model.prototype.saveToInflux = function () {
@@ -519,9 +440,7 @@ function () {
         this.data.predicted.forEach(function (meas) {
           $.post({
             url: 'http://localhost:8086/write?db=telegraf',
-            data: 'prediction value=' + meas[1] + ' ' + meas[0] + '000000',
-            success: function success() {//console.log("done");
-            }
+            data: 'prediction value=' + meas[1] + ' ' + meas[0] + '000000'
           });
         });
         return [2
@@ -538,10 +457,10 @@ function () {
 
 /***/ }),
 
-/***/ "./panels/Prediction Module/module.ts":
-/*!********************************************!*\
-  !*** ./panels/Prediction Module/module.ts ***!
-  \********************************************/
+/***/ "./panels/PredictionPanel/module.ts":
+/*!******************************************!*\
+  !*** ./panels/PredictionPanel/module.ts ***!
+  \******************************************/
 /*! exports provided: plugin */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -550,12 +469,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "plugin", function() { return plugin; });
 /* harmony import */ var _grafana_data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @grafana/data */ "@grafana/data");
 /* harmony import */ var _grafana_data__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_grafana_data__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _controller__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./controller */ "./panels/Prediction Module/controller.tsx");
-/* harmony import */ var _editorView__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./editorView */ "./panels/Prediction Module/editorView.tsx");
+/* harmony import */ var _panelController__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./panelController */ "./panels/PredictionPanel/panelController.tsx");
+/* harmony import */ var _editorView__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./editorView */ "./panels/PredictionPanel/editorView.tsx");
 
 
 
-var plugin = new _grafana_data__WEBPACK_IMPORTED_MODULE_0__["PanelPlugin"](_controller__WEBPACK_IMPORTED_MODULE_1__["Controller"]).setDefaults({
+var plugin = new _grafana_data__WEBPACK_IMPORTED_MODULE_0__["PanelPlugin"](_panelController__WEBPACK_IMPORTED_MODULE_1__["PanelController"]).setDefaults({
   predictor: {
     algorithm: '',
     coefficients: []
@@ -564,10 +483,90 @@ var plugin = new _grafana_data__WEBPACK_IMPORTED_MODULE_0__["PanelPlugin"](_cont
 
 /***/ }),
 
-/***/ "./panels/Prediction Module/panelView.tsx":
-/*!************************************************!*\
-  !*** ./panels/Prediction Module/panelView.tsx ***!
-  \************************************************/
+/***/ "./panels/PredictionPanel/panelController.tsx":
+/*!****************************************************!*\
+  !*** ./panels/PredictionPanel/panelController.tsx ***!
+  \****************************************************/
+/*! exports provided: PanelController */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PanelController", function() { return PanelController; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var utils_dataTypes__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! utils/dataTypes */ "./utils/dataTypes.ts");
+/* harmony import */ var _model__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./model */ "./panels/PredictionPanel/model.ts");
+/* harmony import */ var _panelView__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./panelView */ "./panels/PredictionPanel/panelView.tsx");
+
+
+
+
+
+
+var PanelController =
+/** @class */
+function (_super) {
+  Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"])(PanelController, _super);
+
+  function PanelController(props) {
+    var _this = _super.call(this, props) || this;
+
+    _this.model = new _model__WEBPACK_IMPORTED_MODULE_3__["Model"]();
+    return _this;
+  }
+
+  PanelController.prototype.setData = function () {
+    //TODO: controlli e eccezioni
+    this.model.setData(utils_dataTypes__WEBPACK_IMPORTED_MODULE_2__["Data"].fromSeries(this.props.data.series));
+  };
+
+  PanelController.prototype.setPredictor = function () {
+    //TODO: controlli e eccezioni
+    this.model.setPredictor(this.props.options.predictor || 0);
+  };
+
+  PanelController.prototype.setOpt = function () {
+    //TODO: controlli e eccezioni
+    this.model.setOpt(this.props.options.predictor.opt);
+  };
+
+  PanelController.prototype.predict = function () {
+    //TODO: controlli e eccezioni
+    this.model.predict();
+  };
+
+  PanelController.prototype.saveToInflux = function () {
+    //TODO: controlli e eccezioni
+    this.model.saveToInflux();
+  };
+
+  PanelController.prototype.render = function () {
+    this.setData();
+    this.setPredictor();
+    this.setOpt();
+    this.predict();
+    this.saveToInflux();
+    var predictor = this.props.options.predictor;
+    return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_panelView__WEBPACK_IMPORTED_MODULE_4__["PanelView"], {
+      algorithm: predictor.algorithm,
+      coefficients: predictor.coefficients,
+      opt: predictor.opt
+    });
+  };
+
+  return PanelController;
+}(react__WEBPACK_IMPORTED_MODULE_1__["PureComponent"]);
+
+
+
+/***/ }),
+
+/***/ "./panels/PredictionPanel/panelView.tsx":
+/*!**********************************************!*\
+  !*** ./panels/PredictionPanel/panelView.tsx ***!
+  \**********************************************/
 /*! exports provided: PanelView */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -577,8 +576,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../node_modules/tslib/tslib.es6.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _model__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./model */ "./panels/Prediction Module/model.ts");
-
 
 
 
@@ -588,10 +585,7 @@ function (_super) {
   Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"])(PanelView, _super);
 
   function PanelView() {
-    var _this = _super !== null && _super.apply(this, arguments) || this;
-
-    _this.model = _model__WEBPACK_IMPORTED_MODULE_2__["Model"].getInstance();
-    return _this;
+    return _super !== null && _super.apply(this, arguments) || this;
   }
 
   PanelView.prototype.render = function () {
@@ -599,7 +593,7 @@ function (_super) {
         algorithm = _a.algorithm,
         coefficients = _a.coefficients,
         opt = _a.opt;
-    return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("pre", null, "Log ", '\n', opt != null ? '--Options: ' + JSON.stringify(opt) + '\n' : '', "--Predictor ", '\n', "----Algorithm: ", algorithm + '\n', "----Coefficients: ", coefficients + '\n'));
+    return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("pre", null, "Log ", '\n', "--Predictor ", '\n', "----Algorithm: ", algorithm + '\n', "----Coefficients: ", coefficients + '\n', opt != null ? '----options: ' + JSON.stringify(opt) + '\n' : ''));
   };
 
   return PanelView;
@@ -609,10 +603,10 @@ function (_super) {
 
 /***/ }),
 
-/***/ "./panels/Prediction Module/strategies/RL/configRL.tsx":
-/*!*************************************************************!*\
-  !*** ./panels/Prediction Module/strategies/RL/configRL.tsx ***!
-  \*************************************************************/
+/***/ "./panels/PredictionPanel/strategies/RL/configRL.tsx":
+/*!***********************************************************!*\
+  !*** ./panels/PredictionPanel/strategies/RL/configRL.tsx ***!
+  \***********************************************************/
 /*! exports provided: ConfigRL */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -637,7 +631,7 @@ function (_super) {
     return _super !== null && _super.apply(this, arguments) || this;
   }
 
-  ConfigRL.prototype.getSeriesName = function () {
+  ConfigRL.prototype.getSeriesNames = function () {
     return this.props.data.series.map(function (serie) {
       return serie.name || 'unknown';
     });
@@ -646,13 +640,8 @@ function (_super) {
   ConfigRL.prototype.renderQueryOptions = function () {
     var e_1, _a;
 
-    var seriesName = this.getSeriesName();
+    var seriesName = this.getSeriesNames();
     var opt = this.props.options.predictor.opt;
-
-    if (opt.toPredict === null) {
-      throw Error('Missing option');
-    }
-
     var options = [];
 
     try {
@@ -706,10 +695,10 @@ function (_super) {
 
 /***/ }),
 
-/***/ "./panels/Prediction Module/strategies/RL/strategyRL.ts":
-/*!**************************************************************!*\
-  !*** ./panels/Prediction Module/strategies/RL/strategyRL.ts ***!
-  \**************************************************************/
+/***/ "./panels/PredictionPanel/strategies/RL/strategyRL.ts":
+/*!************************************************************!*\
+  !*** ./panels/PredictionPanel/strategies/RL/strategyRL.ts ***!
+  \************************************************************/
 /*! exports provided: StrategyRL */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -722,14 +711,19 @@ function () {
   function StrategyRL() {}
 
   StrategyRL.prototype.predict = function (data, predictor, options) {
+    if (!options) {
+      options = {
+        toPredict: 0
+      };
+    }
+
     var base = 1 - options.toPredict; //the other one
 
     var coeff = predictor.coefficients;
 
     var f = function f(x) {
       return x ? x * coeff[0] + coeff[1] : 0;
-    }; //make function
-
+    };
 
     data.predicted = [];
     data.series.forEach(function (value) {
@@ -749,10 +743,10 @@ function () {
 
 /***/ }),
 
-/***/ "./panels/Prediction Module/strategies/SVM/configSVM.tsx":
-/*!***************************************************************!*\
-  !*** ./panels/Prediction Module/strategies/SVM/configSVM.tsx ***!
-  \***************************************************************/
+/***/ "./panels/PredictionPanel/strategies/SVM/configSVM.tsx":
+/*!*************************************************************!*\
+  !*** ./panels/PredictionPanel/strategies/SVM/configSVM.tsx ***!
+  \*************************************************************/
 /*! exports provided: ConfigSVM */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -777,10 +771,61 @@ function (_super) {
     return _super !== null && _super.apply(this, arguments) || this;
   }
 
+  ConfigSVM.prototype.getSeriesNames = function () {
+    return this.props.data.series.map(function (serie) {
+      return serie.name || 'unknown';
+    });
+  };
+
+  ConfigSVM.prototype.renderQueryOptions = function () {
+    var e_1, _a;
+
+    var seriesName = this.getSeriesNames();
+    var opt = this.props.options.predictor.opt;
+    var options = [];
+
+    try {
+      for (var _b = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__values"])(seriesName.keys()), _c = _b.next(); !_c.done; _c = _b.next()) {
+        var i = _c.value;
+        options.push(react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
+          value: i,
+          selected: opt.firstQuery === i
+        }, seriesName[i]));
+      }
+    } catch (e_1_1) {
+      e_1 = {
+        error: e_1_1
+      };
+    } finally {
+      try {
+        if (_c && !_c.done && (_a = _b["return"])) _a.call(_b);
+      } finally {
+        if (e_1) throw e_1.error;
+      }
+    }
+
+    return options;
+  };
+
   ConfigSVM.prototype.render = function () {
+    var _this = this;
+
+    if (!this.props.options.predictor.opt) {
+      this.props.options.predictor.opt = {
+        firstQuery: 0
+      };
+    }
+
+    console.log(this.props);
     return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_grafana_ui__WEBPACK_IMPORTED_MODULE_2__["PanelOptionsGroup"], {
       title: "SVM"
-    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, " There are no options "));
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, " Select query to use as first paramether (the other one will be the second): "), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("select", {
+      onChange: function onChange(event) {
+        return _this.props.options.predictor.opt = {
+          firstQuery: Number.parseInt(event.target.value, 10)
+        };
+      }
+    }, this.renderQueryOptions()));
   };
 
   return ConfigSVM;
@@ -790,10 +835,10 @@ function (_super) {
 
 /***/ }),
 
-/***/ "./panels/Prediction Module/strategies/SVM/strategySVM.ts":
-/*!****************************************************************!*\
-  !*** ./panels/Prediction Module/strategies/SVM/strategySVM.ts ***!
-  \****************************************************************/
+/***/ "./panels/PredictionPanel/strategies/SVM/strategySVM.ts":
+/*!**************************************************************!*\
+  !*** ./panels/PredictionPanel/strategies/SVM/strategySVM.ts ***!
+  \**************************************************************/
 /*! exports provided: StrategySVM */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -805,29 +850,36 @@ var StrategySVM =
 function () {
   function StrategySVM() {}
 
-  StrategySVM.prototype.predict = function (data, predictor) {
+  StrategySVM.prototype.predict = function (data, predictor, options) {
+    if (!options) {
+      options = {
+        firstQuery: 0
+      };
+    }
+
     var coeff = predictor.coefficients;
+    var x1 = options.firstQuery;
+    var x2 = 1 - options.firstQuery;
 
     var f = function f(x1, x2) {
       return x1 * coeff[0] + x2 * coeff[1] + coeff[2];
-    }; //make function
-
+    };
 
     data.predicted = [];
     data.series.forEach(function (value) {
       var _a;
 
-      var val = f(value[0], value[1]);
-      var x = 0;
+      var val = f(value[x1], value[x2]);
+      var cls = 0; //classification
 
       if (val > 0) {
-        x = 1;
+        cls = 1;
       } else if (val < 0) {
-        x = -1;
+        cls = -1;
       }
 
       if (data && (value[0] || value[1])) {
-        (_a = data.predicted) === null || _a === void 0 ? void 0 : _a.push([value[2], x]);
+        (_a = data.predicted) === null || _a === void 0 ? void 0 : _a.push([value[2], cls]);
       }
     });
     return data.predicted;
@@ -840,10 +892,10 @@ function () {
 
 /***/ }),
 
-/***/ "./panels/Prediction Module/strategies/strategies.ts":
-/*!***********************************************************!*\
-  !*** ./panels/Prediction Module/strategies/strategies.ts ***!
-  \***********************************************************/
+/***/ "./panels/PredictionPanel/strategies/strategies.ts":
+/*!*********************************************************!*\
+  !*** ./panels/PredictionPanel/strategies/strategies.ts ***!
+  \*********************************************************/
 /*! exports provided: strategies, configs */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -851,10 +903,10 @@ function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "strategies", function() { return strategies; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "configs", function() { return configs; });
-/* harmony import */ var _RL_strategyRL__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./RL/strategyRL */ "./panels/Prediction Module/strategies/RL/strategyRL.ts");
-/* harmony import */ var _SVM_strategySVM__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SVM/strategySVM */ "./panels/Prediction Module/strategies/SVM/strategySVM.ts");
-/* harmony import */ var _RL_configRL__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./RL/configRL */ "./panels/Prediction Module/strategies/RL/configRL.tsx");
-/* harmony import */ var _SVM_configSVM__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./SVM/configSVM */ "./panels/Prediction Module/strategies/SVM/configSVM.tsx");
+/* harmony import */ var _RL_strategyRL__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./RL/strategyRL */ "./panels/PredictionPanel/strategies/RL/strategyRL.ts");
+/* harmony import */ var _SVM_strategySVM__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SVM/strategySVM */ "./panels/PredictionPanel/strategies/SVM/strategySVM.ts");
+/* harmony import */ var _RL_configRL__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./RL/configRL */ "./panels/PredictionPanel/strategies/RL/configRL.tsx");
+/* harmony import */ var _SVM_configSVM__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./SVM/configSVM */ "./panels/PredictionPanel/strategies/SVM/configSVM.tsx");
 
 
 

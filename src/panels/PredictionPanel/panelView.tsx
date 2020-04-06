@@ -1,9 +1,4 @@
 import React, { PureComponent } from 'react';
-import { Model } from './model';
-
-interface Actions {
-    setToPreditct: (n: any) => void;
-}
 
 interface Props {
     algorithm: string;
@@ -11,9 +6,7 @@ interface Props {
     opt: any;
 }
 
-export class PanelView extends PureComponent<Actions & Props> {
-    model: Model = Model.getInstance();
-
+export class PanelView extends PureComponent<Props> {
     render() {
         const { algorithm, coefficients, opt } = this.props;
 
@@ -21,10 +14,10 @@ export class PanelView extends PureComponent<Actions & Props> {
             <div>
                 <pre>
                     Log {'\n'}
-                    {opt != null ? '--Options: ' + JSON.stringify(opt) + '\n' : ''}
                     --Predictor {'\n'}
                     ----Algorithm: {algorithm + '\n'}
                     ----Coefficients: {coefficients + '\n'}
+                    {opt != null ? '----options: ' + JSON.stringify(opt) + '\n' : ''}
                 </pre>
             </div>
         );
