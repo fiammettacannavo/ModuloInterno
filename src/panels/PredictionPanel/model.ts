@@ -30,6 +30,11 @@ export class Model {
             throw new Error('predictor not found');
         }
         this.data.predicted = this.strategy?.predict(this.data, this.predictor, this.opt);
+
+        if (this.data.predicted)
+            return this.data.predicted[this.data.predicted.length - 1][1];
+        else
+            return;
     }
 
     async saveToInflux() {

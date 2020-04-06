@@ -426,6 +426,7 @@ function () {
     }
 
     this.data.predicted = (_a = this.strategy) === null || _a === void 0 ? void 0 : _a.predict(this.data, this.predictor, this.opt);
+    if (this.data.predicted) return this.data.predicted[this.data.predicted.length - 1][1];else return;
   };
 
   Model.prototype.saveToInflux = function () {
@@ -513,12 +514,12 @@ function (_super) {
   function PanelController(props) {
     var _this = _super.call(this, props) || this;
 
+    _this.paused = false;
     _this.model = new _model__WEBPACK_IMPORTED_MODULE_3__["Model"]();
     return _this;
   }
 
   PanelController.prototype.setData = function () {
-    //TODO: controlli e eccezioni
     this.model.setData(utils_dataTypes__WEBPACK_IMPORTED_MODULE_2__["Data"].fromSeries(this.props.data.series));
   };
 
@@ -534,7 +535,7 @@ function (_super) {
 
   PanelController.prototype.predict = function () {
     //TODO: controlli e eccezioni
-    this.model.predict();
+    this.lastValue = this.model.predict();
   };
 
   PanelController.prototype.saveToInflux = function () {
@@ -542,17 +543,40 @@ function (_super) {
     this.model.saveToInflux();
   };
 
+  PanelController.prototype.pause = function () {
+    this.paused = true;
+  };
+
+  PanelController.prototype.start = function () {
+    this.paused = false;
+  };
+
+  PanelController.prototype.updatePrediction = function () {
+    if (!this.paused) {
+      this.setData();
+      this.setPredictor();
+      this.setOpt();
+      this.predict();
+      this.saveToInflux();
+    }
+  };
+
   PanelController.prototype.render = function () {
-    this.setData();
-    this.setPredictor();
-    this.setOpt();
-    this.predict();
-    this.saveToInflux();
+    var _this = this;
+
+    this.updatePrediction();
     var predictor = this.props.options.predictor;
     return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_panelView__WEBPACK_IMPORTED_MODULE_4__["PanelView"], {
       algorithm: predictor.algorithm,
       coefficients: predictor.coefficients,
-      opt: predictor.opt
+      opt: predictor.opt,
+      lastValue: this.lastValue,
+      pause: function pause() {
+        return _this.pause();
+      },
+      start: function start() {
+        return _this.start();
+      }
     });
   };
 
@@ -585,15 +609,50 @@ function (_super) {
   Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"])(PanelView, _super);
 
   function PanelView() {
-    return _super !== null && _super.apply(this, arguments) || this;
+    var _this = _super !== null && _super.apply(this, arguments) || this;
+
+    _this.pause = function () {
+      _this.props.pause();
+
+      if (_this.btn_stop) _this.btn_stop.hidden = true;
+      if (_this.btn_start) _this.btn_start.hidden = false;
+    };
+
+    _this.start = function () {
+      _this.props.start();
+
+      if (_this.btn_stop) _this.btn_stop.hidden = false;
+      if (_this.btn_start) _this.btn_start.hidden = true;
+    };
+
+    return _this;
   }
+
+  PanelView.prototype.componentDidMount = function () {
+    this.btn_stop = document.getElementById("btn_stop");
+    this.btn_start = document.getElementById("btn_start");
+  };
 
   PanelView.prototype.render = function () {
     var _a = this.props,
         algorithm = _a.algorithm,
         coefficients = _a.coefficients,
-        opt = _a.opt;
-    return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("pre", null, "Log ", '\n', "--Predictor ", '\n', "----Algorithm: ", algorithm + '\n', "----Coefficients: ", coefficients + '\n', opt != null ? '----options: ' + JSON.stringify(opt) + '\n' : ''));
+        opt = _a.opt,
+        lastValue = _a.lastValue;
+    return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("pre", null, "Log ", '\n', "- Algorithm: ", algorithm + '\n', "- Coefficients: ", coefficients + '\n', opt != null ? '- Options: ' + JSON.stringify(opt) + '\n' : ''), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      style: {
+        textAlign: "center"
+      }
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h1", null, lastValue), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+      id: "btn_stop",
+      className: "btn btn-danger",
+      onClick: this.pause
+    }, " Stop "), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+      id: "btn_start",
+      className: "btn btn-success",
+      onClick: this.start,
+      hidden: true
+    }, " Start ")));
   };
 
   return PanelView;
