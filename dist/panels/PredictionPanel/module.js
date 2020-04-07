@@ -350,6 +350,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _grafana_ui__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @grafana/ui */ "@grafana/ui");
 /* harmony import */ var _grafana_ui__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_grafana_ui__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _strategies_strategies__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./strategies/strategies */ "./panels/PredictionPanel/strategies/strategies.ts");
+/* harmony import */ var utils_dataTypes__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! utils/dataTypes */ "./utils/dataTypes.ts");
+
 
 
 
@@ -365,9 +367,41 @@ function (_super) {
     return _super !== null && _super.apply(this, arguments) || this;
   }
 
+  EditorView.prototype.importPredictor = function (target) {
+    var _this = this;
+
+    var reader = new FileReader();
+
+    if (target.files == null) {
+      throw new Error('File not selected');
+    }
+
+    reader.readAsText(target.files[0]);
+
+    reader.onload = function (event) {
+      var _a, _b;
+
+      _this.props.options.predictor = utils_dataTypes__WEBPACK_IMPORTED_MODULE_4__["Predictor"].fromJSON((_b = (_a = event.target) === null || _a === void 0 ? void 0 : _a.result) === null || _b === void 0 ? void 0 : _b.toString());
+
+      _this.render();
+    };
+  };
+
   EditorView.prototype.render = function () {
+    var _this = this;
+
     var Config = _strategies_strategies__WEBPACK_IMPORTED_MODULE_3__["configs"][this.props.options.predictor.algorithm];
-    return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_grafana_ui__WEBPACK_IMPORTED_MODULE_2__["PanelOptionsGrid"], null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(Config, {
+    return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_grafana_ui__WEBPACK_IMPORTED_MODULE_2__["PanelOptionsGrid"], null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_grafana_ui__WEBPACK_IMPORTED_MODULE_2__["PanelOptionsGroup"], {
+      title: "Import predictor"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+      className: "input gf-input gf-file",
+      type: "file",
+      name: "Import",
+      id: "import",
+      onChange: function onChange(event) {
+        return _this.importPredictor(event.target);
+      }
+    })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(Config, {
       data: this.props.data,
       options: this.props.options
     })));
@@ -667,7 +701,7 @@ function (_super) {
       className: "btn btn-success",
       onClick: this.start,
       hidden: true
-    }, 'Strat')));
+    }, 'Start')));
   };
 
   return PanelView;

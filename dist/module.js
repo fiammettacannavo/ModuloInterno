@@ -334,95 +334,6 @@ function __classPrivateFieldSet(receiver, privateMap, value) {
 
 /***/ }),
 
-/***/ "./appController.tsx":
-/*!***************************!*\
-  !*** ./appController.tsx ***!
-  \***************************/
-/*! exports provided: AppController */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AppController", function() { return AppController; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../node_modules/tslib/tslib.es6.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var appView__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! appView */ "./appView.tsx");
-/* harmony import */ var utils_dataTypes__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! utils/dataTypes */ "./utils/dataTypes.ts");
- // Libraries
-
-
-
-
-
-var AppController =
-/** @class */
-function (_super) {
-  Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"])(AppController, _super);
-
-  function AppController() {
-    var _this = _super !== null && _super.apply(this, arguments) || this;
-
-    _this.readFile = function (target) {
-      var reader = new FileReader();
-
-      if (target.files == null) {
-        throw new Error('File not selected');
-      }
-
-      reader.readAsText(target.files[0]);
-
-      reader.onload = function (event) {
-        var _a, _b;
-
-        var preString = (_b = (_a = event.target) === null || _a === void 0 ? void 0 : _a.result) === null || _b === void 0 ? void 0 : _b.toString();
-        _this.predictor = utils_dataTypes__WEBPACK_IMPORTED_MODULE_3__["Predictor"].fromJSON(preString);
-      };
-    };
-
-    _this.makeDashboard = function () {
-      //TODO: spostare nel model (?)
-      if (!_this.predictor) {
-        throw new Error('Predictor file not loaded');
-      }
-
-      var data = __webpack_require__(/*! dashboards/prediction.json */ "./dashboards/prediction.json");
-
-      data.panels[1].options.predictor = _this.predictor;
-      data = {
-        dashboard: data,
-        overwrite: true
-      };
-      console.log(data);
-      $.ajax({
-        url: '/api/dashboards/db',
-        type: 'post',
-        contentType: 'application/json',
-        dataType: 'application/json',
-        data: JSON.stringify(data),
-        complete: function complete(res) {
-          alert('Added dashboard: ' + data.dashboard.title + '\nStatus: ' + res.statusText);
-        }
-      });
-    };
-
-    return _this;
-  }
-
-  AppController.prototype.render = function () {
-    return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(appView__WEBPACK_IMPORTED_MODULE_2__["AppView"], {
-      onImport: this.readFile,
-      makeDashboard: this.makeDashboard
-    });
-  };
-
-  return AppController;
-}(react__WEBPACK_IMPORTED_MODULE_1__["PureComponent"]);
-
-
-
-/***/ }),
-
 /***/ "./appView.tsx":
 /*!*********************!*\
   !*** ./appView.tsx ***!
@@ -449,26 +360,37 @@ function (_super) {
   Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"])(AppView, _super);
 
   function AppView() {
-    return _super !== null && _super.apply(this, arguments) || this;
+    var _this = _super !== null && _super.apply(this, arguments) || this;
+
+    _this.makeDashboard = function () {
+      var data = {
+        dashboard: __webpack_require__(/*! dashboards/sample.json */ "./dashboards/sample.json"),
+        overwrite: true
+      };
+      $.ajax({
+        url: '/api/dashboards/db',
+        type: 'post',
+        contentType: 'application/json',
+        dataType: 'application/json',
+        data: JSON.stringify(data),
+        complete: function complete(res) {
+          alert('Dashboard: ' + data.dashboard.title + '\nStatus: ' + res.statusText);
+          location.replace("/d/" + data.dashboard.uid);
+        }
+      });
+    };
+
+    return _this;
   }
 
   AppView.prototype.render = function () {
-    var _a = this.props,
-        onImport = _a.onImport,
-        makeDashboard = _a.makeDashboard;
-    return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h1", null, "Import Prediction file"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
-      className: "input gf-input gf-file",
-      type: "file",
-      name: "Import",
-      id: "import",
-      onChange: function onChange(event) {
-        return onImport(event.target);
-      }
-    }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_grafana_ui__WEBPACK_IMPORTED_MODULE_2__["Button"], {
+    var _this = this;
+
+    return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_grafana_ui__WEBPACK_IMPORTED_MODULE_2__["Button"], {
       onClick: function onClick() {
-        return makeDashboard();
+        return _this.makeDashboard();
       }
-    }, "Make Dashboard"));
+    }, "Sample Dashboard"));
   };
 
   return AppView;
@@ -478,14 +400,14 @@ function (_super) {
 
 /***/ }),
 
-/***/ "./dashboards/prediction.json":
-/*!************************************!*\
-  !*** ./dashboards/prediction.json ***!
-  \************************************/
+/***/ "./dashboards/sample.json":
+/*!********************************!*\
+  !*** ./dashboards/sample.json ***!
+  \********************************/
 /*! exports provided: annotations, editable, gnetId, graphTooltip, id, links, panels, refresh, schemaVersion, style, tags, templating, time, timepicker, timezone, title, uid, variables, version, default */
 /***/ (function(module) {
 
-module.exports = {"annotations":{"list":[{"builtIn":1,"datasource":"-- Grafana --","enable":true,"hide":true,"iconColor":"rgba(0, 211, 255, 1)","name":"Annotations & Alerts","type":"dashboard"}]},"editable":true,"gnetId":null,"graphTooltip":0,"id":null,"links":[],"panels":[{"aliasColors":{},"bars":false,"dashLength":10,"dashes":false,"datasource":null,"fill":1,"fillGradient":0,"gridPos":{"h":9,"w":12,"x":0,"y":0},"hiddenSeries":false,"id":2,"legend":{"avg":false,"current":false,"max":false,"min":false,"show":true,"total":false,"values":false},"lines":true,"linewidth":1,"nullPointMode":"connected","options":{"dataLinks":[]},"percentage":false,"pointradius":2,"points":false,"renderer":"flot","seriesOverrides":[],"spaceLength":10,"stack":false,"steppedLine":false,"targets":[{"groupBy":[{"params":["$__interval"],"type":"time"},{"params":["null"],"type":"fill"}],"measurement":"prediction","orderByTime":"ASC","policy":"default","refId":"A","resultFormat":"time_series","select":[[{"params":["value"],"type":"field"},{"params":[],"type":"mean"}]],"tags":[]}],"thresholds":[],"timeFrom":null,"timeRegions":[],"timeShift":null,"title":"Prediction Graph","tooltip":{"shared":true,"sort":0,"value_type":"individual"},"type":"graph","xaxis":{"buckets":null,"mode":"time","name":null,"show":true,"values":[]},"yaxes":[{"format":"short","label":null,"logBase":1,"max":null,"min":null,"show":true},{"format":"short","label":null,"logBase":1,"max":null,"min":null,"show":true}],"yaxis":{"align":false,"alignLevel":null}},{"datasource":null,"gridPos":{"h":9,"w":7,"x":12,"y":0},"id":4,"options":{"predictor":{}},"targets":[{"groupBy":[{"params":["$__interval"],"type":"time"},{"params":["null"],"type":"fill"}],"measurement":"cpu","orderByTime":"ASC","policy":"default","refId":"A","resultFormat":"time_series","select":[[{"params":["usage_system"],"type":"field"},{"params":[],"type":"mean"}]],"tags":[{"key":"cpu","operator":"=","value":"cpu0"}]},{"groupBy":[{"params":["$__interval"],"type":"time"},{"params":["null"],"type":"fill"}],"measurement":"cpu","orderByTime":"ASC","policy":"default","refId":"B","resultFormat":"time_series","select":[[{"params":["usage_system"],"type":"field"},{"params":[],"type":"mean"}]],"tags":[{"key":"cpu","operator":"=","value":"cpu1"}]}],"timeFrom":null,"timeShift":null,"title":"Prediction Settings","type":"prediction-panel"}],"refresh":"5s","schemaVersion":22,"style":"dark","tags":[],"templating":{"list":[]},"time":{"from":"now-5m","to":"now"},"timepicker":{"refresh_intervals":["5s","10s","30s","1m","5m","15m","30m","1h","2h","1d"]},"timezone":"","title":"Prediction Dashboard","uid":null,"variables":{"list":[]},"version":19};
+module.exports = {"annotations":{"list":[{"builtIn":1,"datasource":"-- Grafana --","enable":true,"hide":true,"iconColor":"rgba(0, 211, 255, 1)","name":"Annotations & Alerts","type":"dashboard"}]},"editable":true,"gnetId":null,"graphTooltip":0,"id":null,"links":[],"panels":[{"aliasColors":{},"bars":false,"dashLength":10,"dashes":false,"datasource":null,"fill":1,"fillGradient":0,"gridPos":{"h":9,"w":12,"x":0,"y":0},"hiddenSeries":false,"id":2,"legend":{"avg":false,"current":false,"max":false,"min":false,"show":true,"total":false,"values":false},"lines":true,"linewidth":1,"nullPointMode":"connected","options":{"dataLinks":[]},"percentage":false,"pointradius":2,"points":false,"renderer":"flot","seriesOverrides":[],"spaceLength":10,"stack":false,"steppedLine":false,"targets":[{"groupBy":[{"params":["$__interval"],"type":"time"},{"params":["null"],"type":"fill"}],"measurement":"prediction","orderByTime":"ASC","policy":"default","refId":"A","resultFormat":"time_series","select":[[{"params":["value"],"type":"field"},{"params":[],"type":"mean"}]],"tags":[]}],"thresholds":[],"timeFrom":null,"timeRegions":[],"timeShift":null,"title":"Prediction Graph","tooltip":{"shared":true,"sort":0,"value_type":"individual"},"type":"graph","xaxis":{"buckets":null,"mode":"time","name":null,"show":true,"values":[]},"yaxes":[{"format":"short","label":null,"logBase":1,"max":null,"min":null,"show":true},{"format":"short","label":null,"logBase":1,"max":null,"min":null,"show":true}],"yaxis":{"align":false,"alignLevel":null}},{"datasource":null,"gridPos":{"h":9,"w":8,"x":12,"y":0},"id":4,"options":{"predictor":{"algorithm":"RL","coefficients":[1.37,1.38],"opt":{"toPredict":0}}},"targets":[{"groupBy":[{"params":["$__interval"],"type":"time"},{"params":["null"],"type":"fill"}],"measurement":"cpu","orderByTime":"ASC","policy":"default","refId":"A","resultFormat":"time_series","select":[[{"params":["usage_system"],"type":"field"},{"params":[],"type":"mean"}]],"tags":[{"key":"cpu","operator":"=","value":"cpu0"}]},{"groupBy":[{"params":["$__interval"],"type":"time"},{"params":["null"],"type":"fill"}],"measurement":"cpu","orderByTime":"ASC","policy":"default","refId":"B","resultFormat":"time_series","select":[[{"params":["usage_system"],"type":"field"},{"params":[],"type":"mean"}]],"tags":[{"key":"cpu","operator":"=","value":"cpu1"}]}],"timeFrom":null,"timeShift":null,"title":"Prediction Settings","type":"prediction-panel"}],"refresh":"5s","schemaVersion":22,"style":"dark","tags":[],"templating":{"list":[]},"time":{"from":"now-5m","to":"now"},"timepicker":{"refresh_intervals":["5s","10s","30s","1m","5m","15m","30m","1h","2h","1d"]},"timezone":"","title":"Sample Dashboard","uid":"sample-dash","variables":{"list":[]},"version":7};
 
 /***/ }),
 
@@ -502,7 +424,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "plugin", function() { return plugin; });
 /* harmony import */ var _grafana_data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @grafana/data */ "@grafana/data");
 /* harmony import */ var _grafana_data__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_grafana_data__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var appController__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! appController */ "./appController.tsx");
+/* harmony import */ var appView__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! appView */ "./appView.tsx");
 
 
 
@@ -519,111 +441,9 @@ function () {
 var plugin = new _grafana_data__WEBPACK_IMPORTED_MODULE_0__["AppPlugin"]().addConfigPage({
   title: 'Import',
   icon: 'fa fa-arrow-down',
-  body: appController__WEBPACK_IMPORTED_MODULE_1__["AppController"],
+  body: appView__WEBPACK_IMPORTED_MODULE_1__["AppView"],
   id: 'import'
 });
-
-/***/ }),
-
-/***/ "./utils/dataTypes.ts":
-/*!****************************!*\
-  !*** ./utils/dataTypes.ts ***!
-  \****************************/
-/*! exports provided: Data, Predictor */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Data", function() { return Data; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Predictor", function() { return Predictor; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../node_modules/tslib/tslib.es6.js");
- // Data representation as array (both measured and predicted)
-
-var Data =
-/** @class */
-function () {
-  function Data() {}
-
-  Data.fromSeries = function (series) {
-    var e_1, _a;
-
-    if (!series[0] || !series[1]) {
-      throw Error('Set at least 2 query before');
-    }
-
-    var time = series[0].fields[1].values.toArray();
-    var values = []; // [ [valA, valA ...] [valB, valB ...] ]
-
-    series.forEach(function (serie) {
-      values.push(serie.fields[0].values.toArray());
-    });
-    var _series = [];
-
-    var _loop_1 = function _loop_1(i) {
-      var _measure = []; // [ valA, valB, time ]
-
-      values.forEach(function (value) {
-        _measure.push(value[i]);
-      });
-
-      _measure.push(time[i]);
-
-      _series.push(_measure);
-    };
-
-    try {
-      for (var _b = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__values"])(time.keys()), _c = _b.next(); !_c.done; _c = _b.next()) {
-        var i = _c.value;
-
-        _loop_1(i);
-      }
-    } catch (e_1_1) {
-      e_1 = {
-        error: e_1_1
-      };
-    } finally {
-      try {
-        if (_c && !_c.done && (_a = _b["return"])) _a.call(_b);
-      } finally {
-        if (e_1) throw e_1.error;
-      }
-    }
-
-    var data = new Data();
-    data.series = _series;
-    return data;
-  };
-
-  return Data;
-}();
-
- // Description of predictor and related utilities
-
-var Predictor =
-/** @class */
-function () {
-  function Predictor() {}
-
-  Predictor.fromJSON = function (str) {
-    if (!str) {
-      throw Error('No file selected');
-    }
-
-    var predictor = new Predictor();
-
-    try {
-      predictor = JSON.parse(str);
-    } catch (e) {
-      throw Error('Error reading file'); //TODO: better error system?
-    }
-
-    return predictor;
-  };
-
-  return Predictor;
-}();
-
-
 
 /***/ }),
 

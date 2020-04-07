@@ -15,7 +15,7 @@
     "editable": true,
     "gnetId": null,
     "graphTooltip": 0,
-    "id": 8,
+    "id": null,
     "links": [],
     "panels": [
       {
@@ -144,7 +144,7 @@
           "x": 12,
           "y": 0
         },
-        "id": null,
+        "id": 4,
         "options": {
           "predictor": {
             "algorithm": "RL",
@@ -275,7 +275,7 @@
       ]
     },
     "timezone": "",
-    "title": "Prediction Dashboard",
+    "title": "Sample Dashboard",
     "uid": "sample-dash",
     "variables": {
       "list": []

@@ -1,22 +1,32 @@
 // Libraries
 import React, { PureComponent } from 'react';
 import { Button } from '@grafana/ui';
+import { AppPluginMeta, PluginConfigPageProps } from '@grafana/data';
 
-interface Actions {
-    onImport: (event: HTMLInputElement) => void;
-    makeDashboard: () => void;
-}
+export class AppView extends PureComponent<PluginConfigPageProps<AppPluginMeta>> {
+    makeDashboard = () => {
+        const data = {
+            dashboard: require('dashboards/sample.json'),
+            overwrite: true
+        };
 
-export class AppView extends PureComponent<Actions> {
+        $.ajax({
+            url: '/api/dashboards/db',
+            type: 'post',
+            contentType: 'application/json',
+            dataType: 'application/json',
+            data: JSON.stringify(data),
+            complete: res => {
+                alert('Dashboard: ' + data.dashboard.title + '\nStatus: ' + res.statusText);
+                location.replace("/d/" + data.dashboard.uid);
+            },
+        });
+    };
+
     render() {
-        const { onImport, makeDashboard } = this.props;
-
         return (
             <div>
-                <h1>Import Prediction file</h1>
-                <input className="input gf-input gf-file" type="file" name="Import" id="import" onChange={event => onImport(event.target)} />
-                <br />
-                <Button onClick={() => makeDashboard()}>Make Dashboard</Button>
+                <Button onClick={() => this.makeDashboard()}>Sample Dashboard</Button>
             </div>
         );
     }

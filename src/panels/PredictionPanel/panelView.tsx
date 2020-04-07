@@ -53,7 +53,7 @@ export class PanelView extends PureComponent<Props> {
                         {'Stop'}
                     </button>
                     <button id="btn_start" className="btn btn-success" onClick={this.start} hidden>
-                        {'Strat'}
+                        {'Start'}
                     </button>
                 </div>
             </div>
