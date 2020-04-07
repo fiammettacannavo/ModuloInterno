@@ -781,6 +781,13 @@ function (_super) {
     return options;
   };
 
+  ConfigRL.prototype.setToPredict = function (event) {
+    this.props.options.predictor.opt = {
+      toPredict: Number.parseInt(event.target.value, 10)
+    };
+    this.render();
+  };
+
   ConfigRL.prototype.render = function () {
     var _this = this;
 
@@ -791,15 +798,25 @@ function (_super) {
     }
 
     console.log(this.props);
+    var predictor = this.props.options.predictor;
     return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_grafana_ui__WEBPACK_IMPORTED_MODULE_2__["PanelOptionsGroup"], {
       title: "RL"
-    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, " Select value to predict: "), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("select", {
-      onChange: function onChange(event) {
-        return _this.props.options.predictor.opt = {
-          toPredict: Number.parseInt(event.target.value, 10)
-        };
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, predictor._function ? 'Function: ' + predictor._function : ''), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
+      className: "gf-form-label width-10",
+      style: {
+        display: 'inline-block'
       }
-    }, this.renderQueryOptions()));
+    }, ' ', "y (value to predict)", ' '), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "gf-form-select-wrapper width-10",
+      style: {
+        display: 'inline-block'
+      }
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("select", {
+      className: "input-small gf-form-input",
+      onChange: function onChange(event) {
+        return _this.setToPredict(event);
+      }
+    }, this.renderQueryOptions())));
   };
 
   return ConfigRL;
@@ -921,6 +938,13 @@ function (_super) {
     return options;
   };
 
+  ConfigSVM.prototype.setFirstQuery = function (event) {
+    this.props.options.predictor.opt = {
+      firstQuery: Number.parseInt(event.target.value, 10)
+    };
+    this.render();
+  };
+
   ConfigSVM.prototype.render = function () {
     var _this = this;
 
@@ -931,15 +955,25 @@ function (_super) {
     }
 
     console.log(this.props);
+    var predictor = this.props.options.predictor;
     return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_grafana_ui__WEBPACK_IMPORTED_MODULE_2__["PanelOptionsGroup"], {
       title: "SVM"
-    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, " Select query to use as first paramether (the other one will be the second): "), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("select", {
-      onChange: function onChange(event) {
-        return _this.props.options.predictor.opt = {
-          firstQuery: Number.parseInt(event.target.value, 10)
-        };
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, predictor._function ? 'Function: ' + predictor._function : ''), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
+      className: "gf-form-label width-10",
+      style: {
+        display: 'inline-block'
       }
-    }, this.renderQueryOptions()));
+    }, ' ', "x1 (first query)", ' '), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "gf-form-select-wrapper width-10",
+      style: {
+        display: 'inline-block'
+      }
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("select", {
+      className: "input-small gf-form-input",
+      onChange: function onChange(event) {
+        return _this.setFirstQuery(event);
+      }
+    }, this.renderQueryOptions())));
   };
 
   return ConfigSVM;

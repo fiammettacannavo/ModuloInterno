@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, ChangeEvent } from 'react';
 import { Props } from '../../props';
 import { PanelOptionsGroup } from '@grafana/ui';
 import { PanelEditorProps } from '@grafana/data';
@@ -25,17 +25,31 @@ export class ConfigRL extends PureComponent<PanelEditorProps<Props>> {
         return options;
     }
 
+    setToPredict(event: ChangeEvent<HTMLSelectElement>) {
+        this.props.options.predictor.opt = {
+            toPredict: Number.parseInt(event.target.value, 10),
+        };
+        this.render();
+    }
+
     render() {
         if (!this.props.options.predictor.opt) {
             this.props.options.predictor.opt = { toPredict: 0 };
         }
         console.log(this.props);
+        let { predictor } = this.props.options;
         return (
             <PanelOptionsGroup title="RL">
-                <p> Select value to predict: </p>
-                <select onChange={event => (this.props.options.predictor.opt = { toPredict: Number.parseInt(event.target.value, 10) })}>
-                    {this.renderQueryOptions()}
-                </select>
+                <p>{predictor._function ? 'Function: ' + predictor._function : ''}</p>
+                <label className="gf-form-label width-10" style={{ display: 'inline-block' }}>
+                    {' '}
+                    y (value to predict){' '}
+                </label>
+                <div className="gf-form-select-wrapper width-10" style={{ display: 'inline-block' }}>
+                    <select className="input-small gf-form-input" onChange={event => this.setToPredict(event)}>
+                        {this.renderQueryOptions()}
+                    </select>
+                </div>
             </PanelOptionsGroup>
         );
     }

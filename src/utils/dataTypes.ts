@@ -40,7 +40,7 @@ export class Data {
 export class Predictor {
     algorithm!: string;
     coefficients!: number[];
-    function?: string[];
+    _function?: string[];
     opt?: any;
 
     static fromJSON(str: string | undefined): Predictor {
