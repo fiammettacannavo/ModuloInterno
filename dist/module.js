@@ -360,28 +360,33 @@ function (_super) {
   Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"])(AppView, _super);
 
   function AppView() {
-    var _this = _super !== null && _super.apply(this, arguments) || this;
-
-    _this.makeDashboard = function () {
-      var data = {
-        dashboard: __webpack_require__(/*! dashboards/sample.json */ "./dashboards/sample.json"),
-        overwrite: true
-      };
-      $.ajax({
-        url: '/api/dashboards/db',
-        type: 'post',
-        contentType: 'application/json',
-        dataType: 'application/json',
-        data: JSON.stringify(data),
-        complete: function complete(res) {
-          alert('Dashboard: ' + data.dashboard.title + '\nStatus: ' + res.statusText);
-          location.replace("/d/" + data.dashboard.uid);
-        }
-      });
-    };
-
-    return _this;
+    return _super !== null && _super.apply(this, arguments) || this;
   }
+
+  AppView.prototype.makeDashboard = function () {
+    return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function () {
+      var data;
+      return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"])(this, function (_a) {
+        data = {
+          dashboard: __webpack_require__(/*! dashboards/sample.json */ "./dashboards/sample.json"),
+          overwrite: true
+        };
+        $.post({
+          url: '/api/dashboards/db',
+          contentType: 'application/json',
+          dataType: 'application/json',
+          data: JSON.stringify(data),
+          complete: function complete(res) {
+            alert('Dashboard: ' + data.dashboard.title + '\nStatus: ' + res.statusText);
+            location.replace('/d/' + data.dashboard.uid);
+          }
+        });
+        return [2
+        /*return*/
+        ];
+      });
+    });
+  };
 
   AppView.prototype.render = function () {
     var _this = this;

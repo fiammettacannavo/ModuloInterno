@@ -7,7 +7,6 @@ import { configs } from './strategies/strategies';
 import { Predictor } from 'utils/dataTypes';
 
 export class EditorView extends PureComponent<PanelEditorProps<Props>> {
-
     importPredictor(target: HTMLInputElement) {
         const reader = new FileReader();
         if (target.files == null) {
@@ -15,15 +14,23 @@ export class EditorView extends PureComponent<PanelEditorProps<Props>> {
         }
         reader.readAsText(target.files[0]);
         reader.onload = event => {
-            this.props.options.predictor = Predictor.fromJSON(
-                event.target?.result?.toString()
-            );
+            try {
+                this.props.options.predictor = Predictor.fromJSON(event.target?.result?.toString());
+            } catch (e) {
+                alert(e);
+            }
             this.render();
         };
     }
 
     render() {
-        const Config = configs[this.props.options.predictor.algorithm];
+        const { algorithm } = this.props.options.predictor;
+        let Config;
+        if (configs[algorithm]) {
+            Config = configs[algorithm];
+        } else {
+            Config = typeof React.PureComponent;
+        }
 
         return (
             <div>
@@ -34,7 +41,8 @@ export class EditorView extends PureComponent<PanelEditorProps<Props>> {
                             type="file"
                             name="Import"
                             id="import"
-                            onChange={event => this.importPredictor(event.target)} />
+                            onChange={event => this.importPredictor(event.target)}
+                        />
                     </PanelOptionsGroup>
                     <Config data={this.props.data} options={this.props.options} />
                 </PanelOptionsGrid>

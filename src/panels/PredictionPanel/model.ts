@@ -14,11 +14,10 @@ export class Model {
 
     setPredictor(predictor: Predictor) {
         this.predictor = predictor;
-        try {
-            this.strategy = strategies[predictor.algorithm];
-        } catch (e) {
-            throw new Error('Wrong algorithm');
+        if (!strategies[predictor.algorithm]) {
+            throw Error('Wrong algorithm');
         }
+        this.strategy = strategies[predictor.algorithm];
     }
 
     setOpt(opt: any) {
@@ -27,20 +26,19 @@ export class Model {
 
     predict() {
         if (!this.data || !this.predictor) {
-            throw new Error('predictor not found');
+            throw Error('Predictor not found');
         }
         this.data.predicted = this.strategy?.predict(this.data, this.predictor, this.opt);
 
-        if (this.data.predicted) {
-            return this.data.predicted[this.data.predicted.length - 1][1];
-        } else {
-            return;
+        if (!this.data.predicted) {
+            throw Error('Data not predicted');
         }
+        return this.data.predicted[this.data.predicted.length - 1][1];
     }
 
     async saveToInflux() {
         if (!this.data?.predicted) {
-            throw new Error('data.predicted not found');
+            throw Error('data.predicted not found');
         }
 
         this.data.predicted.forEach((meas: number[]) => {
@@ -49,5 +47,6 @@ export class Model {
                 data: 'prediction value=' + meas[1] + ' ' + meas[0] + '000000', // + zeros for wrong time format
             });
         });
+        return;
     }
 }

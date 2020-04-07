@@ -48,10 +48,9 @@ export class Predictor {
             throw Error('No file selected');
         }
         let predictor: Predictor = new Predictor();
-        try {
-            predictor = JSON.parse(str);
-        } catch (e) {
-            throw Error('Error reading file'); //TODO: better error system?
+        predictor = JSON.parse(str);
+        if (!predictor.algorithm || !predictor.coefficients) {
+            throw Error('Error reading file');
         }
         return predictor;
     }

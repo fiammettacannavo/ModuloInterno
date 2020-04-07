@@ -351,6 +351,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _grafana_ui__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_grafana_ui__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _strategies_strategies__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./strategies/strategies */ "./panels/PredictionPanel/strategies/strategies.ts");
 /* harmony import */ var utils_dataTypes__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! utils/dataTypes */ "./utils/dataTypes.ts");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
 
 
 
@@ -381,7 +383,11 @@ function (_super) {
     reader.onload = function (event) {
       var _a, _b;
 
-      _this.props.options.predictor = utils_dataTypes__WEBPACK_IMPORTED_MODULE_4__["Predictor"].fromJSON((_b = (_a = event.target) === null || _a === void 0 ? void 0 : _a.result) === null || _b === void 0 ? void 0 : _b.toString());
+      try {
+        _this.props.options.predictor = utils_dataTypes__WEBPACK_IMPORTED_MODULE_4__["Predictor"].fromJSON((_b = (_a = event.target) === null || _a === void 0 ? void 0 : _a.result) === null || _b === void 0 ? void 0 : _b.toString());
+      } catch (e) {
+        alert(e);
+      }
 
       _this.render();
     };
@@ -390,7 +396,15 @@ function (_super) {
   EditorView.prototype.render = function () {
     var _this = this;
 
-    var Config = _strategies_strategies__WEBPACK_IMPORTED_MODULE_3__["configs"][this.props.options.predictor.algorithm];
+    var algorithm = this.props.options.predictor.algorithm;
+    var Config;
+
+    if (_strategies_strategies__WEBPACK_IMPORTED_MODULE_3__["configs"][algorithm]) {
+      Config = _strategies_strategies__WEBPACK_IMPORTED_MODULE_3__["configs"][algorithm];
+    } else {
+      Config = _typeof(react__WEBPACK_IMPORTED_MODULE_1___default.a.PureComponent);
+    }
+
     return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_grafana_ui__WEBPACK_IMPORTED_MODULE_2__["PanelOptionsGrid"], null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_grafana_ui__WEBPACK_IMPORTED_MODULE_2__["PanelOptionsGroup"], {
       title: "Import predictor"
     }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
@@ -441,11 +455,11 @@ function () {
   Model.prototype.setPredictor = function (predictor) {
     this.predictor = predictor;
 
-    try {
-      this.strategy = _strategies_strategies__WEBPACK_IMPORTED_MODULE_1__["strategies"][predictor.algorithm];
-    } catch (e) {
-      throw new Error('Wrong algorithm');
+    if (!_strategies_strategies__WEBPACK_IMPORTED_MODULE_1__["strategies"][predictor.algorithm]) {
+      throw Error('Wrong algorithm');
     }
+
+    this.strategy = _strategies_strategies__WEBPACK_IMPORTED_MODULE_1__["strategies"][predictor.algorithm];
   };
 
   Model.prototype.setOpt = function (opt) {
@@ -456,16 +470,16 @@ function () {
     var _a;
 
     if (!this.data || !this.predictor) {
-      throw new Error('predictor not found');
+      throw Error('Predictor not found');
     }
 
     this.data.predicted = (_a = this.strategy) === null || _a === void 0 ? void 0 : _a.predict(this.data, this.predictor, this.opt);
 
-    if (this.data.predicted) {
-      return this.data.predicted[this.data.predicted.length - 1][1];
-    } else {
-      return;
+    if (!this.data.predicted) {
+      throw Error('Data not predicted');
     }
+
+    return this.data.predicted[this.data.predicted.length - 1][1];
   };
 
   Model.prototype.saveToInflux = function () {
@@ -474,7 +488,7 @@ function () {
     return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function () {
       return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"])(this, function (_b) {
         if (!((_a = this.data) === null || _a === void 0 ? void 0 : _a.predicted)) {
-          throw new Error('data.predicted not found');
+          throw Error('data.predicted not found');
         }
 
         this.data.predicted.forEach(function (meas) {
@@ -563,17 +577,14 @@ function (_super) {
   };
 
   PanelController.prototype.setPredictor = function () {
-    //TODO: controlli e eccezioni
-    this.model.setPredictor(this.props.options.predictor || 0);
+    this.model.setPredictor(this.props.options.predictor);
   };
 
   PanelController.prototype.setOpt = function () {
-    //TODO: controlli e eccezioni
     this.model.setOpt(this.props.options.predictor.opt);
   };
 
   PanelController.prototype.predict = function () {
-    //TODO: controlli e eccezioni
     this.lastValue = this.model.predict();
   };
 
@@ -601,22 +612,17 @@ function (_super) {
   };
 
   PanelController.prototype.render = function () {
-    var _this = this;
-
     this.updatePrediction();
     var predictor = this.props.options.predictor;
-    return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_panelView__WEBPACK_IMPORTED_MODULE_4__["PanelView"], {
+    console.log(this.props.options);
+    return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_panelView__WEBPACK_IMPORTED_MODULE_4__["PanelView"], {
       algorithm: predictor.algorithm,
       coefficients: predictor.coefficients,
       opt: predictor.opt,
       lastValue: this.lastValue,
-      pause: function pause() {
-        return _this.pause();
-      },
-      start: function start() {
-        return _this.start();
-      }
-    });
+      pause: this.pause,
+      start: this.start
+    }));
   };
 
   return PanelController;
@@ -1115,11 +1121,10 @@ function () {
     }
 
     var predictor = new Predictor();
+    predictor = JSON.parse(str);
 
-    try {
-      predictor = JSON.parse(str);
-    } catch (e) {
-      throw Error('Error reading file'); //TODO: better error system?
+    if (!predictor.algorithm || !predictor.coefficients) {
+      throw Error('Error reading file');
     }
 
     return predictor;

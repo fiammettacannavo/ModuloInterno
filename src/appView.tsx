@@ -4,24 +4,23 @@ import { Button } from '@grafana/ui';
 import { AppPluginMeta, PluginConfigPageProps } from '@grafana/data';
 
 export class AppView extends PureComponent<PluginConfigPageProps<AppPluginMeta>> {
-    makeDashboard = () => {
+    private async makeDashboard() {
         const data = {
             dashboard: require('dashboards/sample.json'),
-            overwrite: true
+            overwrite: true,
         };
 
-        $.ajax({
+        $.post({
             url: '/api/dashboards/db',
-            type: 'post',
             contentType: 'application/json',
             dataType: 'application/json',
             data: JSON.stringify(data),
             complete: res => {
                 alert('Dashboard: ' + data.dashboard.title + '\nStatus: ' + res.statusText);
-                location.replace("/d/" + data.dashboard.uid);
+                location.replace('/d/' + data.dashboard.uid);
             },
         });
-    };
+    }
 
     render() {
         return (

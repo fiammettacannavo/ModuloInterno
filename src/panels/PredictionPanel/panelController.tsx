@@ -21,17 +21,14 @@ export class PanelController extends PureComponent<PanelProps<Props>> {
     }
 
     private setPredictor() {
-        //TODO: controlli e eccezioni
-        this.model.setPredictor(this.props.options.predictor || 0);
+        this.model.setPredictor(this.props.options.predictor);
     }
 
     private setOpt() {
-        //TODO: controlli e eccezioni
         this.model.setOpt(this.props.options.predictor.opt);
     }
 
     private predict() {
-        //TODO: controlli e eccezioni
         this.lastValue = this.model.predict();
     }
 
@@ -61,16 +58,19 @@ export class PanelController extends PureComponent<PanelProps<Props>> {
         this.updatePrediction();
 
         const { predictor } = this.props.options;
+        console.log(this.props.options);
 
         return (
-            <PanelView
-                algorithm={predictor.algorithm}
-                coefficients={predictor.coefficients}
-                opt={predictor.opt}
-                lastValue={this.lastValue}
-                pause={() => this.pause()}
-                start={() => this.start()}
-            />
+            <div>
+                <PanelView
+                    algorithm={predictor.algorithm}
+                    coefficients={predictor.coefficients}
+                    opt={predictor.opt}
+                    lastValue={this.lastValue}
+                    pause={this.pause}
+                    start={this.start}
+                />
+            </div>
         );
     }
 }
