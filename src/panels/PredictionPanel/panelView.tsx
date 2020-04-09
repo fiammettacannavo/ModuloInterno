@@ -18,7 +18,7 @@ export class PanelView extends PureComponent<Props> {
         this.btn_start = document.getElementById('btn_start');
     }
 
-    pause = () => {
+    private pause = () => {
         this.props.pause();
         if (this.btn_stop) {
             this.btn_stop.hidden = true;
@@ -28,7 +28,7 @@ export class PanelView extends PureComponent<Props> {
         }
     };
 
-    start = () => {
+    private start = () => {
         this.props.start();
         if (this.btn_stop) {
             this.btn_stop.hidden = false;

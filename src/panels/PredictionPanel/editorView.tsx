@@ -7,7 +7,7 @@ import { configs } from './strategies/strategies';
 import { Predictor } from 'utils/dataTypes';
 
 export class EditorView extends PureComponent<PanelEditorProps<Props>> {
-    importPredictor(target: HTMLInputElement) {
+    private importPredictor(target: HTMLInputElement) {
         const reader = new FileReader();
         if (target.files == null) {
             throw new Error('File not selected');

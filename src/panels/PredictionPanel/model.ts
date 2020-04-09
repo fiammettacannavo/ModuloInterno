@@ -3,10 +3,9 @@ import { strategies } from './strategies/strategies';
 import { Strategy } from './strategies/interfaces/strategy';
 
 export class Model {
-    data?: Data;
-    predictor?: Predictor;
-    strategy?: Strategy;
-    opt: any;
+    private data?: Data;
+    private predictor?: Predictor;
+    private strategy?: Strategy;
 
     setData(data: Data) {
         this.data = data;
@@ -20,15 +19,11 @@ export class Model {
         this.strategy = strategies[predictor.algorithm];
     }
 
-    setOpt(opt: any) {
-        this.opt = opt;
-    }
-
     predict() {
         if (!this.data || !this.predictor) {
             throw Error('Predictor not found');
         }
-        this.data.predicted = this.strategy?.predict(this.data, this.predictor, this.opt);
+        this.data.predicted = this.strategy?.predict(this.data, this.predictor, this.predictor.opt);
 
         if (!this.data.predicted) {
             throw Error('Data not predicted');

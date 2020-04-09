@@ -462,10 +462,6 @@ function () {
     this.strategy = _strategies_strategies__WEBPACK_IMPORTED_MODULE_1__["strategies"][predictor.algorithm];
   };
 
-  Model.prototype.setOpt = function (opt) {
-    this.opt = opt;
-  };
-
   Model.prototype.predict = function () {
     var _a;
 
@@ -473,7 +469,7 @@ function () {
       throw Error('Predictor not found');
     }
 
-    this.data.predicted = (_a = this.strategy) === null || _a === void 0 ? void 0 : _a.predict(this.data, this.predictor, this.opt);
+    this.data.predicted = (_a = this.strategy) === null || _a === void 0 ? void 0 : _a.predict(this.data, this.predictor, this.predictor.opt);
 
     if (!this.data.predicted) {
       throw Error('Data not predicted');
@@ -580,16 +576,11 @@ function (_super) {
     this.model.setPredictor(this.props.options.predictor);
   };
 
-  PanelController.prototype.setOpt = function () {
-    this.model.setOpt(this.props.options.predictor.opt);
-  };
-
   PanelController.prototype.predict = function () {
     this.lastValue = this.model.predict();
   };
 
   PanelController.prototype.saveToInflux = function () {
-    //TODO: controlli e eccezioni
     this.model.saveToInflux();
   };
 
@@ -605,7 +596,6 @@ function (_super) {
     if (!this.paused) {
       this.setData();
       this.setPredictor();
-      this.setOpt();
       this.predict();
       this.saveToInflux();
     }
@@ -801,7 +791,7 @@ function (_super) {
     var predictor = this.props.options.predictor;
     return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_grafana_ui__WEBPACK_IMPORTED_MODULE_2__["PanelOptionsGroup"], {
       title: "RL"
-    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, predictor._function ? 'Function: ' + predictor._function : ''), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, predictor.predFun ? 'Function: ' + predictor.predFun : ''), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
       className: "gf-form-label width-10",
       style: {
         display: 'inline-block'
@@ -958,7 +948,7 @@ function (_super) {
     var predictor = this.props.options.predictor;
     return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_grafana_ui__WEBPACK_IMPORTED_MODULE_2__["PanelOptionsGroup"], {
       title: "SVM"
-    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, predictor._function ? 'Function: ' + predictor._function : ''), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, predictor.predFun ? 'Function: ' + predictor.predFun : ''), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
       className: "gf-form-label width-10",
       style: {
         display: 'inline-block'

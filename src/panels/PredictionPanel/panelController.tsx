@@ -24,31 +24,25 @@ export class PanelController extends PureComponent<PanelProps<Props>> {
         this.model.setPredictor(this.props.options.predictor);
     }
 
-    private setOpt() {
-        this.model.setOpt(this.props.options.predictor.opt);
-    }
-
     private predict() {
         this.lastValue = this.model.predict();
     }
 
     private saveToInflux() {
-        //TODO: controlli e eccezioni
         this.model.saveToInflux();
     }
 
-    pause() {
+    private pause() {
         this.paused = true;
     }
-    start() {
+    private start() {
         this.paused = false;
     }
 
-    updatePrediction() {
+    private updatePrediction() {
         if (!this.paused) {
             this.setData();
             this.setPredictor();
-            this.setOpt();
             this.predict();
             this.saveToInflux();
         }

@@ -4,13 +4,13 @@ import { PanelOptionsGroup } from '@grafana/ui';
 import { PanelEditorProps } from '@grafana/data';
 
 export class ConfigRL extends PureComponent<PanelEditorProps<Props>> {
-    getSeriesNames() {
+    private getSeriesNames() {
         return this.props.data.series.map(serie => {
             return serie.name || 'unknown';
         });
     }
 
-    renderQueryOptions() {
+    private renderQueryOptions() {
         const seriesName = this.getSeriesNames();
         const { opt } = this.props.options.predictor;
 
@@ -25,7 +25,7 @@ export class ConfigRL extends PureComponent<PanelEditorProps<Props>> {
         return options;
     }
 
-    setToPredict(event: ChangeEvent<HTMLSelectElement>) {
+    private setToPredict(event: ChangeEvent<HTMLSelectElement>) {
         this.props.options.predictor.opt = {
             toPredict: Number.parseInt(event.target.value, 10),
         };
@@ -40,7 +40,7 @@ export class ConfigRL extends PureComponent<PanelEditorProps<Props>> {
         let { predictor } = this.props.options;
         return (
             <PanelOptionsGroup title="RL">
-                <p>{predictor._function ? 'Function: ' + predictor._function : ''}</p>
+                <p>{predictor.predFun ? 'Function: ' + predictor.predFun : ''}</p>
                 <label className="gf-form-label width-10" style={{ display: 'inline-block' }}>
                     {' '}
                     y (value to predict){' '}
