@@ -25,7 +25,7 @@ export class Model {
         }
         this.data.predicted = this.strategy?.predict(this.data, this.predictor, this.predictor.opt);
 
-        if (!this.data.predicted) {
+        if (!this.data.predicted || this.data.predicted.length < 1) {
             throw Error('Data not predicted');
         }
         return this.data.predicted[this.data.predicted.length - 1][1];
@@ -42,6 +42,5 @@ export class Model {
                 data: 'prediction value=' + meas[1] + ' ' + meas[0] + '000000', // + zeros for wrong time format
             });
         });
-        return;
     }
 }
