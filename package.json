@@ -4,7 +4,7 @@
     "description": "Prediction App",
     "scripts": {
         "build": "grafana-toolkit plugin:build",
-        "test": "grafana-toolkit plugin:test",
+        "test": "jest",
         "dev": "grafana-toolkit plugin:dev",
         "watch": "grafana-toolkit plugin:dev --watch"
     },
@@ -16,10 +16,9 @@
         "@grafana/ui": "next"
     },
     "dependencies": {
+        "@types/jest": "^25.2.1",
         "@types/jquery": "^3.3.34",
         "babel": "^6.23.0",
-        "mobx": "^5.15.4",
-        "mobx-react": "^6.1.8",
         "typescript": "^3.7.5"
     }
 }
