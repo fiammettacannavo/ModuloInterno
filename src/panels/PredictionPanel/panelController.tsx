@@ -52,7 +52,6 @@ export class PanelController extends PureComponent<PanelProps<Props>> {
         this.updatePrediction();
 
         const { predictor } = this.props.options;
-        console.log(this.props.options);
 
         return (
             <div>

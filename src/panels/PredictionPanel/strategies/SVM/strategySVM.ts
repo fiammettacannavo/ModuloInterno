@@ -3,8 +3,8 @@ import { Data, Predictor } from 'utils/dataTypes';
 
 export class StrategySVM implements Strategy {
     predict(data: Data, predictor: Predictor, options: { firstQuery: 0 | 1 }) {
-        if (!options) {
-            options = { firstQuery: 0 };
+        if (!options || !options.firstQuery) {
+            options = { ...options, firstQuery: 0 };
         }
 
         const coeff = predictor.coefficients;

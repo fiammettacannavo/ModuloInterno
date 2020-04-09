@@ -27,17 +27,18 @@ export class ConfigRL extends PureComponent<PanelEditorProps<Props>> {
 
     private setToPredict(event: ChangeEvent<HTMLSelectElement>) {
         this.props.options.predictor.opt = {
+            ...this.props.options.predictor.opt,
             toPredict: Number.parseInt(event.target.value, 10),
         };
         this.render();
     }
 
     render() {
+        let { predictor } = this.props.options;
         if (!this.props.options.predictor.opt) {
-            this.props.options.predictor.opt = { toPredict: 0 };
+            this.props.options.predictor.opt = { ...predictor.opt, toPredict: 0 };
         }
         console.log(this.props);
-        let { predictor } = this.props.options;
         return (
             <PanelOptionsGroup title="RL">
                 <p>{predictor.predFun ? 'Function: ' + predictor.predFun : ''}</p>

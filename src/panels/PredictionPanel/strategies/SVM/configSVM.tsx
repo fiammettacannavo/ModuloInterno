@@ -27,17 +27,18 @@ export class ConfigSVM extends PureComponent<PanelEditorProps<Props>> {
 
     private setFirstQuery(event: ChangeEvent<HTMLSelectElement>) {
         this.props.options.predictor.opt = {
+            ...this.props.options.predictor.opt,
             firstQuery: Number.parseInt(event.target.value, 10),
         };
         this.render();
     }
 
     render() {
-        if (!this.props.options.predictor.opt) {
-            this.props.options.predictor.opt = { firstQuery: 0 };
+        let { predictor } = this.props.options;
+        if (!predictor.opt) {
+            predictor.opt = { ...predictor.opt, firstQuery: 0 };
         }
         console.log(this.props);
-        let { predictor } = this.props.options;
         return (
             <PanelOptionsGroup title="SVM">
                 <p>{predictor.predFun ? 'Function: ' + predictor.predFun : ''}</p>
