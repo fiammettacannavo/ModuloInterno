@@ -1,16 +1,15 @@
-import React, { PureComponent, ChangeEvent } from 'react';
-import { Props } from '../../props';
+import React from 'react';
 import { PanelOptionsGroup } from '@grafana/ui';
-import { PanelEditorProps } from '@grafana/data';
+import {Config} from '../interfaces/config';
 
-export class ConfigRL extends PureComponent<PanelEditorProps<Props>> {
+export class ConfigRL extends Config {
     private getSeriesNames() {
         return this.props.data.series.map(serie => {
             return serie.name || 'unknown';
         });
     }
 
-    private renderQueryOptions() {
+    renderQueryOptions() {
         const seriesName = this.getSeriesNames();
         const { opt } = this.props.options.predictor;
 
@@ -25,10 +24,10 @@ export class ConfigRL extends PureComponent<PanelEditorProps<Props>> {
         return options;
     }
 
-    private setToPredict(event: ChangeEvent<HTMLSelectElement>) {
+    setToPredict(value: string) {
         this.props.options.predictor.opt = {
             ...this.props.options.predictor.opt,
-            toPredict: Number.parseInt(event.target.value, 10),
+            toPredict: Number.parseInt(value, 10),
         };
         this.render();
     }
@@ -38,7 +37,6 @@ export class ConfigRL extends PureComponent<PanelEditorProps<Props>> {
         if (!this.props.options.predictor.opt) {
             this.props.options.predictor.opt = { ...predictor.opt, toPredict: 0 };
         }
-        console.log(this.props);
         return (
             <PanelOptionsGroup title="RL">
                 <p>{predictor.predFun ? 'Function: ' + predictor.predFun : ''}</p>
@@ -47,7 +45,7 @@ export class ConfigRL extends PureComponent<PanelEditorProps<Props>> {
                     y (value to predict){' '}
                 </label>
                 <div className="gf-form-select-wrapper width-10" style={{ display: 'inline-block' }}>
-                    <select className="input-small gf-form-input" onChange={event => this.setToPredict(event)}>
+                    <select className="input-small gf-form-input" onChange={event => this.setToPredict(event.target.value)}>
                         {this.renderQueryOptions()}
                     </select>
                 </div>

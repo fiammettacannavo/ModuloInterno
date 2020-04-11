@@ -4,8 +4,8 @@ import { AppView } from 'appView';
 export class ConfigCtrl {} // Placeholer class just for enable app.. waiting for grafana updates
 
 export const plugin = new AppPlugin().addConfigPage({
-    title: 'Import',
-    icon: 'fa fa-arrow-down',
+    title: 'Wizard',
+    icon: 'fa fa-magic',
     body: AppView,
     id: 'import',
 });

@@ -45,7 +45,7 @@ export class Predictor {
 
     static fromJSON(str: string | undefined): Predictor {
         if (!str) {
-            throw Error('No file selected');
+            throw Error('No file found');
         }
         let predictor: Predictor = new Predictor();
         predictor = JSON.parse(str);

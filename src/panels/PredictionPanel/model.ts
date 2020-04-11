@@ -23,7 +23,6 @@ export class Model {
         if (!this.data || !this.predictor) {
             throw Error('Predictor not found');
         }
-        console.log(this.data, this.predictor, this.predictor.opt);
         this.data.predicted = this.strategy?.predict(this.data, this.predictor, this.predictor.opt);
 
         if (!this.data.predicted || this.data.predicted.length < 1) {

@@ -1,6 +1,6 @@
 import 'jest';
 import { Model } from '../panels/PredictionPanel/model';
-import { Data } from 'utils/dataTypes';
+import { Data, Predictor } from 'utils/dataTypes';
 
 let model: Model;
 let data: Data;
@@ -106,4 +106,9 @@ test('modelPredictionNoData', () => {
         expect(e).toBeInstanceOf(Error);
         expect(e).toEqual(Error('data.predicted not found'));
     });
+});
+
+test('predictorFromJSON', () => {
+    let s = Predictor.fromJSON('{"algorithm": "RL", "coefficients": [1,1]}');
+    expect(s).toStrictEqual({algorithm: "RL", coefficients: [1,1]});
 });

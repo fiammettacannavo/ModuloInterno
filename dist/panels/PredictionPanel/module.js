@@ -1,4 +1,122 @@
-define(["react","@grafana/ui","@grafana/data"],(function(t,e,r){return function(t){var e={};function r(n){if(e[n])return e[n].exports;var o=e[n]={i:n,l:!1,exports:{}};return t[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}return r.m=t,r.c=e,r.d=function(t,e,n){r.o(t,e)||Object.defineProperty(t,e,{enumerable:!0,get:n})},r.r=function(t){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(t,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(t,"__esModule",{value:!0})},r.t=function(t,e){if(1&e&&(t=r(t)),8&e)return t;if(4&e&&"object"==typeof t&&t&&t.__esModule)return t;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,"default",{enumerable:!0,value:t}),2&e&&"string"!=typeof t)for(var o in t)r.d(n,o,function(e){return t[e]}.bind(null,o));return n},r.n=function(t){var e=t&&t.__esModule?function(){return t.default}:function(){return t};return r.d(e,"a",e),e},r.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},r.p="/",r(r.s=5)}([function(e,r){e.exports=t},function(t,e,r){"use strict";r.d(e,"c",(function(){return o})),r.d(e,"a",(function(){return i})),r.d(e,"b",(function(){return a})),r.d(e,"d",(function(){return s})),r.d(e,"e",(function(){return c}));
+define(["@grafana/data","@grafana/ui","react"], function(__WEBPACK_EXTERNAL_MODULE__grafana_data__, __WEBPACK_EXTERNAL_MODULE__grafana_ui__, __WEBPACK_EXTERNAL_MODULE_react__) { return /******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "/";
+/******/
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = "./panels/PredictionPanel/module.ts");
+/******/ })
+/************************************************************************/
+/******/ ({
+
+/***/ "../node_modules/tslib/tslib.es6.js":
+/*!******************************************!*\
+  !*** ../node_modules/tslib/tslib.es6.js ***!
+  \******************************************/
+/*! exports provided: __extends, __assign, __rest, __decorate, __param, __metadata, __awaiter, __generator, __exportStar, __values, __read, __spread, __spreadArrays, __await, __asyncGenerator, __asyncDelegator, __asyncValues, __makeTemplateObject, __importStar, __importDefault, __classPrivateFieldGet, __classPrivateFieldSet */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__extends", function() { return __extends; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__assign", function() { return __assign; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__rest", function() { return __rest; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__decorate", function() { return __decorate; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__param", function() { return __param; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__metadata", function() { return __metadata; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__awaiter", function() { return __awaiter; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__generator", function() { return __generator; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__exportStar", function() { return __exportStar; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__values", function() { return __values; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__read", function() { return __read; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__spread", function() { return __spread; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__spreadArrays", function() { return __spreadArrays; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__await", function() { return __await; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__asyncGenerator", function() { return __asyncGenerator; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__asyncDelegator", function() { return __asyncDelegator; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__asyncValues", function() { return __asyncValues; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__makeTemplateObject", function() { return __makeTemplateObject; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__importStar", function() { return __importStar; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__importDefault", function() { return __importDefault; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__classPrivateFieldGet", function() { return __classPrivateFieldGet; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__classPrivateFieldSet", function() { return __classPrivateFieldSet; });
 /*! *****************************************************************************
 Copyright (c) Microsoft Corporation. All rights reserved.
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use
@@ -13,5 +131,1114 @@ MERCHANTABLITY OR NON-INFRINGEMENT.
 See the Apache Version 2.0 License for specific language governing permissions
 and limitations under the License.
 ***************************************************************************** */
-var n=function(t,e){return(n=Object.setPrototypeOf||{__proto__:[]}instanceof Array&&function(t,e){t.__proto__=e}||function(t,e){for(var r in e)e.hasOwnProperty(r)&&(t[r]=e[r])})(t,e)};function o(t,e){function r(){this.constructor=t}n(t,e),t.prototype=null===e?Object.create(e):(r.prototype=e.prototype,new r)}var i=function(){return(i=Object.assign||function(t){for(var e,r=1,n=arguments.length;r<n;r++)for(var o in e=arguments[r])Object.prototype.hasOwnProperty.call(e,o)&&(t[o]=e[o]);return t}).apply(this,arguments)};function a(t,e,r,n){return new(r||(r=Promise))((function(o,i){function a(t){try{c(n.next(t))}catch(t){i(t)}}function s(t){try{c(n.throw(t))}catch(t){i(t)}}function c(t){var e;t.done?o(t.value):(e=t.value,e instanceof r?e:new r((function(t){t(e)}))).then(a,s)}c((n=n.apply(t,e||[])).next())}))}function s(t,e){var r,n,o,i,a={label:0,sent:function(){if(1&o[0])throw o[1];return o[1]},trys:[],ops:[]};return i={next:s(0),throw:s(1),return:s(2)},"function"==typeof Symbol&&(i[Symbol.iterator]=function(){return this}),i;function s(i){return function(s){return function(i){if(r)throw new TypeError("Generator is already executing.");for(;a;)try{if(r=1,n&&(o=2&i[0]?n.return:i[0]?n.throw||((o=n.return)&&o.call(n),0):n.next)&&!(o=o.call(n,i[1])).done)return o;switch(n=0,o&&(i=[2&i[0],o.value]),i[0]){case 0:case 1:o=i;break;case 4:return a.label++,{value:i[1],done:!1};case 5:a.label++,n=i[1],i=[0];continue;case 7:i=a.ops.pop(),a.trys.pop();continue;default:if(!(o=a.trys,(o=o.length>0&&o[o.length-1])||6!==i[0]&&2!==i[0])){a=0;continue}if(3===i[0]&&(!o||i[1]>o[0]&&i[1]<o[3])){a.label=i[1];break}if(6===i[0]&&a.label<o[1]){a.label=o[1],o=i;break}if(o&&a.label<o[2]){a.label=o[2],a.ops.push(i);break}o[2]&&a.ops.pop(),a.trys.pop();continue}i=e.call(t,a)}catch(t){i=[6,t],n=0}finally{r=o=0}if(5&i[0])throw i[1];return{value:i[0]?i[1]:void 0,done:!0}}([i,s])}}}function c(t){var e="function"==typeof Symbol&&Symbol.iterator,r=e&&t[e],n=0;if(r)return r.call(t);if(t&&"number"==typeof t.length)return{next:function(){return t&&n>=t.length&&(t=void 0),{value:t&&t[n++],done:!t}}};throw new TypeError(e?"Object is not iterable.":"Symbol.iterator is not defined.")}},function(t,r){t.exports=e},function(t,e){t.exports=r},,function(t,e,r){"use strict";r.r(e);var n=r(3),o=r(1),i=r(0),a=r.n(i),s=function(){function t(){}return t.fromSeries=function(e){var r,n;if(!e[0]||!e[1])throw Error("Set at least 2 query before");var i=e[0].fields[1].values.toArray(),a=[];e.forEach((function(t){a.push(t.fields[0].values.toArray())}));var s=[],c=function(t){var e=[];a.forEach((function(r){e.push(r[t])})),e.push(i[t]),s.push(e)};try{for(var u=Object(o.e)(i.keys()),p=u.next();!p.done;p=u.next()){c(p.value)}}catch(t){r={error:t}}finally{try{p&&!p.done&&(n=u.return)&&n.call(u)}finally{if(r)throw r.error}}var l=new t;return l.series=s,l},t}(),c=function(){function t(){}return t.fromJSON=function(e){if(!e)throw Error("No file selected");var r=new t;if(!(r=JSON.parse(e)).algorithm||!r.coefficients)throw Error("Error reading file");return r},t}(),u=function(){function t(){}return t.prototype.predict=function(t,e,r){r&&r.toPredict||(r=Object(o.a)(Object(o.a)({},r),{toPredict:0}));var n=1-r.toPredict,i=e.coefficients;return t.predicted=[],t.series.forEach((function(e){var r,o;t&&e[n]&&(null===(r=t.predicted)||void 0===r||r.push([e[2],(o=e[n],o?o*i[0]+i[1]:0)]))})),t.predicted},t}(),p=function(){function t(){}return t.prototype.predict=function(t,e,r){r&&r.firstQuery||(r=Object(o.a)(Object(o.a)({},r),{firstQuery:0}));var n=e.coefficients,i=r.firstQuery,a=1-r.firstQuery;return t.predicted=[],t.series.forEach((function(e){var r,o=function(t,e){return t*n[0]+e*n[1]+n[2]}(e[i],e[a]),s=0;o>0?s=1:o<0&&(s=-1),t&&(e[0]||e[1])&&(null===(r=t.predicted)||void 0===r||r.push([e[2],s]))})),t.predicted},t}(),l=r(2),f=function(t){function e(){return null!==t&&t.apply(this,arguments)||this}return Object(o.c)(e,t),e.prototype.getSeriesNames=function(){return this.props.data.series.map((function(t){return t.name||"unknown"}))},e.prototype.renderQueryOptions=function(){var t,e,r=this.getSeriesNames(),n=this.props.options.predictor.opt,i=[];try{for(var s=Object(o.e)(r.keys()),c=s.next();!c.done;c=s.next()){var u=c.value;i.push(a.a.createElement("option",{value:u,selected:n.toPredict===u},r[u]))}}catch(e){t={error:e}}finally{try{c&&!c.done&&(e=s.return)&&e.call(s)}finally{if(t)throw t.error}}return i},e.prototype.setToPredict=function(t){this.props.options.predictor.opt=Object(o.a)(Object(o.a)({},this.props.options.predictor.opt),{toPredict:Number.parseInt(t.target.value,10)}),this.render()},e.prototype.render=function(){var t=this,e=this.props.options.predictor;return this.props.options.predictor.opt||(this.props.options.predictor.opt=Object(o.a)(Object(o.a)({},e.opt),{toPredict:0})),console.log(this.props),a.a.createElement(l.PanelOptionsGroup,{title:"RL"},a.a.createElement("p",null,e.predFun?"Function: "+e.predFun:""),a.a.createElement("label",{className:"gf-form-label width-10",style:{display:"inline-block"}}," ","y (value to predict)"," "),a.a.createElement("div",{className:"gf-form-select-wrapper width-10",style:{display:"inline-block"}},a.a.createElement("select",{className:"input-small gf-form-input",onChange:function(e){return t.setToPredict(e)}},this.renderQueryOptions())))},e}(i.PureComponent),d=function(t){function e(){return null!==t&&t.apply(this,arguments)||this}return Object(o.c)(e,t),e.prototype.getSeriesNames=function(){return this.props.data.series.map((function(t){return t.name||"unknown"}))},e.prototype.renderQueryOptions=function(){var t,e,r=this.getSeriesNames(),n=this.props.options.predictor.opt,i=[];try{for(var s=Object(o.e)(r.keys()),c=s.next();!c.done;c=s.next()){var u=c.value;i.push(a.a.createElement("option",{value:u,selected:n.firstQuery===u},r[u]))}}catch(e){t={error:e}}finally{try{c&&!c.done&&(e=s.return)&&e.call(s)}finally{if(t)throw t.error}}return i},e.prototype.setFirstQuery=function(t){this.props.options.predictor.opt=Object(o.a)(Object(o.a)({},this.props.options.predictor.opt),{firstQuery:Number.parseInt(t.target.value,10)}),this.render()},e.prototype.render=function(){var t=this,e=this.props.options.predictor;return e.opt||(e.opt=Object(o.a)(Object(o.a)({},e.opt),{firstQuery:0})),console.log(this.props),a.a.createElement(l.PanelOptionsGroup,{title:"SVM"},a.a.createElement("p",null,e.predFun?"Function: "+e.predFun:""),a.a.createElement("label",{className:"gf-form-label width-10",style:{display:"inline-block"}}," ","x1 (first query)"," "),a.a.createElement("div",{className:"gf-form-select-wrapper width-10",style:{display:"inline-block"}},a.a.createElement("select",{className:"input-small gf-form-input",onChange:function(e){return t.setFirstQuery(e)}},this.renderQueryOptions())))},e}(i.PureComponent),h={RL:new u,SVM:new p},y={RL:f,SVM:d},m=function(){function t(){}return t.prototype.setData=function(t){this.data=t},t.prototype.setPredictor=function(t){if(this.predictor=t,!h[t.algorithm])throw Error("Wrong algorithm");this.strategy=h[t.algorithm]},t.prototype.predict=function(){var t;if(!this.data||!this.predictor)throw Error("Predictor not found");if(console.log(this.data,this.predictor,this.predictor.opt),this.data.predicted=null===(t=this.strategy)||void 0===t?void 0:t.predict(this.data,this.predictor,this.predictor.opt),!this.data.predicted||this.data.predicted.length<1)throw Error("Data not predicted");return this.data.predicted[this.data.predicted.length-1][1]},t.prototype.saveToInflux=function(){var t;return Object(o.b)(this,void 0,void 0,(function(){return Object(o.d)(this,(function(e){if(!(null===(t=this.data)||void 0===t?void 0:t.predicted))throw Error("data.predicted not found");return this.data.predicted.forEach((function(t){$.post({url:"http://localhost:8086/write?db=telegraf",data:"prediction value="+t[1]+" "+t[0]+"000000"})})),[2]}))}))},t}(),b=function(t){function e(){var e=null!==t&&t.apply(this,arguments)||this;return e.pause=function(){e.props.pause(),e.btn_stop&&(e.btn_stop.hidden=!0),e.btn_start&&(e.btn_start.hidden=!1)},e.start=function(){e.props.start(),e.btn_stop&&(e.btn_stop.hidden=!1),e.btn_start&&(e.btn_start.hidden=!0)},e}return Object(o.c)(e,t),e.prototype.componentDidMount=function(){this.btn_stop=document.getElementById("btn_stop"),this.btn_start=document.getElementById("btn_start")},e.prototype.render=function(){var t=this.props,e=t.algorithm,r=t.coefficients,n=t.opt,o=t.lastValue;return a.a.createElement("div",null,a.a.createElement("pre",null,"Log ","\n","- Algorithm: ",e+"\n","- Coefficients: ",r+"\n",null!=n?"- Options: "+JSON.stringify(n)+"\n":""),a.a.createElement("div",{style:{textAlign:"center"}},a.a.createElement("h1",null,o),a.a.createElement("button",{id:"btn_stop",className:"btn btn-danger",onClick:this.pause},"Stop"),a.a.createElement("button",{id:"btn_start",className:"btn btn-success",onClick:this.start,hidden:!0},"Start")))},e}(i.PureComponent),v=function(t){function e(e){var r=t.call(this,e)||this;return r.paused=!1,r.model=new m,r}return Object(o.c)(e,t),e.prototype.setData=function(){this.model.setData(s.fromSeries(this.props.data.series))},e.prototype.setPredictor=function(){this.model.setPredictor(this.props.options.predictor)},e.prototype.predict=function(){this.lastValue=this.model.predict()},e.prototype.saveToInflux=function(){this.model.saveToInflux()},e.prototype.pause=function(){this.paused=!0},e.prototype.start=function(){this.paused=!1},e.prototype.updatePrediction=function(){this.paused||(this.setData(),this.setPredictor(),this.predict(),this.saveToInflux())},e.prototype.render=function(){this.updatePrediction();var t=this.props.options.predictor;return a.a.createElement("div",null,a.a.createElement(b,{algorithm:t.algorithm,coefficients:t.coefficients,opt:t.opt,lastValue:this.lastValue,pause:this.pause,start:this.start}))},e}(i.PureComponent);function g(t){return(g="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t})(t)}var O=function(t){function e(){return null!==t&&t.apply(this,arguments)||this}return Object(o.c)(e,t),e.prototype.importPredictor=function(t){var e=this,r=new FileReader;if(null==t.files)throw new Error("File not selected");r.readAsText(t.files[0]),r.onload=function(t){var r,n;try{e.props.options.predictor=c.fromJSON(null===(n=null===(r=t.target)||void 0===r?void 0:r.result)||void 0===n?void 0:n.toString())}catch(t){alert(t)}e.render()}},e.prototype.render=function(){var t,e=this,r=this.props.options.predictor.algorithm;return t=y[r]?y[r]:g(a.a.PureComponent),a.a.createElement("div",null,a.a.createElement(l.PanelOptionsGrid,null,a.a.createElement(l.PanelOptionsGroup,{title:"Import predictor"},a.a.createElement("input",{className:"input gf-input gf-file",type:"file",name:"Import",id:"import",onChange:function(t){return e.importPredictor(t.target)}})),a.a.createElement(t,{data:this.props.data,options:this.props.options})))},e}(i.PureComponent);r.d(e,"plugin",(function(){return w}));var w=new n.PanelPlugin(v).setDefaults({predictor:{algorithm:"",coefficients:[]}}).setEditor(O)}])}));
+/* global Reflect, Promise */
+
+var extendStatics = function(d, b) {
+    extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return extendStatics(d, b);
+};
+
+function __extends(d, b) {
+    extendStatics(d, b);
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+}
+
+var __assign = function() {
+    __assign = Object.assign || function __assign(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+        }
+        return t;
+    }
+    return __assign.apply(this, arguments);
+}
+
+function __rest(s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                t[p[i]] = s[p[i]];
+        }
+    return t;
+}
+
+function __decorate(decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+}
+
+function __param(paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+}
+
+function __metadata(metadataKey, metadataValue) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(metadataKey, metadataValue);
+}
+
+function __awaiter(thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+}
+
+function __generator(thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+}
+
+function __exportStar(m, exports) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+
+function __values(o) {
+    var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
+    if (m) return m.call(o);
+    if (o && typeof o.length === "number") return {
+        next: function () {
+            if (o && i >= o.length) o = void 0;
+            return { value: o && o[i++], done: !o };
+        }
+    };
+    throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
+}
+
+function __read(o, n) {
+    var m = typeof Symbol === "function" && o[Symbol.iterator];
+    if (!m) return o;
+    var i = m.call(o), r, ar = [], e;
+    try {
+        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
+    }
+    catch (error) { e = { error: error }; }
+    finally {
+        try {
+            if (r && !r.done && (m = i["return"])) m.call(i);
+        }
+        finally { if (e) throw e.error; }
+    }
+    return ar;
+}
+
+function __spread() {
+    for (var ar = [], i = 0; i < arguments.length; i++)
+        ar = ar.concat(__read(arguments[i]));
+    return ar;
+}
+
+function __spreadArrays() {
+    for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
+    for (var r = Array(s), k = 0, i = 0; i < il; i++)
+        for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
+            r[k] = a[j];
+    return r;
+};
+
+function __await(v) {
+    return this instanceof __await ? (this.v = v, this) : new __await(v);
+}
+
+function __asyncGenerator(thisArg, _arguments, generator) {
+    if (!Symbol.asyncIterator) throw new TypeError("Symbol.asyncIterator is not defined.");
+    var g = generator.apply(thisArg, _arguments || []), i, q = [];
+    return i = {}, verb("next"), verb("throw"), verb("return"), i[Symbol.asyncIterator] = function () { return this; }, i;
+    function verb(n) { if (g[n]) i[n] = function (v) { return new Promise(function (a, b) { q.push([n, v, a, b]) > 1 || resume(n, v); }); }; }
+    function resume(n, v) { try { step(g[n](v)); } catch (e) { settle(q[0][3], e); } }
+    function step(r) { r.value instanceof __await ? Promise.resolve(r.value.v).then(fulfill, reject) : settle(q[0][2], r); }
+    function fulfill(value) { resume("next", value); }
+    function reject(value) { resume("throw", value); }
+    function settle(f, v) { if (f(v), q.shift(), q.length) resume(q[0][0], q[0][1]); }
+}
+
+function __asyncDelegator(o) {
+    var i, p;
+    return i = {}, verb("next"), verb("throw", function (e) { throw e; }), verb("return"), i[Symbol.iterator] = function () { return this; }, i;
+    function verb(n, f) { i[n] = o[n] ? function (v) { return (p = !p) ? { value: __await(o[n](v)), done: n === "return" } : f ? f(v) : v; } : f; }
+}
+
+function __asyncValues(o) {
+    if (!Symbol.asyncIterator) throw new TypeError("Symbol.asyncIterator is not defined.");
+    var m = o[Symbol.asyncIterator], i;
+    return m ? m.call(o) : (o = typeof __values === "function" ? __values(o) : o[Symbol.iterator](), i = {}, verb("next"), verb("throw"), verb("return"), i[Symbol.asyncIterator] = function () { return this; }, i);
+    function verb(n) { i[n] = o[n] && function (v) { return new Promise(function (resolve, reject) { v = o[n](v), settle(resolve, reject, v.done, v.value); }); }; }
+    function settle(resolve, reject, d, v) { Promise.resolve(v).then(function(v) { resolve({ value: v, done: d }); }, reject); }
+}
+
+function __makeTemplateObject(cooked, raw) {
+    if (Object.defineProperty) { Object.defineProperty(cooked, "raw", { value: raw }); } else { cooked.raw = raw; }
+    return cooked;
+};
+
+function __importStar(mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
+    result.default = mod;
+    return result;
+}
+
+function __importDefault(mod) {
+    return (mod && mod.__esModule) ? mod : { default: mod };
+}
+
+function __classPrivateFieldGet(receiver, privateMap) {
+    if (!privateMap.has(receiver)) {
+        throw new TypeError("attempted to get private field on non-instance");
+    }
+    return privateMap.get(receiver);
+}
+
+function __classPrivateFieldSet(receiver, privateMap, value) {
+    if (!privateMap.has(receiver)) {
+        throw new TypeError("attempted to set private field on non-instance");
+    }
+    privateMap.set(receiver, value);
+    return value;
+}
+
+
+/***/ }),
+
+/***/ "./panels/PredictionPanel/editorView.tsx":
+/*!***********************************************!*\
+  !*** ./panels/PredictionPanel/editorView.tsx ***!
+  \***********************************************/
+/*! exports provided: EditorView */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EditorView", function() { return EditorView; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _grafana_ui__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @grafana/ui */ "@grafana/ui");
+/* harmony import */ var _grafana_ui__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_grafana_ui__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _strategies_strategies__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./strategies/strategies */ "./panels/PredictionPanel/strategies/strategies.ts");
+/* harmony import */ var utils_dataTypes__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! utils/dataTypes */ "./utils/dataTypes.ts");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+
+
+
+
+
+
+
+var EditorView =
+/** @class */
+function (_super) {
+  Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"])(EditorView, _super);
+
+  function EditorView() {
+    return _super !== null && _super.apply(this, arguments) || this;
+  }
+
+  EditorView.prototype.importPredictor = function (target) {
+    var _this = this;
+
+    var reader = new FileReader();
+
+    if (target.files == null) {
+      throw new Error('File not selected');
+    }
+
+    reader.readAsText(target.files[0]);
+
+    reader.onload = function (event) {
+      var _a, _b;
+
+      try {
+        _this.props.options.predictor = utils_dataTypes__WEBPACK_IMPORTED_MODULE_4__["Predictor"].fromJSON((_b = (_a = event.target) === null || _a === void 0 ? void 0 : _a.result) === null || _b === void 0 ? void 0 : _b.toString());
+      } catch (e) {
+        alert(e);
+      }
+
+      _this.render();
+    };
+  };
+
+  EditorView.prototype.render = function () {
+    var _this = this;
+
+    var algorithm = this.props.options.predictor.algorithm;
+    var Config;
+
+    if (_strategies_strategies__WEBPACK_IMPORTED_MODULE_3__["configs"][algorithm]) {
+      Config = _strategies_strategies__WEBPACK_IMPORTED_MODULE_3__["configs"][algorithm];
+    } else {
+      Config = _typeof(react__WEBPACK_IMPORTED_MODULE_1___default.a.PureComponent);
+    }
+
+    return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_grafana_ui__WEBPACK_IMPORTED_MODULE_2__["PanelOptionsGrid"], null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_grafana_ui__WEBPACK_IMPORTED_MODULE_2__["PanelOptionsGroup"], {
+      title: "Import predictor"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+      className: "input gf-input gf-file",
+      type: "file",
+      name: "Import",
+      id: "import",
+      onChange: function onChange(event) {
+        return _this.importPredictor(event.target);
+      }
+    })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(Config, {
+      data: this.props.data,
+      options: this.props.options
+    })));
+  };
+
+  return EditorView;
+}(react__WEBPACK_IMPORTED_MODULE_1__["PureComponent"]);
+
+
+
+/***/ }),
+
+/***/ "./panels/PredictionPanel/model.ts":
+/*!*****************************************!*\
+  !*** ./panels/PredictionPanel/model.ts ***!
+  \*****************************************/
+/*! exports provided: Model */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Model", function() { return Model; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _strategies_strategies__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./strategies/strategies */ "./panels/PredictionPanel/strategies/strategies.ts");
+
+
+
+var Model =
+/** @class */
+function () {
+  function Model() {}
+
+  Model.prototype.setData = function (data) {
+    this.data = data;
+  };
+
+  Model.prototype.setPredictor = function (predictor) {
+    this.predictor = predictor;
+
+    if (!_strategies_strategies__WEBPACK_IMPORTED_MODULE_1__["strategies"][predictor.algorithm]) {
+      throw Error('Wrong algorithm');
+    }
+
+    this.strategy = _strategies_strategies__WEBPACK_IMPORTED_MODULE_1__["strategies"][predictor.algorithm];
+  };
+
+  Model.prototype.predict = function () {
+    var _a;
+
+    if (!this.data || !this.predictor) {
+      throw Error('Predictor not found');
+    }
+
+    this.data.predicted = (_a = this.strategy) === null || _a === void 0 ? void 0 : _a.predict(this.data, this.predictor, this.predictor.opt);
+
+    if (!this.data.predicted || this.data.predicted.length < 1) {
+      throw Error('Data not predicted');
+    }
+
+    return this.data.predicted[this.data.predicted.length - 1][1];
+  };
+
+  Model.prototype.saveToInflux = function () {
+    var _a;
+
+    return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function () {
+      return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"])(this, function (_b) {
+        if (!((_a = this.data) === null || _a === void 0 ? void 0 : _a.predicted)) {
+          throw Error('data.predicted not found');
+        }
+
+        this.data.predicted.forEach(function (meas) {
+          $.post({
+            url: 'http://localhost:8086/write?db=telegraf',
+            data: 'prediction value=' + meas[1] + ' ' + meas[0] + '000000'
+          });
+        });
+        return [2
+        /*return*/
+        ];
+      });
+    });
+  };
+
+  return Model;
+}();
+
+
+
+/***/ }),
+
+/***/ "./panels/PredictionPanel/module.ts":
+/*!******************************************!*\
+  !*** ./panels/PredictionPanel/module.ts ***!
+  \******************************************/
+/*! exports provided: plugin */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "plugin", function() { return plugin; });
+/* harmony import */ var _grafana_data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @grafana/data */ "@grafana/data");
+/* harmony import */ var _grafana_data__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_grafana_data__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _panelController__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./panelController */ "./panels/PredictionPanel/panelController.tsx");
+/* harmony import */ var _editorView__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./editorView */ "./panels/PredictionPanel/editorView.tsx");
+
+
+
+var plugin = new _grafana_data__WEBPACK_IMPORTED_MODULE_0__["PanelPlugin"](_panelController__WEBPACK_IMPORTED_MODULE_1__["PanelController"]).setDefaults({
+  predictor: {
+    algorithm: '',
+    coefficients: []
+  }
+}).setEditor(_editorView__WEBPACK_IMPORTED_MODULE_2__["EditorView"]);
+
+/***/ }),
+
+/***/ "./panels/PredictionPanel/panelController.tsx":
+/*!****************************************************!*\
+  !*** ./panels/PredictionPanel/panelController.tsx ***!
+  \****************************************************/
+/*! exports provided: PanelController */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PanelController", function() { return PanelController; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var utils_dataTypes__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! utils/dataTypes */ "./utils/dataTypes.ts");
+/* harmony import */ var _model__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./model */ "./panels/PredictionPanel/model.ts");
+/* harmony import */ var _panelView__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./panelView */ "./panels/PredictionPanel/panelView.tsx");
+
+
+
+
+
+
+var PanelController =
+/** @class */
+function (_super) {
+  Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"])(PanelController, _super);
+
+  function PanelController(props) {
+    var _this = _super.call(this, props) || this;
+
+    _this.paused = false;
+    _this.model = new _model__WEBPACK_IMPORTED_MODULE_3__["Model"]();
+    return _this;
+  }
+
+  PanelController.prototype.setData = function () {
+    this.model.setData(utils_dataTypes__WEBPACK_IMPORTED_MODULE_2__["Data"].fromSeries(this.props.data.series));
+  };
+
+  PanelController.prototype.setPredictor = function () {
+    this.model.setPredictor(this.props.options.predictor);
+  };
+
+  PanelController.prototype.predict = function () {
+    this.lastValue = this.model.predict();
+  };
+
+  PanelController.prototype.saveToInflux = function () {
+    this.model.saveToInflux();
+  };
+
+  PanelController.prototype.pause = function () {
+    this.paused = true;
+  };
+
+  PanelController.prototype.start = function () {
+    this.paused = false;
+  };
+
+  PanelController.prototype.updatePrediction = function () {
+    if (!this.paused) {
+      this.setData();
+      this.setPredictor();
+      this.predict();
+      this.saveToInflux();
+    }
+  };
+
+  PanelController.prototype.render = function () {
+    this.updatePrediction();
+    var predictor = this.props.options.predictor;
+    return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_panelView__WEBPACK_IMPORTED_MODULE_4__["PanelView"], {
+      algorithm: predictor.algorithm,
+      coefficients: predictor.coefficients,
+      opt: predictor.opt,
+      lastValue: this.lastValue,
+      pause: this.pause,
+      start: this.start
+    }));
+  };
+
+  return PanelController;
+}(react__WEBPACK_IMPORTED_MODULE_1__["PureComponent"]);
+
+
+
+/***/ }),
+
+/***/ "./panels/PredictionPanel/panelView.tsx":
+/*!**********************************************!*\
+  !*** ./panels/PredictionPanel/panelView.tsx ***!
+  \**********************************************/
+/*! exports provided: PanelView */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PanelView", function() { return PanelView; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+
+
+
+var PanelView =
+/** @class */
+function (_super) {
+  Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"])(PanelView, _super);
+
+  function PanelView() {
+    var _this = _super !== null && _super.apply(this, arguments) || this;
+
+    _this.pause = function () {
+      _this.props.pause();
+
+      if (_this.btn_stop) {
+        _this.btn_stop.hidden = true;
+      }
+
+      if (_this.btn_start) {
+        _this.btn_start.hidden = false;
+      }
+    };
+
+    _this.start = function () {
+      _this.props.start();
+
+      if (_this.btn_stop) {
+        _this.btn_stop.hidden = false;
+      }
+
+      if (_this.btn_start) {
+        _this.btn_start.hidden = true;
+      }
+    };
+
+    return _this;
+  }
+
+  PanelView.prototype.componentDidMount = function () {
+    this.btn_stop = document.getElementById('btn_stop');
+    this.btn_start = document.getElementById('btn_start');
+  };
+
+  PanelView.prototype.render = function () {
+    var _a = this.props,
+        algorithm = _a.algorithm,
+        coefficients = _a.coefficients,
+        opt = _a.opt,
+        lastValue = _a.lastValue;
+    return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("pre", null, "Log ", '\n', "- Algorithm: ", algorithm + '\n', "- Coefficients: ", coefficients + '\n', opt != null ? '- Options: ' + JSON.stringify(opt) + '\n' : ''), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      style: {
+        textAlign: 'center'
+      }
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h1", null, lastValue), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+      id: "btn_stop",
+      className: "btn btn-danger",
+      onClick: this.pause
+    }, 'Stop'), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+      id: "btn_start",
+      className: "btn btn-success",
+      onClick: this.start,
+      hidden: true
+    }, 'Start')));
+  };
+
+  return PanelView;
+}(react__WEBPACK_IMPORTED_MODULE_1__["PureComponent"]);
+
+
+
+/***/ }),
+
+/***/ "./panels/PredictionPanel/strategies/RL/configRL.tsx":
+/*!***********************************************************!*\
+  !*** ./panels/PredictionPanel/strategies/RL/configRL.tsx ***!
+  \***********************************************************/
+/*! exports provided: ConfigRL */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ConfigRL", function() { return ConfigRL; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _grafana_ui__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @grafana/ui */ "@grafana/ui");
+/* harmony import */ var _grafana_ui__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_grafana_ui__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _interfaces_config__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../interfaces/config */ "./panels/PredictionPanel/strategies/interfaces/config.ts");
+
+
+
+
+
+var ConfigRL =
+/** @class */
+function (_super) {
+  Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"])(ConfigRL, _super);
+
+  function ConfigRL() {
+    return _super !== null && _super.apply(this, arguments) || this;
+  }
+
+  ConfigRL.prototype.getSeriesNames = function () {
+    return this.props.data.series.map(function (serie) {
+      return serie.name || 'unknown';
+    });
+  };
+
+  ConfigRL.prototype.renderQueryOptions = function () {
+    var e_1, _a;
+
+    var seriesName = this.getSeriesNames();
+    var opt = this.props.options.predictor.opt;
+    var options = [];
+
+    try {
+      for (var _b = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__values"])(seriesName.keys()), _c = _b.next(); !_c.done; _c = _b.next()) {
+        var i = _c.value;
+        options.push(react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
+          value: i,
+          selected: opt.toPredict === i
+        }, seriesName[i]));
+      }
+    } catch (e_1_1) {
+      e_1 = {
+        error: e_1_1
+      };
+    } finally {
+      try {
+        if (_c && !_c.done && (_a = _b["return"])) _a.call(_b);
+      } finally {
+        if (e_1) throw e_1.error;
+      }
+    }
+
+    return options;
+  };
+
+  ConfigRL.prototype.setToPredict = function (value) {
+    this.props.options.predictor.opt = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])(Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])({}, this.props.options.predictor.opt), {
+      toPredict: Number.parseInt(value, 10)
+    });
+    this.render();
+  };
+
+  ConfigRL.prototype.render = function () {
+    var _this = this;
+
+    var predictor = this.props.options.predictor;
+
+    if (!this.props.options.predictor.opt) {
+      this.props.options.predictor.opt = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])(Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])({}, predictor.opt), {
+        toPredict: 0
+      });
+    }
+
+    return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_grafana_ui__WEBPACK_IMPORTED_MODULE_2__["PanelOptionsGroup"], {
+      title: "RL"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, predictor.predFun ? 'Function: ' + predictor.predFun : ''), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
+      className: "gf-form-label width-10",
+      style: {
+        display: 'inline-block'
+      }
+    }, ' ', "y (value to predict)", ' '), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "gf-form-select-wrapper width-10",
+      style: {
+        display: 'inline-block'
+      }
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("select", {
+      className: "input-small gf-form-input",
+      onChange: function onChange(event) {
+        return _this.setToPredict(event.target.value);
+      }
+    }, this.renderQueryOptions())));
+  };
+
+  return ConfigRL;
+}(_interfaces_config__WEBPACK_IMPORTED_MODULE_3__["Config"]);
+
+
+
+/***/ }),
+
+/***/ "./panels/PredictionPanel/strategies/RL/strategyRL.ts":
+/*!************************************************************!*\
+  !*** ./panels/PredictionPanel/strategies/RL/strategyRL.ts ***!
+  \************************************************************/
+/*! exports provided: StrategyRL */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "StrategyRL", function() { return StrategyRL; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../node_modules/tslib/tslib.es6.js");
+
+
+var StrategyRL =
+/** @class */
+function () {
+  function StrategyRL() {}
+
+  StrategyRL.prototype.predict = function (data, predictor, options) {
+    if (!options || !options.toPredict) {
+      options = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])(Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])({}, options), {
+        toPredict: 0
+      });
+    }
+
+    var base = 1 - options.toPredict; //the other one
+
+    var coeff = predictor.coefficients;
+
+    var f = function f(x) {
+      return x ? x * coeff[0] + coeff[1] : 0;
+    };
+
+    data.predicted = [];
+
+    if (!data || !data.series) {
+      throw Error('Data not found');
+    }
+
+    data.series.forEach(function (value) {
+      var _a;
+
+      if (data && value[base]) {
+        (_a = data.predicted) === null || _a === void 0 ? void 0 : _a.push([value[2], f(value[base])]);
+      }
+    });
+    return data.predicted;
+  };
+
+  return StrategyRL;
+}();
+
+
+
+/***/ }),
+
+/***/ "./panels/PredictionPanel/strategies/SVM/configSVM.tsx":
+/*!*************************************************************!*\
+  !*** ./panels/PredictionPanel/strategies/SVM/configSVM.tsx ***!
+  \*************************************************************/
+/*! exports provided: ConfigSVM */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ConfigSVM", function() { return ConfigSVM; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _grafana_ui__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @grafana/ui */ "@grafana/ui");
+/* harmony import */ var _grafana_ui__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_grafana_ui__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _interfaces_config__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../interfaces/config */ "./panels/PredictionPanel/strategies/interfaces/config.ts");
+
+
+
+
+
+var ConfigSVM =
+/** @class */
+function (_super) {
+  Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"])(ConfigSVM, _super);
+
+  function ConfigSVM() {
+    return _super !== null && _super.apply(this, arguments) || this;
+  }
+
+  ConfigSVM.prototype.getSeriesNames = function () {
+    return this.props.data.series.map(function (serie) {
+      return serie.name || 'unknown';
+    });
+  };
+
+  ConfigSVM.prototype.renderQueryOptions = function () {
+    var e_1, _a;
+
+    var seriesName = this.getSeriesNames();
+    var opt = this.props.options.predictor.opt;
+    var options = [];
+
+    try {
+      for (var _b = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__values"])(seriesName.keys()), _c = _b.next(); !_c.done; _c = _b.next()) {
+        var i = _c.value;
+        options.push(react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
+          value: i,
+          selected: opt.firstQuery === i
+        }, seriesName[i]));
+      }
+    } catch (e_1_1) {
+      e_1 = {
+        error: e_1_1
+      };
+    } finally {
+      try {
+        if (_c && !_c.done && (_a = _b["return"])) _a.call(_b);
+      } finally {
+        if (e_1) throw e_1.error;
+      }
+    }
+
+    return options;
+  };
+
+  ConfigSVM.prototype.setFirstQuery = function (value) {
+    this.props.options.predictor.opt = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])(Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])({}, this.props.options.predictor.opt), {
+      firstQuery: Number.parseInt(value, 10)
+    });
+    this.render();
+  };
+
+  ConfigSVM.prototype.render = function () {
+    var _this = this;
+
+    var predictor = this.props.options.predictor;
+
+    if (!predictor.opt) {
+      predictor.opt = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])(Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])({}, predictor.opt), {
+        firstQuery: 0
+      });
+    }
+
+    return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_grafana_ui__WEBPACK_IMPORTED_MODULE_2__["PanelOptionsGroup"], {
+      title: "SVM"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, predictor.predFun ? 'Function: ' + predictor.predFun : ''), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
+      className: "gf-form-label width-10",
+      style: {
+        display: 'inline-block'
+      }
+    }, ' ', "x1 (first query)", ' '), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "gf-form-select-wrapper width-10",
+      style: {
+        display: 'inline-block'
+      }
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("select", {
+      className: "input-small gf-form-input",
+      onChange: function onChange(event) {
+        return _this.setFirstQuery(event.target.value);
+      }
+    }, this.renderQueryOptions())));
+  };
+
+  return ConfigSVM;
+}(_interfaces_config__WEBPACK_IMPORTED_MODULE_3__["Config"]);
+
+
+
+/***/ }),
+
+/***/ "./panels/PredictionPanel/strategies/SVM/strategySVM.ts":
+/*!**************************************************************!*\
+  !*** ./panels/PredictionPanel/strategies/SVM/strategySVM.ts ***!
+  \**************************************************************/
+/*! exports provided: StrategySVM */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "StrategySVM", function() { return StrategySVM; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../node_modules/tslib/tslib.es6.js");
+
+
+var StrategySVM =
+/** @class */
+function () {
+  function StrategySVM() {}
+
+  StrategySVM.prototype.predict = function (data, predictor, options) {
+    if (!options || !options.firstQuery) {
+      options = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])(Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])({}, options), {
+        firstQuery: 0
+      });
+    }
+
+    var coeff = predictor.coefficients;
+    var x1 = options.firstQuery;
+    var x2 = 1 - options.firstQuery;
+
+    var f = function f(x1, x2) {
+      return x1 * coeff[0] + x2 * coeff[1] + coeff[2];
+    };
+
+    data.predicted = [];
+    data.series.forEach(function (value) {
+      var _a;
+
+      var val = f(value[x1], value[x2]);
+      var cls = 0; //classification
+
+      if (val > 0) {
+        cls = 1;
+      } else if (val < 0) {
+        cls = -1;
+      }
+
+      if (data && (value[0] || value[1])) {
+        (_a = data.predicted) === null || _a === void 0 ? void 0 : _a.push([value[2], cls]);
+      }
+    });
+    return data.predicted;
+  };
+
+  return StrategySVM;
+}();
+
+
+
+/***/ }),
+
+/***/ "./panels/PredictionPanel/strategies/interfaces/config.ts":
+/*!****************************************************************!*\
+  !*** ./panels/PredictionPanel/strategies/interfaces/config.ts ***!
+  \****************************************************************/
+/*! exports provided: Config */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Config", function() { return Config; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+
+
+
+var Config =
+/** @class */
+function (_super) {
+  Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"])(Config, _super);
+
+  function Config() {
+    return _super !== null && _super.apply(this, arguments) || this;
+  }
+
+  return Config;
+}(react__WEBPACK_IMPORTED_MODULE_1__["PureComponent"]);
+
+
+
+/***/ }),
+
+/***/ "./panels/PredictionPanel/strategies/strategies.ts":
+/*!*********************************************************!*\
+  !*** ./panels/PredictionPanel/strategies/strategies.ts ***!
+  \*********************************************************/
+/*! exports provided: strategies, configs */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "strategies", function() { return strategies; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "configs", function() { return configs; });
+/* harmony import */ var _RL_strategyRL__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./RL/strategyRL */ "./panels/PredictionPanel/strategies/RL/strategyRL.ts");
+/* harmony import */ var _SVM_strategySVM__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SVM/strategySVM */ "./panels/PredictionPanel/strategies/SVM/strategySVM.ts");
+/* harmony import */ var _RL_configRL__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./RL/configRL */ "./panels/PredictionPanel/strategies/RL/configRL.tsx");
+/* harmony import */ var _SVM_configSVM__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./SVM/configSVM */ "./panels/PredictionPanel/strategies/SVM/configSVM.tsx");
+
+
+
+
+var strategies = {
+  RL: new _RL_strategyRL__WEBPACK_IMPORTED_MODULE_0__["StrategyRL"](),
+  SVM: new _SVM_strategySVM__WEBPACK_IMPORTED_MODULE_1__["StrategySVM"]()
+};
+var configs = {
+  RL: _RL_configRL__WEBPACK_IMPORTED_MODULE_2__["ConfigRL"],
+  SVM: _SVM_configSVM__WEBPACK_IMPORTED_MODULE_3__["ConfigSVM"]
+};
+
+/***/ }),
+
+/***/ "./utils/dataTypes.ts":
+/*!****************************!*\
+  !*** ./utils/dataTypes.ts ***!
+  \****************************/
+/*! exports provided: Data, Predictor */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Data", function() { return Data; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Predictor", function() { return Predictor; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../node_modules/tslib/tslib.es6.js");
+ // Data representation as array (both measured and predicted)
+
+var Data =
+/** @class */
+function () {
+  function Data() {}
+
+  Data.fromSeries = function (series) {
+    var e_1, _a;
+
+    if (!series[0] || !series[1]) {
+      throw Error('Set at least 2 query before');
+    }
+
+    var time = series[0].fields[1].values.toArray();
+    var values = []; // [ [valA, valA ...] [valB, valB ...] ]
+
+    series.forEach(function (serie) {
+      values.push(serie.fields[0].values.toArray());
+    });
+    var _series = [];
+
+    var _loop_1 = function _loop_1(i) {
+      var _measure = []; // [ valA, valB, time ]
+
+      values.forEach(function (value) {
+        _measure.push(value[i]);
+      });
+
+      _measure.push(time[i]);
+
+      _series.push(_measure);
+    };
+
+    try {
+      for (var _b = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__values"])(time.keys()), _c = _b.next(); !_c.done; _c = _b.next()) {
+        var i = _c.value;
+
+        _loop_1(i);
+      }
+    } catch (e_1_1) {
+      e_1 = {
+        error: e_1_1
+      };
+    } finally {
+      try {
+        if (_c && !_c.done && (_a = _b["return"])) _a.call(_b);
+      } finally {
+        if (e_1) throw e_1.error;
+      }
+    }
+
+    var data = new Data();
+    data.series = _series;
+    return data;
+  };
+
+  return Data;
+}();
+
+ // Description of predictor and related utilities
+
+var Predictor =
+/** @class */
+function () {
+  function Predictor() {}
+
+  Predictor.fromJSON = function (str) {
+    if (!str) {
+      throw Error('No file found');
+    }
+
+    var predictor = new Predictor();
+    predictor = JSON.parse(str);
+
+    if (!predictor.algorithm || !predictor.coefficients) {
+      throw Error('Error reading file');
+    }
+
+    return predictor;
+  };
+
+  return Predictor;
+}();
+
+
+
+/***/ }),
+
+/***/ "@grafana/data":
+/*!********************************!*\
+  !*** external "@grafana/data" ***!
+  \********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE__grafana_data__;
+
+/***/ }),
+
+/***/ "@grafana/ui":
+/*!******************************!*\
+  !*** external "@grafana/ui" ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE__grafana_ui__;
+
+/***/ }),
+
+/***/ "react":
+/*!************************!*\
+  !*** external "react" ***!
+  \************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_react__;
+
+/***/ })
+
+/******/ })});;
 //# sourceMappingURL=module.js.map

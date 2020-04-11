@@ -15,6 +15,10 @@ export class StrategyRL implements Strategy {
         };
         data.predicted = [];
 
+        if(!data || !data.series){
+            throw Error('Data not found');
+        }
+
         data.series.forEach(value => {
             if (data && value[base]) {
                 data.predicted?.push([value[2], f(value[base])]);
