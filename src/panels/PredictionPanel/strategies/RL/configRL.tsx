@@ -1,6 +1,6 @@
 import React from 'react';
 import { PanelOptionsGroup } from '@grafana/ui';
-import {Config} from '../interfaces/config';
+import { Config } from '../interfaces/config';
 
 export class ConfigRL extends Config {
     private getSeriesNames() {

@@ -1,5 +1,5 @@
 import 'react';
-import { ConfigRL } from "panels/PredictionPanel/strategies/RL/configRL";
+import { ConfigRL } from 'panels/PredictionPanel/strategies/RL/configRL';
 import { LoadingState, dateTime, DefaultTimeZone, FieldType, ArrayVector } from '@grafana/data';
 
 import { ConfigSVM } from 'panels/PredictionPanel/strategies/SVM/configSVM';
@@ -7,38 +7,44 @@ import { Predictor } from 'utils/dataTypes';
 import { PanelController } from 'panels/PredictionPanel/panelController';
 
 let data = {
-    series: [{
-        name: '',
-        fields: [{
+    series: [
+        {
             name: '',
-            type: FieldType.number,
-            config: {},
-            values: new ArrayVector([[1, 2]])
+            fields: [
+                {
+                    name: '',
+                    type: FieldType.number,
+                    config: {},
+                    values: new ArrayVector([[1, 2]]),
+                },
+                {
+                    name: '',
+                    type: FieldType.number,
+                    config: {},
+                    values: new ArrayVector([[1, 2]]),
+                },
+            ],
+            length: 0,
         },
         {
             name: '',
-            type: FieldType.number,
-            config: {},
-            values: new ArrayVector([[1, 2]])
-        }],
-        length: 0
-    },
-    {
-        name: '',
-        fields: [{
-            name: '',
-            type: FieldType.number,
-            config: {},
-            values: new ArrayVector([[1, 2]])
+            fields: [
+                {
+                    name: '',
+                    type: FieldType.number,
+                    config: {},
+                    values: new ArrayVector([[1, 2]]),
+                },
+                {
+                    name: '',
+                    type: FieldType.number,
+                    config: {},
+                    values: new ArrayVector([[1, 2]]),
+                },
+            ],
+            length: 0,
         },
-        {
-            name: '',
-            type: FieldType.number,
-            config: {},
-            values: new ArrayVector([[1, 2]])
-        }],
-        length: 0
-    }],
+    ],
     state: LoadingState.Done,
     timeRange: {
         from: dateTime(),
@@ -46,15 +52,15 @@ let data = {
             from: dateTime(),
             to: dateTime(),
         },
-        to: dateTime()
-    }
-}
+        to: dateTime(),
+    },
+};
 let options: { predictor: Predictor } = {
     predictor: {
         algorithm: 'RL',
         coefficients: [1, 1],
-    }
-}
+    },
+};
 
 let controllerMock = new PanelController({
     id: 0,
@@ -62,36 +68,35 @@ let controllerMock = new PanelController({
     timeRange: data.timeRange,
     timeZone: DefaultTimeZone,
     options: options,
-    onOptionsChange: () => { },
+    onOptionsChange: () => {},
     transparent: false,
     height: 0,
     width: 0,
     renderCounter: 0,
     replaceVariables: () => '',
-    onChangeTimeRange: () => { }
+    onChangeTimeRange: () => {},
 });
-
 
 test('renderOptionsRL', () => {
     let configRL = new ConfigRL({
         data: data,
         options: options,
-        onOptionsChange: () => { }
+        onOptionsChange: () => {},
     });
     configRL.render();
     configRL.renderQueryOptions();
-    configRL.setToPredict("0");
+    configRL.setToPredict('0');
 });
 
 test('renderOptionsSVM', () => {
     let configSVM = new ConfigSVM({
         data: data,
         options: options,
-        onOptionsChange: () => { }
+        onOptionsChange: () => {},
     });
     configSVM.render();
     configSVM.renderQueryOptions();
-    configSVM.setFirstQuery("0");
+    configSVM.setFirstQuery('0');
 });
 
 test('renderOptionsSVMWithoutOpt', () => {
@@ -99,11 +104,11 @@ test('renderOptionsSVMWithoutOpt', () => {
     let configSVM = new ConfigSVM({
         data: data,
         options: options,
-        onOptionsChange: () => { }
+        onOptionsChange: () => {},
     });
     configSVM.render();
     configSVM.renderQueryOptions();
-    configSVM.setFirstQuery("0");
+    configSVM.setFirstQuery('0');
 });
 
 test('conrtollerRender', () => {

@@ -15,7 +15,7 @@ export class StrategyRL implements Strategy {
         };
         data.predicted = [];
 
-        if(!data || !data.series){
+        if (!data || !data.series) {
             throw Error('Data not found');
         }
 

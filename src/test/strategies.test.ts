@@ -10,7 +10,6 @@ let svm: Strategy;
 beforeAll(() => {
     rl = new StrategyRL();
     svm = new StrategySVM();
-
 });
 
 test('', () => {
@@ -28,7 +27,6 @@ test('', () => {
     expect(res).toEqual([[1, 2]]);
 });
 
-
 test('', () => {
     let data = new Data();
     data.series = [[1, 1, 1]];
@@ -36,10 +34,9 @@ test('', () => {
     expect(res).toEqual([[1, 2]]);
 });
 
-
 test('', () => {
     let data = new Data();
     data.series = [[1, 1, 1]];
-    const res = rl.predict(data, { algorithm: 'RL', coefficients: [1, 1] }, {ranomProp: 0});
+    const res = rl.predict(data, { algorithm: 'RL', coefficients: [1, 1] }, { ranomProp: 0 });
     expect(res).toEqual([[1, 2]]);
 });

@@ -110,5 +110,5 @@ test('modelPredictionNoData', () => {
 
 test('predictorFromJSON', () => {
     let s = Predictor.fromJSON('{"algorithm": "RL", "coefficients": [1,1]}');
-    expect(s).toStrictEqual({algorithm: "RL", coefficients: [1,1]});
+    expect(s).toStrictEqual({ algorithm: 'RL', coefficients: [1, 1] });
 });
