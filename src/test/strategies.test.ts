@@ -12,7 +12,7 @@ beforeAll(() => {
     svm = new StrategySVM();
 });
 
-test('', () => {
+test('strategyRlEmptyData', () => {
     try {
         rl.predict(new Data(), new Predictor(), {});
     } catch (e) {
@@ -20,21 +20,21 @@ test('', () => {
     }
 });
 
-test('', () => {
+test('strategyRlEmptyOpts', () => {
     let data = new Data();
     data.series = [[1, 1, 1]];
     const res = rl.predict(data, { algorithm: 'RL', coefficients: [1, 1] }, {});
     expect(res).toEqual([[1, 2]]);
 });
 
-test('', () => {
+test('strategyRlNullOpts', () => {
     let data = new Data();
     data.series = [[1, 1, 1]];
     const res = rl.predict(data, { algorithm: 'RL', coefficients: [1, 1] }, null);
     expect(res).toEqual([[1, 2]]);
 });
 
-test('', () => {
+test('strategyRlRandomOpts', () => {
     let data = new Data();
     data.series = [[1, 1, 1]];
     const res = rl.predict(data, { algorithm: 'RL', coefficients: [1, 1] }, { ranomProp: 0 });

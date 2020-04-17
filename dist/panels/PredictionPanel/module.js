@@ -569,7 +569,16 @@ function (_super) {
   }
 
   PanelController.prototype.setData = function () {
-    this.model.setData(utils_dataTypes__WEBPACK_IMPORTED_MODULE_2__["Data"].fromSeries(this.props.data.series));
+    var d = utils_dataTypes__WEBPACK_IMPORTED_MODULE_2__["Data"].fromSeries(this.props.data.series);
+    this.model.setData(d);
+    /*
+    let log = "";
+    d.series.forEach(element => {
+        if (element[0] != null && element[1] != null)
+            log += element[0] + ", " + element[1] + "\n";
+    });
+    console.log(log);
+    */
   };
 
   PanelController.prototype.setPredictor = function () {
@@ -593,24 +602,31 @@ function (_super) {
   };
 
   PanelController.prototype.updatePrediction = function () {
-    if (!this.paused) {
-      this.setData();
-      this.setPredictor();
-      this.predict();
-      this.saveToInflux();
-    }
+    this.setData();
+    this.setPredictor();
+    this.predict();
+    this.saveToInflux();
   };
 
   PanelController.prototype.render = function () {
-    this.updatePrediction();
+    var _this = this;
+
+    if (!this.paused) {
+      this.updatePrediction();
+    }
+
     var predictor = this.props.options.predictor;
     return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_panelView__WEBPACK_IMPORTED_MODULE_4__["PanelView"], {
       algorithm: predictor.algorithm,
       coefficients: predictor.coefficients,
       opt: predictor.opt,
       lastValue: this.lastValue,
-      pause: this.pause,
-      start: this.start
+      pause: function pause() {
+        return _this.pause();
+      },
+      start: function start() {
+        return _this.start();
+      }
     }));
   };
 

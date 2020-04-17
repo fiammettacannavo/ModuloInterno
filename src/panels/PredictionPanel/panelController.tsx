@@ -17,7 +17,17 @@ export class PanelController extends PureComponent<PanelProps<Props>> {
     }
 
     private setData() {
-        this.model.setData(Data.fromSeries(this.props.data.series));
+        const d = Data.fromSeries(this.props.data.series);
+        this.model.setData(d);
+
+        /*
+        let log = "";
+        d.series.forEach(element => {
+            if (element[0] != null && element[1] != null)
+                log += element[0] + ", " + element[1] + "\n";
+        });
+        console.log(log);
+        */
     }
 
     private setPredictor() {
@@ -40,16 +50,16 @@ export class PanelController extends PureComponent<PanelProps<Props>> {
     }
 
     private updatePrediction() {
-        if (!this.paused) {
-            this.setData();
-            this.setPredictor();
-            this.predict();
-            this.saveToInflux();
-        }
+        this.setData();
+        this.setPredictor();
+        this.predict();
+        this.saveToInflux();
     }
 
     render() {
-        this.updatePrediction();
+        if (!this.paused) {
+            this.updatePrediction();
+        }
 
         const { predictor } = this.props.options;
 
@@ -60,8 +70,8 @@ export class PanelController extends PureComponent<PanelProps<Props>> {
                     coefficients={predictor.coefficients}
                     opt={predictor.opt}
                     lastValue={this.lastValue}
-                    pause={this.pause}
-                    start={this.start}
+                    pause={() => this.pause()}
+                    start={() => this.start()}
                 />
             </div>
         );
