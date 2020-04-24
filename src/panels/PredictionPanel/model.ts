@@ -1,9 +1,12 @@
-import { Data, Predictor } from 'utils/dataTypes';
+import { Predictor } from 'utils/Predictor';
+import { Data } from 'utils/Data';
+import { Predicted, PredIterator } from 'utils/Predicted';
 import { strategies } from './strategies/strategies';
 import { Strategy } from './strategies/interfaces/strategy';
 
 export class Model {
     private data?: Data;
+    private predicted?: Predicted;
     private predictor?: Predictor;
     private strategy?: Strategy;
 
@@ -13,34 +16,36 @@ export class Model {
 
     setPredictor(predictor: Predictor) {
         this.predictor = predictor;
-        if (!strategies[predictor.algorithm]) {
+        if (!strategies[predictor.getAlgorithm()]) {
             throw Error('Wrong algorithm');
         }
-        this.strategy = strategies[predictor.algorithm];
+        this.strategy = strategies[predictor.getAlgorithm()];
     }
 
     predict() {
         if (!this.data || !this.predictor) {
             throw Error('Predictor not found');
         }
-        this.data.predicted = this.strategy?.predict(this.data, this.predictor, this.predictor.opt);
+        this.predicted = this.strategy?.predict(this.data, this.predictor, this.predictor.getOpt());
 
-        if (!this.data.predicted || this.data.predicted.length < 1) {
+        if (!this.predicted || this.predicted.size() < 1) {
             throw Error('Data not predicted');
         }
-        return this.data.predicted[this.data.predicted.length - 1][1];
+        return this.predicted.getAt(this.predicted.size() - 1).value;
     }
 
     async saveToInflux() {
-        if (!this.data?.predicted) {
+        if (!this.predicted) {
             throw Error('data.predicted not found');
         }
 
-        this.data.predicted.forEach((meas: number[]) => {
+        let it = new PredIterator(this.predicted);
+        let meas;
+        while ((meas = it.next())) {
             $.post({
                 url: 'http://localhost:8086/write?db=telegraf',
-                data: 'prediction value=' + meas[1] + ' ' + meas[0] + '000000', // + zeros for wrong time format
+                data: 'prediction value=' + meas.value + ' ' + meas.time + '000000', // + zeros for wrong time format
             });
-        });
+        }
     }
 }

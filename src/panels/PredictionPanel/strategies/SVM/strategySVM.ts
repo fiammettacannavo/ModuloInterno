@@ -1,5 +1,7 @@
 import { Strategy } from '../interfaces/strategy';
-import { Data, Predictor } from 'utils/dataTypes';
+import { Data, DataIterator } from 'utils/Data';
+import { Predicted } from 'utils/Predicted';
+import { Predictor } from 'utils/Predictor';
 
 export class StrategySVM implements Strategy {
     predict(data: Data, predictor: Predictor, options: { firstQuery: 0 | 1 }) {
@@ -7,29 +9,28 @@ export class StrategySVM implements Strategy {
             options = { ...options, firstQuery: 0 };
         }
 
-        const coeff = predictor.coefficients;
-        const x1 = options.firstQuery;
-        const x2 = 1 - options.firstQuery;
+        const coeff = predictor.getCoefficients();
+        const first = options.firstQuery;
 
         const f = (x1: number, x2: number) => {
             return x1 * coeff[0] + x2 * coeff[1] + coeff[2];
         };
-        data.predicted = [];
 
-        data.series.forEach(value => {
-            const val = f(value[x1], value[x2]);
-            let cls = 0; //classification
-            if (val > 0) {
-                cls = 1;
-            } else if (val < 0) {
-                cls = -1;
-            }
+        let predicted = new Predicted();
 
-            if (data && (value[0] || value[1])) {
-                data.predicted?.push([value[2], cls]);
-            }
-        });
+        if (!data) {
+            throw Error('Data not found');
+        }
 
-        return data.predicted;
+        let it = new DataIterator(data);
+        let val;
+        while ((val = it.next())) {
+            const v = first === 0 ? f(val.a, val.b) : f(val.b, val.a);
+            let cls = v === 0 ? 0 : v > 0 ? 1 : -1; //classification 1 / -1
+
+            predicted.addValue(cls, val.time);
+        }
+
+        return predicted;
     }
 }

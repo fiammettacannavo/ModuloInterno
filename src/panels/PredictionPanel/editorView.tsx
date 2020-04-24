@@ -4,7 +4,7 @@ import { Props } from './props';
 import { PanelEditorProps } from '@grafana/data';
 import './strategies/strategies';
 import { configs } from './strategies/strategies';
-import { Predictor } from 'utils/dataTypes';
+import { Predictor } from 'utils/Predictor';
 
 export class EditorView extends PureComponent<PanelEditorProps<Props>> {
     private importPredictor(target: HTMLInputElement) {
@@ -24,7 +24,7 @@ export class EditorView extends PureComponent<PanelEditorProps<Props>> {
     }
 
     render() {
-        const { algorithm } = this.props.options.predictor;
+        const algorithm = this.props.options.predictor.getAlgorithm();
         let Config;
         if (configs[algorithm]) {
             Config = configs[algorithm];

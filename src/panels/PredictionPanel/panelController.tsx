@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import { PanelProps } from '@grafana/data';
 
 import { Props } from './props';
-import { Data } from 'utils/dataTypes';
+import { Data } from 'utils/Data';
 import { Model } from './model';
 import { PanelView } from './panelView';
 
@@ -66,9 +66,9 @@ export class PanelController extends PureComponent<PanelProps<Props>> {
         return (
             <div>
                 <PanelView
-                    algorithm={predictor.algorithm}
-                    coefficients={predictor.coefficients}
-                    opt={predictor.opt}
+                    algorithm={predictor.getAlgorithm()}
+                    coefficients={predictor.getCoefficients()}
+                    opt={predictor.getOpt()}
                     lastValue={this.lastValue}
                     pause={() => this.pause()}
                     start={() => this.start()}

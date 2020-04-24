@@ -1,6 +1,7 @@
 import 'jest';
 import { Model } from '../panels/PredictionPanel/model';
-import { Data, Predictor } from 'utils/dataTypes';
+import { Data } from 'utils/Data';
+import { Predictor } from 'utils/Predictor';
 
 let model: Model;
 let data: Data;
@@ -12,53 +13,52 @@ beforeEach(() => {
 
 /* RL */
 test('modelPredictionRlToBe0', () => {
-    data.series = [[1, 1]];
+    data.addValues(1, 1, 0);
     model.setData(data);
-    model.setPredictor({ algorithm: 'RL', coefficients: [0, 0] });
+    model.setPredictor(new Predictor('RL', [0, 0]));
     expect(model.predict()).toBe(0);
 });
 
 test('modelPredictionRlToBe1', () => {
-    data.series = [[1, 1]];
+    data.addValues(1, 1, 0);
     model.setData(data);
-    model.setPredictor({ algorithm: 'RL', coefficients: [1, 0] });
+    model.setPredictor(new Predictor('RL', [1, 0]));
     expect(model.predict()).toBe(1);
 });
 
 test('modelPredictionRlToBe2', () => {
-    data.series = [[1, 1]];
+    data.addValues(1, 1, 0);
     model.setData(data);
-    model.setPredictor({ algorithm: 'RL', coefficients: [1, 1] });
+    model.setPredictor(new Predictor('RL', [1, 1]));
     expect(model.predict()).toBe(2);
 });
 
 /* SVM */
 test('modelPredictionSvmToBe0', () => {
-    data.series = [[1, 1]];
+    data.addValues(1, 1, 0);
     model.setData(data);
-    model.setPredictor({ algorithm: 'SVM', coefficients: [0, 0, 0] });
+    model.setPredictor(new Predictor('SVM', [0, 0, 0]));
     expect(model.predict()).toBe(0);
 });
 
 test('modelPredictionSvmToBe1', () => {
-    data.series = [[1, 1]];
+    data.addValues(1, 1, 0);
     model.setData(data);
-    model.setPredictor({ algorithm: 'SVM', coefficients: [1, 1, 0] });
+    model.setPredictor(new Predictor('SVM', [1, 1, 0]));
     expect(model.predict()).toBe(1);
 });
 
 test('modelPredictionSvmToBe-1', () => {
-    data.series = [[-1, -1]];
+    data.addValues(1, 1, 0);
     model.setData(data);
-    model.setPredictor({ algorithm: 'SVM', coefficients: [1, 1, 0] });
+    model.setPredictor(new Predictor('SVM', [1, 1, 0]));
     expect(model.predict()).toBe(-1);
 });
 
 /* Empty Array */
 test('modelPredictionRlWithEmptyArray', () => {
-    data.series = [];
     model.setData(data);
-    model.setPredictor({ algorithm: 'RL', coefficients: [1, 1] });
+    model.setPredictor(new Predictor('RL', [1, 1]));
     try {
         model.predict();
     } catch (e) {
@@ -67,9 +67,8 @@ test('modelPredictionRlWithEmptyArray', () => {
 });
 
 test('modelPredictionSvmWithEmptyArray', () => {
-    data.series = [];
     model.setData(data);
-    model.setPredictor({ algorithm: 'SVM', coefficients: [1, 1, 0] });
+    model.setPredictor(new Predictor('SVM', [1, 1, 0]));
     try {
         model.predict();
     } catch (e) {
@@ -80,10 +79,10 @@ test('modelPredictionSvmWithEmptyArray', () => {
 
 /* Exceptions */
 test('modelPredictionWrongAlgorithm', () => {
-    data.series = [[1, 2]];
+    data.addValues(1, 2, 0);
     model.setData(data);
     try {
-        model.setPredictor({ algorithm: '', coefficients: [0, 0] });
+        model.setPredictor(new Predictor('', [0, 0]));
         model.predict();
     } catch (e) {
         expect(e).toBeInstanceOf(Error);
@@ -93,7 +92,7 @@ test('modelPredictionWrongAlgorithm', () => {
 
 test('modelPredictionNoData', () => {
     try {
-        model.setPredictor({ algorithm: 'RL', coefficients: [0, 0] });
+        model.setPredictor(new Predictor('RL', [0, 0]));
         model.predict();
     } catch (e) {
         expect(e).toBeInstanceOf(Error);

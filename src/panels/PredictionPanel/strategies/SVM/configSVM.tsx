@@ -11,7 +11,7 @@ export class ConfigSVM extends Config {
 
     renderQueryOptions() {
         const seriesName = this.getSeriesNames();
-        const { opt } = this.props.options.predictor;
+        const opt = this.props.options.predictor.getOpt();
 
         const options: JSX.Element[] = [];
         for (const i of seriesName.keys()) {
@@ -25,21 +25,20 @@ export class ConfigSVM extends Config {
     }
 
     setFirstQuery(value: string) {
-        this.props.options.predictor.opt = {
-            ...this.props.options.predictor.opt,
+        this.props.options.predictor.setOpt({
             firstQuery: Number.parseInt(value, 10),
-        };
+        });
         this.render();
     }
 
     render() {
         let { predictor } = this.props.options;
-        if (!predictor.opt) {
-            predictor.opt = { ...predictor.opt, firstQuery: 0 };
+        if (!predictor.getOpt()) {
+            predictor.setOpt({ firstQuery: 0 });
         }
         return (
             <PanelOptionsGroup title="SVM">
-                <p>{predictor.predFun ? 'Function: ' + predictor.predFun : ''}</p>
+                <p>{predictor.getPredFun() ? 'Function: ' + predictor.getPredFun() : ''}</p>
                 <label className="gf-form-label width-10" style={{ display: 'inline-block' }}>
                     {' '}
                     x1 (first query){' '}

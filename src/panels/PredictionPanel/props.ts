@@ -1,4 +1,4 @@
-import { Predictor } from 'utils/dataTypes';
+import { Predictor } from 'utils/Predictor';
 
 export interface Props {
     predictor: Predictor;

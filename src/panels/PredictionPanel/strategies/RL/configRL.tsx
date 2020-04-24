@@ -11,7 +11,7 @@ export class ConfigRL extends Config {
 
     renderQueryOptions() {
         const seriesName = this.getSeriesNames();
-        const { opt } = this.props.options.predictor;
+        const opt = this.props.options.predictor.getOpt();
 
         const options: JSX.Element[] = [];
         for (const i of seriesName.keys()) {
@@ -25,21 +25,20 @@ export class ConfigRL extends Config {
     }
 
     setToPredict(value: string) {
-        this.props.options.predictor.opt = {
-            ...this.props.options.predictor.opt,
+        this.props.options.predictor.setOpt({
             toPredict: Number.parseInt(value, 10),
-        };
+        });
         this.render();
     }
 
     render() {
         let { predictor } = this.props.options;
-        if (!this.props.options.predictor.opt) {
-            this.props.options.predictor.opt = { ...predictor.opt, toPredict: 0 };
+        if (!this.props.options.predictor.getOpt()) {
+            this.props.options.predictor.setOpt({ toPredict: 0 });
         }
         return (
             <PanelOptionsGroup title="RL">
-                <p>{predictor.predFun ? 'Function: ' + predictor.predFun : ''}</p>
+                <p>{predictor.getPredFun() ? 'Function: ' + predictor.getPredFun() : ''}</p>
                 <label className="gf-form-label width-10" style={{ display: 'inline-block' }}>
                     {' '}
                     y (value to predict){' '}

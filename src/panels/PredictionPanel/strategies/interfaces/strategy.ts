@@ -1,5 +1,7 @@
-import { Data, Predictor } from 'utils/dataTypes';
+import { Data } from 'utils/Data';
+import { Predicted } from 'utils/Predicted';
+import { Predictor } from 'utils/Predictor';
 
 export interface Strategy {
-    predict: (data: Data, predictor: Predictor, options: any) => number[][];
+    predict: (data: Data, predictor: Predictor, options: any) => Predicted;
 }

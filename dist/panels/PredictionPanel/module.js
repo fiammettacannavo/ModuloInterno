@@ -350,7 +350,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _grafana_ui__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @grafana/ui */ "@grafana/ui");
 /* harmony import */ var _grafana_ui__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_grafana_ui__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _strategies_strategies__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./strategies/strategies */ "./panels/PredictionPanel/strategies/strategies.ts");
-/* harmony import */ var utils_dataTypes__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! utils/dataTypes */ "./utils/dataTypes.ts");
+/* harmony import */ var utils_Predictor__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! utils/Predictor */ "./utils/Predictor.ts");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 
@@ -384,7 +384,7 @@ function (_super) {
       var _a, _b;
 
       try {
-        _this.props.options.predictor = utils_dataTypes__WEBPACK_IMPORTED_MODULE_4__["Predictor"].fromJSON((_b = (_a = event.target) === null || _a === void 0 ? void 0 : _a.result) === null || _b === void 0 ? void 0 : _b.toString());
+        _this.props.options.predictor = utils_Predictor__WEBPACK_IMPORTED_MODULE_4__["Predictor"].fromJSON((_b = (_a = event.target) === null || _a === void 0 ? void 0 : _a.result) === null || _b === void 0 ? void 0 : _b.toString());
       } catch (e) {
         alert(e);
       }
@@ -396,7 +396,7 @@ function (_super) {
   EditorView.prototype.render = function () {
     var _this = this;
 
-    var algorithm = this.props.options.predictor.algorithm;
+    var algorithm = this.props.options.predictor.getAlgorithm();
     var Config;
 
     if (_strategies_strategies__WEBPACK_IMPORTED_MODULE_3__["configs"][algorithm]) {
@@ -439,7 +439,9 @@ function (_super) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Model", function() { return Model; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _strategies_strategies__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./strategies/strategies */ "./panels/PredictionPanel/strategies/strategies.ts");
+/* harmony import */ var utils_Predicted__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! utils/Predicted */ "./utils/Predicted.ts");
+/* harmony import */ var _strategies_strategies__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./strategies/strategies */ "./panels/PredictionPanel/strategies/strategies.ts");
+
 
 
 
@@ -455,11 +457,11 @@ function () {
   Model.prototype.setPredictor = function (predictor) {
     this.predictor = predictor;
 
-    if (!_strategies_strategies__WEBPACK_IMPORTED_MODULE_1__["strategies"][predictor.algorithm]) {
+    if (!_strategies_strategies__WEBPACK_IMPORTED_MODULE_2__["strategies"][predictor.getAlgorithm()]) {
       throw Error('Wrong algorithm');
     }
 
-    this.strategy = _strategies_strategies__WEBPACK_IMPORTED_MODULE_1__["strategies"][predictor.algorithm];
+    this.strategy = _strategies_strategies__WEBPACK_IMPORTED_MODULE_2__["strategies"][predictor.getAlgorithm()];
   };
 
   Model.prototype.predict = function () {
@@ -469,30 +471,32 @@ function () {
       throw Error('Predictor not found');
     }
 
-    this.data.predicted = (_a = this.strategy) === null || _a === void 0 ? void 0 : _a.predict(this.data, this.predictor, this.predictor.opt);
+    this.predicted = (_a = this.strategy) === null || _a === void 0 ? void 0 : _a.predict(this.data, this.predictor, this.predictor.getOpt());
 
-    if (!this.data.predicted || this.data.predicted.length < 1) {
+    if (!this.predicted || this.predicted.size() < 1) {
       throw Error('Data not predicted');
     }
 
-    return this.data.predicted[this.data.predicted.length - 1][1];
+    return this.predicted.getAt(this.predicted.size() - 1).value;
   };
 
   Model.prototype.saveToInflux = function () {
-    var _a;
-
     return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function () {
-      return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"])(this, function (_b) {
-        if (!((_a = this.data) === null || _a === void 0 ? void 0 : _a.predicted)) {
+      var it, meas;
+      return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"])(this, function (_a) {
+        if (!this.predicted) {
           throw Error('data.predicted not found');
         }
 
-        this.data.predicted.forEach(function (meas) {
+        it = new utils_Predicted__WEBPACK_IMPORTED_MODULE_1__["PredIterator"](this.predicted);
+
+        while (meas = it.next()) {
           $.post({
             url: 'http://localhost:8086/write?db=telegraf',
-            data: 'prediction value=' + meas[1] + ' ' + meas[0] + '000000'
+            data: 'prediction value=' + meas.value + ' ' + meas.time + '000000'
           });
-        });
+        }
+
         return [2
         /*return*/
         ];
@@ -521,14 +525,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _grafana_data__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_grafana_data__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _panelController__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./panelController */ "./panels/PredictionPanel/panelController.tsx");
 /* harmony import */ var _editorView__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./editorView */ "./panels/PredictionPanel/editorView.tsx");
+/* harmony import */ var utils_Predictor__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! utils/Predictor */ "./utils/Predictor.ts");
+
 
 
 
 var plugin = new _grafana_data__WEBPACK_IMPORTED_MODULE_0__["PanelPlugin"](_panelController__WEBPACK_IMPORTED_MODULE_1__["PanelController"]).setDefaults({
-  predictor: {
-    algorithm: '',
-    coefficients: []
-  }
+  predictor: new utils_Predictor__WEBPACK_IMPORTED_MODULE_3__["Predictor"]('', [])
 }).setEditor(_editorView__WEBPACK_IMPORTED_MODULE_2__["EditorView"]);
 
 /***/ }),
@@ -546,7 +549,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../node_modules/tslib/tslib.es6.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var utils_dataTypes__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! utils/dataTypes */ "./utils/dataTypes.ts");
+/* harmony import */ var utils_Data__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! utils/Data */ "./utils/Data.ts");
 /* harmony import */ var _model__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./model */ "./panels/PredictionPanel/model.ts");
 /* harmony import */ var _panelView__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./panelView */ "./panels/PredictionPanel/panelView.tsx");
 
@@ -569,7 +572,7 @@ function (_super) {
   }
 
   PanelController.prototype.setData = function () {
-    var d = utils_dataTypes__WEBPACK_IMPORTED_MODULE_2__["Data"].fromSeries(this.props.data.series);
+    var d = utils_Data__WEBPACK_IMPORTED_MODULE_2__["Data"].fromSeries(this.props.data.series);
     this.model.setData(d);
     /*
     let log = "";
@@ -617,9 +620,9 @@ function (_super) {
 
     var predictor = this.props.options.predictor;
     return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_panelView__WEBPACK_IMPORTED_MODULE_4__["PanelView"], {
-      algorithm: predictor.algorithm,
-      coefficients: predictor.coefficients,
-      opt: predictor.opt,
+      algorithm: predictor.getAlgorithm(),
+      coefficients: predictor.getCoefficients(),
+      opt: predictor.getOpt(),
       lastValue: this.lastValue,
       pause: function pause() {
         return _this.pause();
@@ -699,7 +702,7 @@ function (_super) {
         coefficients = _a.coefficients,
         opt = _a.opt,
         lastValue = _a.lastValue;
-    return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("pre", null, "Log ", '\n', "- Algorithm: ", algorithm + '\n', "- Coefficients: ", coefficients + '\n', opt != null ? '- Options: ' + JSON.stringify(opt) + '\n' : ''), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("pre", null, "- Algorithm: ", algorithm + '\n', "- Coefficients: ", coefficients + '\n', opt != null ? '- Options: ' + JSON.stringify(opt) + '\n' : ''), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
       style: {
         textAlign: 'center'
       }
@@ -762,7 +765,7 @@ function (_super) {
     var e_1, _a;
 
     var seriesName = this.getSeriesNames();
-    var opt = this.props.options.predictor.opt;
+    var opt = this.props.options.predictor.getOpt();
     var options = [];
 
     try {
@@ -789,7 +792,7 @@ function (_super) {
   };
 
   ConfigRL.prototype.setToPredict = function (value) {
-    this.props.options.predictor.opt = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])(Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])({}, this.props.options.predictor.opt), {
+    this.props.options.predictor.setOpt({
       toPredict: Number.parseInt(value, 10)
     });
     this.render();
@@ -800,15 +803,15 @@ function (_super) {
 
     var predictor = this.props.options.predictor;
 
-    if (!this.props.options.predictor.opt) {
-      this.props.options.predictor.opt = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])(Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])({}, predictor.opt), {
+    if (!this.props.options.predictor.getOpt()) {
+      this.props.options.predictor.setOpt({
         toPredict: 0
       });
     }
 
     return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_grafana_ui__WEBPACK_IMPORTED_MODULE_2__["PanelOptionsGroup"], {
       title: "RL"
-    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, predictor.predFun ? 'Function: ' + predictor.predFun : ''), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, predictor.getPredFun() ? 'Function: ' + predictor.getPredFun() : ''), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
       className: "gf-form-label width-10",
       style: {
         display: 'inline-block'
@@ -844,6 +847,10 @@ function (_super) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "StrategyRL", function() { return StrategyRL; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var utils_Data__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! utils/Data */ "./utils/Data.ts");
+/* harmony import */ var utils_Predicted__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! utils/Predicted */ "./utils/Predicted.ts");
+
+
 
 
 var StrategyRL =
@@ -860,26 +867,26 @@ function () {
 
     var base = 1 - options.toPredict; //the other one
 
-    var coeff = predictor.coefficients;
+    var coeff = predictor.getCoefficients();
 
     var f = function f(x) {
       return x ? x * coeff[0] + coeff[1] : 0;
     };
 
-    data.predicted = [];
+    var predicted = new utils_Predicted__WEBPACK_IMPORTED_MODULE_2__["Predicted"]();
 
-    if (!data || !data.series) {
+    if (!data) {
       throw Error('Data not found');
     }
 
-    data.series.forEach(function (value) {
-      var _a;
+    var it = new utils_Data__WEBPACK_IMPORTED_MODULE_1__["DataIterator"](data);
+    var val;
 
-      if (data && value[base]) {
-        (_a = data.predicted) === null || _a === void 0 ? void 0 : _a.push([value[2], f(value[base])]);
-      }
-    });
-    return data.predicted;
+    while (val = it.next()) {
+      predicted.addValue(f(base === 0 ? val.a : val.b), val.time);
+    }
+
+    return predicted;
   };
 
   return StrategyRL;
@@ -929,7 +936,7 @@ function (_super) {
     var e_1, _a;
 
     var seriesName = this.getSeriesNames();
-    var opt = this.props.options.predictor.opt;
+    var opt = this.props.options.predictor.getOpt();
     var options = [];
 
     try {
@@ -956,7 +963,7 @@ function (_super) {
   };
 
   ConfigSVM.prototype.setFirstQuery = function (value) {
-    this.props.options.predictor.opt = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])(Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])({}, this.props.options.predictor.opt), {
+    this.props.options.predictor.setOpt({
       firstQuery: Number.parseInt(value, 10)
     });
     this.render();
@@ -967,15 +974,15 @@ function (_super) {
 
     var predictor = this.props.options.predictor;
 
-    if (!predictor.opt) {
-      predictor.opt = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])(Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])({}, predictor.opt), {
+    if (!predictor.getOpt()) {
+      predictor.setOpt({
         firstQuery: 0
       });
     }
 
     return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_grafana_ui__WEBPACK_IMPORTED_MODULE_2__["PanelOptionsGroup"], {
       title: "SVM"
-    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, predictor.predFun ? 'Function: ' + predictor.predFun : ''), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, predictor.getPredFun() ? 'Function: ' + predictor.getPredFun() : ''), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
       className: "gf-form-label width-10",
       style: {
         display: 'inline-block'
@@ -1011,6 +1018,10 @@ function (_super) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "StrategySVM", function() { return StrategySVM; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var utils_Data__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! utils/Data */ "./utils/Data.ts");
+/* harmony import */ var utils_Predicted__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! utils/Predicted */ "./utils/Predicted.ts");
+
+
 
 
 var StrategySVM =
@@ -1025,32 +1036,30 @@ function () {
       });
     }
 
-    var coeff = predictor.coefficients;
-    var x1 = options.firstQuery;
-    var x2 = 1 - options.firstQuery;
+    var coeff = predictor.getCoefficients();
+    var first = options.firstQuery;
 
     var f = function f(x1, x2) {
       return x1 * coeff[0] + x2 * coeff[1] + coeff[2];
     };
 
-    data.predicted = [];
-    data.series.forEach(function (value) {
-      var _a;
+    var predicted = new utils_Predicted__WEBPACK_IMPORTED_MODULE_2__["Predicted"]();
 
-      var val = f(value[x1], value[x2]);
-      var cls = 0; //classification
+    if (!data) {
+      throw Error('Data not found');
+    }
 
-      if (val > 0) {
-        cls = 1;
-      } else if (val < 0) {
-        cls = -1;
-      }
+    var it = new utils_Data__WEBPACK_IMPORTED_MODULE_1__["DataIterator"](data);
+    var val;
 
-      if (data && (value[0] || value[1])) {
-        (_a = data.predicted) === null || _a === void 0 ? void 0 : _a.push([value[2], cls]);
-      }
-    });
-    return data.predicted;
+    while (val = it.next()) {
+      var v = first === 0 ? f(val.a, val.b) : f(val.b, val.a);
+      var cls = v === 0 ? 0 : v > 0 ? 1 : -1; //classification 1 / -1
+
+      predicted.addValue(cls, val.time);
+    }
+
+    return predicted;
   };
 
   return StrategySVM;
@@ -1122,24 +1131,59 @@ var configs = {
 
 /***/ }),
 
-/***/ "./utils/dataTypes.ts":
-/*!****************************!*\
-  !*** ./utils/dataTypes.ts ***!
-  \****************************/
-/*! exports provided: Data, Predictor */
+/***/ "./utils/Data.ts":
+/*!***********************!*\
+  !*** ./utils/Data.ts ***!
+  \***********************/
+/*! exports provided: Data, DataIterator */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Data", function() { return Data; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Predictor", function() { return Predictor; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DataIterator", function() { return DataIterator; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../node_modules/tslib/tslib.es6.js");
- // Data representation as array (both measured and predicted)
+/**
+ * Project: Predire in Grafana
+ * File: Data.ts
+ * Author: Federico Carboni
+ * Created: 2020-04-15
+ * Version: 0.1
+ * -----------------------------------------------------------------------------------------
+ * Copyright 2020 ProApesGroup.
+ * Licensed under the MIT License. See LICENSE in the project root for license informations.
+ * -----------------------------------------------------------------------------------------
+ * Changelog:
+ * 0.1 - Writing Data class for incpsulation of measured data.
+ */
+
 
 var Data =
 /** @class */
 function () {
-  function Data() {}
+  function Data() {
+    this.data = [];
+  }
+
+  Data.prototype.addValues = function (a, b, time) {
+    this.data.push([a, b, time]);
+  };
+
+  Data.prototype.clear = function () {
+    this.data = [];
+  };
+
+  Data.prototype.getAt = function (index) {
+    return {
+      a: this.data[index][0],
+      b: this.data[index][1],
+      time: this.data[index][2]
+    };
+  };
+
+  Data.prototype.size = function () {
+    return this.data.length;
+  };
 
   Data.fromSeries = function (series) {
     var e_1, _a;
@@ -1149,30 +1193,17 @@ function () {
     }
 
     var time = series[0].fields[1].values.toArray();
-    var values = []; // [ [valA, valA ...] [valB, valB ...] ]
+    var s = []; // [ [valA, valA ...] [valB, valB ...] ]
 
     series.forEach(function (serie) {
-      values.push(serie.fields[0].values.toArray());
+      s.push(serie.fields[0].values.toArray());
     });
-    var _series = [];
-
-    var _loop_1 = function _loop_1(i) {
-      var _measure = []; // [ valA, valB, time ]
-
-      values.forEach(function (value) {
-        _measure.push(value[i]);
-      });
-
-      _measure.push(time[i]);
-
-      _series.push(_measure);
-    };
+    var data = new Data();
 
     try {
       for (var _b = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__values"])(time.keys()), _c = _b.next(); !_c.done; _c = _b.next()) {
         var i = _c.value;
-
-        _loop_1(i);
+        data.addValues(s[0][i], s[1][i], time[i]);
       }
     } catch (e_1_1) {
       e_1 = {
@@ -1186,28 +1217,169 @@ function () {
       }
     }
 
-    var data = new Data();
-    data.series = _series;
     return data;
   };
 
   return Data;
 }();
 
- // Description of predictor and related utilities
+
+
+var DataIterator =
+/** @class */
+function () {
+  function DataIterator(data) {
+    this.index = 0;
+    this.data = data;
+  }
+
+  DataIterator.prototype.next = function () {
+    return this.index < this.data.size() ? this.data.getAt(this.index++) : null;
+  };
+
+  return DataIterator;
+}();
+
+
+
+/***/ }),
+
+/***/ "./utils/Predicted.ts":
+/*!****************************!*\
+  !*** ./utils/Predicted.ts ***!
+  \****************************/
+/*! exports provided: Predicted, PredIterator */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Predicted", function() { return Predicted; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PredIterator", function() { return PredIterator; });
+/**
+ * Project: Predire in Grafana
+ * File: Predicted.ts
+ * Author: Federico Carboni
+ * Created: 2020-04-15
+ * Version: 0.1
+ * -----------------------------------------------------------------------------------------
+ * Copyright 2020 ProApesGroup.
+ * Licensed under the MIT License. See LICENSE in the project root for license informations.
+ * -----------------------------------------------------------------------------------------
+ * Changelog:
+ * 0.1 - Writing Predicted class for incpsulation of predicted data.
+ */
+var Predicted =
+/** @class */
+function () {
+  function Predicted() {
+    this.predicted = [];
+  }
+
+  Predicted.prototype.addValue = function (value, time) {
+    this.predicted.push([value, time]);
+  };
+
+  Predicted.prototype.clear = function () {
+    this.predicted = [];
+  };
+
+  Predicted.prototype.getAt = function (index) {
+    return {
+      value: this.predicted[index][0],
+      time: this.predicted[index][1]
+    };
+  };
+
+  Predicted.prototype.size = function () {
+    return this.predicted.length;
+  };
+
+  return Predicted;
+}();
+
+
+
+var PredIterator =
+/** @class */
+function () {
+  function PredIterator(predicted) {
+    this.index = 0;
+    this.predicted = predicted;
+  }
+
+  PredIterator.prototype.next = function () {
+    return this.index < this.predicted.size() ? this.predicted.getAt(this.index++) : null;
+  };
+
+  return PredIterator;
+}();
+
+
+
+/***/ }),
+
+/***/ "./utils/Predictor.ts":
+/*!****************************!*\
+  !*** ./utils/Predictor.ts ***!
+  \****************************/
+/*! exports provided: Predictor */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Predictor", function() { return Predictor; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../node_modules/tslib/tslib.es6.js");
+/**
+ * Project: Predire in Grafana
+ * File: Predictor.ts
+ * Author: Federico Carboni
+ * Created: 2020-04-16
+ * Version: 0.1
+ * -----------------------------------------------------------------------------------------
+ * Copyright 2020 ProApesGroup.
+ * Licensed under the MIT License. See LICENSE in the project root for license informations.
+ * -----------------------------------------------------------------------------------------
+ * Changelog:
+ * 0.1 - Writing Predictor class for incpsulation of pred info.
+ */
+
 
 var Predictor =
 /** @class */
 function () {
-  function Predictor() {}
+  function Predictor(algorithm, coefficients, predFun, opt) {
+    this.algorithm = algorithm;
+    this.coefficients = coefficients;
+    this.predFun = predFun;
+    this.opt = opt;
+  }
+
+  Predictor.prototype.getAlgorithm = function () {
+    return this.algorithm;
+  };
+
+  Predictor.prototype.getCoefficients = function () {
+    return this.coefficients;
+  };
+
+  Predictor.prototype.getPredFun = function () {
+    return this.predFun;
+  };
+
+  Predictor.prototype.getOpt = function () {
+    return this.opt;
+  };
+
+  Predictor.prototype.setOpt = function (opt) {
+    this.opt = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])(Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])({}, this.opt), opt);
+  };
 
   Predictor.fromJSON = function (str) {
     if (!str) {
       throw Error('No file found');
     }
 
-    var predictor = new Predictor();
-    predictor = JSON.parse(str);
+    var predictor = JSON.parse(str);
 
     if (!predictor.algorithm || !predictor.coefficients) {
       throw Error('Error reading file');

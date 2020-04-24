@@ -44,7 +44,7 @@ export class PanelView extends PureComponent<Props> {
         return (
             <div>
                 <pre>
-                    Log {'\n'}- Algorithm: {algorithm + '\n'}- Coefficients: {coefficients + '\n'}
+                    - Algorithm: {algorithm + '\n'}- Coefficients: {coefficients + '\n'}
                     {opt != null ? '- Options: ' + JSON.stringify(opt) + '\n' : ''}
                 </pre>
                 <div style={{ textAlign: 'center' }}>
