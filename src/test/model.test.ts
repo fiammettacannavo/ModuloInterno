@@ -49,7 +49,7 @@ test('modelPredictionSvmToBe1', () => {
 });
 
 test('modelPredictionSvmToBe-1', () => {
-    data.addValues(1, 1, 0);
+    data.addValues(-1, -1, 0);
     model.setData(data);
     model.setPredictor(new Predictor('SVM', [1, 1, 0]));
     expect(model.predict()).toBe(-1);

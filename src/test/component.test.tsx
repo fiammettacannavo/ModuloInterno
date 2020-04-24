@@ -3,7 +3,7 @@ import { ConfigRL } from 'panels/PredictionPanel/strategies/RL/configRL';
 import { LoadingState, dateTime, DefaultTimeZone, FieldType, ArrayVector } from '@grafana/data';
 
 import { ConfigSVM } from 'panels/PredictionPanel/strategies/SVM/configSVM';
-import { Predictor } from 'utils/dataTypes';
+import { Predictor } from 'utils/Predictor';
 import { PanelController } from 'panels/PredictionPanel/panelController';
 
 let data = {
@@ -56,10 +56,7 @@ let data = {
     },
 };
 let options: { predictor: Predictor } = {
-    predictor: {
-        algorithm: 'RL',
-        coefficients: [1, 1],
-    },
+    predictor: new Predictor('RL', [1, 1]),
 };
 
 let controllerMock = new PanelController({
@@ -100,7 +97,6 @@ test('renderOptionsSVM', () => {
 });
 
 test('renderOptionsSVMWithoutOpt', () => {
-    options.predictor.opt = null;
     let configSVM = new ConfigSVM({
         data: data,
         options: options,
