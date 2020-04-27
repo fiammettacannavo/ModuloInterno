@@ -1,6 +1,7 @@
 import React from 'react';
 import { PanelOptionsGroup } from '@grafana/ui';
 import { Config } from '../interfaces/config';
+import { OptionsRL } from 'utils/Options';
 
 export class ConfigRL extends Config {
     private getSeriesNames() {
@@ -11,7 +12,7 @@ export class ConfigRL extends Config {
 
     renderQueryOptions() {
         const seriesName = this.getSeriesNames();
-        const opt = this.props.options.predictor.getOpt();
+        const opt: OptionsRL = this.props.options.predictor.getOpt();
 
         const options: JSX.Element[] = [];
         for (const i of seriesName.keys()) {

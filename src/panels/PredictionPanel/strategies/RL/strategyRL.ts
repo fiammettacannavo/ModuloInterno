@@ -2,14 +2,17 @@ import { Strategy } from '../interfaces/strategy';
 import { Data, DataIterator } from 'utils/Data';
 import { Predicted } from 'utils/Predicted';
 import { Predictor } from 'utils/Predictor';
+import { OptionsRL } from 'utils/Options';
 
 export class StrategyRL implements Strategy {
-    predict(data: Data, predictor: Predictor, options: { toPredict: number }) {
-        if (!options || !options.toPredict) {
-            options = { ...options, toPredict: 0 };
+    predict(data: Data, predictor: Predictor) {
+        let opt: OptionsRL = predictor.getOpt();
+        if (!opt || !opt.toPredict) {
+            predictor.setOpt({ toPredict: 0 });
+            opt = predictor.getOpt();
         }
 
-        const base = 1 - options.toPredict; //the other one
+        const base = 1 - (opt.toPredict || 0); //the other one
         const coeff = predictor.getCoefficients();
 
         const f = (x: number) => {

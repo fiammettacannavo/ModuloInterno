@@ -12,11 +12,13 @@
  * 0.1 - Writing Predictor class for incpsulation of pred info.
  */
 
+import { Options } from './Options';
+
 export class Predictor {
     private algorithm!: string;
     private coefficients!: number[];
     private predFun?: string;
-    private opt?: any;
+    private opt: Options;
 
     constructor(algorithm: string, coefficients: number[], predFun?: string, opt?: any) {
         this.algorithm = algorithm;

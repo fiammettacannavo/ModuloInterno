@@ -11,7 +11,7 @@ beforeAll(() => {
 
 test('strategyRlEmptyData', () => {
     try {
-        rl.predict(new Data(), new Predictor('', []), {});
+        rl.predict(new Data(), new Predictor('', []));
     } catch (e) {
         expect(e).toEqual(Error('Data not found'));
     }
@@ -20,20 +20,20 @@ test('strategyRlEmptyData', () => {
 test('strategyRlEmptyOpts', () => {
     let data = new Data();
     data.addValues(1, 1, 1);
-    const res = rl.predict(data, new Predictor('RL', [1, 1]), {});
+    const res = rl.predict(data, new Predictor('RL', [1, 1]));
     expect(res.getAt(0)).toEqual({ value: 2, time: 1 });
 });
 
 test('strategyRlNullOpts', () => {
     let data = new Data();
     data.addValues(1, 1, 1);
-    const res = rl.predict(data, new Predictor('RL', [1, 1]), null);
+    const res = rl.predict(data, new Predictor('RL', [1, 1]));
     expect(res.getAt(0)).toEqual({ value: 2, time: 1 });
 });
 
 test('strategyRlRandomOpts', () => {
     let data = new Data();
     data.addValues(1, 1, 1);
-    const res = rl.predict(data, new Predictor('RL', [1, 1]), { ranomProp: 0 });
+    const res = rl.predict(data, new Predictor('RL', [1, 1], '', { ranomProp: 0 }));
     expect(res.getAt(0)).toEqual({ value: 2, time: 1 });
 });
