@@ -12,42 +12,24 @@
  * 0.1 - Writing Predicted class for incpsulation of predicted data.
  */
 
-export class Predicted {
-    private predicted: number[][];
+import { Iterator, AbstractData } from './AbstractData';
 
-    constructor() {
-        this.predicted = [];
+interface ValType {
+    value: number;
+    time: number;
+}
+
+export class Predicted extends AbstractData<ValType> {
+    addValues(val: ValType) {
+        this.data.push([val.value, val.time]);
     }
 
-    addValue(value: number, time: number) {
-        this.predicted.push([value, time]);
-    }
-
-    clear() {
-        this.predicted = [];
-    }
-
-    getAt(index: number): { value: number; time: number } {
+    getAt(index: number): ValType {
         return {
-            value: this.predicted[index][0],
-            time: this.predicted[index][1],
+            value: this.data[index][0],
+            time: this.data[index][1],
         };
     }
-
-    size() {
-        return this.predicted.length;
-    }
 }
 
-export class PredIterator {
-    private index = 0;
-    private predicted: Predicted;
-
-    constructor(predicted: Predicted) {
-        this.predicted = predicted;
-    }
-
-    next() {
-        return this.index < this.predicted.size() ? this.predicted.getAt(this.index++) : null;
-    }
-}
+export class PredIterator extends Iterator<ValType> {}

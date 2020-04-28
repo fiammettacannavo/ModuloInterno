@@ -13,32 +13,25 @@
  */
 
 import { DataFrame } from '@grafana/data';
+import { Iterator, AbstractData } from './AbstractData';
 
-export class Data {
-    private data: number[][];
+interface ValType {
+    a: number;
+    b: number;
+    time: number;
+}
 
-    constructor() {
-        this.data = [];
+export class Data extends AbstractData<ValType> {
+    addValues(val: ValType) {
+        this.data.push([val.a, val.b, val.time]);
     }
 
-    addValues(a: number, b: number, time: number) {
-        this.data.push([a, b, time]);
-    }
-
-    clear() {
-        this.data = [];
-    }
-
-    getAt(index: number): { a: number; b: number; time: number } {
+    getAt(index: number): ValType {
         return {
             a: this.data[index][0],
             b: this.data[index][1],
             time: this.data[index][2],
         };
-    }
-
-    size() {
-        return this.data.length;
     }
 
     static fromSeries(series: DataFrame[]): Data {
@@ -53,21 +46,10 @@ export class Data {
         });
         let data = new Data();
         for (const i of time.keys()) {
-            data.addValues(s[0][i], s[1][i], time[i]);
+            data.addValues({ a: s[0][i], b: s[1][i], time: time[i] });
         }
         return data;
     }
 }
 
-export class DataIterator {
-    private index = 0;
-    private data: Data;
-
-    constructor(data: Data) {
-        this.data = data;
-    }
-
-    next() {
-        return this.index < this.data.size() ? this.data.getAt(this.index++) : null;
-    }
-}
+export class DataIterator extends Iterator<ValType> {}

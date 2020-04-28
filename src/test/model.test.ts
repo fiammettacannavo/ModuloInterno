@@ -13,21 +13,21 @@ beforeEach(() => {
 
 /* RL */
 test('modelPredictionRlToBe0', () => {
-    data.addValues(1, 1, 0);
+    data.addValues({ a: 1, b: 1, time: 0 });
     model.setData(data);
     model.setPredictor(new Predictor('RL', [0, 0]));
     expect(model.predict()).toBe(0);
 });
 
 test('modelPredictionRlToBe1', () => {
-    data.addValues(1, 1, 0);
+    data.addValues({ a: 1, b: 1, time: 0 });
     model.setData(data);
     model.setPredictor(new Predictor('RL', [1, 0]));
     expect(model.predict()).toBe(1);
 });
 
 test('modelPredictionRlToBe2', () => {
-    data.addValues(1, 1, 0);
+    data.addValues({ a: 1, b: 1, time: 0 });
     model.setData(data);
     model.setPredictor(new Predictor('RL', [1, 1]));
     expect(model.predict()).toBe(2);
@@ -35,21 +35,21 @@ test('modelPredictionRlToBe2', () => {
 
 /* SVM */
 test('modelPredictionSvmToBe0', () => {
-    data.addValues(1, 1, 0);
+    data.addValues({ a: 1, b: 1, time: 0 });
     model.setData(data);
     model.setPredictor(new Predictor('SVM', [0, 0, 0]));
     expect(model.predict()).toBe(0);
 });
 
 test('modelPredictionSvmToBe1', () => {
-    data.addValues(1, 1, 0);
+    data.addValues({ a: 1, b: 1, time: 0 });
     model.setData(data);
     model.setPredictor(new Predictor('SVM', [1, 1, 0]));
     expect(model.predict()).toBe(1);
 });
 
 test('modelPredictionSvmToBe-1', () => {
-    data.addValues(-1, -1, 0);
+    data.addValues({ a: -1, b: -1, time: 0 });
     model.setData(data);
     model.setPredictor(new Predictor('SVM', [1, 1, 0]));
     expect(model.predict()).toBe(-1);
@@ -79,7 +79,7 @@ test('modelPredictionSvmWithEmptyArray', () => {
 
 /* Exceptions */
 test('modelPredictionWrongAlgorithm', () => {
-    data.addValues(1, 2, 0);
+    data.addValues({ a: 1, b: 2, time: 0 });
     model.setData(data);
     try {
         model.setPredictor(new Predictor('', [0, 0]));
