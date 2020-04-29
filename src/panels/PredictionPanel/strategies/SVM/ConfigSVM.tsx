@@ -1,9 +1,12 @@
 import React from 'react';
 import { PanelOptionsGroup } from '@grafana/ui';
-import { Config } from '../interfaces/config';
-import { OptionsSVM } from 'utils/Options';
+import { Config } from '../Config';
+import { OptionSVM } from './OptionsSVM';
+import { Predictor } from '../../utils/Predictor';
 
 export class ConfigSVM extends Config {
+    private predictor?: Predictor<OptionSVM>;
+
     private getSeriesNames() {
         return this.props.data.series.map(serie => {
             return serie.name || 'unknown';
@@ -12,12 +15,11 @@ export class ConfigSVM extends Config {
 
     renderQueryOptions() {
         const seriesName = this.getSeriesNames();
-        const opt: OptionsSVM = this.props.options.predictor.getOpt();
 
         const options: JSX.Element[] = [];
         for (const i of seriesName.keys()) {
             options.push(
-                <option value={i} selected={opt.firstQuery === i}>
+                <option value={i} selected={this.predictor?.getOpt().getFirstQuery() === i}>
                     {seriesName[i]}
                 </option>
             );
@@ -26,26 +28,28 @@ export class ConfigSVM extends Config {
     }
 
     setFirstQuery(value: string) {
-        this.props.options.predictor.setOpt({
-            firstQuery: Number.parseInt(value, 10),
-        });
+        let opt: OptionSVM = this.props.options.predictor?.getOpt();
+        opt.setFirstQuery(Number.parseInt(value, 10));
         this.render();
     }
 
     render() {
-        let { predictor } = this.props.options;
-        if (!predictor.getOpt()) {
-            predictor.setOpt({ firstQuery: 0 });
+        this.predictor = this.props.options.predictor;
+        if (!this.predictor?.getOpt().getFirstQuery()) {
+            this.predictor?.getOpt().setFirstQuery(0);
         }
         return (
             <PanelOptionsGroup title="SVM">
-                <p>{predictor.getPredFun() ? 'Function: ' + predictor.getPredFun() : ''}</p>
+                <p>{this.predictor?.getPredFun() ? 'Function: ' + this.predictor?.getPredFun() : ''}</p>
                 <label className="gf-form-label width-10" style={{ display: 'inline-block' }}>
                     {' '}
                     x1 (first query){' '}
                 </label>
                 <div className="gf-form-select-wrapper width-10" style={{ display: 'inline-block' }}>
-                    <select className="input-small gf-form-input" onChange={event => this.setFirstQuery(event.target.value)}>
+                    <select
+                        className="input-small gf-form-input"
+                        onChange={event => this.setFirstQuery(event.target.value)}
+                    >
                         {this.renderQueryOptions()}
                     </select>
                 </div>

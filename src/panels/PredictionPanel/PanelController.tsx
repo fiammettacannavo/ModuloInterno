@@ -1,10 +1,10 @@
 import React, { PureComponent } from 'react';
 import { PanelProps } from '@grafana/data';
 
-import { Props } from './props';
-import { Data } from 'utils/Data';
-import { Model } from './model';
-import { PanelView } from './panelView';
+import { Props } from './Props';
+import { Data } from 'panels/PredictionPanel/utils/Data';
+import { Model } from './Model';
+import { PanelView } from './PanelView';
 
 export class PanelController extends PureComponent<PanelProps<Props>> {
     private model: Model;
@@ -31,7 +31,9 @@ export class PanelController extends PureComponent<PanelProps<Props>> {
     }
 
     private setPredictor() {
-        this.model.setPredictor(this.props.options.predictor);
+        if (this.props.options.predictor) {
+            this.model.setPredictor(this.props.options.predictor);
+        }
     }
 
     private predict() {
@@ -61,7 +63,7 @@ export class PanelController extends PureComponent<PanelProps<Props>> {
             this.updatePrediction();
         }
 
-        const { predictor } = this.props.options;
+        const predictor = this.props.options.predictor!;
 
         return (
             <div>

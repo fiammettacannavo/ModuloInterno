@@ -12,15 +12,16 @@
  * 0.1 - Writing Predictor class for incpsulation of pred info.
  */
 
-import { Options } from './Options';
+import { Option } from '../strategies/Options';
+import { options } from '../strategies/strategies';
 
-export class Predictor {
-    private algorithm!: string;
-    private coefficients!: number[];
-    private predFun?: string;
-    private opt: Options;
+export class Predictor<Opt extends Option> {
+    private algorithm: string;
+    private coefficients: number[];
+    private predFun: string;
+    private opt: Opt;
 
-    constructor(algorithm: string, coefficients: number[], predFun?: string, opt?: any) {
+    constructor(algorithm: string, coefficients: number[], predFun: string, opt: Opt) {
         this.algorithm = algorithm;
         this.coefficients = coefficients;
         this.predFun = predFun;
@@ -39,25 +40,28 @@ export class Predictor {
         return this.predFun;
     }
 
-    getOpt() {
+    getOpt(): Opt {
         return this.opt;
     }
 
-    setOpt(opt: any) {
-        this.opt = {
-            ...this.opt,
-            ...opt,
-        };
-    }
-
-    static fromJSON(str: string | undefined): Predictor {
+    static fromJSON(str: string | undefined): Predictor<Option> {
         if (!str) {
             throw Error('No file found');
         }
-        let predictor = JSON.parse(str);
-        if (!predictor.algorithm || !predictor.coefficients) {
+        let json = JSON.parse(str);
+        let opt = options[json.algorithm];
+
+        if (!json.algorithm || !json.coefficients) {
             throw Error('Error reading file');
         }
+
+        let predictor = new Predictor(
+            json.algorithm,
+            json.coefficients,
+            json.predFun || '',
+            opt.fromJSON(json.opt || {})
+        );
+
         return predictor;
     }
 }

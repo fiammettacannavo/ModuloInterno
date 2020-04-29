@@ -1,20 +1,20 @@
-import { Predictor } from 'utils/Predictor';
-import { Data } from 'utils/Data';
-import { Predicted, PredIterator } from 'utils/Predicted';
+import { Predictor } from 'panels/PredictionPanel/utils/Predictor';
+import { Data } from 'panels/PredictionPanel/utils/Data';
+import { Predicted, PredIterator } from 'panels/PredictionPanel/utils/Predicted';
 import { strategies } from './strategies/strategies';
-import { Strategy } from './strategies/interfaces/strategy';
+import { Strategy } from './strategies/Strategy';
 
 export class Model {
     private data?: Data;
     private predicted?: Predicted;
-    private predictor?: Predictor;
+    private predictor?: Predictor<any>;
     private strategy?: Strategy;
 
     setData(data: Data) {
         this.data = data;
     }
 
-    setPredictor(predictor: Predictor) {
+    setPredictor(predictor: Predictor<any>) {
         this.predictor = predictor;
         if (!strategies[predictor.getAlgorithm()]) {
             throw Error('Wrong algorithm');

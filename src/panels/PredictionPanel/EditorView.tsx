@@ -1,10 +1,10 @@
 import React, { PureComponent } from 'react';
 import { PanelOptionsGrid, PanelOptionsGroup } from '@grafana/ui';
-import { Props } from './props';
+import { Props } from './Props';
 import { PanelEditorProps } from '@grafana/data';
 import './strategies/strategies';
 import { configs } from './strategies/strategies';
-import { Predictor } from 'utils/Predictor';
+import { Predictor } from 'panels/PredictionPanel/utils/Predictor';
 
 export class EditorView extends PureComponent<PanelEditorProps<Props>> {
     private importPredictor(target: HTMLInputElement) {
@@ -24,7 +24,7 @@ export class EditorView extends PureComponent<PanelEditorProps<Props>> {
     }
 
     render() {
-        const algorithm = this.props.options.predictor.getAlgorithm();
+        const algorithm = this.props.options.predictor!.getAlgorithm();
         let Config;
         if (configs[algorithm]) {
             Config = configs[algorithm];

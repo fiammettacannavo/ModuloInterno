@@ -1,9 +1,12 @@
 import React from 'react';
 import { PanelOptionsGroup } from '@grafana/ui';
-import { Config } from '../interfaces/config';
-import { OptionsRL } from 'utils/Options';
+import { Config } from '../Config';
+import { OptionRL } from './OptionsRL';
+import { Predictor } from '../../utils/Predictor';
 
 export class ConfigRL extends Config {
+    private predictor?: Predictor<OptionRL>;
+
     private getSeriesNames() {
         return this.props.data.series.map(serie => {
             return serie.name || 'unknown';
@@ -12,12 +15,11 @@ export class ConfigRL extends Config {
 
     renderQueryOptions() {
         const seriesName = this.getSeriesNames();
-        const opt: OptionsRL = this.props.options.predictor.getOpt();
 
         const options: JSX.Element[] = [];
         for (const i of seriesName.keys()) {
             options.push(
-                <option value={i} selected={opt.toPredict === i}>
+                <option value={i} selected={this.predictor?.getOpt().getToPredict() === i}>
                     {seriesName[i]}
                 </option>
             );
@@ -26,26 +28,28 @@ export class ConfigRL extends Config {
     }
 
     setToPredict(value: string) {
-        this.props.options.predictor.setOpt({
-            toPredict: Number.parseInt(value, 10),
-        });
+        let opt: OptionRL = this.props.options.predictor?.getOpt();
+        opt.setToPredict(Number.parseInt(value, 10));
         this.render();
     }
 
     render() {
-        let { predictor } = this.props.options;
-        if (!this.props.options.predictor.getOpt()) {
-            this.props.options.predictor.setOpt({ toPredict: 0 });
+        this.predictor = this.props.options.predictor;
+        if (!this.predictor?.getOpt().getToPredict()) {
+            this.predictor?.getOpt().setToPredict(0);
         }
         return (
             <PanelOptionsGroup title="RL">
-                <p>{predictor.getPredFun() ? 'Function: ' + predictor.getPredFun() : ''}</p>
+                <p>{this.predictor?.getPredFun() ? 'Function: ' + this.predictor?.getPredFun() : ''}</p>
                 <label className="gf-form-label width-10" style={{ display: 'inline-block' }}>
                     {' '}
                     y (value to predict){' '}
                 </label>
                 <div className="gf-form-select-wrapper width-10" style={{ display: 'inline-block' }}>
-                    <select className="input-small gf-form-input" onChange={event => this.setToPredict(event.target.value)}>
+                    <select
+                        className="input-small gf-form-input"
+                        onChange={event => this.setToPredict(event.target.value)}
+                    >
                         {this.renderQueryOptions()}
                     </select>
                 </div>

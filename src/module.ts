@@ -1,5 +1,5 @@
 import { AppPlugin } from '@grafana/data';
-import { AppView } from 'appView';
+import { AppView } from 'AppView';
 
 export class ConfigCtrl {} // Placeholer class just for enable app.. waiting for grafana updates
 

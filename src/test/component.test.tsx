@@ -1,10 +1,12 @@
 import 'react';
-import { ConfigRL } from 'panels/PredictionPanel/strategies/RL/configRL';
+import { ConfigRL } from 'panels/PredictionPanel/strategies/RL/ConfigRL';
 import { LoadingState, dateTime, DefaultTimeZone, FieldType, ArrayVector } from '@grafana/data';
 
-import { ConfigSVM } from 'panels/PredictionPanel/strategies/SVM/configSVM';
-import { Predictor } from 'utils/Predictor';
-import { PanelController } from 'panels/PredictionPanel/panelController';
+import { ConfigSVM } from 'panels/PredictionPanel/strategies/SVM/ConfigSVM';
+import { Predictor } from 'panels/PredictionPanel/utils/Predictor';
+import { PanelController } from 'panels/PredictionPanel/PanelController';
+import { OptionRL } from 'panels/PredictionPanel/strategies/RL/OptionsRL';
+import { OptionSVM } from 'panels/PredictionPanel/strategies/SVM/OptionsSVM';
 
 let data = {
     series: [
@@ -55,8 +57,12 @@ let data = {
         to: dateTime(),
     },
 };
-let options: { predictor: Predictor } = {
-    predictor: new Predictor('RL', [1, 1]),
+let optionsRL = {
+    predictor: new Predictor('RL', [1, 1], '', new OptionRL()),
+};
+
+let optionsSVM = {
+    predictor: new Predictor('SVM', [1, 1], '', new OptionSVM()),
 };
 
 let controllerMock = new PanelController({
@@ -64,7 +70,7 @@ let controllerMock = new PanelController({
     data: data,
     timeRange: data.timeRange,
     timeZone: DefaultTimeZone,
-    options: options,
+    options: optionsRL,
     onOptionsChange: () => {},
     transparent: false,
     height: 0,
@@ -72,12 +78,14 @@ let controllerMock = new PanelController({
     renderCounter: 0,
     replaceVariables: () => '',
     onChangeTimeRange: () => {},
+    fieldConfig: { defaults: {}, overrides: [] },
+    onFieldConfigChange: () => {},
 });
 
 test('renderOptionsRL', () => {
     let configRL = new ConfigRL({
         data: data,
-        options: options,
+        options: optionsRL,
         onOptionsChange: () => {},
     });
     configRL.render();
@@ -88,7 +96,7 @@ test('renderOptionsRL', () => {
 test('renderOptionsSVM', () => {
     let configSVM = new ConfigSVM({
         data: data,
-        options: options,
+        options: optionsSVM,
         onOptionsChange: () => {},
     });
     configSVM.render();
@@ -99,7 +107,7 @@ test('renderOptionsSVM', () => {
 test('renderOptionsSVMWithoutOpt', () => {
     let configSVM = new ConfigSVM({
         data: data,
-        options: options,
+        options: optionsSVM,
         onOptionsChange: () => {},
     });
     configSVM.render();

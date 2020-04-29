@@ -1,9 +1,12 @@
 import { PureComponent } from 'react';
-import { StrategyRL } from './RL/strategyRL';
-import { StrategySVM } from './SVM/strategySVM';
-import { Strategy } from './interfaces/strategy';
-import { ConfigRL } from './RL/configRL';
-import { ConfigSVM } from './SVM/configSVM';
+import { StrategyRL } from './RL/StrategyRL';
+import { StrategySVM } from './SVM/StrategySVM';
+import { Strategy } from './Strategy';
+import { ConfigRL } from './RL/ConfigRL';
+import { ConfigSVM } from './SVM/ConfigSVM';
+import { Option } from './Options';
+import { OptionRL } from './RL/OptionsRL';
+import { OptionSVM } from './SVM/OptionsSVM';
 
 export const strategies: { [index: string]: Strategy } = {
     RL: new StrategyRL(),
@@ -13,4 +16,9 @@ export const strategies: { [index: string]: Strategy } = {
 export const configs: { [index: string]: typeof PureComponent } = {
     RL: ConfigRL,
     SVM: ConfigSVM,
+};
+
+export const options: { [index: string]: Option } = {
+    RL: new OptionRL(),
+    SVM: new OptionSVM(),
 };

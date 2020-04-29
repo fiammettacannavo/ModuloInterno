@@ -1,19 +1,14 @@
-import { Strategy } from '../interfaces/strategy';
-import { Data, DataIterator } from 'utils/Data';
-import { Predicted } from 'utils/Predicted';
-import { Predictor } from 'utils/Predictor';
-import { OptionsSVM } from 'utils/Options';
+import { Strategy } from '../Strategy';
+import { Data, DataIterator } from '../../utils/Data';
+import { Predicted } from '../../utils/Predicted';
+import { OptionSVM } from './OptionsSVM';
+import { Predictor } from '../../utils/Predictor';
 
 export class StrategySVM implements Strategy {
-    predict(data: Data, predictor: Predictor) {
-        let opt: OptionsSVM = predictor.getOpt();
-        if (!opt || !opt.firstQuery) {
-            predictor.setOpt({ firstQuery: 0 });
-            opt = predictor.getOpt();
-        }
-
+    predict(data: Data, predictor: Predictor<OptionSVM>) {
+        // predict(data: Data, predictor: Predictor) {
+        const first = predictor.getOpt().getFirstQuery() || 0;
         const coeff = predictor.getCoefficients();
-        const first = opt.firstQuery || 0;
 
         const f = (x1: number, x2: number) => {
             return x1 * coeff[0] + x2 * coeff[1] + coeff[2];
