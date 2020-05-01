@@ -61,15 +61,13 @@ export class PanelController extends PureComponent<PanelProps<Props>> {
 
     render() {
         this.parsePredictor();
-        
+
         if (!this.paused) {
             this.updatePrediction();
         }
 
         if (!this.props.options.predictor) {
-            return (
-                <p> Select a predictor </p>
-            );
+            return <p> Select a predictor </p>;
         }
         const predictor = this.props.options.predictor;
 

@@ -36,7 +36,7 @@ export class EditorView extends PureComponent<PanelEditorProps<Props>> {
         this.parsePredictor();
         const predictor = this.props.options.predictor;
 
-        console.log(this.props.options.predictor)
+        console.log(this.props.options.predictor);
 
         const algorithm = predictor?.getAlgorithm();
         let Config;
