@@ -3,6 +3,7 @@ import { Data } from 'panels/PredictionPanel/utils/Data';
 import { Predicted, PredIterator } from 'panels/PredictionPanel/utils/Predicted';
 import { strategies } from './strategies/strategies';
 import { Strategy } from './strategies/Strategy';
+import { Option } from './strategies/Options';
 
 export class Model {
     private data?: Data;
@@ -14,8 +15,9 @@ export class Model {
         this.data = data;
     }
 
-    setPredictor(predictor: Predictor<any>) {
+    setPredictor(predictor: Predictor<Option>) {
         this.predictor = predictor;
+        console.log(this.predictor);
         if (!strategies[predictor.getAlgorithm()]) {
             throw Error('Wrong algorithm');
         }

@@ -23,10 +23,24 @@ export class EditorView extends PureComponent<PanelEditorProps<Props>> {
         };
     }
 
+    private parsePredictor() {
+        try {
+            this.props.options.predictor?.getAlgorithm();
+        } catch (e) {
+            const json = this.props.options.predictor;
+            this.props.options.predictor = Predictor.fromJSON(JSON.stringify(json));
+        }
+    }
+
     render() {
-        const algorithm = this.props.options.predictor!.getAlgorithm();
+        this.parsePredictor();
+        const predictor = this.props.options.predictor;
+
+        console.log(this.props.options.predictor)
+
+        const algorithm = predictor?.getAlgorithm();
         let Config;
-        if (configs[algorithm]) {
+        if (algorithm && configs[algorithm]) {
             Config = configs[algorithm];
         } else {
             Config = typeof React.PureComponent;

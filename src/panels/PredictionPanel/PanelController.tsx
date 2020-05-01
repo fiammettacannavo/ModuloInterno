@@ -5,6 +5,7 @@ import { Props } from './Props';
 import { Data } from 'panels/PredictionPanel/utils/Data';
 import { Model } from './Model';
 import { PanelView } from './PanelView';
+import { Predictor } from './utils/Predictor';
 
 export class PanelController extends PureComponent<PanelProps<Props>> {
     private model: Model;
@@ -19,15 +20,6 @@ export class PanelController extends PureComponent<PanelProps<Props>> {
     private setData() {
         const d = Data.fromSeries(this.props.data.series);
         this.model.setData(d);
-
-        /*
-        let log = "";
-        d.series.forEach(element => {
-            if (element[0] != null && element[1] != null)
-                log += element[0] + ", " + element[1] + "\n";
-        });
-        console.log(log);
-        */
     }
 
     private setPredictor() {
@@ -58,12 +50,28 @@ export class PanelController extends PureComponent<PanelProps<Props>> {
         this.saveToInflux();
     }
 
+    private parsePredictor() {
+        try {
+            this.props.options.predictor?.getAlgorithm();
+        } catch (e) {
+            const json = this.props.options.predictor;
+            this.props.options.predictor = Predictor.fromJSON(JSON.stringify(json));
+        }
+    }
+
     render() {
+        this.parsePredictor();
+        
         if (!this.paused) {
             this.updatePrediction();
         }
 
-        const predictor = this.props.options.predictor!;
+        if (!this.props.options.predictor) {
+            return (
+                <p> Select a predictor </p>
+            );
+        }
+        const predictor = this.props.options.predictor;
 
         return (
             <div>

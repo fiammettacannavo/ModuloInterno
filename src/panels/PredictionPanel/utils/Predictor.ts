@@ -28,19 +28,19 @@ export class Predictor<Opt extends Option> {
         this.opt = opt;
     }
 
-    getAlgorithm() {
+    public getAlgorithm() {
         return this.algorithm;
     }
 
-    getCoefficients() {
+    public getCoefficients() {
         return this.coefficients;
     }
 
-    getPredFun() {
+    public getPredFun() {
         return this.predFun;
     }
 
-    getOpt(): Opt {
+    public getOpt() {
         return this.opt;
     }
 
