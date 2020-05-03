@@ -17,7 +17,6 @@ export class Model {
 
     setPredictor(predictor: Predictor<Option>) {
         this.predictor = predictor;
-        console.log(this.predictor);
         if (!strategies[predictor.getAlgorithm()]) {
             throw Error('Wrong algorithm');
         }
