@@ -1,3 +1,3015 @@
-/*! For license information please see module.js.LICENSE.txt */
-define(["react","@grafana/ui","@grafana/data"],(function(e,t,n){return function(e){var t={};function n(r){if(t[r])return t[r].exports;var a=t[r]={i:r,l:!1,exports:{}};return e[r].call(a.exports,a,a.exports,n),a.l=!0,a.exports}return n.m=e,n.c=t,n.d=function(e,t,r){n.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:r})},n.r=function(e){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},n.t=function(e,t){if(1&t&&(e=n(e)),8&t)return e;if(4&t&&"object"==typeof e&&e&&e.__esModule)return e;var r=Object.create(null);if(n.r(r),Object.defineProperty(r,"default",{enumerable:!0,value:e}),2&t&&"string"!=typeof e)for(var a in e)n.d(r,a,function(t){return e[t]}.bind(null,a));return r},n.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return n.d(t,"a",t),t},n.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},n.p="/",n(n.s=6)}([function(t,n){t.exports=e},function(e,t,n){"use strict";n.d(t,"b",(function(){return a})),n.d(t,"a",(function(){return o})),n.d(t,"c",(function(){return i})),n.d(t,"d",(function(){return l}));var r=function(e,t){return(r=Object.setPrototypeOf||{__proto__:[]}instanceof Array&&function(e,t){e.__proto__=t}||function(e,t){for(var n in t)t.hasOwnProperty(n)&&(e[n]=t[n])})(e,t)};function a(e,t){function n(){this.constructor=e}r(e,t),e.prototype=null===t?Object.create(t):(n.prototype=t.prototype,new n)}function o(e,t,n,r){return new(n||(n=Promise))((function(a,o){function i(e){try{u(r.next(e))}catch(e){o(e)}}function l(e){try{u(r.throw(e))}catch(e){o(e)}}function u(e){var t;e.done?a(e.value):(t=e.value,t instanceof n?t:new n((function(e){e(t)}))).then(i,l)}u((r=r.apply(e,t||[])).next())}))}function i(e,t){var n,r,a,o,i={label:0,sent:function(){if(1&a[0])throw a[1];return a[1]},trys:[],ops:[]};return o={next:l(0),throw:l(1),return:l(2)},"function"==typeof Symbol&&(o[Symbol.iterator]=function(){return this}),o;function l(o){return function(l){return function(o){if(n)throw new TypeError("Generator is already executing.");for(;i;)try{if(n=1,r&&(a=2&o[0]?r.return:o[0]?r.throw||((a=r.return)&&a.call(r),0):r.next)&&!(a=a.call(r,o[1])).done)return a;switch(r=0,a&&(o=[2&o[0],a.value]),o[0]){case 0:case 1:a=o;break;case 4:return i.label++,{value:o[1],done:!1};case 5:i.label++,r=o[1],o=[0];continue;case 7:o=i.ops.pop(),i.trys.pop();continue;default:if(!(a=i.trys,(a=a.length>0&&a[a.length-1])||6!==o[0]&&2!==o[0])){i=0;continue}if(3===o[0]&&(!a||o[1]>a[0]&&o[1]<a[3])){i.label=o[1];break}if(6===o[0]&&i.label<a[1]){i.label=a[1],a=o;break}if(a&&i.label<a[2]){i.label=a[2],i.ops.push(o);break}a[2]&&i.ops.pop(),i.trys.pop();continue}o=t.call(e,i)}catch(e){o=[6,e],r=0}finally{n=a=0}if(5&o[0])throw o[1];return{value:o[0]?o[1]:void 0,done:!0}}([o,l])}}}function l(e){var t="function"==typeof Symbol&&Symbol.iterator,n=t&&e[t],r=0;if(n)return n.call(e);if(e&&"number"==typeof e.length)return{next:function(){return e&&r>=e.length&&(e=void 0),{value:e&&e[r++],done:!e}}};throw new TypeError(t?"Object is not iterable.":"Symbol.iterator is not defined.")}},function(e,n){e.exports=t},function(e,t){e.exports=n},function(e){e.exports=JSON.parse('{"annotations":{"list":[{"builtIn":1,"datasource":"-- Grafana --","enable":true,"hide":true,"iconColor":"rgba(0, 211, 255, 1)","name":"Annotations & Alerts","type":"dashboard"}]},"editable":true,"gnetId":null,"graphTooltip":0,"id":null,"links":[],"panels":[{"aliasColors":{},"bars":false,"dashLength":10,"dashes":false,"datasource":null,"fill":1,"fillGradient":0,"gridPos":{"h":9,"w":12,"x":0,"y":0},"hiddenSeries":false,"id":2,"legend":{"avg":false,"current":false,"max":false,"min":false,"show":true,"total":false,"values":false},"lines":true,"linewidth":1,"nullPointMode":"connected","options":{"dataLinks":[]},"percentage":false,"pointradius":2,"points":false,"renderer":"flot","seriesOverrides":[],"spaceLength":10,"stack":false,"steppedLine":false,"targets":[{"groupBy":[{"params":["$__interval"],"type":"time"},{"params":["null"],"type":"fill"}],"measurement":"prediction","orderByTime":"ASC","policy":"default","refId":"A","resultFormat":"time_series","select":[[{"params":["value"],"type":"field"},{"params":[],"type":"mean"}]],"tags":[]}],"thresholds":[],"timeFrom":null,"timeRegions":[],"timeShift":null,"title":"Prediction Graph","tooltip":{"shared":true,"sort":0,"value_type":"individual"},"type":"graph","xaxis":{"buckets":null,"mode":"time","name":null,"show":true,"values":[]},"yaxes":[{"format":"short","label":null,"logBase":1,"max":null,"min":null,"show":true},{"format":"short","label":null,"logBase":1,"max":null,"min":null,"show":true}],"yaxis":{"align":false,"alignLevel":null}},{"datasource":null,"gridPos":{"h":9,"w":8,"x":12,"y":0},"id":4,"options":{"predictor":{"algorithm":"RL","coefficients":[1.37,1.38],"opt":{"toPredict":0}}},"targets":[{"alias":"cpu0","groupBy":[{"params":["$__interval"],"type":"time"},{"params":["linear"],"type":"fill"}],"measurement":"cpu","orderByTime":"ASC","policy":"default","refId":"A","resultFormat":"time_series","select":[[{"params":["usage_system"],"type":"field"},{"params":[],"type":"mean"}]],"tags":[{"key":"cpu","operator":"=","value":"cpu0"}]},{"alias":"cpu1","groupBy":[{"params":["$__interval"],"type":"time"},{"params":["linear"],"type":"fill"}],"measurement":"cpu","orderByTime":"ASC","policy":"default","refId":"B","resultFormat":"time_series","select":[[{"params":["usage_system"],"type":"field"},{"params":[],"type":"mean"}]],"tags":[{"key":"cpu","operator":"=","value":"cpu1"}]}],"timeFrom":null,"timeShift":null,"title":"Prediction Settings","type":"prediction-panel"}],"refresh":"5s","schemaVersion":22,"style":"dark","tags":[],"templating":{"list":[]},"time":{"from":"now-5m","to":"now"},"timepicker":{"refresh_intervals":["5s","10s","30s","1m","5m","15m","30m","1h","2h","1d"]},"timezone":"","title":"Sample Dashboard","uid":"sample-dash","variables":{"list":[]},"version":51}')},,function(e,t,n){"use strict";n.r(t);var r=n(3),a=n(1),o=n(0),i=n.n(o),l=n(2),u=function(e){function t(){return null!==e&&e.apply(this,arguments)||this}return Object(a.b)(t,e),t.prototype.makeDashboard=function(){return Object(a.a)(this,void 0,void 0,(function(){var e;return Object(a.c)(this,(function(t){return e={dashboard:n(4),overwrite:!0},$.post({url:"/api/dashboards/db",contentType:"application/json",dataType:"application/json",data:JSON.stringify(e),complete:function(t){alert("Dashboard: "+e.dashboard.title+"\nStatus: "+t.statusText),location.replace("/d/"+e.dashboard.uid)}}),[2]}))}))},t.prototype.render=function(){var e=this;return i.a.createElement("div",null,i.a.createElement(l.Button,{onClick:function(){return e.makeDashboard()}},"Sample Dashboard"))},t}(o.PureComponent);n.d(t,"ConfigCtrl",(function(){return s})),n.d(t,"plugin",(function(){return c}));var s=function(){},c=(new r.AppPlugin).addConfigPage({title:"Wizard",icon:"fa fa-magic",body:u,id:"import"})}])}));
+define(["@grafana/data","@grafana/ui","react"], function(__WEBPACK_EXTERNAL_MODULE__grafana_data__, __WEBPACK_EXTERNAL_MODULE__grafana_ui__, __WEBPACK_EXTERNAL_MODULE_react__) { return /******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "/";
+/******/
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = "./module.ts");
+/******/ })
+/************************************************************************/
+/******/ ({
+
+/***/ "../node_modules/css-loader/dist/cjs.js?!../node_modules/postcss-loader/src/index.js?!../node_modules/sass-loader/lib/loader.js!./Training/App.css":
+/*!******************************************************************************************************************************************************************!*\
+  !*** ../node_modules/css-loader/dist/cjs.js??ref--8-1!../node_modules/postcss-loader/src??ref--8-2!../node_modules/sass-loader/lib/loader.js!./Training/App.css ***!
+  \******************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// Imports
+var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "../node_modules/css-loader/dist/runtime/api.js");
+exports = ___CSS_LOADER_API_IMPORT___(true);
+// Module
+exports.push([module.i, ".main h1 {\n  text-align: center; }\n\n.main > div {\n  width: 100%;\n  margin: 1em;\n  padding: 1em;\n  background-color: #2c2c2c;\n  border-radius: 4px; }\n\n.button {\n  border: 1px solid #818181;\n  margin: .5em;\n  padding-left: 1em;\n  cursor: pointer; }\n\n.button input {\n  display: none; }\n\nbutton, .button {\n  display: inline-flex;\n  align-items: center;\n  font-weight: 500;\n  font-size: 14px;\n  font-family: \"Roboto\", \"Helvetica Neue\", Arial, sans-serif;\n  line-height: 1;\n  padding: 8px 16px;\n  vertical-align: middle;\n  cursor: pointer;\n  border: medium none;\n  height: 32px;\n  border-radius: 2px;\n  background: rgba(0, 0, 0, 0) linear-gradient(#3f84ac, #38779b) repeat scroll 0% 0%;\n  color: white;\n  text-shadow: rgba(0, 0, 0, 0.1) 0px -1px; }\n\nbutton:hover, .button:hover {\n  background: #3f84ac none repeat scroll 0% 0%;\n  color: white; }\n\nselect {\n  border: none;\n  border-radius: 4px; }\n", "",{"version":3,"sources":["App.css"],"names":[],"mappings":"AAAA;EACE,kBAAkB,EAAE;;AAEtB;EACE,WAAW;EACX,WAAW;EACX,YAAY;EACZ,yBAAyB;EACzB,kBAAkB,EAAE;;AAEtB;EACE,yBAAyB;EACzB,YAAY;EACZ,iBAAiB;EACjB,eAAe,EAAE;;AAEnB;EACE,aAAa,EAAE;;AAEjB;EACE,oBAAoB;EAEpB,mBAAmB;EACnB,gBAAgB;EAChB,eAAe;EACf,0DAA0D;EAC1D,cAAc;EACd,iBAAiB;EACjB,sBAAsB;EACtB,eAAe;EACf,mBAAmB;EACnB,YAAY;EACZ,kBAAkB;EAClB,kFAAkF;EAClF,YAAY;EACZ,wCAAwC,EAAE;;AAE5C;EACE,4CAA4C;EAC5C,YAAY,EAAE;;AAEhB;EACE,YAAY;EACZ,kBAAkB,EAAE","file":"App.css","sourcesContent":[".main h1 {\n  text-align: center; }\n\n.main > div {\n  width: 100%;\n  margin: 1em;\n  padding: 1em;\n  background-color: #2c2c2c;\n  border-radius: 4px; }\n\n.button {\n  border: 1px solid #818181;\n  margin: .5em;\n  padding-left: 1em;\n  cursor: pointer; }\n\n.button input {\n  display: none; }\n\nbutton, .button {\n  display: inline-flex;\n  -moz-box-align: center;\n  align-items: center;\n  font-weight: 500;\n  font-size: 14px;\n  font-family: \"Roboto\", \"Helvetica Neue\", Arial, sans-serif;\n  line-height: 1;\n  padding: 8px 16px;\n  vertical-align: middle;\n  cursor: pointer;\n  border: medium none;\n  height: 32px;\n  border-radius: 2px;\n  background: rgba(0, 0, 0, 0) linear-gradient(#3f84ac, #38779b) repeat scroll 0% 0%;\n  color: white;\n  text-shadow: rgba(0, 0, 0, 0.1) 0px -1px; }\n\nbutton:hover, .button:hover {\n  background: #3f84ac none repeat scroll 0% 0%;\n  color: white; }\n\nselect {\n  border: none;\n  border-radius: 4px; }\n"]}]);
+// Exports
+module.exports = exports;
+
+
+/***/ }),
+
+/***/ "../node_modules/css-loader/dist/runtime/api.js":
+/*!******************************************************!*\
+  !*** ../node_modules/css-loader/dist/runtime/api.js ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+/*
+  MIT License http://www.opensource.org/licenses/mit-license.php
+  Author Tobias Koppers @sokra
+*/
+// css base code, injected by the css-loader
+// eslint-disable-next-line func-names
+module.exports = function (useSourceMap) {
+  var list = []; // return the list of modules as css string
+
+  list.toString = function toString() {
+    return this.map(function (item) {
+      var content = cssWithMappingToString(item, useSourceMap);
+
+      if (item[2]) {
+        return "@media ".concat(item[2], " {").concat(content, "}");
+      }
+
+      return content;
+    }).join('');
+  }; // import a list of modules into the list
+  // eslint-disable-next-line func-names
+
+
+  list.i = function (modules, mediaQuery, dedupe) {
+    if (typeof modules === 'string') {
+      // eslint-disable-next-line no-param-reassign
+      modules = [[null, modules, '']];
+    }
+
+    var alreadyImportedModules = {};
+
+    if (dedupe) {
+      for (var i = 0; i < this.length; i++) {
+        // eslint-disable-next-line prefer-destructuring
+        var id = this[i][0];
+
+        if (id != null) {
+          alreadyImportedModules[id] = true;
+        }
+      }
+    }
+
+    for (var _i = 0; _i < modules.length; _i++) {
+      var item = [].concat(modules[_i]);
+
+      if (dedupe && alreadyImportedModules[item[0]]) {
+        // eslint-disable-next-line no-continue
+        continue;
+      }
+
+      if (mediaQuery) {
+        if (!item[2]) {
+          item[2] = mediaQuery;
+        } else {
+          item[2] = "".concat(mediaQuery, " and ").concat(item[2]);
+        }
+      }
+
+      list.push(item);
+    }
+  };
+
+  return list;
+};
+
+function cssWithMappingToString(item, useSourceMap) {
+  var content = item[1] || ''; // eslint-disable-next-line prefer-destructuring
+
+  var cssMapping = item[3];
+
+  if (!cssMapping) {
+    return content;
+  }
+
+  if (useSourceMap && typeof btoa === 'function') {
+    var sourceMapping = toComment(cssMapping);
+    var sourceURLs = cssMapping.sources.map(function (source) {
+      return "/*# sourceURL=".concat(cssMapping.sourceRoot || '').concat(source, " */");
+    });
+    return [content].concat(sourceURLs).concat([sourceMapping]).join('\n');
+  }
+
+  return [content].join('\n');
+} // Adapted from convert-source-map (MIT)
+
+
+function toComment(sourceMap) {
+  // eslint-disable-next-line no-undef
+  var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));
+  var data = "sourceMappingURL=data:application/json;charset=utf-8;base64,".concat(base64);
+  return "/*# ".concat(data, " */");
+}
+
+/***/ }),
+
+/***/ "../node_modules/file-saver/dist/FileSaver.min.js":
+/*!********************************************************!*\
+  !*** ../node_modules/file-saver/dist/FileSaver.min.js ***!
+  \********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(global) {var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function(a,b){if(true)!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_FACTORY__ = (b),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));else {}})(this,function(){"use strict";function b(a,b){return"undefined"==typeof b?b={autoBom:!1}:"object"!=typeof b&&(console.warn("Deprecated: Expected third argument to be a object"),b={autoBom:!b}),b.autoBom&&/^\s*(?:text\/\S*|application\/xml|\S*\/\S*\+xml)\s*;.*charset\s*=\s*utf-8/i.test(a.type)?new Blob(["\uFEFF",a],{type:a.type}):a}function c(b,c,d){var e=new XMLHttpRequest;e.open("GET",b),e.responseType="blob",e.onload=function(){a(e.response,c,d)},e.onerror=function(){console.error("could not download file")},e.send()}function d(a){var b=new XMLHttpRequest;b.open("HEAD",a,!1);try{b.send()}catch(a){}return 200<=b.status&&299>=b.status}function e(a){try{a.dispatchEvent(new MouseEvent("click"))}catch(c){var b=document.createEvent("MouseEvents");b.initMouseEvent("click",!0,!0,window,0,0,0,80,20,!1,!1,!1,!1,0,null),a.dispatchEvent(b)}}var f="object"==typeof window&&window.window===window?window:"object"==typeof self&&self.self===self?self:"object"==typeof global&&global.global===global?global:void 0,a=f.saveAs||("object"!=typeof window||window!==f?function(){}:"download"in HTMLAnchorElement.prototype?function(b,g,h){var i=f.URL||f.webkitURL,j=document.createElement("a");g=g||b.name||"download",j.download=g,j.rel="noopener","string"==typeof b?(j.href=b,j.origin===location.origin?e(j):d(j.href)?c(b,g,h):e(j,j.target="_blank")):(j.href=i.createObjectURL(b),setTimeout(function(){i.revokeObjectURL(j.href)},4E4),setTimeout(function(){e(j)},0))}:"msSaveOrOpenBlob"in navigator?function(f,g,h){if(g=g||f.name||"download","string"!=typeof f)navigator.msSaveOrOpenBlob(b(f,h),g);else if(d(f))c(f,g,h);else{var i=document.createElement("a");i.href=f,i.target="_blank",setTimeout(function(){e(i)})}}:function(a,b,d,e){if(e=e||open("","_blank"),e&&(e.document.title=e.document.body.innerText="downloading..."),"string"==typeof a)return c(a,b,d);var g="application/octet-stream"===a.type,h=/constructor/i.test(f.HTMLElement)||f.safari,i=/CriOS\/[\d]+/.test(navigator.userAgent);if((i||g&&h)&&"object"==typeof FileReader){var j=new FileReader;j.onloadend=function(){var a=j.result;a=i?a:a.replace(/^data:[^;]*;/,"data:attachment/file;"),e?e.location.href=a:location=a,e=null},j.readAsDataURL(a)}else{var k=f.URL||f.webkitURL,l=k.createObjectURL(a);e?e.location=l:location.href=l,e=null,setTimeout(function(){k.revokeObjectURL(l)},4E4)}});f.saveAs=a.saveAs=a, true&&(module.exports=a)});
+
+//# sourceMappingURL=FileSaver.min.js.map
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../webpack/buildin/global.js */ "../node_modules/webpack/buildin/global.js")))
+
+/***/ }),
+
+/***/ "../node_modules/regression/dist/regression.js":
+/*!*****************************************************!*\
+  !*** ../node_modules/regression/dist/regression.js ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (global, factory) {
+  if (true) {
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [module], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+  } else { var mod; }
+})(this, function (module) {
+  'use strict';
+
+  function _defineProperty(obj, key, value) {
+    if (key in obj) {
+      Object.defineProperty(obj, key, {
+        value: value,
+        enumerable: true,
+        configurable: true,
+        writable: true
+      });
+    } else {
+      obj[key] = value;
+    }
+
+    return obj;
+  }
+
+  var _extends = Object.assign || function (target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i];
+
+      for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          target[key] = source[key];
+        }
+      }
+    }
+
+    return target;
+  };
+
+  function _toConsumableArray(arr) {
+    if (Array.isArray(arr)) {
+      for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) {
+        arr2[i] = arr[i];
+      }
+
+      return arr2;
+    } else {
+      return Array.from(arr);
+    }
+  }
+
+  var DEFAULT_OPTIONS = { order: 2, precision: 2, period: null };
+
+  /**
+  * Determine the coefficient of determination (r^2) of a fit from the observations
+  * and predictions.
+  *
+  * @param {Array<Array<number>>} data - Pairs of observed x-y values
+  * @param {Array<Array<number>>} results - Pairs of observed predicted x-y values
+  *
+  * @return {number} - The r^2 value, or NaN if one cannot be calculated.
+  */
+  function determinationCoefficient(data, results) {
+    var predictions = [];
+    var observations = [];
+
+    data.forEach(function (d, i) {
+      if (d[1] !== null) {
+        observations.push(d);
+        predictions.push(results[i]);
+      }
+    });
+
+    var sum = observations.reduce(function (a, observation) {
+      return a + observation[1];
+    }, 0);
+    var mean = sum / observations.length;
+
+    var ssyy = observations.reduce(function (a, observation) {
+      var difference = observation[1] - mean;
+      return a + difference * difference;
+    }, 0);
+
+    var sse = observations.reduce(function (accum, observation, index) {
+      var prediction = predictions[index];
+      var residual = observation[1] - prediction[1];
+      return accum + residual * residual;
+    }, 0);
+
+    return 1 - sse / ssyy;
+  }
+
+  /**
+  * Determine the solution of a system of linear equations A * x = b using
+  * Gaussian elimination.
+  *
+  * @param {Array<Array<number>>} input - A 2-d matrix of data in row-major form [ A | b ]
+  * @param {number} order - How many degrees to solve for
+  *
+  * @return {Array<number>} - Vector of normalized solution coefficients matrix (x)
+  */
+  function gaussianElimination(input, order) {
+    var matrix = input;
+    var n = input.length - 1;
+    var coefficients = [order];
+
+    for (var i = 0; i < n; i++) {
+      var maxrow = i;
+      for (var j = i + 1; j < n; j++) {
+        if (Math.abs(matrix[i][j]) > Math.abs(matrix[i][maxrow])) {
+          maxrow = j;
+        }
+      }
+
+      for (var k = i; k < n + 1; k++) {
+        var tmp = matrix[k][i];
+        matrix[k][i] = matrix[k][maxrow];
+        matrix[k][maxrow] = tmp;
+      }
+
+      for (var _j = i + 1; _j < n; _j++) {
+        for (var _k = n; _k >= i; _k--) {
+          matrix[_k][_j] -= matrix[_k][i] * matrix[i][_j] / matrix[i][i];
+        }
+      }
+    }
+
+    for (var _j2 = n - 1; _j2 >= 0; _j2--) {
+      var total = 0;
+      for (var _k2 = _j2 + 1; _k2 < n; _k2++) {
+        total += matrix[_k2][_j2] * coefficients[_k2];
+      }
+
+      coefficients[_j2] = (matrix[n][_j2] - total) / matrix[_j2][_j2];
+    }
+
+    return coefficients;
+  }
+
+  /**
+  * Round a number to a precision, specificed in number of decimal places
+  *
+  * @param {number} number - The number to round
+  * @param {number} precision - The number of decimal places to round to:
+  *                             > 0 means decimals, < 0 means powers of 10
+  *
+  *
+  * @return {numbr} - The number, rounded
+  */
+  function round(number, precision) {
+    var factor = Math.pow(10, precision);
+    return Math.round(number * factor) / factor;
+  }
+
+  /**
+  * The set of all fitting methods
+  *
+  * @namespace
+  */
+  var methods = {
+    linear: function linear(data, options) {
+      var sum = [0, 0, 0, 0, 0];
+      var len = 0;
+
+      for (var n = 0; n < data.length; n++) {
+        if (data[n][1] !== null) {
+          len++;
+          sum[0] += data[n][0];
+          sum[1] += data[n][1];
+          sum[2] += data[n][0] * data[n][0];
+          sum[3] += data[n][0] * data[n][1];
+          sum[4] += data[n][1] * data[n][1];
+        }
+      }
+
+      var run = len * sum[2] - sum[0] * sum[0];
+      var rise = len * sum[3] - sum[0] * sum[1];
+      var gradient = run === 0 ? 0 : round(rise / run, options.precision);
+      var intercept = round(sum[1] / len - gradient * sum[0] / len, options.precision);
+
+      var predict = function predict(x) {
+        return [round(x, options.precision), round(gradient * x + intercept, options.precision)];
+      };
+
+      var points = data.map(function (point) {
+        return predict(point[0]);
+      });
+
+      return {
+        points: points,
+        predict: predict,
+        equation: [gradient, intercept],
+        r2: round(determinationCoefficient(data, points), options.precision),
+        string: intercept === 0 ? 'y = ' + gradient + 'x' : 'y = ' + gradient + 'x + ' + intercept
+      };
+    },
+    exponential: function exponential(data, options) {
+      var sum = [0, 0, 0, 0, 0, 0];
+
+      for (var n = 0; n < data.length; n++) {
+        if (data[n][1] !== null) {
+          sum[0] += data[n][0];
+          sum[1] += data[n][1];
+          sum[2] += data[n][0] * data[n][0] * data[n][1];
+          sum[3] += data[n][1] * Math.log(data[n][1]);
+          sum[4] += data[n][0] * data[n][1] * Math.log(data[n][1]);
+          sum[5] += data[n][0] * data[n][1];
+        }
+      }
+
+      var denominator = sum[1] * sum[2] - sum[5] * sum[5];
+      var a = Math.exp((sum[2] * sum[3] - sum[5] * sum[4]) / denominator);
+      var b = (sum[1] * sum[4] - sum[5] * sum[3]) / denominator;
+      var coeffA = round(a, options.precision);
+      var coeffB = round(b, options.precision);
+      var predict = function predict(x) {
+        return [round(x, options.precision), round(coeffA * Math.exp(coeffB * x), options.precision)];
+      };
+
+      var points = data.map(function (point) {
+        return predict(point[0]);
+      });
+
+      return {
+        points: points,
+        predict: predict,
+        equation: [coeffA, coeffB],
+        string: 'y = ' + coeffA + 'e^(' + coeffB + 'x)',
+        r2: round(determinationCoefficient(data, points), options.precision)
+      };
+    },
+    logarithmic: function logarithmic(data, options) {
+      var sum = [0, 0, 0, 0];
+      var len = data.length;
+
+      for (var n = 0; n < len; n++) {
+        if (data[n][1] !== null) {
+          sum[0] += Math.log(data[n][0]);
+          sum[1] += data[n][1] * Math.log(data[n][0]);
+          sum[2] += data[n][1];
+          sum[3] += Math.pow(Math.log(data[n][0]), 2);
+        }
+      }
+
+      var a = (len * sum[1] - sum[2] * sum[0]) / (len * sum[3] - sum[0] * sum[0]);
+      var coeffB = round(a, options.precision);
+      var coeffA = round((sum[2] - coeffB * sum[0]) / len, options.precision);
+
+      var predict = function predict(x) {
+        return [round(x, options.precision), round(round(coeffA + coeffB * Math.log(x), options.precision), options.precision)];
+      };
+
+      var points = data.map(function (point) {
+        return predict(point[0]);
+      });
+
+      return {
+        points: points,
+        predict: predict,
+        equation: [coeffA, coeffB],
+        string: 'y = ' + coeffA + ' + ' + coeffB + ' ln(x)',
+        r2: round(determinationCoefficient(data, points), options.precision)
+      };
+    },
+    power: function power(data, options) {
+      var sum = [0, 0, 0, 0, 0];
+      var len = data.length;
+
+      for (var n = 0; n < len; n++) {
+        if (data[n][1] !== null) {
+          sum[0] += Math.log(data[n][0]);
+          sum[1] += Math.log(data[n][1]) * Math.log(data[n][0]);
+          sum[2] += Math.log(data[n][1]);
+          sum[3] += Math.pow(Math.log(data[n][0]), 2);
+        }
+      }
+
+      var b = (len * sum[1] - sum[0] * sum[2]) / (len * sum[3] - Math.pow(sum[0], 2));
+      var a = (sum[2] - b * sum[0]) / len;
+      var coeffA = round(Math.exp(a), options.precision);
+      var coeffB = round(b, options.precision);
+
+      var predict = function predict(x) {
+        return [round(x, options.precision), round(round(coeffA * Math.pow(x, coeffB), options.precision), options.precision)];
+      };
+
+      var points = data.map(function (point) {
+        return predict(point[0]);
+      });
+
+      return {
+        points: points,
+        predict: predict,
+        equation: [coeffA, coeffB],
+        string: 'y = ' + coeffA + 'x^' + coeffB,
+        r2: round(determinationCoefficient(data, points), options.precision)
+      };
+    },
+    polynomial: function polynomial(data, options) {
+      var lhs = [];
+      var rhs = [];
+      var a = 0;
+      var b = 0;
+      var len = data.length;
+      var k = options.order + 1;
+
+      for (var i = 0; i < k; i++) {
+        for (var l = 0; l < len; l++) {
+          if (data[l][1] !== null) {
+            a += Math.pow(data[l][0], i) * data[l][1];
+          }
+        }
+
+        lhs.push(a);
+        a = 0;
+
+        var c = [];
+        for (var j = 0; j < k; j++) {
+          for (var _l = 0; _l < len; _l++) {
+            if (data[_l][1] !== null) {
+              b += Math.pow(data[_l][0], i + j);
+            }
+          }
+          c.push(b);
+          b = 0;
+        }
+        rhs.push(c);
+      }
+      rhs.push(lhs);
+
+      var coefficients = gaussianElimination(rhs, k).map(function (v) {
+        return round(v, options.precision);
+      });
+
+      var predict = function predict(x) {
+        return [round(x, options.precision), round(coefficients.reduce(function (sum, coeff, power) {
+          return sum + coeff * Math.pow(x, power);
+        }, 0), options.precision)];
+      };
+
+      var points = data.map(function (point) {
+        return predict(point[0]);
+      });
+
+      var string = 'y = ';
+      for (var _i = coefficients.length - 1; _i >= 0; _i--) {
+        if (_i > 1) {
+          string += coefficients[_i] + 'x^' + _i + ' + ';
+        } else if (_i === 1) {
+          string += coefficients[_i] + 'x + ';
+        } else {
+          string += coefficients[_i];
+        }
+      }
+
+      return {
+        string: string,
+        points: points,
+        predict: predict,
+        equation: [].concat(_toConsumableArray(coefficients)).reverse(),
+        r2: round(determinationCoefficient(data, points), options.precision)
+      };
+    }
+  };
+
+  function createWrapper() {
+    var reduce = function reduce(accumulator, name) {
+      return _extends({
+        _round: round
+      }, accumulator, _defineProperty({}, name, function (data, supplied) {
+        return methods[name](data, _extends({}, DEFAULT_OPTIONS, supplied));
+      }));
+    };
+
+    return Object.keys(methods).reduce(reduce, {});
+  }
+
+  module.exports = createWrapper();
+});
+
+
+/***/ }),
+
+/***/ "../node_modules/style-loader/lib/addStyles.js":
+/*!*****************************************************!*\
+  !*** ../node_modules/style-loader/lib/addStyles.js ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/*
+	MIT License http://www.opensource.org/licenses/mit-license.php
+	Author Tobias Koppers @sokra
+*/
+
+var stylesInDom = {};
+
+var	memoize = function (fn) {
+	var memo;
+
+	return function () {
+		if (typeof memo === "undefined") memo = fn.apply(this, arguments);
+		return memo;
+	};
+};
+
+var isOldIE = memoize(function () {
+	// Test for IE <= 9 as proposed by Browserhacks
+	// @see http://browserhacks.com/#hack-e71d8692f65334173fee715c222cb805
+	// Tests for existence of standard globals is to allow style-loader
+	// to operate correctly into non-standard environments
+	// @see https://github.com/webpack-contrib/style-loader/issues/177
+	return window && document && document.all && !window.atob;
+});
+
+var getTarget = function (target, parent) {
+  if (parent){
+    return parent.querySelector(target);
+  }
+  return document.querySelector(target);
+};
+
+var getElement = (function (fn) {
+	var memo = {};
+
+	return function(target, parent) {
+                // If passing function in options, then use it for resolve "head" element.
+                // Useful for Shadow Root style i.e
+                // {
+                //   insertInto: function () { return document.querySelector("#foo").shadowRoot }
+                // }
+                if (typeof target === 'function') {
+                        return target();
+                }
+                if (typeof memo[target] === "undefined") {
+			var styleTarget = getTarget.call(this, target, parent);
+			// Special case to return head of iframe instead of iframe itself
+			if (window.HTMLIFrameElement && styleTarget instanceof window.HTMLIFrameElement) {
+				try {
+					// This will throw an exception if access to iframe is blocked
+					// due to cross-origin restrictions
+					styleTarget = styleTarget.contentDocument.head;
+				} catch(e) {
+					styleTarget = null;
+				}
+			}
+			memo[target] = styleTarget;
+		}
+		return memo[target]
+	};
+})();
+
+var singleton = null;
+var	singletonCounter = 0;
+var	stylesInsertedAtTop = [];
+
+var	fixUrls = __webpack_require__(/*! ./urls */ "../node_modules/style-loader/lib/urls.js");
+
+module.exports = function(list, options) {
+	if (typeof DEBUG !== "undefined" && DEBUG) {
+		if (typeof document !== "object") throw new Error("The style-loader cannot be used in a non-browser environment");
+	}
+
+	options = options || {};
+
+	options.attrs = typeof options.attrs === "object" ? options.attrs : {};
+
+	// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
+	// tags it will allow on a page
+	if (!options.singleton && typeof options.singleton !== "boolean") options.singleton = isOldIE();
+
+	// By default, add <style> tags to the <head> element
+        if (!options.insertInto) options.insertInto = "head";
+
+	// By default, add <style> tags to the bottom of the target
+	if (!options.insertAt) options.insertAt = "bottom";
+
+	var styles = listToStyles(list, options);
+
+	addStylesToDom(styles, options);
+
+	return function update (newList) {
+		var mayRemove = [];
+
+		for (var i = 0; i < styles.length; i++) {
+			var item = styles[i];
+			var domStyle = stylesInDom[item.id];
+
+			domStyle.refs--;
+			mayRemove.push(domStyle);
+		}
+
+		if(newList) {
+			var newStyles = listToStyles(newList, options);
+			addStylesToDom(newStyles, options);
+		}
+
+		for (var i = 0; i < mayRemove.length; i++) {
+			var domStyle = mayRemove[i];
+
+			if(domStyle.refs === 0) {
+				for (var j = 0; j < domStyle.parts.length; j++) domStyle.parts[j]();
+
+				delete stylesInDom[domStyle.id];
+			}
+		}
+	};
+};
+
+function addStylesToDom (styles, options) {
+	for (var i = 0; i < styles.length; i++) {
+		var item = styles[i];
+		var domStyle = stylesInDom[item.id];
+
+		if(domStyle) {
+			domStyle.refs++;
+
+			for(var j = 0; j < domStyle.parts.length; j++) {
+				domStyle.parts[j](item.parts[j]);
+			}
+
+			for(; j < item.parts.length; j++) {
+				domStyle.parts.push(addStyle(item.parts[j], options));
+			}
+		} else {
+			var parts = [];
+
+			for(var j = 0; j < item.parts.length; j++) {
+				parts.push(addStyle(item.parts[j], options));
+			}
+
+			stylesInDom[item.id] = {id: item.id, refs: 1, parts: parts};
+		}
+	}
+}
+
+function listToStyles (list, options) {
+	var styles = [];
+	var newStyles = {};
+
+	for (var i = 0; i < list.length; i++) {
+		var item = list[i];
+		var id = options.base ? item[0] + options.base : item[0];
+		var css = item[1];
+		var media = item[2];
+		var sourceMap = item[3];
+		var part = {css: css, media: media, sourceMap: sourceMap};
+
+		if(!newStyles[id]) styles.push(newStyles[id] = {id: id, parts: [part]});
+		else newStyles[id].parts.push(part);
+	}
+
+	return styles;
+}
+
+function insertStyleElement (options, style) {
+	var target = getElement(options.insertInto)
+
+	if (!target) {
+		throw new Error("Couldn't find a style target. This probably means that the value for the 'insertInto' parameter is invalid.");
+	}
+
+	var lastStyleElementInsertedAtTop = stylesInsertedAtTop[stylesInsertedAtTop.length - 1];
+
+	if (options.insertAt === "top") {
+		if (!lastStyleElementInsertedAtTop) {
+			target.insertBefore(style, target.firstChild);
+		} else if (lastStyleElementInsertedAtTop.nextSibling) {
+			target.insertBefore(style, lastStyleElementInsertedAtTop.nextSibling);
+		} else {
+			target.appendChild(style);
+		}
+		stylesInsertedAtTop.push(style);
+	} else if (options.insertAt === "bottom") {
+		target.appendChild(style);
+	} else if (typeof options.insertAt === "object" && options.insertAt.before) {
+		var nextSibling = getElement(options.insertAt.before, target);
+		target.insertBefore(style, nextSibling);
+	} else {
+		throw new Error("[Style Loader]\n\n Invalid value for parameter 'insertAt' ('options.insertAt') found.\n Must be 'top', 'bottom', or Object.\n (https://github.com/webpack-contrib/style-loader#insertat)\n");
+	}
+}
+
+function removeStyleElement (style) {
+	if (style.parentNode === null) return false;
+	style.parentNode.removeChild(style);
+
+	var idx = stylesInsertedAtTop.indexOf(style);
+	if(idx >= 0) {
+		stylesInsertedAtTop.splice(idx, 1);
+	}
+}
+
+function createStyleElement (options) {
+	var style = document.createElement("style");
+
+	if(options.attrs.type === undefined) {
+		options.attrs.type = "text/css";
+	}
+
+	if(options.attrs.nonce === undefined) {
+		var nonce = getNonce();
+		if (nonce) {
+			options.attrs.nonce = nonce;
+		}
+	}
+
+	addAttrs(style, options.attrs);
+	insertStyleElement(options, style);
+
+	return style;
+}
+
+function createLinkElement (options) {
+	var link = document.createElement("link");
+
+	if(options.attrs.type === undefined) {
+		options.attrs.type = "text/css";
+	}
+	options.attrs.rel = "stylesheet";
+
+	addAttrs(link, options.attrs);
+	insertStyleElement(options, link);
+
+	return link;
+}
+
+function addAttrs (el, attrs) {
+	Object.keys(attrs).forEach(function (key) {
+		el.setAttribute(key, attrs[key]);
+	});
+}
+
+function getNonce() {
+	if (false) {}
+
+	return __webpack_require__.nc;
+}
+
+function addStyle (obj, options) {
+	var style, update, remove, result;
+
+	// If a transform function was defined, run it on the css
+	if (options.transform && obj.css) {
+	    result = typeof options.transform === 'function'
+		 ? options.transform(obj.css) 
+		 : options.transform.default(obj.css);
+
+	    if (result) {
+	    	// If transform returns a value, use that instead of the original css.
+	    	// This allows running runtime transformations on the css.
+	    	obj.css = result;
+	    } else {
+	    	// If the transform function returns a falsy value, don't add this css.
+	    	// This allows conditional loading of css
+	    	return function() {
+	    		// noop
+	    	};
+	    }
+	}
+
+	if (options.singleton) {
+		var styleIndex = singletonCounter++;
+
+		style = singleton || (singleton = createStyleElement(options));
+
+		update = applyToSingletonTag.bind(null, style, styleIndex, false);
+		remove = applyToSingletonTag.bind(null, style, styleIndex, true);
+
+	} else if (
+		obj.sourceMap &&
+		typeof URL === "function" &&
+		typeof URL.createObjectURL === "function" &&
+		typeof URL.revokeObjectURL === "function" &&
+		typeof Blob === "function" &&
+		typeof btoa === "function"
+	) {
+		style = createLinkElement(options);
+		update = updateLink.bind(null, style, options);
+		remove = function () {
+			removeStyleElement(style);
+
+			if(style.href) URL.revokeObjectURL(style.href);
+		};
+	} else {
+		style = createStyleElement(options);
+		update = applyToTag.bind(null, style);
+		remove = function () {
+			removeStyleElement(style);
+		};
+	}
+
+	update(obj);
+
+	return function updateStyle (newObj) {
+		if (newObj) {
+			if (
+				newObj.css === obj.css &&
+				newObj.media === obj.media &&
+				newObj.sourceMap === obj.sourceMap
+			) {
+				return;
+			}
+
+			update(obj = newObj);
+		} else {
+			remove();
+		}
+	};
+}
+
+var replaceText = (function () {
+	var textStore = [];
+
+	return function (index, replacement) {
+		textStore[index] = replacement;
+
+		return textStore.filter(Boolean).join('\n');
+	};
+})();
+
+function applyToSingletonTag (style, index, remove, obj) {
+	var css = remove ? "" : obj.css;
+
+	if (style.styleSheet) {
+		style.styleSheet.cssText = replaceText(index, css);
+	} else {
+		var cssNode = document.createTextNode(css);
+		var childNodes = style.childNodes;
+
+		if (childNodes[index]) style.removeChild(childNodes[index]);
+
+		if (childNodes.length) {
+			style.insertBefore(cssNode, childNodes[index]);
+		} else {
+			style.appendChild(cssNode);
+		}
+	}
+}
+
+function applyToTag (style, obj) {
+	var css = obj.css;
+	var media = obj.media;
+
+	if(media) {
+		style.setAttribute("media", media)
+	}
+
+	if(style.styleSheet) {
+		style.styleSheet.cssText = css;
+	} else {
+		while(style.firstChild) {
+			style.removeChild(style.firstChild);
+		}
+
+		style.appendChild(document.createTextNode(css));
+	}
+}
+
+function updateLink (link, options, obj) {
+	var css = obj.css;
+	var sourceMap = obj.sourceMap;
+
+	/*
+		If convertToAbsoluteUrls isn't defined, but sourcemaps are enabled
+		and there is no publicPath defined then lets turn convertToAbsoluteUrls
+		on by default.  Otherwise default to the convertToAbsoluteUrls option
+		directly
+	*/
+	var autoFixUrls = options.convertToAbsoluteUrls === undefined && sourceMap;
+
+	if (options.convertToAbsoluteUrls || autoFixUrls) {
+		css = fixUrls(css);
+	}
+
+	if (sourceMap) {
+		// http://stackoverflow.com/a/26603875
+		css += "\n/*# sourceMappingURL=data:application/json;base64," + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + " */";
+	}
+
+	var blob = new Blob([css], { type: "text/css" });
+
+	var oldSrc = link.href;
+
+	link.href = URL.createObjectURL(blob);
+
+	if(oldSrc) URL.revokeObjectURL(oldSrc);
+}
+
+
+/***/ }),
+
+/***/ "../node_modules/style-loader/lib/urls.js":
+/*!************************************************!*\
+  !*** ../node_modules/style-loader/lib/urls.js ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+
+/**
+ * When source maps are enabled, `style-loader` uses a link element with a data-uri to
+ * embed the css on the page. This breaks all relative urls because now they are relative to a
+ * bundle instead of the current page.
+ *
+ * One solution is to only use full urls, but that may be impossible.
+ *
+ * Instead, this function "fixes" the relative urls to be absolute according to the current page location.
+ *
+ * A rudimentary test suite is located at `test/fixUrls.js` and can be run via the `npm test` command.
+ *
+ */
+
+module.exports = function (css) {
+  // get current location
+  var location = typeof window !== "undefined" && window.location;
+
+  if (!location) {
+    throw new Error("fixUrls requires window.location");
+  }
+
+	// blank or null?
+	if (!css || typeof css !== "string") {
+	  return css;
+  }
+
+  var baseUrl = location.protocol + "//" + location.host;
+  var currentDir = baseUrl + location.pathname.replace(/\/[^\/]*$/, "/");
+
+	// convert each url(...)
+	/*
+	This regular expression is just a way to recursively match brackets within
+	a string.
+
+	 /url\s*\(  = Match on the word "url" with any whitespace after it and then a parens
+	   (  = Start a capturing group
+	     (?:  = Start a non-capturing group
+	         [^)(]  = Match anything that isn't a parentheses
+	         |  = OR
+	         \(  = Match a start parentheses
+	             (?:  = Start another non-capturing groups
+	                 [^)(]+  = Match anything that isn't a parentheses
+	                 |  = OR
+	                 \(  = Match a start parentheses
+	                     [^)(]*  = Match anything that isn't a parentheses
+	                 \)  = Match a end parentheses
+	             )  = End Group
+              *\) = Match anything and then a close parens
+          )  = Close non-capturing group
+          *  = Match anything
+       )  = Close capturing group
+	 \)  = Match a close parens
+
+	 /gi  = Get all matches, not the first.  Be case insensitive.
+	 */
+	var fixedCss = css.replace(/url\s*\(((?:[^)(]|\((?:[^)(]+|\([^)(]*\))*\))*)\)/gi, function(fullMatch, origUrl) {
+		// strip quotes (if they exist)
+		var unquotedOrigUrl = origUrl
+			.trim()
+			.replace(/^"(.*)"$/, function(o, $1){ return $1; })
+			.replace(/^'(.*)'$/, function(o, $1){ return $1; });
+
+		// already a full url? no change
+		if (/^(#|data:|http:\/\/|https:\/\/|file:\/\/\/|\s*$)/i.test(unquotedOrigUrl)) {
+		  return fullMatch;
+		}
+
+		// convert the url to a full url
+		var newUrl;
+
+		if (unquotedOrigUrl.indexOf("//") === 0) {
+		  	//TODO: should we add protocol?
+			newUrl = unquotedOrigUrl;
+		} else if (unquotedOrigUrl.indexOf("/") === 0) {
+			// path should be relative to the base url
+			newUrl = baseUrl + unquotedOrigUrl; // already starts with '/'
+		} else {
+			// path should be relative to current directory
+			newUrl = currentDir + unquotedOrigUrl.replace(/^\.\//, ""); // Strip leading './'
+		}
+
+		// send back the fixed url(...)
+		return "url(" + JSON.stringify(newUrl) + ")";
+	});
+
+	// send back the fixed css
+	return fixedCss;
+};
+
+
+/***/ }),
+
+/***/ "../node_modules/svm/lib/svm.js":
+/*!**************************************!*\
+  !*** ../node_modules/svm/lib/svm.js ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// MIT License
+// Andrej Karpathy
+
+var svmjs = (function(exports){
+
+  /*
+    This is a binary SVM and is trained using the SMO algorithm.
+    Reference: "The Simplified SMO Algorithm" (http://math.unt.edu/~hsp0009/smo.pdf)
+    
+    Simple usage example:
+    svm = svmjs.SVM();
+    svm.train(data, labels);
+    testlabels = svm.predict(testdata);
+  */
+  var SVM = function(options) {
+  }
+
+  SVM.prototype = {
+    
+    // data is NxD array of floats. labels are 1 or -1.
+    train: function(data, labels, options) {
+      
+      // we need these in helper functions
+      this.data = data;
+      this.labels = labels;
+
+      // parameters
+      options = options || {};
+      var C = options.C || 1.0; // C value. Decrease for more regularization
+      var tol = options.tol || 1e-4; // numerical tolerance. Don't touch unless you're pro
+      var alphatol = options.alphatol || 1e-7; // non-support vectors for space and time efficiency are truncated. To guarantee correct result set this to 0 to do no truncating. If you want to increase efficiency, experiment with setting this little higher, up to maybe 1e-4 or so.
+      var maxiter = options.maxiter || 10000; // max number of iterations
+      var numpasses = options.numpasses || 10; // how many passes over data with no change before we halt? Increase for more precision.
+      
+      // instantiate kernel according to options. kernel can be given as string or as a custom function
+      var kernel = linearKernel;
+      this.kernelType = "linear";
+      if("kernel" in options) {
+        if(typeof options.kernel === "string") {
+          // kernel was specified as a string. Handle these special cases appropriately
+          if(options.kernel === "linear") { 
+            this.kernelType = "linear"; 
+            kernel = linearKernel; 
+          }
+          if(options.kernel === "rbf") { 
+            var rbfSigma = options.rbfsigma || 0.5;
+            this.rbfSigma = rbfSigma; // back this up
+            this.kernelType = "rbf";
+            kernel = makeRbfKernel(rbfSigma);
+          }
+        } else {
+          // assume kernel was specified as a function. Let's just use it
+          this.kernelType = "custom";
+          kernel = options.kernel;
+        }
+      }
+
+      // initializations
+      this.kernel = kernel;
+      this.N = data.length; var N = this.N;
+      this.D = data[0].length; var D = this.D;
+      this.alpha = zeros(N);
+      this.b = 0.0;
+      this.usew_ = false; // internal efficiency flag
+
+      // run SMO algorithm
+      var iter = 0;
+      var passes = 0;
+      while(passes < numpasses && iter < maxiter) {
+        
+        var alphaChanged = 0;
+        for(var i=0;i<N;i++) {
+        
+          var Ei= this.marginOne(data[i]) - labels[i];
+          if( (labels[i]*Ei < -tol && this.alpha[i] < C)
+           || (labels[i]*Ei > tol && this.alpha[i] > 0) ){
+            
+            // alpha_i needs updating! Pick a j to update it with
+            var j = i;
+            while(j === i) j= randi(0, this.N);
+            var Ej= this.marginOne(data[j]) - labels[j];
+            
+            // calculate L and H bounds for j to ensure we're in [0 C]x[0 C] box
+            ai= this.alpha[i];
+            aj= this.alpha[j];
+            var L = 0; var H = C;
+            if(labels[i] === labels[j]) {
+              L = Math.max(0, ai+aj-C);
+              H = Math.min(C, ai+aj);
+            } else {
+              L = Math.max(0, aj-ai);
+              H = Math.min(C, C+aj-ai);
+            }
+            
+            if(Math.abs(L - H) < 1e-4) continue;
+            
+            var eta = 2*kernel(data[i],data[j]) - kernel(data[i],data[i]) - kernel(data[j],data[j]);
+            if(eta >= 0) continue;
+            
+            // compute new alpha_j and clip it inside [0 C]x[0 C] box
+            // then compute alpha_i based on it.
+            var newaj = aj - labels[j]*(Ei-Ej) / eta;
+            if(newaj>H) newaj = H;
+            if(newaj<L) newaj = L;
+            if(Math.abs(aj - newaj) < 1e-4) continue; 
+            this.alpha[j] = newaj;
+            var newai = ai + labels[i]*labels[j]*(aj - newaj);
+            this.alpha[i] = newai;
+            
+            // update the bias term
+            var b1 = this.b - Ei - labels[i]*(newai-ai)*kernel(data[i],data[i])
+                     - labels[j]*(newaj-aj)*kernel(data[i],data[j]);
+            var b2 = this.b - Ej - labels[i]*(newai-ai)*kernel(data[i],data[j])
+                     - labels[j]*(newaj-aj)*kernel(data[j],data[j]);
+            this.b = 0.5*(b1+b2);
+            if(newai > 0 && newai < C) this.b= b1;
+            if(newaj > 0 && newaj < C) this.b= b2;
+            
+            alphaChanged++;
+            
+          } // end alpha_i needed updating
+        } // end for i=1..N
+        
+        iter++;
+        //console.log("iter number %d, alphaChanged = %d", iter, alphaChanged);
+        if(alphaChanged == 0) passes++;
+        else passes= 0;
+        
+      } // end outer loop
+      
+      // if the user was using a linear kernel, lets also compute and store the
+      // weights. This will speed up evaluations during testing time
+      if(this.kernelType === "linear") {
+
+        // compute weights and store them
+        this.w = new Array(this.D);
+        for(var j=0;j<this.D;j++) {
+          var s= 0.0;
+          for(var i=0;i<this.N;i++) {
+            s+= this.alpha[i] * labels[i] * data[i][j];
+          }
+          this.w[j] = s;
+          this.usew_ = true;
+        }
+      } else {
+
+        // okay, we need to retain all the support vectors in the training data,
+        // we can't just get away with computing the weights and throwing it out
+
+        // But! We only need to store the support vectors for evaluation of testing
+        // instances. So filter here based on this.alpha[i]. The training data
+        // for which this.alpha[i] = 0 is irrelevant for future. 
+        var newdata = [];
+        var newlabels = [];
+        var newalpha = [];
+        for(var i=0;i<this.N;i++) {
+          //console.log("alpha=%f", this.alpha[i]);
+          if(this.alpha[i] > alphatol) {
+            newdata.push(this.data[i]);
+            newlabels.push(this.labels[i]);
+            newalpha.push(this.alpha[i]);
+          }
+        }
+
+        // store data and labels
+        this.data = newdata;
+        this.labels = newlabels;
+        this.alpha = newalpha;
+        this.N = this.data.length;
+        //console.log("filtered training data from %d to %d support vectors.", data.length, this.data.length);
+      }
+
+      var trainstats = {};
+      trainstats.iters= iter;
+      return trainstats;
+    }, 
+    
+    // inst is an array of length D. Returns margin of given example
+    // this is the core prediction function. All others are for convenience mostly
+    // and end up calling this one somehow.
+    marginOne: function(inst) {
+
+      var f = this.b;
+      // if the linear kernel was used and w was computed and stored,
+      // (i.e. the svm has fully finished training)
+      // the internal class variable usew_ will be set to true.
+      if(this.usew_) {
+
+        // we can speed this up a lot by using the computed weights
+        // we computed these during train(). This is significantly faster
+        // than the version below
+        for(var j=0;j<this.D;j++) {
+          f += inst[j] * this.w[j];
+        }
+
+      } else {
+
+        for(var i=0;i<this.N;i++) {
+          f += this.alpha[i] * this.labels[i] * this.kernel(inst, this.data[i]);
+        }
+      }
+
+      return f;
+    },
+    
+    predictOne: function(inst) { 
+      return this.marginOne(inst) > 0 ? 1 : -1; 
+    },
+    
+    // data is an NxD array. Returns array of margins.
+    margins: function(data) {
+      
+      // go over support vectors and accumulate the prediction. 
+      var N = data.length;
+      var margins = new Array(N);
+      for(var i=0;i<N;i++) {
+        margins[i] = this.marginOne(data[i]);
+      }
+      return margins;
+      
+    },
+    
+    // data is NxD array. Returns array of 1 or -1, predictions
+    predict: function(data) {
+      var margs = this.margins(data);
+      for(var i=0;i<margs.length;i++) {
+        margs[i] = margs[i] > 0 ? 1 : -1;
+      }
+      return margs;
+    },
+    
+    // THIS FUNCTION IS NOW DEPRECATED. WORKS FINE BUT NO NEED TO USE ANYMORE. 
+    // LEAVING IT HERE JUST FOR BACKWARDS COMPATIBILITY FOR A WHILE.
+    // if we trained a linear svm, it is possible to calculate just the weights and the offset
+    // prediction is then yhat = sign(X * w + b)
+    getWeights: function() {
+      
+      // DEPRECATED
+      var w= new Array(this.D);
+      for(var j=0;j<this.D;j++) {
+        var s= 0.0;
+        for(var i=0;i<this.N;i++) {
+          s+= this.alpha[i] * this.labels[i] * this.data[i][j];
+        }
+        w[j]= s;
+      }
+      return {w: w, b: this.b};
+    },
+
+    toJSON: function() {
+      
+      if(this.kernelType === "custom") {
+        console.log("Can't save this SVM because it's using custom, unsupported kernel...");
+        return {};
+      }
+
+      json = {}
+      json.N = this.N;
+      json.D = this.D;
+      json.b = this.b;
+
+      json.kernelType = this.kernelType;
+      if(this.kernelType === "linear") { 
+        // just back up the weights
+        json.w = this.w; 
+      }
+      if(this.kernelType === "rbf") { 
+        // we need to store the support vectors and the sigma
+        json.rbfSigma = this.rbfSigma; 
+        json.data = this.data;
+        json.labels = this.labels;
+        json.alpha = this.alpha;
+      }
+
+      return json;
+    },
+    
+    fromJSON: function(json) {
+      
+      this.N = json.N;
+      this.D = json.D;
+      this.b = json.b;
+
+      this.kernelType = json.kernelType;
+      if(this.kernelType === "linear") { 
+
+        // load the weights! 
+        this.w = json.w; 
+        this.usew_ = true; 
+        this.kernel = linearKernel; // this shouldn't be necessary
+      }
+      else if(this.kernelType == "rbf") {
+
+        // initialize the kernel
+        this.rbfSigma = json.rbfSigma; 
+        this.kernel = makeRbfKernel(this.rbfSigma);
+
+        // load the support vectors
+        this.data = json.data;
+        this.labels = json.labels;
+        this.alpha = json.alpha;
+      } else {
+        console.log("ERROR! unrecognized kernel type." + this.kernelType);
+      }
+    }
+  }
+  
+  // Kernels
+  function makeRbfKernel(sigma) {
+    return function(v1, v2) {
+      var s=0;
+      for(var q=0;q<v1.length;q++) { s += (v1[q] - v2[q])*(v1[q] - v2[q]); } 
+      return Math.exp(-s/(2.0*sigma*sigma));
+    }
+  }
+  
+  function linearKernel(v1, v2) {
+    var s=0; 
+    for(var q=0;q<v1.length;q++) { s += v1[q] * v2[q]; } 
+    return s;
+  }
+
+  // Misc utility functions
+  // generate random floating point number between a and b
+  function randf(a, b) {
+    return Math.random()*(b-a)+a;
+  }
+
+  // generate random integer between a and b (b excluded)
+  function randi(a, b) {
+     return Math.floor(Math.random()*(b-a)+a);
+  }
+
+  // create vector of zeros of length n
+  function zeros(n) {
+    var arr= new Array(n);
+    for(var i=0;i<n;i++) { arr[i]= 0; }
+    return arr;
+  }
+
+  // export public members
+  exports = exports || {};
+  exports.SVM = SVM;
+  exports.makeRbfKernel = makeRbfKernel;
+  exports.linearKernel = linearKernel;
+  return exports;
+
+})( true && module.exports);  // add exports to module.exports if in node.js
+
+
+/***/ }),
+
+/***/ "../node_modules/tslib/tslib.es6.js":
+/*!******************************************!*\
+  !*** ../node_modules/tslib/tslib.es6.js ***!
+  \******************************************/
+/*! exports provided: __extends, __assign, __rest, __decorate, __param, __metadata, __awaiter, __generator, __exportStar, __values, __read, __spread, __spreadArrays, __await, __asyncGenerator, __asyncDelegator, __asyncValues, __makeTemplateObject, __importStar, __importDefault, __classPrivateFieldGet, __classPrivateFieldSet */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__extends", function() { return __extends; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__assign", function() { return __assign; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__rest", function() { return __rest; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__decorate", function() { return __decorate; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__param", function() { return __param; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__metadata", function() { return __metadata; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__awaiter", function() { return __awaiter; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__generator", function() { return __generator; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__exportStar", function() { return __exportStar; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__values", function() { return __values; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__read", function() { return __read; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__spread", function() { return __spread; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__spreadArrays", function() { return __spreadArrays; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__await", function() { return __await; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__asyncGenerator", function() { return __asyncGenerator; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__asyncDelegator", function() { return __asyncDelegator; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__asyncValues", function() { return __asyncValues; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__makeTemplateObject", function() { return __makeTemplateObject; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__importStar", function() { return __importStar; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__importDefault", function() { return __importDefault; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__classPrivateFieldGet", function() { return __classPrivateFieldGet; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__classPrivateFieldSet", function() { return __classPrivateFieldSet; });
+/*! *****************************************************************************
+Copyright (c) Microsoft Corporation. All rights reserved.
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use
+this file except in compliance with the License. You may obtain a copy of the
+License at http://www.apache.org/licenses/LICENSE-2.0
+
+THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
+WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
+MERCHANTABLITY OR NON-INFRINGEMENT.
+
+See the Apache Version 2.0 License for specific language governing permissions
+and limitations under the License.
+***************************************************************************** */
+/* global Reflect, Promise */
+
+var extendStatics = function(d, b) {
+    extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return extendStatics(d, b);
+};
+
+function __extends(d, b) {
+    extendStatics(d, b);
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+}
+
+var __assign = function() {
+    __assign = Object.assign || function __assign(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+        }
+        return t;
+    }
+    return __assign.apply(this, arguments);
+}
+
+function __rest(s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                t[p[i]] = s[p[i]];
+        }
+    return t;
+}
+
+function __decorate(decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+}
+
+function __param(paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+}
+
+function __metadata(metadataKey, metadataValue) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(metadataKey, metadataValue);
+}
+
+function __awaiter(thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+}
+
+function __generator(thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+}
+
+function __exportStar(m, exports) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+
+function __values(o) {
+    var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
+    if (m) return m.call(o);
+    if (o && typeof o.length === "number") return {
+        next: function () {
+            if (o && i >= o.length) o = void 0;
+            return { value: o && o[i++], done: !o };
+        }
+    };
+    throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
+}
+
+function __read(o, n) {
+    var m = typeof Symbol === "function" && o[Symbol.iterator];
+    if (!m) return o;
+    var i = m.call(o), r, ar = [], e;
+    try {
+        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
+    }
+    catch (error) { e = { error: error }; }
+    finally {
+        try {
+            if (r && !r.done && (m = i["return"])) m.call(i);
+        }
+        finally { if (e) throw e.error; }
+    }
+    return ar;
+}
+
+function __spread() {
+    for (var ar = [], i = 0; i < arguments.length; i++)
+        ar = ar.concat(__read(arguments[i]));
+    return ar;
+}
+
+function __spreadArrays() {
+    for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
+    for (var r = Array(s), k = 0, i = 0; i < il; i++)
+        for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
+            r[k] = a[j];
+    return r;
+};
+
+function __await(v) {
+    return this instanceof __await ? (this.v = v, this) : new __await(v);
+}
+
+function __asyncGenerator(thisArg, _arguments, generator) {
+    if (!Symbol.asyncIterator) throw new TypeError("Symbol.asyncIterator is not defined.");
+    var g = generator.apply(thisArg, _arguments || []), i, q = [];
+    return i = {}, verb("next"), verb("throw"), verb("return"), i[Symbol.asyncIterator] = function () { return this; }, i;
+    function verb(n) { if (g[n]) i[n] = function (v) { return new Promise(function (a, b) { q.push([n, v, a, b]) > 1 || resume(n, v); }); }; }
+    function resume(n, v) { try { step(g[n](v)); } catch (e) { settle(q[0][3], e); } }
+    function step(r) { r.value instanceof __await ? Promise.resolve(r.value.v).then(fulfill, reject) : settle(q[0][2], r); }
+    function fulfill(value) { resume("next", value); }
+    function reject(value) { resume("throw", value); }
+    function settle(f, v) { if (f(v), q.shift(), q.length) resume(q[0][0], q[0][1]); }
+}
+
+function __asyncDelegator(o) {
+    var i, p;
+    return i = {}, verb("next"), verb("throw", function (e) { throw e; }), verb("return"), i[Symbol.iterator] = function () { return this; }, i;
+    function verb(n, f) { i[n] = o[n] ? function (v) { return (p = !p) ? { value: __await(o[n](v)), done: n === "return" } : f ? f(v) : v; } : f; }
+}
+
+function __asyncValues(o) {
+    if (!Symbol.asyncIterator) throw new TypeError("Symbol.asyncIterator is not defined.");
+    var m = o[Symbol.asyncIterator], i;
+    return m ? m.call(o) : (o = typeof __values === "function" ? __values(o) : o[Symbol.iterator](), i = {}, verb("next"), verb("throw"), verb("return"), i[Symbol.asyncIterator] = function () { return this; }, i);
+    function verb(n) { i[n] = o[n] && function (v) { return new Promise(function (resolve, reject) { v = o[n](v), settle(resolve, reject, v.done, v.value); }); }; }
+    function settle(resolve, reject, d, v) { Promise.resolve(v).then(function(v) { resolve({ value: v, done: d }); }, reject); }
+}
+
+function __makeTemplateObject(cooked, raw) {
+    if (Object.defineProperty) { Object.defineProperty(cooked, "raw", { value: raw }); } else { cooked.raw = raw; }
+    return cooked;
+};
+
+function __importStar(mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
+    result.default = mod;
+    return result;
+}
+
+function __importDefault(mod) {
+    return (mod && mod.__esModule) ? mod : { default: mod };
+}
+
+function __classPrivateFieldGet(receiver, privateMap) {
+    if (!privateMap.has(receiver)) {
+        throw new TypeError("attempted to get private field on non-instance");
+    }
+    return privateMap.get(receiver);
+}
+
+function __classPrivateFieldSet(receiver, privateMap, value) {
+    if (!privateMap.has(receiver)) {
+        throw new TypeError("attempted to set private field on non-instance");
+    }
+    privateMap.set(receiver, value);
+    return value;
+}
+
+
+/***/ }),
+
+/***/ "../node_modules/webpack/buildin/global.js":
+/*!*************************************************!*\
+  !*** ../node_modules/webpack/buildin/global.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var g;
+
+// This works in non-strict mode
+g = (function() {
+	return this;
+})();
+
+try {
+	// This works if eval is allowed (see CSP)
+	g = g || new Function("return this")();
+} catch (e) {
+	// This works if the window reference is available
+	if (typeof window === "object") g = window;
+}
+
+// g can still be undefined, but nothing to do about it...
+// We return undefined, instead of nothing here, so it's
+// easier to handle this case. if(!global) { ...}
+
+module.exports = g;
+
+
+/***/ }),
+
+/***/ "./AppView.tsx":
+/*!*********************!*\
+  !*** ./AppView.tsx ***!
+  \*********************/
+/*! exports provided: AppView */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AppView", function() { return AppView; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _grafana_ui__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @grafana/ui */ "@grafana/ui");
+/* harmony import */ var _grafana_ui__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_grafana_ui__WEBPACK_IMPORTED_MODULE_2__);
+ // Libraries
+
+
+
+
+var AppView =
+/** @class */
+function (_super) {
+  Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"])(AppView, _super);
+
+  function AppView() {
+    return _super !== null && _super.apply(this, arguments) || this;
+  }
+
+  AppView.prototype.makeDashboard = function () {
+    return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function () {
+      var data;
+      return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"])(this, function (_a) {
+        data = {
+          dashboard: __webpack_require__(/*! dashboards/sample.json */ "./dashboards/sample.json"),
+          overwrite: true
+        };
+        $.post({
+          url: '/api/dashboards/db',
+          contentType: 'application/json',
+          dataType: 'application/json',
+          data: JSON.stringify(data),
+          complete: function complete(res) {
+            alert('Dashboard: ' + data.dashboard.title + '\nStatus: ' + res.statusText);
+            location.replace('/d/' + data.dashboard.uid);
+          }
+        });
+        return [2
+        /*return*/
+        ];
+      });
+    });
+  };
+
+  AppView.prototype.render = function () {
+    var _this = this;
+
+    return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_grafana_ui__WEBPACK_IMPORTED_MODULE_2__["Button"], {
+      onClick: function onClick() {
+        return _this.makeDashboard();
+      }
+    }, "Sample Dashboard"));
+  };
+
+  return AppView;
+}(react__WEBPACK_IMPORTED_MODULE_1__["PureComponent"]);
+
+
+
+/***/ }),
+
+/***/ "./Training/App.css":
+/*!**************************!*\
+  !*** ./Training/App.css ***!
+  \**************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../node_modules/css-loader/dist/cjs.js??ref--8-1!../../node_modules/postcss-loader/src??ref--8-2!../../node_modules/sass-loader/lib/loader.js!./App.css */ "../node_modules/css-loader/dist/cjs.js?!../node_modules/postcss-loader/src/index.js?!../node_modules/sass-loader/lib/loader.js!./Training/App.css");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../node_modules/style-loader/lib/addStyles.js */ "../node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
+/***/ "./Training/Model.ts":
+/*!***************************!*\
+  !*** ./Training/Model.ts ***!
+  \***************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _strategies_Strategies__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./strategies/Strategies */ "./Training/strategies/Strategies.ts");
+/* harmony import */ var _Predictor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Predictor */ "./Training/Predictor.ts");
+
+
+
+var Model =
+/** @class */
+function () {
+  function Model() {
+    this.predictor = new _Predictor__WEBPACK_IMPORTED_MODULE_1__["default"]();
+  }
+
+  Model.prototype.getData = function () {
+    return this.data;
+  };
+
+  Model.prototype.getPredictor = function () {
+    return this.predictor;
+  };
+  /** Load file and save it in data */
+
+
+  Model.prototype.setData = function (input) {
+    var _a;
+
+    (_a = this.data) === null || _a === void 0 ? void 0 : _a.setValue(input);
+  };
+  /** Set the algorithm to use thanks to the Context*/
+
+
+  Model.prototype.setAlgorithm = function (alg) {
+    this.predictor.setAlg(alg);
+    this.strategy = _strategies_Strategies__WEBPACK_IMPORTED_MODULE_0__["strategies"][alg];
+    this.data = _strategies_Strategies__WEBPACK_IMPORTED_MODULE_0__["data"][alg];
+  };
+
+  Model.prototype.setPredictorOptions = function (config) {
+    this.predictor.setOpt(config);
+  };
+  /** Save the predictor in function */
+
+
+  Model.prototype.train = function () {
+    var opt = this.predictor.getOpt();
+
+    if (this.strategy && this.data && opt) {
+      this.predictor = this.strategy.train(this.data, opt);
+      this.data.setPointsLine(this.predictor.getCoef());
+    }
+  };
+  /** Download predictor as JSON */
+
+
+  Model.prototype.downloadPredictor = function () {
+    var FileSaver = __webpack_require__(/*! file-saver */ "../node_modules/file-saver/dist/FileSaver.min.js"); // import file saver
+
+
+    var text = this.predictor.toJSON();
+    var file = new File([text], 'Training.json', {
+      type: 'text/json;charset=utf-8'
+    });
+    FileSaver.saveAs(file); // download
+  };
+
+  return Model;
+}();
+
+/* harmony default export */ __webpack_exports__["default"] = (Model);
+
+/***/ }),
+
+/***/ "./Training/Predictor.ts":
+/*!*******************************!*\
+  !*** ./Training/Predictor.ts ***!
+  \*******************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _strategies_Strategies__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./strategies/Strategies */ "./Training/strategies/Strategies.ts");
+
+
+var Predictor =
+/** @class */
+function () {
+  function Predictor(alg, coef, func, opt) {
+    this.algorithm = alg ? alg : '';
+    this.coefficients = coef ? coef : [];
+    this.predFun = func ? func : '';
+    if (opt) this.opt = opt;
+  }
+
+  Predictor.prototype.getAlg = function () {
+    return this.algorithm;
+  };
+
+  Predictor.prototype.getCoef = function () {
+    return this.coefficients;
+  };
+
+  Predictor.prototype.getFun = function () {
+    return this.predFun;
+  };
+
+  Predictor.prototype.getOpt = function () {
+    return this.opt;
+  };
+
+  Predictor.prototype.setAlg = function (alg) {
+    this.algorithm = alg;
+    this.opt = _strategies_Strategies__WEBPACK_IMPORTED_MODULE_0__["opt"][alg];
+  };
+
+  Predictor.prototype.setCoef = function (coef) {
+    this.coefficients = coef;
+  };
+
+  Predictor.prototype.setFun = function (fun) {
+    this.predFun = fun;
+  };
+
+  Predictor.prototype.setOpt = function (conf) {
+    var _a;
+
+    (_a = this.opt) === null || _a === void 0 ? void 0 : _a.setValueFile(conf);
+  };
+
+  Predictor.prototype.toJSON = function () {
+    var textFile = "{\n    \"algorithm\": \"" + this.algorithm + "\",\n    \"coefficients\": [" + this.coefficients + "],\n    \"predFun\": \"" + this.predFun + "\",\n    \"opt\": " + JSON.stringify(this.opt) + "\n}"; // string output
+
+    return textFile;
+  };
+
+  return Predictor;
+}();
+
+/* harmony default export */ __webpack_exports__["default"] = (Predictor);
+
+/***/ }),
+
+/***/ "./Training/View.tsx":
+/*!***************************!*\
+  !*** ./Training/View.tsx ***!
+  \***************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _App_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./App.css */ "./Training/App.css");
+/* harmony import */ var _App_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_App_css__WEBPACK_IMPORTED_MODULE_2__);
+
+
+
+
+var View =
+/** @class */
+function (_super) {
+  Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"])(View, _super);
+
+  function View() {
+    return _super !== null && _super.apply(this, arguments) || this;
+  }
+
+  View.prototype.renderAlgorithmView = function () {
+    if (this.props.AlgView) return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(this.props.AlgView, {
+      options: this.props.options,
+      graphPt: this.props.graphPt
+    });else return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null);
+  };
+
+  View.prototype.render = function () {
+    var _a = this.props,
+        buttonSelectAlg = _a.buttonSelectAlg,
+        selectAlg = _a.selectAlg,
+        buttonInputData = _a.buttonInputData,
+        buttonInputOpt = _a.buttonInputOpt,
+        buttonTrain = _a.buttonTrain,
+        predictor = _a.predictor,
+        buttonDownload = _a.buttonDownload;
+    return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "main"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h1", null, "Training Module"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, "Choose the algorithm to use for the training: "), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("select", {
+      disabled: false,
+      id: "alg",
+      onChange: selectAlg
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", null, "Regressione Lineare (RL)"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", null, "Support Vector Machine (SVM)")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+      onClick: buttonSelectAlg
+    }, "Confirm")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      id: 'import',
+      style: {
+        display: 'none'
+      }
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h3", {
+      id: "options"
+    }, "Editor"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
+      className: "button"
+    }, "Import data (.csv)", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+      className: "form-input",
+      type: "file",
+      name: "data",
+      id: "data",
+      onChange: buttonInputData,
+      accept: ".csv,.txt"
+    })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
+      className: "button"
+    }, "Import previous options (.json)", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+      className: "form-input",
+      type: "file",
+      name: "opt",
+      id: "opt",
+      onChange: buttonInputOpt,
+      accept: ".json"
+    })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+      className: "button",
+      id: 'train',
+      type: "button",
+      value: "Train \uD83D\uDE82",
+      onClick: function onClick() {
+        buttonTrain();
+      },
+      style: {
+        display: 'none'
+      }
+    }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
+      className: 'function',
+      style: {
+        display: 'none'
+      }
+    }, "Function: ", predictor), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+      className: "button",
+      type: "button",
+      value: "Download Predictor",
+      id: "download",
+      onClick: buttonDownload,
+      style: {
+        display: 'none'
+      }
+    }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+      className: "button",
+      id: 'reset',
+      type: "button",
+      value: "Reset",
+      onClick: function onClick() {
+        window.location.reload(false);
+      },
+      style: {
+        display: 'none'
+      }
+    })))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "graph"
+    }, this.renderAlgorithmView())));
+  };
+
+  return View;
+}(react__WEBPACK_IMPORTED_MODULE_1___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (View);
+
+/***/ }),
+
+/***/ "./Training/ViewModel.tsx":
+/*!********************************!*\
+  !*** ./Training/ViewModel.tsx ***!
+  \********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _App_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./App.css */ "./Training/App.css");
+/* harmony import */ var _App_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_App_css__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _View__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./View */ "./Training/View.tsx");
+/* harmony import */ var _Model__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Model */ "./Training/Model.ts");
+/* harmony import */ var _strategies_Strategies__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./strategies/Strategies */ "./Training/strategies/Strategies.ts");
+
+
+
+
+
+
+
+var ViewModel =
+/** @class */
+function (_super) {
+  Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"])(ViewModel, _super);
+
+  function ViewModel(props) {
+    var _this = _super.call(this, props) || this;
+
+    _this.state = {
+      algView: undefined,
+      graphPt: undefined,
+      options: {}
+    };
+    _this.model = new _Model__WEBPACK_IMPORTED_MODULE_4__["default"]();
+    _this.algorithm = 'RL';
+    return _this;
+  }
+
+  ViewModel.validateFile = function (text) {
+    var fileReg = /^[-?\d.\d?,-?\d.\d?\n]+/;
+
+    if (!text.match(fileReg)) {
+      throw new Error('Data has wrong formattation!');
+    }
+  };
+  /** Data parsed from string to Array */
+
+
+  ViewModel.parseCSVtoData = function (text) {
+    /* csv delimiters */
+    var row = "\n";
+    var field = ",";
+    var result = []; //output
+
+    text.trim() //remove white spaces
+    .split(row) //separate rows
+    .forEach(function (element) {
+      var sPoint = element.split(field);
+      var point = [];
+      sPoint.forEach(function (e) {
+        point.push(parseFloat(e));
+      });
+      result.push(point);
+    });
+    return result;
+  };
+
+  ViewModel.prototype.loadData = function (input) {
+    var _this = this;
+
+    var reader = new FileReader(); // declare file reader
+
+    if (input) {
+      reader.readAsText(input); // read file
+
+      try {
+        reader.onload = function (event) {
+          ViewModel.validateFile(event.target ? event.target.result ? event.target.result.toString() : '' : '');
+          var data = ViewModel.parseCSVtoData(event.target ? event.target.result ? event.target.result.toString() : '' : '');
+
+          _this.model.setData(data);
+
+          _this.setState({
+            graphPt: _this.model.getData()
+          });
+
+          var t = document.getElementById('train');
+          if (t) t.setAttribute('style', 'display: block');
+        };
+      } catch (e) {
+        alert(e);
+      }
+    }
+  };
+
+  ViewModel.prototype.loadOpt = function (input) {
+    var _this = this;
+
+    if (input) {
+      var reader = new FileReader(); // declare file reader
+
+      var exstension = input.name.split('.').pop();
+
+      if (exstension === 'json') {
+        reader.readAsText(input); // read file
+
+        try {
+          reader.onload = function (event) {
+            var config = event.target ? event.target.result ? event.target.result.toString() : '' : '';
+
+            _this.model.setPredictorOptions(config);
+
+            _this.setState({
+              options: _this.model.getPredictor().getOpt()
+            });
+          };
+        } catch (e) {
+          alert(e);
+        }
+      } else alert('File extension is not json!');
+    }
+  };
+
+  ViewModel.prototype.setAlgorithm = function (alg) {
+    this.algorithm = alg;
+  };
+
+  ViewModel.prototype.selectAlgorithm = function () {
+    this.model.setAlgorithm(this.algorithm);
+    this.setState({
+      algView: _strategies_Strategies__WEBPACK_IMPORTED_MODULE_5__["algview"][this.algorithm]
+    });
+    this.setState({
+      options: _strategies_Strategies__WEBPACK_IMPORTED_MODULE_5__["opt"][this.algorithm]
+    });
+    this.setState({
+      graphPt: _strategies_Strategies__WEBPACK_IMPORTED_MODULE_5__["data"][this.algorithm]
+    });
+    var a = document.getElementById('alg');
+    if (a) a.setAttribute('disabled', 'true');
+    var i = document.getElementById('import');
+    if (i) i.setAttribute('style', 'display: block');
+  };
+
+  ViewModel.prototype.train = function () {
+    if (this.model.getData()) {
+      this.model.train();
+      this.setState({
+        graphPt: this.model.getData()
+      });
+      var f = document.getElementsByClassName('function')[0];
+      if (f) f.setAttribute('style', 'display: block');
+      var r = document.getElementById('reset');
+      if (r) r.setAttribute('style', 'display: block');
+      var d = document.getElementById('download');
+      if (d) d.setAttribute('style', 'display: block');
+    }
+  };
+
+  ViewModel.prototype.render = function () {
+    var _this = this;
+
+    return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_View__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      selectAlg: function selectAlg(event) {
+        _this.setAlgorithm(event.target.value);
+      },
+      buttonSelectAlg: function buttonSelectAlg() {
+        _this.selectAlgorithm();
+      },
+      buttonInputData: function buttonInputData(e) {
+        _this.loadData(e.target ? e.target.files ? e.target.files[0] : null : null);
+      },
+      buttonInputOpt: function buttonInputOpt(e) {
+        _this.loadOpt(e.target ? e.target.files ? e.target.files[0] : null : null);
+      },
+      buttonTrain: function buttonTrain() {
+        return _this.train();
+      },
+      predictor: this.model.getPredictor().getFun(),
+      buttonDownload: function buttonDownload() {
+        _this.model.downloadPredictor();
+      },
+      AlgView: this.state.algView,
+      options: this.state.options,
+      graphPt: this.state.graphPt
+    });
+  };
+
+  return ViewModel;
+}(react__WEBPACK_IMPORTED_MODULE_1__["PureComponent"]);
+
+/* harmony default export */ __webpack_exports__["default"] = (ViewModel);
+
+/***/ }),
+
+/***/ "./Training/strategies/RL/AlgorithmViewRL.tsx":
+/*!****************************************************!*\
+  !*** ./Training/strategies/RL/AlgorithmViewRL.tsx ***!
+  \****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+
+
+
+var AlgorithmViewRL =
+/** @class */
+function (_super) {
+  Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"])(AlgorithmViewRL, _super);
+
+  function AlgorithmViewRL() {
+    var _this = _super !== null && _super.apply(this, arguments) || this;
+
+    _this.state = {
+      prec: 2
+    };
+    return _this;
+  }
+
+  AlgorithmViewRL.prototype.render = function () {
+    var _this = this;
+
+    var options = this.props.options;
+    return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "graph-container"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h3", null, "Grafico"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, "Choose the algorithm options (if you want)"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      id: "RLopt"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "form"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+      className: "form-label"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("strong", null, "Precision"), ": "), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("select", {
+      value: options.getPrecision(),
+      onChange: function onChange(event) {
+        options.setPrecision(Number(event.target.value));
+
+        _this.setState({
+          prec: options.getPrecision()
+        });
+      }
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
+      value: '1'
+    }, "1"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
+      value: '2'
+    }, "2"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
+      value: '3'
+    }, "3"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
+      value: '4'
+    }, "4"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
+      value: '5'
+    }, "5")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null))));
+  };
+
+  return AlgorithmViewRL;
+}(react__WEBPACK_IMPORTED_MODULE_1___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (AlgorithmViewRL);
+
+/***/ }),
+
+/***/ "./Training/strategies/RL/DataRL.ts":
+/*!******************************************!*\
+  !*** ./Training/strategies/RL/DataRL.ts ***!
+  \******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var DataRL =
+/** @class */
+function () {
+  function DataRL() {
+    this.points = [];
+    this.xpoints = [];
+    this.ypoints = [];
+    this.yline = [];
+  }
+
+  DataRL.prototype.setValue = function (dataset) {
+    var _this = this;
+
+    dataset.forEach(function (p) {
+      var point = [0, 0];
+      point[0] = p[0];
+      point[1] = p[1];
+
+      _this.points.push(point);
+
+      _this.xpoints.push(p[0]);
+
+      _this.ypoints.push(p[1]);
+    });
+  };
+
+  DataRL.prototype.setPointsLine = function (coef) {
+    var _this = this;
+
+    this.xpoints.forEach(function (element) {
+      _this.yline.push(coef[0] * element + coef[1]);
+    });
+  };
+
+  DataRL.prototype.getPoints = function () {
+    return this.points;
+  };
+
+  DataRL.prototype.getXPoints = function () {
+    return this.xpoints;
+  };
+
+  DataRL.prototype.getYPoints = function () {
+    return this.ypoints;
+  };
+
+  DataRL.prototype.getYLine = function () {
+    return this.yline;
+  };
+
+  return DataRL;
+}();
+
+/* harmony default export */ __webpack_exports__["default"] = (DataRL);
+;
+
+/***/ }),
+
+/***/ "./Training/strategies/RL/OptionRL.ts":
+/*!********************************************!*\
+  !*** ./Training/strategies/RL/OptionRL.ts ***!
+  \********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var OptionRL =
+/** @class */
+function () {
+  function OptionRL() {
+    this.order = 2;
+    this.precision = 2;
+  }
+
+  OptionRL.prototype.getOrder = function () {
+    return this.order;
+  };
+
+  OptionRL.prototype.getPrecision = function () {
+    return this.precision;
+  };
+
+  OptionRL.prototype.setPrecision = function (p) {
+    this.precision = p;
+  };
+
+  OptionRL.prototype.setValueFile = function (config) {
+    try {
+      var predictor = JSON.parse(config);
+      this.order = predictor.opt.order;
+      this.precision = predictor.opt.precision;
+    } catch (e) {
+      throw new Error('Predictor bad formatted');
+    }
+  };
+
+  return OptionRL;
+}();
+
+/* harmony default export */ __webpack_exports__["default"] = (OptionRL);
+;
+
+/***/ }),
+
+/***/ "./Training/strategies/RL/StrategyRL.ts":
+/*!**********************************************!*\
+  !*** ./Training/strategies/RL/StrategyRL.ts ***!
+  \**********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var regression__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! regression */ "../node_modules/regression/dist/regression.js");
+/* harmony import */ var regression__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(regression__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Predictor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../Predictor */ "./Training/Predictor.ts");
+
+
+
+var StrategyRL =
+/** @class */
+function () {
+  function StrategyRL() {}
+
+  StrategyRL.prototype.train = function (dataset, options) {
+    return new _Predictor__WEBPACK_IMPORTED_MODULE_1__["default"]('RL', regression__WEBPACK_IMPORTED_MODULE_0___default.a.linear(dataset.getPoints(), {
+      order: options.getOrder(),
+      precision: options.getPrecision()
+    }).equation, regression__WEBPACK_IMPORTED_MODULE_0___default.a.linear(dataset.getPoints(), {
+      order: options.getOrder(),
+      precision: options.getPrecision()
+    }).string, options);
+  };
+
+  return StrategyRL;
+}();
+
+/* harmony default export */ __webpack_exports__["default"] = (StrategyRL);
+
+/***/ }),
+
+/***/ "./Training/strategies/SVM/AlgorithmViewSVM.tsx":
+/*!******************************************************!*\
+  !*** ./Training/strategies/SVM/AlgorithmViewSVM.tsx ***!
+  \******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+
+
+
+var AlgrithmViewSVM =
+/** @class */
+function (_super) {
+  Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"])(AlgrithmViewSVM, _super);
+
+  function AlgrithmViewSVM() {
+    var _this = _super !== null && _super.apply(this, arguments) || this;
+    /** Options:
+    {
+        C = 1.0; For C, Higher = you trust your data more. Lower = more regularization. Should be in range of around 1e-2 ... 1e5 at most.
+        tol = 1e-4; // do not touch this unless you're pro
+        alphatol = 1e-7; // used for pruning non-support vectors. do not touch unless you're pro
+        maxiter // if you have a larger problem, you may need to increase this
+        kernel // kernel type
+        numpasses = 10; // increase this for higher precision of the result. (but slower)
+    }
+    */
+
+
+    _this.state = {
+      opt: 0
+    };
+    return _this;
+  }
+
+  AlgrithmViewSVM.prototype.render = function () {
+    var _this = this;
+
+    var options = this.props.options;
+    return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "text-center"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h3", null, "Grafico")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "text-center"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h3", {
+      id: "options"
+    }, "Choose the algorithm options (if you want)")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
+      className: "form-label form-label-2 mb-2"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("strong", null, "Kernel type"), ": linear"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
+      className: "form-label form-label-2 mb-2"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("strong", null, "Alpha Tollerance"), ": 1e-7"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
+      className: "form-label form-label-2 mb-10"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("strong", null, "Tollerance"), ": 1e-4"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      id: "SVMopt"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "form"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
+      className: "form-label"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("strong", null, "C"), ":"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+      type: "number",
+      id: "C",
+      value: options.getC(),
+      onChange: function onChange(event) {
+        options.setC(Number(event.target.value));
+
+        _this.setState({
+          opt: options.getC()
+        });
+      }
+    })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "form"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
+      className: "form-label"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("strong", null, "Max iterations"), ":"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+      type: "number",
+      id: "maxiter",
+      value: options.getMaxIter(),
+      onChange: function onChange(event) {
+        options.setMaxIter(Number(event.target.value));
+
+        _this.setState({
+          opt: options.getMaxIter()
+        });
+      }
+    })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "form"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
+      className: "form-label"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("strong", null, "Number passes"), ":"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+      type: "number",
+      id: "numpas",
+      value: options.getNumPass(),
+      onChange: function onChange(event) {
+        options.setNumPass(Number(event.target.value));
+
+        _this.setState({
+          opt: options.getNumPass()
+        });
+      }
+    }))));
+  };
+
+  return AlgrithmViewSVM;
+}(react__WEBPACK_IMPORTED_MODULE_1___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (AlgrithmViewSVM);
+
+/***/ }),
+
+/***/ "./Training/strategies/SVM/DataSVM.ts":
+/*!********************************************!*\
+  !*** ./Training/strategies/SVM/DataSVM.ts ***!
+  \********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../node_modules/tslib/tslib.es6.js");
+
+
+var DataSVM =
+/** @class */
+function () {
+  function DataSVM() {
+    this.points = [];
+    this.labels = [];
+    this.xRpoints = [];
+    this.yRpoints = [];
+    this.xWpoints = [];
+    this.yWpoints = [];
+    this.xline = [];
+    this.yline = [];
+  }
+
+  DataSVM.prototype.setValue = function (dataset) {
+    var _this = this;
+
+    dataset.forEach(function (triple) {
+      _this.points.push([triple[0], triple[1]]);
+
+      _this.labels.push(triple[2]);
+    });
+    dataset.forEach(function (couple) {
+      if (couple[2] === 1) {
+        _this.xRpoints.push(couple[0]);
+
+        _this.yRpoints.push(couple[1]);
+      } else {
+        // couple[2] === -1
+        _this.xWpoints.push(couple[0]);
+
+        _this.yWpoints.push(couple[1]);
+      }
+    });
+  };
+
+  DataSVM.prototype.setPointsLine = function (coef) {
+    var _this = this;
+
+    this.xline = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__spread"])(this.xRpoints, this.xWpoints);
+    this.xline.forEach(function (element) {
+      _this.yline.push(-coef[1] / coef[2] * element + -coef[0] / coef[2]);
+    });
+  };
+
+  DataSVM.prototype.getPoints = function () {
+    return this.points;
+  };
+
+  DataSVM.prototype.getLabels = function () {
+    return this.labels;
+  };
+
+  DataSVM.prototype.getXRPoints = function () {
+    return this.xRpoints;
+  };
+
+  DataSVM.prototype.getXWPoints = function () {
+    return this.xWpoints;
+  };
+
+  DataSVM.prototype.getYRPoints = function () {
+    return this.yRpoints;
+  };
+
+  DataSVM.prototype.getYWPoints = function () {
+    return this.yWpoints;
+  };
+
+  DataSVM.prototype.getXLine = function () {
+    return this.xline;
+  };
+
+  DataSVM.prototype.getYLine = function () {
+    return this.yline;
+  };
+
+  return DataSVM;
+}();
+
+/* harmony default export */ __webpack_exports__["default"] = (DataSVM);
+;
+
+/***/ }),
+
+/***/ "./Training/strategies/SVM/OptionSVM.ts":
+/*!**********************************************!*\
+  !*** ./Training/strategies/SVM/OptionSVM.ts ***!
+  \**********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var OptionSVM =
+/** @class */
+function () {
+  function OptionSVM() {
+    this.C = 1.0;
+    this.maxiter = 10000;
+    this.numpass = 10;
+  }
+
+  OptionSVM.prototype.getC = function () {
+    return this.C;
+  };
+
+  OptionSVM.prototype.getMaxIter = function () {
+    return this.maxiter;
+  };
+
+  OptionSVM.prototype.getNumPass = function () {
+    return this.numpass;
+  };
+
+  OptionSVM.prototype.setC = function (c) {
+    this.C = c;
+  };
+
+  OptionSVM.prototype.setMaxIter = function (m) {
+    this.maxiter = m;
+  };
+
+  OptionSVM.prototype.setNumPass = function (n) {
+    this.numpass = n;
+  };
+
+  OptionSVM.prototype.setValueFile = function (config) {
+    try {
+      var predictor = JSON.parse(config);
+      this.C = predictor.opt.C;
+      this.maxiter = predictor.opt.maxiter;
+      this.numpass = predictor.opt.numpass;
+    } catch (e) {
+      throw new Error('Predictor bad formatted');
+    }
+  };
+
+  return OptionSVM;
+}();
+
+/* harmony default export */ __webpack_exports__["default"] = (OptionSVM);
+;
+
+/***/ }),
+
+/***/ "./Training/strategies/SVM/StrategySVM.ts":
+/*!************************************************!*\
+  !*** ./Training/strategies/SVM/StrategySVM.ts ***!
+  \************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Predictor__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../Predictor */ "./Training/Predictor.ts");
+
+
+var StrategySVM =
+/** @class */
+function () {
+  function StrategySVM() {}
+  /** SVM predictor:
+      {
+       N: numero di punti
+       D: dimensione dei punti (es. 2,3..)
+       b: c della retta in forma implicita
+       kernerlType: tipo di kernel
+       w: a e b della retta in forma implicita
+      }
+  */
+
+
+  StrategySVM.prototype.train = function (dataset, options) {
+    var svm = __webpack_require__(/*! svm */ "../node_modules/svm/lib/svm.js");
+
+    var SVM = new svm.SVM();
+    SVM.train(dataset.getPoints(), dataset.getLabels(), {
+      C: options.getC(),
+      maxiter: options.getMaxIter(),
+      numpass: options.getNumPass()
+    });
+    return new _Predictor__WEBPACK_IMPORTED_MODULE_0__["default"]('SVM', [SVM.b, SVM.w[0], SVM.w[1]], // [ w0, w1, w2 ] = [ c, a, b ]
+    "y = " + -SVM.w[0] / SVM.w[1] + "x + " + -SVM.b / SVM.w[0], options);
+  };
+
+  return StrategySVM;
+}();
+
+/* harmony default export */ __webpack_exports__["default"] = (StrategySVM);
+
+/***/ }),
+
+/***/ "./Training/strategies/Strategies.ts":
+/*!*******************************************!*\
+  !*** ./Training/strategies/Strategies.ts ***!
+  \*******************************************/
+/*! exports provided: strategies, algview, data, opt */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "strategies", function() { return strategies; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "algview", function() { return algview; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "data", function() { return data; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "opt", function() { return opt; });
+/* harmony import */ var _RL_StrategyRL__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./RL/StrategyRL */ "./Training/strategies/RL/StrategyRL.ts");
+/* harmony import */ var _SVM_StrategySVM__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SVM/StrategySVM */ "./Training/strategies/SVM/StrategySVM.ts");
+/* harmony import */ var _RL_AlgorithmViewRL__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./RL/AlgorithmViewRL */ "./Training/strategies/RL/AlgorithmViewRL.tsx");
+/* harmony import */ var _SVM_AlgorithmViewSVM__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./SVM/AlgorithmViewSVM */ "./Training/strategies/SVM/AlgorithmViewSVM.tsx");
+/* harmony import */ var _RL_DataRL__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./RL/DataRL */ "./Training/strategies/RL/DataRL.ts");
+/* harmony import */ var _SVM_DataSVM__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./SVM/DataSVM */ "./Training/strategies/SVM/DataSVM.ts");
+/* harmony import */ var _RL_OptionRL__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./RL/OptionRL */ "./Training/strategies/RL/OptionRL.ts");
+/* harmony import */ var _SVM_OptionSVM__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./SVM/OptionSVM */ "./Training/strategies/SVM/OptionSVM.ts");
+
+
+
+
+
+
+
+
+var strategies = {
+  'RL': new _RL_StrategyRL__WEBPACK_IMPORTED_MODULE_0__["default"](),
+  'SVM': new _SVM_StrategySVM__WEBPACK_IMPORTED_MODULE_1__["default"]()
+};
+var algview = {
+  'RL': _RL_AlgorithmViewRL__WEBPACK_IMPORTED_MODULE_2__["default"],
+  'SVM': _SVM_AlgorithmViewSVM__WEBPACK_IMPORTED_MODULE_3__["default"]
+};
+var data = {
+  'RL': new _RL_DataRL__WEBPACK_IMPORTED_MODULE_4__["default"](),
+  'SVM': new _SVM_DataSVM__WEBPACK_IMPORTED_MODULE_5__["default"]()
+};
+var opt = {
+  'RL': new _RL_OptionRL__WEBPACK_IMPORTED_MODULE_6__["default"](),
+  'SVM': new _SVM_OptionSVM__WEBPACK_IMPORTED_MODULE_7__["default"]()
+};
+
+/***/ }),
+
+/***/ "./dashboards/sample.json":
+/*!********************************!*\
+  !*** ./dashboards/sample.json ***!
+  \********************************/
+/*! exports provided: annotations, editable, gnetId, graphTooltip, id, links, panels, refresh, schemaVersion, style, tags, templating, time, timepicker, timezone, title, uid, variables, version, default */
+/***/ (function(module) {
+
+module.exports = JSON.parse("{\"annotations\":{\"list\":[{\"builtIn\":1,\"datasource\":\"-- Grafana --\",\"enable\":true,\"hide\":true,\"iconColor\":\"rgba(0, 211, 255, 1)\",\"name\":\"Annotations & Alerts\",\"type\":\"dashboard\"}]},\"editable\":true,\"gnetId\":null,\"graphTooltip\":0,\"id\":null,\"links\":[],\"panels\":[{\"aliasColors\":{},\"bars\":false,\"dashLength\":10,\"dashes\":false,\"datasource\":null,\"fill\":1,\"fillGradient\":0,\"gridPos\":{\"h\":9,\"w\":12,\"x\":0,\"y\":0},\"hiddenSeries\":false,\"id\":2,\"legend\":{\"avg\":false,\"current\":false,\"max\":false,\"min\":false,\"show\":true,\"total\":false,\"values\":false},\"lines\":true,\"linewidth\":1,\"nullPointMode\":\"connected\",\"options\":{\"dataLinks\":[]},\"percentage\":false,\"pointradius\":2,\"points\":false,\"renderer\":\"flot\",\"seriesOverrides\":[],\"spaceLength\":10,\"stack\":false,\"steppedLine\":false,\"targets\":[{\"groupBy\":[{\"params\":[\"$__interval\"],\"type\":\"time\"},{\"params\":[\"null\"],\"type\":\"fill\"}],\"measurement\":\"prediction\",\"orderByTime\":\"ASC\",\"policy\":\"default\",\"refId\":\"A\",\"resultFormat\":\"time_series\",\"select\":[[{\"params\":[\"value\"],\"type\":\"field\"},{\"params\":[],\"type\":\"mean\"}]],\"tags\":[]}],\"thresholds\":[],\"timeFrom\":null,\"timeRegions\":[],\"timeShift\":null,\"title\":\"Prediction Graph\",\"tooltip\":{\"shared\":true,\"sort\":0,\"value_type\":\"individual\"},\"type\":\"graph\",\"xaxis\":{\"buckets\":null,\"mode\":\"time\",\"name\":null,\"show\":true,\"values\":[]},\"yaxes\":[{\"format\":\"short\",\"label\":null,\"logBase\":1,\"max\":null,\"min\":null,\"show\":true},{\"format\":\"short\",\"label\":null,\"logBase\":1,\"max\":null,\"min\":null,\"show\":true}],\"yaxis\":{\"align\":false,\"alignLevel\":null}},{\"datasource\":null,\"gridPos\":{\"h\":9,\"w\":8,\"x\":12,\"y\":0},\"id\":4,\"options\":{\"predictor\":{\"algorithm\":\"RL\",\"coefficients\":[1.37,1.38],\"opt\":{\"toPredict\":0}}},\"targets\":[{\"alias\":\"cpu0\",\"groupBy\":[{\"params\":[\"$__interval\"],\"type\":\"time\"},{\"params\":[\"linear\"],\"type\":\"fill\"}],\"measurement\":\"cpu\",\"orderByTime\":\"ASC\",\"policy\":\"default\",\"refId\":\"A\",\"resultFormat\":\"time_series\",\"select\":[[{\"params\":[\"usage_system\"],\"type\":\"field\"},{\"params\":[],\"type\":\"mean\"}]],\"tags\":[{\"key\":\"cpu\",\"operator\":\"=\",\"value\":\"cpu0\"}]},{\"alias\":\"cpu1\",\"groupBy\":[{\"params\":[\"$__interval\"],\"type\":\"time\"},{\"params\":[\"linear\"],\"type\":\"fill\"}],\"measurement\":\"cpu\",\"orderByTime\":\"ASC\",\"policy\":\"default\",\"refId\":\"B\",\"resultFormat\":\"time_series\",\"select\":[[{\"params\":[\"usage_system\"],\"type\":\"field\"},{\"params\":[],\"type\":\"mean\"}]],\"tags\":[{\"key\":\"cpu\",\"operator\":\"=\",\"value\":\"cpu1\"}]}],\"timeFrom\":null,\"timeShift\":null,\"title\":\"Prediction Settings\",\"type\":\"prediction-panel\"}],\"refresh\":\"5s\",\"schemaVersion\":22,\"style\":\"dark\",\"tags\":[],\"templating\":{\"list\":[]},\"time\":{\"from\":\"now-5m\",\"to\":\"now\"},\"timepicker\":{\"refresh_intervals\":[\"5s\",\"10s\",\"30s\",\"1m\",\"5m\",\"15m\",\"30m\",\"1h\",\"2h\",\"1d\"]},\"timezone\":\"\",\"title\":\"Sample Dashboard\",\"uid\":\"sample-dash\",\"variables\":{\"list\":[]},\"version\":51}");
+
+/***/ }),
+
+/***/ "./module.ts":
+/*!*******************!*\
+  !*** ./module.ts ***!
+  \*******************/
+/*! exports provided: ConfigCtrl, plugin */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ConfigCtrl", function() { return ConfigCtrl; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "plugin", function() { return plugin; });
+/* harmony import */ var _grafana_data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @grafana/data */ "@grafana/data");
+/* harmony import */ var _grafana_data__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_grafana_data__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var AppView__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! AppView */ "./AppView.tsx");
+/* harmony import */ var Training_ViewModel__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! Training/ViewModel */ "./Training/ViewModel.tsx");
+
+
+
+
+var ConfigCtrl =
+/** @class */
+function () {
+  function ConfigCtrl() {}
+
+  return ConfigCtrl;
+}(); // Placeholer class just for enable app.. waiting for grafana updates
+
+
+
+var plugin = new _grafana_data__WEBPACK_IMPORTED_MODULE_0__["AppPlugin"]().addConfigPage({
+  title: 'Wizard',
+  icon: 'fa fa-magic',
+  body: AppView__WEBPACK_IMPORTED_MODULE_1__["AppView"],
+  id: 'import'
+}).addConfigPage({
+  title: "Training",
+  icon: '',
+  body: Training_ViewModel__WEBPACK_IMPORTED_MODULE_2__["default"],
+  id: 'training'
+});
+
+/***/ }),
+
+/***/ "@grafana/data":
+/*!********************************!*\
+  !*** external "@grafana/data" ***!
+  \********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE__grafana_data__;
+
+/***/ }),
+
+/***/ "@grafana/ui":
+/*!******************************!*\
+  !*** external "@grafana/ui" ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE__grafana_ui__;
+
+/***/ }),
+
+/***/ "react":
+/*!************************!*\
+  !*** external "react" ***!
+  \************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_react__;
+
+/***/ })
+
+/******/ })});;
 //# sourceMappingURL=module.js.map
