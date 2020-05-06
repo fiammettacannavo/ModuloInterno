@@ -12,7 +12,7 @@
  * 0.1 - Writing Predictor class for incpsulation of pred info.
  */
 
-import { Option } from '../strategies/Options';
+import Option from '../../../common/Options';
 import { options } from '../strategies/strategies';
 
 export class Predictor<Opt extends Option> {

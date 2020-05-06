@@ -2,7 +2,7 @@ import { Strategy } from '../Strategy';
 import { Data, DataIterator } from '../../utils/Data';
 import { Predicted } from '../../utils/Predicted';
 import { Predictor } from '../../utils/Predictor';
-import { OptionRL } from './OptionsRL';
+import OptionRL from '../../../../common/OptionsRL';
 
 export class StrategyRL implements Strategy {
     predict(data: Data, predictor: Predictor<OptionRL>) {

@@ -2,8 +2,8 @@ import 'jest';
 import { Model } from '../panels/PredictionPanel/Model';
 import { Data } from 'panels/PredictionPanel/utils/Data';
 import { Predictor } from 'panels/PredictionPanel/utils/Predictor';
-import { OptionRL } from 'panels/PredictionPanel/strategies/RL/OptionsRL';
-import { OptionSVM } from 'panels/PredictionPanel/strategies/SVM/OptionsSVM';
+import { OptionRL } from 'common/OptionsRL';
+import { OptionSVM } from 'common/OptionsSVM';
 
 let model: Model;
 let data: Data;

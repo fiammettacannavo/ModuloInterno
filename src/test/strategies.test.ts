@@ -2,7 +2,7 @@ import { StrategyRL } from 'panels/PredictionPanel/strategies/RL/StrategyRL';
 import { Strategy } from 'panels/PredictionPanel/strategies/Strategy';
 import { Data } from 'panels/PredictionPanel/utils/Data';
 import { Predictor } from 'panels/PredictionPanel/utils/Predictor';
-import { OptionRL } from 'panels/PredictionPanel/strategies/RL/OptionsRL';
+import { OptionRL } from 'common/OptionsRL';
 
 let rl: Strategy;
 

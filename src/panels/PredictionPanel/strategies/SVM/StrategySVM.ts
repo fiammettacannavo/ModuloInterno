@@ -1,7 +1,7 @@
 import { Strategy } from '../Strategy';
 import { Data, DataIterator } from '../../utils/Data';
 import { Predicted } from '../../utils/Predicted';
-import { OptionSVM } from './OptionsSVM';
+import OptionSVM from '../../../../common/OptionsSVM';
 import { Predictor } from '../../utils/Predictor';
 
 export class StrategySVM implements Strategy {

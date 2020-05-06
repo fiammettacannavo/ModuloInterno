@@ -2,7 +2,7 @@ import React, {PureComponent} from 'react';
 import './App.css';
 import View from './View';
 import Model from './Model';
-import { algview, opt, data } from './strategies/Strategies';
+import { algview, opt } from './strategies/Strategies';
 import { PluginConfigPageProps, AppPluginMeta } from '@grafana/data';
 
 export default class ViewModel extends PureComponent<PluginConfigPageProps<AppPluginMeta>> {
@@ -11,7 +11,6 @@ export default class ViewModel extends PureComponent<PluginConfigPageProps<AppPl
     private algorithm: string;
     state = {
         algView: undefined,
-        graphPt: undefined,
         options: {}
     }
 
@@ -56,7 +55,6 @@ export default class ViewModel extends PureComponent<PluginConfigPageProps<AppPl
                     ViewModel.validateFile(event.target ? (event.target.result ? event.target.result.toString() : '' ): '' )
                     const data = ViewModel.parseCSVtoData(event.target ? (event.target.result ? event.target.result.toString() : '' ): '' );
                     this.model.setData(data);
-                    this.setState({graphPt: this.model.getData()});
                     let t = document.getElementById('train');
                     if(t) t.setAttribute('style','display: block');
                 };
@@ -94,7 +92,6 @@ export default class ViewModel extends PureComponent<PluginConfigPageProps<AppPl
         this.model.setAlgorithm(this.algorithm);
         this.setState({ algView: algview[this.algorithm] });
         this.setState({ options: opt[this.algorithm] });
-        this.setState({ graphPt: data[this.algorithm] });
         let a = document.getElementById('alg');
         if(a) a.setAttribute('disabled','true');
         let i = document.getElementById('import');
@@ -104,7 +101,6 @@ export default class ViewModel extends PureComponent<PluginConfigPageProps<AppPl
     train(): void {
         if(this.model.getData()){
             this.model.train();
-            this.setState({graphPt: this.model.getData()});
             let f = document.getElementsByClassName('function')[0];
             if(f) f.setAttribute('style','display: block');
             let r = document.getElementById('reset');
@@ -123,10 +119,11 @@ export default class ViewModel extends PureComponent<PluginConfigPageProps<AppPl
                     buttonInputOpt = {(e) => {this.loadOpt(e.target ? (e.target.files ? e.target.files[0]: null) : null )}} 
                     buttonTrain = {() => this.train()}
                     predictor = {this.model.getPredictor().getFun()}
+                    nameAcc = {this.algorithm === 'RL' ? 'R^2' : 'F-Measure'}
+                    accuracy = {this.model.getPredictor().getAcc()}
                     buttonDownload = {() => {this.model.downloadPredictor()}}
                     AlgView = {this.state.algView}
                     options = {this.state.options}
-                    graphPt = {this.state.graphPt}
                 />
         );
     }

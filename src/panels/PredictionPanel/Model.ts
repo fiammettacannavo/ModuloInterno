@@ -3,7 +3,7 @@ import { Data } from 'panels/PredictionPanel/utils/Data';
 import { Predicted, PredIterator } from 'panels/PredictionPanel/utils/Predicted';
 import { strategies } from './strategies/strategies';
 import { Strategy } from './strategies/Strategy';
-import { Option } from './strategies/Options';
+import Option from '../../common/Options';
 
 export class Model {
     private data?: Data;

@@ -1,10 +1,8 @@
 import React from 'react';
-import DataRL from './DataRL';
-import OptionRL from './OptionRL';
+import OptionRL from '../../../common/OptionsRL';
 
 interface Actions {
-	options: OptionRL,
-	graphPt: DataRL
+	options: OptionRL
 }
 
 export default class AlgorithmViewRL extends React.Component<Actions> {
@@ -17,7 +15,6 @@ export default class AlgorithmViewRL extends React.Component<Actions> {
 		const { options } = this.props;
 		return (
 			<div className="graph-container">
-				<h3>Grafico</h3>
 				<p>Choose the algorithm options (if you want)</p>
 
 				<div id="RLopt">

@@ -2,7 +2,7 @@ import Strategy from "./../Strategy";
 import regression from 'regression';
 import Predictor from "../../Predictor";
 import DataRL from "./DataRL";
-import OptionRL from "./OptionRL";
+import OptionRL from "../../../common/OptionsRL";
 
 export default class StrategyRL implements Strategy{
     

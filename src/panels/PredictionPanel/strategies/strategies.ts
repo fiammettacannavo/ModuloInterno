@@ -4,9 +4,9 @@ import { StrategySVM } from './SVM/StrategySVM';
 import { Strategy } from './Strategy';
 import { ConfigRL } from './RL/ConfigRL';
 import { ConfigSVM } from './SVM/ConfigSVM';
-import { Option } from './Options';
-import { OptionRL } from './RL/OptionsRL';
-import { OptionSVM } from './SVM/OptionsSVM';
+import Option from '../../../common/Options';
+import OptionRL from '../../../common/OptionsRL';
+import OptionSVM from '../../../common/OptionsSVM';
 
 export const strategies: { [index: string]: Strategy } = {
     RL: new StrategyRL(),

@@ -5,8 +5,8 @@ import { LoadingState, dateTime, DefaultTimeZone, FieldType, ArrayVector } from 
 import { ConfigSVM } from 'panels/PredictionPanel/strategies/SVM/ConfigSVM';
 import { Predictor } from 'panels/PredictionPanel/utils/Predictor';
 import { PanelController } from 'panels/PredictionPanel/PanelController';
-import { OptionRL } from 'panels/PredictionPanel/strategies/RL/OptionsRL';
-import { OptionSVM } from 'panels/PredictionPanel/strategies/SVM/OptionsSVM';
+import { OptionRL } from 'common/OptionsRL';
+import { OptionSVM } from 'common/OptionsSVM';
 
 let data = {
     series: [

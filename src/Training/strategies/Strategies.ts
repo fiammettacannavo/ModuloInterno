@@ -7,9 +7,9 @@ import React from 'react';
 import DataRL from './RL/DataRL';
 import DataSVM from './SVM/DataSVM';
 import Data from './Data';
-import OptionRL from './RL/OptionRL';
-import OptionSVM from './SVM/OptionSVM';
-import Option from './Option';
+import OptionRL from '../../common/OptionsRL';
+import OptionSVM from '../../common/OptionsSVM';
+import Option from '../../common/Options';
 
 
 export const strategies: { [index: string]: Strategy } = {

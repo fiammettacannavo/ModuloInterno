@@ -2,7 +2,6 @@ import React, { PureComponent } from 'react';
 import { PanelOptionsGrid, PanelOptionsGroup } from '@grafana/ui';
 import { Props } from './Props';
 import { PanelEditorProps } from '@grafana/data';
-import './strategies/strategies';
 import { configs } from './strategies/strategies';
 import { Predictor } from 'panels/PredictionPanel/utils/Predictor';
 

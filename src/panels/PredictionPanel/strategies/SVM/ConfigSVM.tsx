@@ -1,7 +1,7 @@
 import React from 'react';
 import { PanelOptionsGroup } from '@grafana/ui';
 import { Config } from '../Config';
-import { OptionSVM } from './OptionsSVM';
+import OptionSVM from '../../../../common/OptionsSVM';
 import { Predictor } from '../../utils/Predictor';
 
 export class ConfigSVM extends Config {

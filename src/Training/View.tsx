@@ -8,10 +8,11 @@ interface Actions {
     buttonInputOpt: (event: ChangeEvent<HTMLInputElement>) => void,
     buttonTrain: () => void,
     predictor: string,
+    nameAcc: string,
+    accuracy: number | undefined,
     buttonDownload: () => void,
     AlgView?: typeof React.Component,
     options: any,
-    graphPt: any
 }
 
 export default class View extends React.Component<Actions> {
@@ -20,7 +21,6 @@ export default class View extends React.Component<Actions> {
         if (this.props.AlgView)
             return (<this.props.AlgView
                 options={this.props.options}
-                graphPt={this.props.graphPt}
             />);
         else
             return (<div></div>);
@@ -28,7 +28,7 @@ export default class View extends React.Component<Actions> {
 
     render() {
         const { buttonSelectAlg, selectAlg, buttonInputData, buttonInputOpt,
-            buttonTrain, predictor, buttonDownload } = this.props;
+            buttonTrain, predictor, nameAcc, accuracy, buttonDownload } = this.props;
         return (
             <div className="main">
                 <h1>Training Module</h1>
@@ -78,6 +78,7 @@ export default class View extends React.Component<Actions> {
                         />
 
                         <p className='function' style={{ display: 'none' }}>Function: {predictor}</p>
+                        <p className='function'  style={{display: 'none'}}>{nameAcc}: {accuracy}</p>
 
                         <div>
                             <input

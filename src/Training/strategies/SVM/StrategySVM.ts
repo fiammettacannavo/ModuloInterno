@@ -1,7 +1,7 @@
 import Strategy from "./../Strategy";
 import Predictor from "../../Predictor";
 import DataSVM from "./DataSVM";
-import OptionSVM from "./OptionSVM";
+import OptionSVM from "../../../common/OptionsSVM";
 
 export default class StrategySVM implements Strategy{
 

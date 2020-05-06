@@ -1,10 +1,8 @@
 import React from 'react';
-import DataSVM from './DataSVM';
-import OptionSVM from './OptionSVM';
+import OptionSVM from '../../../common/OptionsSVM';
 
 interface Actions {
-    options: OptionSVM,
-    graphPt: DataSVM
+    options: OptionSVM
 }
 
 export default class AlgrithmViewSVM extends React.Component<Actions> {
@@ -26,11 +24,7 @@ export default class AlgrithmViewSVM extends React.Component<Actions> {
     render() {
         const { options } = this.props;        
         return (
-            <div>
-			
-				<div className="text-center">
-					<h3>Grafico</h3>
-				</div>
+            <div className="graph-container">
                 
 				<div className="text-center">
 					<h3 id="options" >Choose the algorithm options (if you want)</h3>
