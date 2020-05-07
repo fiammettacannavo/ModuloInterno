@@ -3,7 +3,7 @@ import { PanelOptionsGrid, PanelOptionsGroup } from '@grafana/ui';
 import { Props } from './Props';
 import { PanelEditorProps } from '@grafana/data';
 import { configs } from './strategies/strategies';
-import { Predictor } from 'panels/PredictionPanel/utils/Predictor';
+import Predictor from 'common/Predictor';
 
 export class EditorView extends PureComponent<PanelEditorProps<Props>> {
     private importPredictor(target: HTMLInputElement) {

@@ -1,11 +1,11 @@
 import Strategy from './../Strategy';
 import regression from 'regression';
-import Predictor from '../../Predictor';
+import Predictor from '../../../common/Predictor';
 import DataRL from './DataRL';
 import OptionRL from '../../../common/OptionsRL';
 
 export default class StrategyRL implements Strategy {
-    train(dataset: DataRL, options: OptionRL): Predictor {
+    train(dataset: DataRL, options: OptionRL): Predictor<OptionRL> {
         return new Predictor(
             'RL',
             regression.linear(dataset.getPoints(), {

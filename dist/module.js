@@ -1874,16 +1874,14 @@ if(false) {}
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _strategies_Strategies__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./strategies/Strategies */ "./Training/strategies/Strategies.ts");
-/* harmony import */ var _Predictor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Predictor */ "./Training/Predictor.ts");
+/* harmony import */ var _common_Predictor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../common/Predictor */ "./common/Predictor.ts");
 
 
 
 var Model =
 /** @class */
 function () {
-  function Model() {
-    this.predictor = new _Predictor__WEBPACK_IMPORTED_MODULE_1__["default"]();
-  }
+  function Model() {}
 
   Model.prototype.getData = function () {
     return this.data;
@@ -1904,19 +1902,23 @@ function () {
 
 
   Model.prototype.setAlgorithm = function (alg) {
-    this.predictor.setAlg(alg);
+    this.predictor = new _common_Predictor__WEBPACK_IMPORTED_MODULE_1__["default"](alg, [], '', _strategies_Strategies__WEBPACK_IMPORTED_MODULE_0__["opt"][alg]);
     this.strategy = _strategies_Strategies__WEBPACK_IMPORTED_MODULE_0__["strategies"][alg];
     this.data = _strategies_Strategies__WEBPACK_IMPORTED_MODULE_0__["data"][alg];
   };
 
   Model.prototype.setPredictorOptions = function (config) {
-    this.predictor.setOpt(config);
+    var _a;
+
+    (_a = this.predictor) === null || _a === void 0 ? void 0 : _a.setOpt(config);
   };
   /** Save the predictor in function */
 
 
   Model.prototype.train = function () {
-    var opt = this.predictor.getOpt();
+    var _a;
+
+    var opt = (_a = this.predictor) === null || _a === void 0 ? void 0 : _a.getOpt();
 
     if (this.strategy && this.data && opt) {
       this.predictor = this.strategy.train(this.data, opt);
@@ -1926,101 +1928,22 @@ function () {
 
 
   Model.prototype.downloadPredictor = function () {
-    var FileSaver = __webpack_require__(/*! file-saver */ "../node_modules/file-saver/dist/FileSaver.min.js"); // import file saver
+    if (this.predictor) {
+      var FileSaver = __webpack_require__(/*! file-saver */ "../node_modules/file-saver/dist/FileSaver.min.js"); // import file saver
 
 
-    var text = this.predictor.toJSON();
-    var file = new File([text], 'Training.json', {
-      type: 'text/json;charset=utf-8'
-    });
-    FileSaver.saveAs(file); // download
+      var text = this.predictor.toJSON();
+      var file = new File([text], 'Training.json', {
+        type: 'text/json;charset=utf-8'
+      });
+      FileSaver.saveAs(file); // download
+    }
   };
 
   return Model;
 }();
 
 /* harmony default export */ __webpack_exports__["default"] = (Model);
-
-/***/ }),
-
-/***/ "./Training/Predictor.ts":
-/*!*******************************!*\
-  !*** ./Training/Predictor.ts ***!
-  \*******************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _strategies_Strategies__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./strategies/Strategies */ "./Training/strategies/Strategies.ts");
-
-
-var Predictor =
-/** @class */
-function () {
-  function Predictor(alg, coef, func, opt, acc) {
-    this.algorithm = alg ? alg : '';
-    this.coefficients = coef ? coef : [];
-    this.predFun = func ? func : '';
-
-    if (opt) {
-      this.opt = opt;
-    }
-
-    if (acc) {
-      this.accuracy = acc;
-    }
-  }
-
-  Predictor.prototype.getAlg = function () {
-    return this.algorithm;
-  };
-
-  Predictor.prototype.getCoef = function () {
-    return this.coefficients;
-  };
-
-  Predictor.prototype.getFun = function () {
-    return this.predFun;
-  };
-
-  Predictor.prototype.getOpt = function () {
-    return this.opt;
-  };
-
-  Predictor.prototype.getAcc = function () {
-    return this.accuracy;
-  };
-
-  Predictor.prototype.setAlg = function (alg) {
-    this.algorithm = alg;
-    this.opt = _strategies_Strategies__WEBPACK_IMPORTED_MODULE_0__["opt"][alg];
-  };
-
-  Predictor.prototype.setCoef = function (coef) {
-    this.coefficients = coef;
-  };
-
-  Predictor.prototype.setFun = function (fun) {
-    this.predFun = fun;
-  };
-
-  Predictor.prototype.setOpt = function (conf) {
-    var _a;
-
-    (_a = this.opt) === null || _a === void 0 ? void 0 : _a.setValueFile(conf);
-  };
-
-  Predictor.prototype.toJSON = function () {
-    var textFile = "{\n    \"GroupName\": \"ProApes\",\n    \"Version\": \"1.5\",\n    \"PluginName\": \"PredireInGrafana\",\n    \"algorithm\": \"" + this.algorithm + "\",\n    \"coefficients\": [" + this.coefficients + "],\n    \"predFun\": \"" + this.predFun + "\",\n    \"opt\": " + JSON.stringify(this.opt) + ",\n    \"accuracy\": \"" + this.accuracy + "\"\n}"; // string output
-
-    return textFile;
-  };
-
-  return Predictor;
-}();
-
-/* harmony default export */ __webpack_exports__["default"] = (Predictor);
 
 /***/ }),
 
@@ -2078,7 +2001,11 @@ function (_super) {
       disabled: false,
       id: "alg",
       onChange: selectAlg
-    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", null, "Regressione Lineare (RL)"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", null, "Support Vector Machine (SVM)")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
+      value: "RL"
+    }, "Regressione Lineare (RL)"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
+      value: "SVM"
+    }, "Support Vector Machine (SVM)")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
       onClick: buttonSelectAlg
     }, "Confirm")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
       className: "graph"
@@ -2271,13 +2198,23 @@ function (_super) {
 
         try {
           reader.onload = function (event) {
-            // when loaded
+            var _a; // when loaded
+
+
             var config = event.target ? event.target.result ? event.target.result.toString() : '' : '';
 
             _this.model.setPredictorOptions(config);
 
             _this.setState({
-              options: _this.model.getPredictor().getOpt()
+              options: (_a = _this.model.getPredictor()) === null || _a === void 0 ? void 0 : _a.getOpt()
+            });
+
+            _this.setState({
+              fun: ''
+            });
+
+            _this.setState({
+              acc: 0
             });
           };
         } catch (e) {
@@ -2315,6 +2252,8 @@ function (_super) {
   };
 
   ViewModel.prototype.train = function () {
+    var _a, _b;
+
     if (this.model.getData()) {
       this.model.train();
       var f = document.getElementsByClassName('function')[0];
@@ -2338,10 +2277,10 @@ function (_super) {
       }
 
       this.setState({
-        fun: this.model.getPredictor().getFun()
+        fun: (_a = this.model.getPredictor()) === null || _a === void 0 ? void 0 : _a.getPredFun()
       });
       this.setState({
-        acc: this.model.getPredictor().getAcc()
+        acc: (_b = this.model.getPredictor()) === null || _b === void 0 ? void 0 : _b.getAcc()
       });
     }
   };
@@ -2503,7 +2442,7 @@ function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var regression__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! regression */ "../node_modules/regression/dist/regression.js");
 /* harmony import */ var regression__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(regression__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _Predictor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../Predictor */ "./Training/Predictor.ts");
+/* harmony import */ var _common_Predictor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../common/Predictor */ "./common/Predictor.ts");
 
 
 
@@ -2513,7 +2452,7 @@ function () {
   function StrategyRL() {}
 
   StrategyRL.prototype.train = function (dataset, options) {
-    return new _Predictor__WEBPACK_IMPORTED_MODULE_1__["default"]('RL', regression__WEBPACK_IMPORTED_MODULE_0___default.a.linear(dataset.getPoints(), {
+    return new _common_Predictor__WEBPACK_IMPORTED_MODULE_1__["default"]('RL', regression__WEBPACK_IMPORTED_MODULE_0___default.a.linear(dataset.getPoints(), {
       order: options.getOrder(),
       precision: options.getPrecision()
     }).equation, regression__WEBPACK_IMPORTED_MODULE_0___default.a.linear(dataset.getPoints(), {
@@ -2696,7 +2635,7 @@ function () {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Predictor__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../Predictor */ "./Training/Predictor.ts");
+/* harmony import */ var _common_Predictor__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../common/Predictor */ "./common/Predictor.ts");
 
 
 var StrategySVM =
@@ -2764,7 +2703,7 @@ function () {
       fMeasure = 0;
     }
 
-    return new _Predictor__WEBPACK_IMPORTED_MODULE_0__["default"]('SVM', [SVM.b, SVM.w[0], SVM.w[1]], // [ w0, w1, w2 ] = [ c, a, b ]
+    return new _common_Predictor__WEBPACK_IMPORTED_MODULE_0__["default"]('SVM', [SVM.b, SVM.w[0], SVM.w[1]], // [ w0, w1, w2 ] = [ c, a, b ]
     "y = " + -SVM.w[0] / SVM.w[1] + "x + " + -SVM.b / SVM.w[0], options, fMeasure);
   };
 
@@ -2962,6 +2901,100 @@ function () {
 
 /***/ }),
 
+/***/ "./common/Predictor.ts":
+/*!*****************************!*\
+  !*** ./common/Predictor.ts ***!
+  \*****************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _panels_PredictionPanel_strategies_strategies__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../panels/PredictionPanel/strategies/strategies */ "./panels/PredictionPanel/strategies/strategies.ts");
+/**
+ * Project: Predire in Grafana
+ * File: Predictor.ts
+ * Author: Federico Carboni
+ * Created: 2020-04-16
+ * Version: 0.1
+ * -----------------------------------------------------------------------------------------
+ * Copyright 2020 ProApesGroup.
+ * Licensed under the MIT License. See LICENSE in the project root for license informations.
+ * -----------------------------------------------------------------------------------------
+ * Changelog:
+ * 0.1 - Writing Predictor class for incpsulation of pred info.
+ */
+
+
+var Predictor =
+/** @class */
+function () {
+  function Predictor(algorithm, coefficients, predFun, opt, acc) {
+    this.algorithm = algorithm;
+    this.coefficients = coefficients;
+    this.predFun = predFun;
+    this.opt = opt;
+
+    if (acc) {
+      this.accuracy = acc;
+    }
+  }
+
+  Predictor.prototype.getAlgorithm = function () {
+    return this.algorithm;
+  };
+
+  Predictor.prototype.getCoefficients = function () {
+    return this.coefficients;
+  };
+
+  Predictor.prototype.getPredFun = function () {
+    return this.predFun;
+  };
+
+  Predictor.prototype.getOpt = function () {
+    return this.opt;
+  };
+
+  Predictor.prototype.getAcc = function () {
+    return this.accuracy;
+  };
+
+  Predictor.prototype.setOpt = function (conf) {
+    var _a;
+
+    (_a = this.opt) === null || _a === void 0 ? void 0 : _a.setValueFile(conf);
+  };
+
+  Predictor.fromJSON = function (str) {
+    if (!str) {
+      throw Error('No file found');
+    }
+
+    var json = JSON.parse(str);
+    var opt = _panels_PredictionPanel_strategies_strategies__WEBPACK_IMPORTED_MODULE_0__["options"][json.algorithm];
+
+    if (!json.algorithm || !json.coefficients) {
+      throw Error('Error reading file');
+    }
+
+    var predictor = new Predictor(json.algorithm, json.coefficients, json.predFun || '', opt.fromJSON(json.opt || {}));
+    return predictor;
+  };
+
+  Predictor.prototype.toJSON = function () {
+    var textFile = "{\n    \"GroupName\": \"ProApes\",\n    \"Version\": \"1.5\",\n    \"PluginName\": \"PredireInGrafana\",\n    \"algorithm\": \"" + this.algorithm + "\",\n    \"coefficients\": [" + this.coefficients + "],\n    \"predFun\": \"" + this.predFun + "\",\n    \"opt\": " + JSON.stringify(this.opt) + ",\n    \"accuracy\": \"" + this.accuracy + "\"\n}"; // string output
+
+    return textFile;
+  };
+
+  return Predictor;
+}();
+
+/* harmony default export */ __webpack_exports__["default"] = (Predictor);
+
+/***/ }),
+
 /***/ "./dashboards/sample.json":
 /*!********************************!*\
   !*** ./dashboards/sample.json ***!
@@ -3013,6 +3046,659 @@ var plugin = new _grafana_data__WEBPACK_IMPORTED_MODULE_0__["AppPlugin"]().addCo
   body: Training_ViewModel__WEBPACK_IMPORTED_MODULE_2__["default"],
   id: 'training'
 });
+
+/***/ }),
+
+/***/ "./panels/PredictionPanel/strategies/Config.ts":
+/*!*****************************************************!*\
+  !*** ./panels/PredictionPanel/strategies/Config.ts ***!
+  \*****************************************************/
+/*! exports provided: Config */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Config", function() { return Config; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+
+
+
+var Config =
+/** @class */
+function (_super) {
+  Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"])(Config, _super);
+
+  function Config() {
+    return _super !== null && _super.apply(this, arguments) || this;
+  }
+
+  return Config;
+}(react__WEBPACK_IMPORTED_MODULE_1__["PureComponent"]);
+
+
+
+/***/ }),
+
+/***/ "./panels/PredictionPanel/strategies/RL/ConfigRL.tsx":
+/*!***********************************************************!*\
+  !*** ./panels/PredictionPanel/strategies/RL/ConfigRL.tsx ***!
+  \***********************************************************/
+/*! exports provided: ConfigRL */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ConfigRL", function() { return ConfigRL; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _grafana_ui__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @grafana/ui */ "@grafana/ui");
+/* harmony import */ var _grafana_ui__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_grafana_ui__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _Config__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Config */ "./panels/PredictionPanel/strategies/Config.ts");
+
+
+
+
+
+var ConfigRL =
+/** @class */
+function (_super) {
+  Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"])(ConfigRL, _super);
+
+  function ConfigRL() {
+    return _super !== null && _super.apply(this, arguments) || this;
+  }
+
+  ConfigRL.prototype.getSeriesNames = function () {
+    return this.props.data.series.map(function (serie) {
+      return serie.name || 'unknown';
+    });
+  };
+
+  ConfigRL.prototype.renderQueryOptions = function () {
+    var e_1, _a;
+
+    var _b;
+
+    var seriesName = this.getSeriesNames();
+    var options = [];
+
+    try {
+      for (var _c = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__values"])(seriesName.keys()), _d = _c.next(); !_d.done; _d = _c.next()) {
+        var i = _d.value;
+        options.push(react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
+          value: i,
+          selected: ((_b = this.predictor) === null || _b === void 0 ? void 0 : _b.getOpt().getToPredict()) === i
+        }, seriesName[i]));
+      }
+    } catch (e_1_1) {
+      e_1 = {
+        error: e_1_1
+      };
+    } finally {
+      try {
+        if (_d && !_d.done && (_a = _c["return"])) _a.call(_c);
+      } finally {
+        if (e_1) throw e_1.error;
+      }
+    }
+
+    return options;
+  };
+
+  ConfigRL.prototype.setToPredict = function (value) {
+    var _a;
+
+    var opt = (_a = this.props.options.predictor) === null || _a === void 0 ? void 0 : _a.getOpt();
+    opt.setToPredict(Number.parseInt(value, 10));
+    this.render();
+  };
+
+  ConfigRL.prototype.render = function () {
+    var _this = this;
+
+    var _a, _b, _c, _d;
+
+    this.predictor = this.props.options.predictor;
+
+    if (!((_a = this.predictor) === null || _a === void 0 ? void 0 : _a.getOpt().getToPredict())) {
+      (_b = this.predictor) === null || _b === void 0 ? void 0 : _b.getOpt().setToPredict(0);
+    }
+
+    return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_grafana_ui__WEBPACK_IMPORTED_MODULE_2__["PanelOptionsGroup"], {
+      title: "RL"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, ((_c = this.predictor) === null || _c === void 0 ? void 0 : _c.getPredFun()) ? 'Function: ' + ((_d = this.predictor) === null || _d === void 0 ? void 0 : _d.getPredFun()) : ''), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
+      className: "gf-form-label width-10",
+      style: {
+        display: 'inline-block'
+      }
+    }, ' ', "y (value to predict)", ' '), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "gf-form-select-wrapper width-10",
+      style: {
+        display: 'inline-block'
+      }
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("select", {
+      className: "input-small gf-form-input",
+      onChange: function onChange(event) {
+        return _this.setToPredict(event.target.value);
+      }
+    }, this.renderQueryOptions())));
+  };
+
+  return ConfigRL;
+}(_Config__WEBPACK_IMPORTED_MODULE_3__["Config"]);
+
+
+
+/***/ }),
+
+/***/ "./panels/PredictionPanel/strategies/RL/StrategyRL.ts":
+/*!************************************************************!*\
+  !*** ./panels/PredictionPanel/strategies/RL/StrategyRL.ts ***!
+  \************************************************************/
+/*! exports provided: StrategyRL */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "StrategyRL", function() { return StrategyRL; });
+/* harmony import */ var _utils_Data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../utils/Data */ "./panels/PredictionPanel/utils/Data.ts");
+/* harmony import */ var _utils_Predicted__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../utils/Predicted */ "./panels/PredictionPanel/utils/Predicted.ts");
+
+
+
+var StrategyRL =
+/** @class */
+function () {
+  function StrategyRL() {}
+
+  StrategyRL.prototype.predict = function (data, predictor) {
+    var base = 1 - (predictor.getOpt().getToPredict() || 0); //the other one
+
+    var coeff = predictor.getCoefficients();
+
+    var f = function f(x) {
+      return x ? x * coeff[0] + coeff[1] : 0;
+    };
+
+    var predicted = new _utils_Predicted__WEBPACK_IMPORTED_MODULE_1__["Predicted"]();
+
+    if (!data) {
+      throw Error('Data not found');
+    }
+
+    var it = new _utils_Data__WEBPACK_IMPORTED_MODULE_0__["DataIterator"](data);
+    var val;
+
+    while (val = it.next()) {
+      predicted.addValues({
+        value: f(base === 0 ? val.a : val.b),
+        time: val.time
+      });
+    }
+
+    return predicted;
+  };
+
+  return StrategyRL;
+}();
+
+
+
+/***/ }),
+
+/***/ "./panels/PredictionPanel/strategies/SVM/ConfigSVM.tsx":
+/*!*************************************************************!*\
+  !*** ./panels/PredictionPanel/strategies/SVM/ConfigSVM.tsx ***!
+  \*************************************************************/
+/*! exports provided: ConfigSVM */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ConfigSVM", function() { return ConfigSVM; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _grafana_ui__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @grafana/ui */ "@grafana/ui");
+/* harmony import */ var _grafana_ui__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_grafana_ui__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _Config__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Config */ "./panels/PredictionPanel/strategies/Config.ts");
+
+
+
+
+
+var ConfigSVM =
+/** @class */
+function (_super) {
+  Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"])(ConfigSVM, _super);
+
+  function ConfigSVM() {
+    return _super !== null && _super.apply(this, arguments) || this;
+  }
+
+  ConfigSVM.prototype.getSeriesNames = function () {
+    return this.props.data.series.map(function (serie) {
+      return serie.name || 'unknown';
+    });
+  };
+
+  ConfigSVM.prototype.renderQueryOptions = function () {
+    var e_1, _a;
+
+    var _b;
+
+    var seriesName = this.getSeriesNames();
+    var options = [];
+
+    try {
+      for (var _c = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__values"])(seriesName.keys()), _d = _c.next(); !_d.done; _d = _c.next()) {
+        var i = _d.value;
+        options.push(react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
+          value: i,
+          selected: ((_b = this.predictor) === null || _b === void 0 ? void 0 : _b.getOpt().getFirstQuery()) === i
+        }, seriesName[i]));
+      }
+    } catch (e_1_1) {
+      e_1 = {
+        error: e_1_1
+      };
+    } finally {
+      try {
+        if (_d && !_d.done && (_a = _c["return"])) _a.call(_c);
+      } finally {
+        if (e_1) throw e_1.error;
+      }
+    }
+
+    return options;
+  };
+
+  ConfigSVM.prototype.setFirstQuery = function (value) {
+    var _a;
+
+    var opt = (_a = this.props.options.predictor) === null || _a === void 0 ? void 0 : _a.getOpt();
+    opt.setFirstQuery(Number.parseInt(value, 10));
+    this.render();
+  };
+
+  ConfigSVM.prototype.render = function () {
+    var _this = this;
+
+    var _a, _b, _c, _d;
+
+    this.predictor = this.props.options.predictor;
+
+    if (!((_a = this.predictor) === null || _a === void 0 ? void 0 : _a.getOpt().getFirstQuery())) {
+      (_b = this.predictor) === null || _b === void 0 ? void 0 : _b.getOpt().setFirstQuery(0);
+    }
+
+    return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_grafana_ui__WEBPACK_IMPORTED_MODULE_2__["PanelOptionsGroup"], {
+      title: "SVM"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, ((_c = this.predictor) === null || _c === void 0 ? void 0 : _c.getPredFun()) ? 'Function: ' + ((_d = this.predictor) === null || _d === void 0 ? void 0 : _d.getPredFun()) : ''), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
+      className: "gf-form-label width-10",
+      style: {
+        display: 'inline-block'
+      }
+    }, ' ', "x1 (first query)", ' '), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "gf-form-select-wrapper width-10",
+      style: {
+        display: 'inline-block'
+      }
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("select", {
+      className: "input-small gf-form-input",
+      onChange: function onChange(event) {
+        return _this.setFirstQuery(event.target.value);
+      }
+    }, this.renderQueryOptions())));
+  };
+
+  return ConfigSVM;
+}(_Config__WEBPACK_IMPORTED_MODULE_3__["Config"]);
+
+
+
+/***/ }),
+
+/***/ "./panels/PredictionPanel/strategies/SVM/StrategySVM.ts":
+/*!**************************************************************!*\
+  !*** ./panels/PredictionPanel/strategies/SVM/StrategySVM.ts ***!
+  \**************************************************************/
+/*! exports provided: StrategySVM */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "StrategySVM", function() { return StrategySVM; });
+/* harmony import */ var _utils_Data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../utils/Data */ "./panels/PredictionPanel/utils/Data.ts");
+/* harmony import */ var _utils_Predicted__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../utils/Predicted */ "./panels/PredictionPanel/utils/Predicted.ts");
+
+
+
+var StrategySVM =
+/** @class */
+function () {
+  function StrategySVM() {}
+
+  StrategySVM.prototype.predict = function (data, predictor) {
+    // predict(data: Data, predictor: Predictor) {
+    var first = predictor.getOpt().getFirstQuery() || 0;
+    var coeff = predictor.getCoefficients();
+
+    var f = function f(x1, x2) {
+      return x1 * coeff[0] + x2 * coeff[1] + coeff[2];
+    };
+
+    var predicted = new _utils_Predicted__WEBPACK_IMPORTED_MODULE_1__["Predicted"]();
+
+    if (!data) {
+      throw Error('Data not found');
+    }
+
+    var it = new _utils_Data__WEBPACK_IMPORTED_MODULE_0__["DataIterator"](data);
+    var val;
+
+    while (val = it.next()) {
+      var v = first === 0 ? f(val.a, val.b) : f(val.b, val.a);
+      var cls = v === 0 ? 0 : v > 0 ? 1 : -1; //classification 1 / -1
+
+      predicted.addValues({
+        value: cls,
+        time: val.time
+      });
+    }
+
+    return predicted;
+  };
+
+  return StrategySVM;
+}();
+
+
+
+/***/ }),
+
+/***/ "./panels/PredictionPanel/strategies/strategies.ts":
+/*!*********************************************************!*\
+  !*** ./panels/PredictionPanel/strategies/strategies.ts ***!
+  \*********************************************************/
+/*! exports provided: strategies, configs, options */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "strategies", function() { return strategies; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "configs", function() { return configs; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "options", function() { return options; });
+/* harmony import */ var _RL_StrategyRL__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./RL/StrategyRL */ "./panels/PredictionPanel/strategies/RL/StrategyRL.ts");
+/* harmony import */ var _SVM_StrategySVM__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SVM/StrategySVM */ "./panels/PredictionPanel/strategies/SVM/StrategySVM.ts");
+/* harmony import */ var _RL_ConfigRL__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./RL/ConfigRL */ "./panels/PredictionPanel/strategies/RL/ConfigRL.tsx");
+/* harmony import */ var _SVM_ConfigSVM__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./SVM/ConfigSVM */ "./panels/PredictionPanel/strategies/SVM/ConfigSVM.tsx");
+/* harmony import */ var _common_OptionsRL__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../common/OptionsRL */ "./common/OptionsRL.ts");
+/* harmony import */ var _common_OptionsSVM__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../common/OptionsSVM */ "./common/OptionsSVM.ts");
+
+
+
+
+
+
+var strategies = {
+  RL: new _RL_StrategyRL__WEBPACK_IMPORTED_MODULE_0__["StrategyRL"](),
+  SVM: new _SVM_StrategySVM__WEBPACK_IMPORTED_MODULE_1__["StrategySVM"]()
+};
+var configs = {
+  RL: _RL_ConfigRL__WEBPACK_IMPORTED_MODULE_2__["ConfigRL"],
+  SVM: _SVM_ConfigSVM__WEBPACK_IMPORTED_MODULE_3__["ConfigSVM"]
+};
+var options = {
+  RL: new _common_OptionsRL__WEBPACK_IMPORTED_MODULE_4__["default"](),
+  SVM: new _common_OptionsSVM__WEBPACK_IMPORTED_MODULE_5__["default"]()
+};
+
+/***/ }),
+
+/***/ "./panels/PredictionPanel/utils/AbstractData.ts":
+/*!******************************************************!*\
+  !*** ./panels/PredictionPanel/utils/AbstractData.ts ***!
+  \******************************************************/
+/*! exports provided: AbstractData, Iterator */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AbstractData", function() { return AbstractData; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Iterator", function() { return Iterator; });
+/**
+ * Project: Predire in Grafana
+ * File: AbstractData.ts
+ * Author: Federico Carboni
+ * Created: 2020-04-27
+ * Version: 0.1
+ * -----------------------------------------------------------------------------------------
+ * Copyright 2020 ProApesGroup.
+ * Licensed under the MIT License. See LICENSE in the project root for license informations.
+ * -----------------------------------------------------------------------------------------
+ * Changelog:
+ * 0.1 - Abstract class for Data and Predicted.
+ */
+var AbstractData =
+/** @class */
+function () {
+  function AbstractData() {
+    this.data = [];
+  }
+
+  AbstractData.prototype.clear = function () {
+    this.data = [];
+  };
+
+  AbstractData.prototype.size = function () {
+    return this.data.length;
+  };
+
+  return AbstractData;
+}();
+
+
+
+var Iterator =
+/** @class */
+function () {
+  function Iterator(data) {
+    this.index = 0;
+    this.data = data;
+  }
+
+  Iterator.prototype.next = function () {
+    return this.index < this.data.size() ? this.data.getAt(this.index++) : null;
+  };
+
+  return Iterator;
+}();
+
+
+
+/***/ }),
+
+/***/ "./panels/PredictionPanel/utils/Data.ts":
+/*!**********************************************!*\
+  !*** ./panels/PredictionPanel/utils/Data.ts ***!
+  \**********************************************/
+/*! exports provided: Data, DataIterator */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Data", function() { return Data; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DataIterator", function() { return DataIterator; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _AbstractData__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AbstractData */ "./panels/PredictionPanel/utils/AbstractData.ts");
+/**
+ * Project: Predire in Grafana
+ * File: Data.ts
+ * Author: Federico Carboni
+ * Created: 2020-04-15
+ * Version: 0.1
+ * -----------------------------------------------------------------------------------------
+ * Copyright 2020 ProApesGroup.
+ * Licensed under the MIT License. See LICENSE in the project root for license informations.
+ * -----------------------------------------------------------------------------------------
+ * Changelog:
+ * 0.1 - Writing Data class for incpsulation of measured data.
+ */
+
+
+
+var Data =
+/** @class */
+function (_super) {
+  Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"])(Data, _super);
+
+  function Data() {
+    return _super !== null && _super.apply(this, arguments) || this;
+  }
+
+  Data.prototype.addValues = function (val) {
+    this.data.push([val.a, val.b, val.time]);
+  };
+
+  Data.prototype.getAt = function (index) {
+    return {
+      a: this.data[index][0],
+      b: this.data[index][1],
+      time: this.data[index][2]
+    };
+  };
+
+  Data.fromSeries = function (series) {
+    var e_1, _a;
+
+    if (!series[0] || !series[1]) {
+      throw Error('Set at least 2 query before');
+    }
+
+    var time = series[0].fields[1].values.toArray();
+    var s = []; // [ [valA, valA ...] [valB, valB ...] ]
+
+    series.forEach(function (serie) {
+      s.push(serie.fields[0].values.toArray());
+    });
+    var data = new Data();
+
+    try {
+      for (var _b = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__values"])(time.keys()), _c = _b.next(); !_c.done; _c = _b.next()) {
+        var i = _c.value;
+        data.addValues({
+          a: s[0][i],
+          b: s[1][i],
+          time: time[i]
+        });
+      }
+    } catch (e_1_1) {
+      e_1 = {
+        error: e_1_1
+      };
+    } finally {
+      try {
+        if (_c && !_c.done && (_a = _b["return"])) _a.call(_b);
+      } finally {
+        if (e_1) throw e_1.error;
+      }
+    }
+
+    return data;
+  };
+
+  return Data;
+}(_AbstractData__WEBPACK_IMPORTED_MODULE_1__["AbstractData"]);
+
+
+
+var DataIterator =
+/** @class */
+function (_super) {
+  Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"])(DataIterator, _super);
+
+  function DataIterator() {
+    return _super !== null && _super.apply(this, arguments) || this;
+  }
+
+  return DataIterator;
+}(_AbstractData__WEBPACK_IMPORTED_MODULE_1__["Iterator"]);
+
+
+
+/***/ }),
+
+/***/ "./panels/PredictionPanel/utils/Predicted.ts":
+/*!***************************************************!*\
+  !*** ./panels/PredictionPanel/utils/Predicted.ts ***!
+  \***************************************************/
+/*! exports provided: Predicted, PredIterator */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Predicted", function() { return Predicted; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PredIterator", function() { return PredIterator; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _AbstractData__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AbstractData */ "./panels/PredictionPanel/utils/AbstractData.ts");
+/**
+ * Project: Predire in Grafana
+ * File: Predicted.ts
+ * Author: Federico Carboni
+ * Created: 2020-04-15
+ * Version: 0.1
+ * -----------------------------------------------------------------------------------------
+ * Copyright 2020 ProApesGroup.
+ * Licensed under the MIT License. See LICENSE in the project root for license informations.
+ * -----------------------------------------------------------------------------------------
+ * Changelog:
+ * 0.1 - Writing Predicted class for incpsulation of predicted data.
+ */
+
+
+
+var Predicted =
+/** @class */
+function (_super) {
+  Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"])(Predicted, _super);
+
+  function Predicted() {
+    return _super !== null && _super.apply(this, arguments) || this;
+  }
+
+  Predicted.prototype.addValues = function (val) {
+    this.data.push([val.value, val.time]);
+  };
+
+  Predicted.prototype.getAt = function (index) {
+    return {
+      value: this.data[index][0],
+      time: this.data[index][1]
+    };
+  };
+
+  return Predicted;
+}(_AbstractData__WEBPACK_IMPORTED_MODULE_1__["AbstractData"]);
+
+
+
+var PredIterator =
+/** @class */
+function (_super) {
+  Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"])(PredIterator, _super);
+
+  function PredIterator() {
+    return _super !== null && _super.apply(this, arguments) || this;
+  }
+
+  return PredIterator;
+}(_AbstractData__WEBPACK_IMPORTED_MODULE_1__["Iterator"]);
+
+
 
 /***/ }),
 

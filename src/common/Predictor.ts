@@ -12,36 +12,48 @@
  * 0.1 - Writing Predictor class for incpsulation of pred info.
  */
 
-import Option from '../../../common/Options';
-import { options } from '../strategies/strategies';
+import Option from './Options';
+import { options } from '../panels/PredictionPanel/strategies/strategies';
 
-export class Predictor<Opt extends Option> {
+export default class Predictor<Opt extends Option> {
     private algorithm: string;
     private coefficients: number[];
     private predFun: string;
     private opt: Opt;
+    private accuracy?: number;
 
-    constructor(algorithm: string, coefficients: number[], predFun: string, opt: Opt) {
+    constructor(algorithm: string, coefficients: number[], predFun: string, opt: Opt, acc?: number) {
         this.algorithm = algorithm;
         this.coefficients = coefficients;
         this.predFun = predFun;
         this.opt = opt;
+        if (acc) {
+            this.accuracy = acc;
+        }
     }
 
-    getAlgorithm() {
+    getAlgorithm(): string {
         return this.algorithm;
     }
 
-    getCoefficients() {
+    getCoefficients(): number[] {
         return this.coefficients;
     }
 
-    getPredFun() {
+    getPredFun(): string {
         return this.predFun;
     }
 
-    getOpt() {
+    getOpt(): Opt {
         return this.opt;
+    }
+
+    getAcc(): number | undefined {
+        return this.accuracy;
+    }
+
+    setOpt(conf: string) {
+        this.opt?.setValueFile(conf);
     }
 
     static fromJSON(str: string | undefined): Predictor<Option> {
@@ -63,5 +75,19 @@ export class Predictor<Opt extends Option> {
         );
 
         return predictor;
+    }
+
+    toJSON(): string {
+        const textFile = `{
+    "GroupName": "ProApes",
+    "Version": "1.5",
+    "PluginName": "PredireInGrafana",
+    "algorithm": "${this.algorithm}",
+    "coefficients": [${this.coefficients}],
+    "predFun": "${this.predFun}",
+    "opt": ${JSON.stringify(this.opt)},
+    "accuracy": "${this.accuracy}"
+}`; // string output
+        return textFile;
     }
 }

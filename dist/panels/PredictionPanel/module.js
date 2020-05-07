@@ -473,6 +473,100 @@ function () {
 
 /***/ }),
 
+/***/ "./common/Predictor.ts":
+/*!*****************************!*\
+  !*** ./common/Predictor.ts ***!
+  \*****************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _panels_PredictionPanel_strategies_strategies__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../panels/PredictionPanel/strategies/strategies */ "./panels/PredictionPanel/strategies/strategies.ts");
+/**
+ * Project: Predire in Grafana
+ * File: Predictor.ts
+ * Author: Federico Carboni
+ * Created: 2020-04-16
+ * Version: 0.1
+ * -----------------------------------------------------------------------------------------
+ * Copyright 2020 ProApesGroup.
+ * Licensed under the MIT License. See LICENSE in the project root for license informations.
+ * -----------------------------------------------------------------------------------------
+ * Changelog:
+ * 0.1 - Writing Predictor class for incpsulation of pred info.
+ */
+
+
+var Predictor =
+/** @class */
+function () {
+  function Predictor(algorithm, coefficients, predFun, opt, acc) {
+    this.algorithm = algorithm;
+    this.coefficients = coefficients;
+    this.predFun = predFun;
+    this.opt = opt;
+
+    if (acc) {
+      this.accuracy = acc;
+    }
+  }
+
+  Predictor.prototype.getAlgorithm = function () {
+    return this.algorithm;
+  };
+
+  Predictor.prototype.getCoefficients = function () {
+    return this.coefficients;
+  };
+
+  Predictor.prototype.getPredFun = function () {
+    return this.predFun;
+  };
+
+  Predictor.prototype.getOpt = function () {
+    return this.opt;
+  };
+
+  Predictor.prototype.getAcc = function () {
+    return this.accuracy;
+  };
+
+  Predictor.prototype.setOpt = function (conf) {
+    var _a;
+
+    (_a = this.opt) === null || _a === void 0 ? void 0 : _a.setValueFile(conf);
+  };
+
+  Predictor.fromJSON = function (str) {
+    if (!str) {
+      throw Error('No file found');
+    }
+
+    var json = JSON.parse(str);
+    var opt = _panels_PredictionPanel_strategies_strategies__WEBPACK_IMPORTED_MODULE_0__["options"][json.algorithm];
+
+    if (!json.algorithm || !json.coefficients) {
+      throw Error('Error reading file');
+    }
+
+    var predictor = new Predictor(json.algorithm, json.coefficients, json.predFun || '', opt.fromJSON(json.opt || {}));
+    return predictor;
+  };
+
+  Predictor.prototype.toJSON = function () {
+    var textFile = "{\n    \"GroupName\": \"ProApes\",\n    \"Version\": \"1.5\",\n    \"PluginName\": \"PredireInGrafana\",\n    \"algorithm\": \"" + this.algorithm + "\",\n    \"coefficients\": [" + this.coefficients + "],\n    \"predFun\": \"" + this.predFun + "\",\n    \"opt\": " + JSON.stringify(this.opt) + ",\n    \"accuracy\": \"" + this.accuracy + "\"\n}"; // string output
+
+    return textFile;
+  };
+
+  return Predictor;
+}();
+
+/* harmony default export */ __webpack_exports__["default"] = (Predictor);
+
+/***/ }),
+
 /***/ "./panels/PredictionPanel/EditorView.tsx":
 /*!***********************************************!*\
   !*** ./panels/PredictionPanel/EditorView.tsx ***!
@@ -489,7 +583,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _grafana_ui__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @grafana/ui */ "@grafana/ui");
 /* harmony import */ var _grafana_ui__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_grafana_ui__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _strategies_strategies__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./strategies/strategies */ "./panels/PredictionPanel/strategies/strategies.ts");
-/* harmony import */ var panels_PredictionPanel_utils_Predictor__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! panels/PredictionPanel/utils/Predictor */ "./panels/PredictionPanel/utils/Predictor.ts");
+/* harmony import */ var common_Predictor__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! common/Predictor */ "./common/Predictor.ts");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 
@@ -522,7 +616,7 @@ function (_super) {
       var _a, _b;
 
       try {
-        _this.props.options.predictor = panels_PredictionPanel_utils_Predictor__WEBPACK_IMPORTED_MODULE_4__["Predictor"].fromJSON((_b = (_a = event.target) === null || _a === void 0 ? void 0 : _a.result) === null || _b === void 0 ? void 0 : _b.toString());
+        _this.props.options.predictor = common_Predictor__WEBPACK_IMPORTED_MODULE_4__["default"].fromJSON((_b = (_a = event.target) === null || _a === void 0 ? void 0 : _a.result) === null || _b === void 0 ? void 0 : _b.toString());
       } catch (e) {
         alert(e);
       }
@@ -538,7 +632,7 @@ function (_super) {
       (_a = this.props.options.predictor) === null || _a === void 0 ? void 0 : _a.getAlgorithm();
     } catch (e) {
       var json = this.props.options.predictor;
-      this.props.options.predictor = panels_PredictionPanel_utils_Predictor__WEBPACK_IMPORTED_MODULE_4__["Predictor"].fromJSON(JSON.stringify(json));
+      this.props.options.predictor = common_Predictor__WEBPACK_IMPORTED_MODULE_4__["default"].fromJSON(JSON.stringify(json));
     }
   };
 
@@ -678,7 +772,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var panels_PredictionPanel_utils_Data__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! panels/PredictionPanel/utils/Data */ "./panels/PredictionPanel/utils/Data.ts");
 /* harmony import */ var _Model__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Model */ "./panels/PredictionPanel/Model.ts");
 /* harmony import */ var _PanelView__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./PanelView */ "./panels/PredictionPanel/PanelView.tsx");
-/* harmony import */ var _utils_Predictor__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./utils/Predictor */ "./panels/PredictionPanel/utils/Predictor.ts");
+/* harmony import */ var _common_Predictor__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../common/Predictor */ "./common/Predictor.ts");
 
 
 
@@ -740,7 +834,7 @@ function (_super) {
       (_a = this.props.options.predictor) === null || _a === void 0 ? void 0 : _a.getAlgorithm();
     } catch (e) {
       var json = this.props.options.predictor;
-      this.props.options.predictor = _utils_Predictor__WEBPACK_IMPORTED_MODULE_5__["Predictor"].fromJSON(JSON.stringify(json));
+      this.props.options.predictor = _common_Predictor__WEBPACK_IMPORTED_MODULE_5__["default"].fromJSON(JSON.stringify(json));
     }
   };
 
@@ -1533,81 +1627,6 @@ function (_super) {
 
   return PredIterator;
 }(_AbstractData__WEBPACK_IMPORTED_MODULE_1__["Iterator"]);
-
-
-
-/***/ }),
-
-/***/ "./panels/PredictionPanel/utils/Predictor.ts":
-/*!***************************************************!*\
-  !*** ./panels/PredictionPanel/utils/Predictor.ts ***!
-  \***************************************************/
-/*! exports provided: Predictor */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Predictor", function() { return Predictor; });
-/* harmony import */ var _strategies_strategies__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../strategies/strategies */ "./panels/PredictionPanel/strategies/strategies.ts");
-/**
- * Project: Predire in Grafana
- * File: Predictor.ts
- * Author: Federico Carboni
- * Created: 2020-04-16
- * Version: 0.1
- * -----------------------------------------------------------------------------------------
- * Copyright 2020 ProApesGroup.
- * Licensed under the MIT License. See LICENSE in the project root for license informations.
- * -----------------------------------------------------------------------------------------
- * Changelog:
- * 0.1 - Writing Predictor class for incpsulation of pred info.
- */
-
-
-var Predictor =
-/** @class */
-function () {
-  function Predictor(algorithm, coefficients, predFun, opt) {
-    this.algorithm = algorithm;
-    this.coefficients = coefficients;
-    this.predFun = predFun;
-    this.opt = opt;
-  }
-
-  Predictor.prototype.getAlgorithm = function () {
-    return this.algorithm;
-  };
-
-  Predictor.prototype.getCoefficients = function () {
-    return this.coefficients;
-  };
-
-  Predictor.prototype.getPredFun = function () {
-    return this.predFun;
-  };
-
-  Predictor.prototype.getOpt = function () {
-    return this.opt;
-  };
-
-  Predictor.fromJSON = function (str) {
-    if (!str) {
-      throw Error('No file found');
-    }
-
-    var json = JSON.parse(str);
-    var opt = _strategies_strategies__WEBPACK_IMPORTED_MODULE_0__["options"][json.algorithm];
-
-    if (!json.algorithm || !json.coefficients) {
-      throw Error('Error reading file');
-    }
-
-    var predictor = new Predictor(json.algorithm, json.coefficients, json.predFun || '', opt.fromJSON(json.opt || {}));
-    return predictor;
-  };
-
-  return Predictor;
-}();
 
 
 

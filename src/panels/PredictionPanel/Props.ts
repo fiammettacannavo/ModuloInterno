@@ -1,4 +1,4 @@
-import { Predictor } from 'panels/PredictionPanel/utils/Predictor';
+import Predictor from 'common/Predictor';
 
 export interface Props {
     predictor?: Predictor<any>;

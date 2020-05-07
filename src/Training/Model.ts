@@ -1,18 +1,19 @@
 import Strategy from './strategies/Strategy';
-import { strategies, data } from './strategies/Strategies';
-import Predictor from './Predictor';
+import { strategies, data, opt } from './strategies/Strategies';
+import Predictor from '../common/Predictor';
 import Data from './strategies/Data';
+import Option from 'common/Options';
 
 export default class Model {
     private data?: Data;
-    private predictor: Predictor = new Predictor();
+    private predictor?: Predictor<any>;
     private strategy?: Strategy;
 
     getData(): Data | undefined {
         return this.data;
     }
 
-    getPredictor(): Predictor {
+    getPredictor(): Predictor<Option> | undefined {
         return this.predictor;
     }
 
@@ -25,18 +26,18 @@ export default class Model {
 
     /** Set the algorithm to use thanks to the Context*/
     setAlgorithm(alg: string): void {
-        this.predictor.setAlg(alg);
+        this.predictor = new Predictor(alg, [], '', opt[alg]);
         this.strategy = strategies[alg];
         this.data = data[alg];
     }
 
     setPredictorOptions(config: string): void {
-        this.predictor.setOpt(config);
+        this.predictor?.setOpt(config);
     }
 
     /** Save the predictor in function */
     train(): void {
-        const opt = this.predictor.getOpt();
+        const opt = this.predictor?.getOpt();
         if (this.strategy && this.data && opt) {
             this.predictor = this.strategy.train(this.data, opt);
         }
@@ -44,9 +45,11 @@ export default class Model {
 
     /** Download predictor as JSON */
     downloadPredictor(): void {
-        const FileSaver = require('file-saver'); // import file saver
-        const text = this.predictor.toJSON();
-        const file = new File([text], 'Training.json', { type: 'text/json;charset=utf-8' });
-        FileSaver.saveAs(file); // download
+        if (this.predictor) {
+            const FileSaver = require('file-saver'); // import file saver
+            const text = this.predictor.toJSON();
+            const file = new File([text], 'Training.json', { type: 'text/json;charset=utf-8' });
+            FileSaver.saveAs(file); // download
+        }
     }
 }

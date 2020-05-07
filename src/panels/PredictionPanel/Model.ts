@@ -1,4 +1,4 @@
-import { Predictor } from 'panels/PredictionPanel/utils/Predictor';
+import Predictor from 'common/Predictor';
 import { Data } from 'panels/PredictionPanel/utils/Data';
 import { Predicted, PredIterator } from 'panels/PredictionPanel/utils/Predicted';
 import { strategies } from './strategies/strategies';

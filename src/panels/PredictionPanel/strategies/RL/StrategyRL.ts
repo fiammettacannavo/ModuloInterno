@@ -1,7 +1,7 @@
 import { Strategy } from '../Strategy';
 import { Data, DataIterator } from '../../utils/Data';
 import { Predicted } from '../../utils/Predicted';
-import { Predictor } from '../../utils/Predictor';
+import Predictor from '../../../../common/Predictor';
 import OptionRL from '../../../../common/OptionsRL';
 
 export class StrategyRL implements Strategy {

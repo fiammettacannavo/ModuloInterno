@@ -1,5 +1,5 @@
 import Strategy from './../Strategy';
-import Predictor from '../../Predictor';
+import Predictor from '../../../common/Predictor';
 import DataSVM from './DataSVM';
 import OptionSVM from '../../../common/OptionsSVM';
 
@@ -13,7 +13,7 @@ export default class StrategySVM implements Strategy {
          w: a e b della retta in forma implicita
         }    
      */
-    train(dataset: DataSVM, options: OptionSVM): Predictor {
+    train(dataset: DataSVM, options: OptionSVM): Predictor<OptionSVM> {
         const svm = require('svm');
         const SVM = new svm.SVM();
         SVM.train(dataset.getPoints(), dataset.getLabels(), {

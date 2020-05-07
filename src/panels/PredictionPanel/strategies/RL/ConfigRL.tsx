@@ -2,7 +2,7 @@ import React from 'react';
 import { PanelOptionsGroup } from '@grafana/ui';
 import { Config } from '../Config';
 import OptionRL from '../../../../common/OptionsRL';
-import { Predictor } from '../../utils/Predictor';
+import Predictor from '../../../../common/Predictor';
 
 export class ConfigRL extends Config {
     private predictor?: Predictor<OptionRL>;

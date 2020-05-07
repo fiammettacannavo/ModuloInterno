@@ -88,7 +88,9 @@ export default class ViewModel extends PureComponent<PluginConfigPageProps<AppPl
                                 : ''
                             : '';
                         this.model.setPredictorOptions(config);
-                        this.setState({ options: this.model.getPredictor().getOpt() });
+                        this.setState({ options: this.model.getPredictor()?.getOpt() });
+                        this.setState({ fun: '' });
+                        this.setState({ acc: 0 });
                     };
                 } catch (e) {
                     alert(e);
@@ -134,8 +136,8 @@ export default class ViewModel extends PureComponent<PluginConfigPageProps<AppPl
             if (d) {
                 d.setAttribute('style', 'display: block');
             }
-            this.setState({ fun: this.model.getPredictor().getFun() });
-            this.setState({ acc: this.model.getPredictor().getAcc() });
+            this.setState({ fun: this.model.getPredictor()?.getPredFun() });
+            this.setState({ acc: this.model.getPredictor()?.getAcc() });
         }
     }
 

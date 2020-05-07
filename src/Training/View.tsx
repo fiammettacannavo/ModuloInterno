@@ -42,8 +42,8 @@ export default class View extends React.Component<Actions> {
                 <div>
                     <span>Choose the algorithm to use for the training: </span>
                     <select disabled={false} id="alg" onChange={selectAlg}>
-                        <option>Regressione Lineare (RL)</option>
-                        <option>Support Vector Machine (SVM)</option>
+                        <option value="RL">Regressione Lineare (RL)</option>
+                        <option value="SVM">Support Vector Machine (SVM)</option>
                     </select>
                     <br></br>
                     <button onClick={buttonSelectAlg}>Confirm</button>

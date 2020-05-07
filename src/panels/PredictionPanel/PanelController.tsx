@@ -5,7 +5,7 @@ import { Props } from './Props';
 import { Data } from 'panels/PredictionPanel/utils/Data';
 import { Model } from './Model';
 import { PanelView } from './PanelView';
-import { Predictor } from './utils/Predictor';
+import Predictor from '../../common/Predictor';
 
 export class PanelController extends PureComponent<PanelProps<Props>> {
     private model: Model;
