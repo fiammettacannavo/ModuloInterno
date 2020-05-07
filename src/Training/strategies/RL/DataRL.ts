@@ -1,20 +1,19 @@
-import { DataPoint } from "regression";
-import Data from "../Data";
+import { DataPoint } from 'regression';
+import Data from '../Data';
 
 export default class DataRL implements Data {
     private points: DataPoint[] = [];
 
-    public setValue(dataset: number[][]): void{
-        dataset.forEach( (p) => {
-            let point: DataPoint = [0,0];
+    setValue(dataset: number[][]): void {
+        dataset.forEach(p => {
+            let point: DataPoint = [0, 0];
             point[0] = p[0];
             point[1] = p[1];
             this.points.push(point);
         });
     }
 
-    public getPoints(): DataPoint[] {
+    getPoints(): DataPoint[] {
         return this.points;
     }
-
-};
+}

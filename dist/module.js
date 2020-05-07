@@ -1516,18 +1516,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__classPrivateFieldGet", function() { return __classPrivateFieldGet; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__classPrivateFieldSet", function() { return __classPrivateFieldSet; });
 /*! *****************************************************************************
-Copyright (c) Microsoft Corporation. All rights reserved.
-Licensed under the Apache License, Version 2.0 (the "License"); you may not use
-this file except in compliance with the License. You may obtain a copy of the
-License at http://www.apache.org/licenses/LICENSE-2.0
+Copyright (c) Microsoft Corporation.
 
-THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
-WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
-MERCHANTABLITY OR NON-INFRINGEMENT.
+Permission to use, copy, modify, and/or distribute this software for any
+purpose with or without fee is hereby granted.
 
-See the Apache Version 2.0 License for specific language governing permissions
-and limitations under the License.
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
+AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
+LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
+PERFORMANCE OF THIS SOFTWARE.
 ***************************************************************************** */
 /* global Reflect, Promise */
 
@@ -1896,9 +1896,9 @@ function () {
 
 
   Model.prototype.setData = function (input) {
-    var _a;
-
-    (_a = this.data) === null || _a === void 0 ? void 0 : _a.setValue(input);
+    if (this.data) {
+      this.data.setValue(input);
+    }
   };
   /** Set the algorithm to use thanks to the Context*/
 
@@ -1920,7 +1920,6 @@ function () {
 
     if (this.strategy && this.data && opt) {
       this.predictor = this.strategy.train(this.data, opt);
-      this.data.setPointsLine(this.predictor.getCoef());
     }
   };
   /** Download predictor as JSON */
@@ -1959,11 +1958,18 @@ __webpack_require__.r(__webpack_exports__);
 var Predictor =
 /** @class */
 function () {
-  function Predictor(alg, coef, func, opt) {
+  function Predictor(alg, coef, func, opt, acc) {
     this.algorithm = alg ? alg : '';
     this.coefficients = coef ? coef : [];
     this.predFun = func ? func : '';
-    if (opt) this.opt = opt;
+
+    if (opt) {
+      this.opt = opt;
+    }
+
+    if (acc) {
+      this.accuracy = acc;
+    }
   }
 
   Predictor.prototype.getAlg = function () {
@@ -1980,6 +1986,10 @@ function () {
 
   Predictor.prototype.getOpt = function () {
     return this.opt;
+  };
+
+  Predictor.prototype.getAcc = function () {
+    return this.accuracy;
   };
 
   Predictor.prototype.setAlg = function (alg) {
@@ -2002,7 +2012,7 @@ function () {
   };
 
   Predictor.prototype.toJSON = function () {
-    var textFile = "{\n    \"algorithm\": \"" + this.algorithm + "\",\n    \"coefficients\": [" + this.coefficients + "],\n    \"predFun\": \"" + this.predFun + "\",\n    \"opt\": " + JSON.stringify(this.opt) + "\n}"; // string output
+    var textFile = "{\n    \"GroupName\": \"ProApes\",\n    \"Version\": \"1.5\",\n    \"PluginName\": \"PredireInGrafana\",\n    \"algorithm\": \"" + this.algorithm + "\",\n    \"coefficients\": [" + this.coefficients + "],\n    \"predFun\": \"" + this.predFun + "\",\n    \"opt\": " + JSON.stringify(this.opt) + ",\n    \"accuracy\": \"" + this.accuracy + "\"\n}"; // string output
 
     return textFile;
   };
@@ -2042,10 +2052,13 @@ function (_super) {
   }
 
   View.prototype.renderAlgorithmView = function () {
-    if (this.props.AlgView) return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(this.props.AlgView, {
-      options: this.props.options,
-      graphPt: this.props.graphPt
-    });else return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null);
+    if (this.props.AlgView) {
+      return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(this.props.AlgView, {
+        options: this.props.options
+      });
+    } else {
+      return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null);
+    }
   };
 
   View.prototype.render = function () {
@@ -2056,6 +2069,8 @@ function (_super) {
         buttonInputOpt = _a.buttonInputOpt,
         buttonTrain = _a.buttonTrain,
         predictor = _a.predictor,
+        nameAcc = _a.nameAcc,
+        accuracy = _a.accuracy,
         buttonDownload = _a.buttonDownload;
     return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
       className: "main"
@@ -2065,8 +2080,10 @@ function (_super) {
       onChange: selectAlg
     }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", null, "Regressione Lineare (RL)"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", null, "Support Vector Machine (SVM)")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
       onClick: buttonSelectAlg
-    }, "Confirm")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-      id: 'import',
+    }, "Confirm")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "graph"
+    }, this.renderAlgorithmView())), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      id: "import",
       style: {
         display: 'none'
       }
@@ -2092,7 +2109,7 @@ function (_super) {
       accept: ".json"
     })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
       className: "button",
-      id: 'train',
+      id: "train",
       type: "button",
       value: "Train \uD83D\uDE82",
       onClick: function onClick() {
@@ -2102,11 +2119,16 @@ function (_super) {
         display: 'none'
       }
     }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
-      className: 'function',
+      className: "function",
       style: {
         display: 'none'
       }
-    }, "Function: ", predictor), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+    }, "Function: ", predictor), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
+      className: "function",
+      style: {
+        display: 'none'
+      }
+    }, nameAcc, ": ", accuracy), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
       className: "button",
       type: "button",
       value: "Download Predictor",
@@ -2117,7 +2139,7 @@ function (_super) {
       }
     }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
       className: "button",
-      id: 'reset',
+      id: "reset",
       type: "button",
       value: "Reset",
       onClick: function onClick() {
@@ -2126,9 +2148,7 @@ function (_super) {
       style: {
         display: 'none'
       }
-    })))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-      className: "graph"
-    }, this.renderAlgorithmView())));
+    })))));
   };
 
   return View;
@@ -2172,8 +2192,9 @@ function (_super) {
 
     _this.state = {
       algView: undefined,
-      graphPt: undefined,
-      options: {}
+      options: {},
+      fun: '',
+      acc: 0
     };
     _this.model = new _Model__WEBPACK_IMPORTED_MODULE_4__["default"]();
     _this.algorithm = 'RL';
@@ -2192,8 +2213,8 @@ function (_super) {
 
   ViewModel.parseCSVtoData = function (text) {
     /* csv delimiters */
-    var row = "\n";
-    var field = ",";
+    var row = '\n';
+    var field = ',';
     var result = []; //output
 
     text.trim() //remove white spaces
@@ -2219,17 +2240,17 @@ function (_super) {
 
       try {
         reader.onload = function (event) {
+          // when loaded
           ViewModel.validateFile(event.target ? event.target.result ? event.target.result.toString() : '' : '');
           var data = ViewModel.parseCSVtoData(event.target ? event.target.result ? event.target.result.toString() : '' : '');
 
           _this.model.setData(data);
 
-          _this.setState({
-            graphPt: _this.model.getData()
-          });
-
           var t = document.getElementById('train');
-          if (t) t.setAttribute('style', 'display: block');
+
+          if (t) {
+            t.setAttribute('style', 'display: block');
+          }
         };
       } catch (e) {
         alert(e);
@@ -2250,6 +2271,7 @@ function (_super) {
 
         try {
           reader.onload = function (event) {
+            // when loaded
             var config = event.target ? event.target.result ? event.target.result.toString() : '' : '';
 
             _this.model.setPredictorOptions(config);
@@ -2261,7 +2283,9 @@ function (_super) {
         } catch (e) {
           alert(e);
         }
-      } else alert('File extension is not json!');
+      } else {
+        alert('File extension is not json!');
+      }
     }
   };
 
@@ -2277,27 +2301,48 @@ function (_super) {
     this.setState({
       options: _strategies_Strategies__WEBPACK_IMPORTED_MODULE_5__["opt"][this.algorithm]
     });
-    this.setState({
-      graphPt: _strategies_Strategies__WEBPACK_IMPORTED_MODULE_5__["data"][this.algorithm]
-    });
     var a = document.getElementById('alg');
-    if (a) a.setAttribute('disabled', 'true');
+
+    if (a) {
+      a.setAttribute('disabled', 'true');
+    }
+
     var i = document.getElementById('import');
-    if (i) i.setAttribute('style', 'display: block');
+
+    if (i) {
+      i.setAttribute('style', 'display: block');
+    }
   };
 
   ViewModel.prototype.train = function () {
     if (this.model.getData()) {
       this.model.train();
-      this.setState({
-        graphPt: this.model.getData()
-      });
       var f = document.getElementsByClassName('function')[0];
-      if (f) f.setAttribute('style', 'display: block');
+      var f1 = document.getElementsByClassName('function')[1];
+
+      if (f && f1) {
+        f.setAttribute('style', 'display: block');
+        f1.setAttribute('style', 'display: block');
+      }
+
       var r = document.getElementById('reset');
-      if (r) r.setAttribute('style', 'display: block');
+
+      if (r) {
+        r.setAttribute('style', 'display: block');
+      }
+
       var d = document.getElementById('download');
-      if (d) d.setAttribute('style', 'display: block');
+
+      if (d) {
+        d.setAttribute('style', 'display: block');
+      }
+
+      this.setState({
+        fun: this.model.getPredictor().getFun()
+      });
+      this.setState({
+        acc: this.model.getPredictor().getAcc()
+      });
     }
   };
 
@@ -2320,13 +2365,14 @@ function (_super) {
       buttonTrain: function buttonTrain() {
         return _this.train();
       },
-      predictor: this.model.getPredictor().getFun(),
+      predictor: this.state.fun,
+      nameAcc: this.algorithm === 'RL' ? 'R^2' : 'F-Measure',
+      accuracy: this.state.acc,
       buttonDownload: function buttonDownload() {
         _this.model.downloadPredictor();
       },
       AlgView: this.state.algView,
-      options: this.state.options,
-      graphPt: this.state.graphPt
+      options: this.state.options
     });
   };
 
@@ -2372,13 +2418,13 @@ function (_super) {
     var options = this.props.options;
     return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
       className: "graph-container"
-    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h3", null, "Grafico"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, "Choose the algorithm options (if you want)"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, "Choose the algorithm options (if you want)"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
       id: "RLopt"
     }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
       className: "form"
     }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
       className: "form-label"
-    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("strong", null, "Precision"), ": "), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("select", {
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("strong", null, "Precision"), ":", ' '), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("select", {
       value: options.getPrecision(),
       onChange: function onChange(event) {
         options.setPrecision(Number(event.target.value));
@@ -2388,15 +2434,15 @@ function (_super) {
         });
       }
     }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
-      value: '1'
+      value: "1"
     }, "1"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
-      value: '2'
+      value: "2"
     }, "2"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
-      value: '3'
+      value: "3"
     }, "3"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
-      value: '4'
+      value: "4"
     }, "4"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
-      value: '5'
+      value: "5"
     }, "5")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null))));
   };
 
@@ -2421,9 +2467,6 @@ var DataRL =
 function () {
   function DataRL() {
     this.points = [];
-    this.xpoints = [];
-    this.ypoints = [];
-    this.yline = [];
   }
 
   DataRL.prototype.setValue = function (dataset) {
@@ -2435,18 +2478,6 @@ function () {
       point[1] = p[1];
 
       _this.points.push(point);
-
-      _this.xpoints.push(p[0]);
-
-      _this.ypoints.push(p[1]);
-    });
-  };
-
-  DataRL.prototype.setPointsLine = function (coef) {
-    var _this = this;
-
-    this.xpoints.forEach(function (element) {
-      _this.yline.push(coef[0] * element + coef[1]);
     });
   };
 
@@ -2454,70 +2485,10 @@ function () {
     return this.points;
   };
 
-  DataRL.prototype.getXPoints = function () {
-    return this.xpoints;
-  };
-
-  DataRL.prototype.getYPoints = function () {
-    return this.ypoints;
-  };
-
-  DataRL.prototype.getYLine = function () {
-    return this.yline;
-  };
-
   return DataRL;
 }();
 
 /* harmony default export */ __webpack_exports__["default"] = (DataRL);
-;
-
-/***/ }),
-
-/***/ "./Training/strategies/RL/OptionRL.ts":
-/*!********************************************!*\
-  !*** ./Training/strategies/RL/OptionRL.ts ***!
-  \********************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-var OptionRL =
-/** @class */
-function () {
-  function OptionRL() {
-    this.order = 2;
-    this.precision = 2;
-  }
-
-  OptionRL.prototype.getOrder = function () {
-    return this.order;
-  };
-
-  OptionRL.prototype.getPrecision = function () {
-    return this.precision;
-  };
-
-  OptionRL.prototype.setPrecision = function (p) {
-    this.precision = p;
-  };
-
-  OptionRL.prototype.setValueFile = function (config) {
-    try {
-      var predictor = JSON.parse(config);
-      this.order = predictor.opt.order;
-      this.precision = predictor.opt.precision;
-    } catch (e) {
-      throw new Error('Predictor bad formatted');
-    }
-  };
-
-  return OptionRL;
-}();
-
-/* harmony default export */ __webpack_exports__["default"] = (OptionRL);
-;
 
 /***/ }),
 
@@ -2548,7 +2519,10 @@ function () {
     }).equation, regression__WEBPACK_IMPORTED_MODULE_0___default.a.linear(dataset.getPoints(), {
       order: options.getOrder(),
       precision: options.getPrecision()
-    }).string, options);
+    }).string, options, regression__WEBPACK_IMPORTED_MODULE_0___default.a.linear(dataset.getPoints(), {
+      order: options.getOrder(),
+      precision: options.getPrecision()
+    }).r2);
   };
 
   return StrategyRL;
@@ -2589,7 +2563,7 @@ function (_super) {
         kernel // kernel type
         numpasses = 10; // increase this for higher precision of the result. (but slower)
     }
-    */
+     */
 
 
     _this.state = {
@@ -2602,9 +2576,9 @@ function (_super) {
     var _this = this;
 
     var options = this.props.options;
-    return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-      className: "text-center"
-    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h3", null, "Grafico")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "graph-container"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
       className: "text-center"
     }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h3", {
       id: "options"
@@ -2680,21 +2654,12 @@ function (_super) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../node_modules/tslib/tslib.es6.js");
-
-
 var DataSVM =
 /** @class */
 function () {
   function DataSVM() {
     this.points = [];
     this.labels = [];
-    this.xRpoints = [];
-    this.yRpoints = [];
-    this.xWpoints = [];
-    this.yWpoints = [];
-    this.xline = [];
-    this.yline = [];
   }
 
   DataSVM.prototype.setValue = function (dataset) {
@@ -2704,27 +2669,6 @@ function () {
       _this.points.push([triple[0], triple[1]]);
 
       _this.labels.push(triple[2]);
-    });
-    dataset.forEach(function (couple) {
-      if (couple[2] === 1) {
-        _this.xRpoints.push(couple[0]);
-
-        _this.yRpoints.push(couple[1]);
-      } else {
-        // couple[2] === -1
-        _this.xWpoints.push(couple[0]);
-
-        _this.yWpoints.push(couple[1]);
-      }
-    });
-  };
-
-  DataSVM.prototype.setPointsLine = function (coef) {
-    var _this = this;
-
-    this.xline = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__spread"])(this.xRpoints, this.xWpoints);
-    this.xline.forEach(function (element) {
-      _this.yline.push(-coef[1] / coef[2] * element + -coef[0] / coef[2]);
     });
   };
 
@@ -2736,96 +2680,10 @@ function () {
     return this.labels;
   };
 
-  DataSVM.prototype.getXRPoints = function () {
-    return this.xRpoints;
-  };
-
-  DataSVM.prototype.getXWPoints = function () {
-    return this.xWpoints;
-  };
-
-  DataSVM.prototype.getYRPoints = function () {
-    return this.yRpoints;
-  };
-
-  DataSVM.prototype.getYWPoints = function () {
-    return this.yWpoints;
-  };
-
-  DataSVM.prototype.getXLine = function () {
-    return this.xline;
-  };
-
-  DataSVM.prototype.getYLine = function () {
-    return this.yline;
-  };
-
   return DataSVM;
 }();
 
 /* harmony default export */ __webpack_exports__["default"] = (DataSVM);
-;
-
-/***/ }),
-
-/***/ "./Training/strategies/SVM/OptionSVM.ts":
-/*!**********************************************!*\
-  !*** ./Training/strategies/SVM/OptionSVM.ts ***!
-  \**********************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-var OptionSVM =
-/** @class */
-function () {
-  function OptionSVM() {
-    this.C = 1.0;
-    this.maxiter = 10000;
-    this.numpass = 10;
-  }
-
-  OptionSVM.prototype.getC = function () {
-    return this.C;
-  };
-
-  OptionSVM.prototype.getMaxIter = function () {
-    return this.maxiter;
-  };
-
-  OptionSVM.prototype.getNumPass = function () {
-    return this.numpass;
-  };
-
-  OptionSVM.prototype.setC = function (c) {
-    this.C = c;
-  };
-
-  OptionSVM.prototype.setMaxIter = function (m) {
-    this.maxiter = m;
-  };
-
-  OptionSVM.prototype.setNumPass = function (n) {
-    this.numpass = n;
-  };
-
-  OptionSVM.prototype.setValueFile = function (config) {
-    try {
-      var predictor = JSON.parse(config);
-      this.C = predictor.opt.C;
-      this.maxiter = predictor.opt.maxiter;
-      this.numpass = predictor.opt.numpass;
-    } catch (e) {
-      throw new Error('Predictor bad formatted');
-    }
-  };
-
-  return OptionSVM;
-}();
-
-/* harmony default export */ __webpack_exports__["default"] = (OptionSVM);
-;
 
 /***/ }),
 
@@ -2853,7 +2711,7 @@ function () {
        kernerlType: tipo di kernel
        w: a e b della retta in forma implicita
       }
-  */
+   */
 
 
   StrategySVM.prototype.train = function (dataset, options) {
@@ -2865,8 +2723,49 @@ function () {
       maxiter: options.getMaxIter(),
       numpass: options.getNumPass()
     });
+    var pred = SVM.predict(dataset.getPoints());
+    var CM = [[0, 0], [0, 0]];
+
+    for (var i = 0; i < dataset.getLabels().length; i++) {
+      if (pred[i] > 0) {
+        //predicted positive
+        if (dataset.getLabels()[i] === 1) {
+          //is positive
+          CM[0][0]++;
+        } else {
+          //is negative
+          CM[0][1]++;
+        }
+      } else {
+        //predicted negative
+        if (dataset.getLabels()[i] === 1) {
+          //is positive
+          CM[1][0]++;
+        } else {
+          //is negative
+          CM[1][1]++;
+        }
+      }
+    }
+
+    var tp, fp, fn;
+    tp = CM[0][0]; // tn = CM[1][1];
+
+    fp = CM[0][1];
+    fn = CM[1][0]; //precision
+
+    var precision = tp / (tp + fp); //recall/sensitivity
+
+    var recall = tp / (tp + fn); //F-measure
+
+    var fMeasure = 2 * (precision * recall) / (precision + recall);
+
+    if (tp + fp === 0 || tp + fn === 0) {
+      fMeasure = 0;
+    }
+
     return new _Predictor__WEBPACK_IMPORTED_MODULE_0__["default"]('SVM', [SVM.b, SVM.w[0], SVM.w[1]], // [ w0, w1, w2 ] = [ c, a, b ]
-    "y = " + -SVM.w[0] / SVM.w[1] + "x + " + -SVM.b / SVM.w[0], options);
+    "y = " + -SVM.w[0] / SVM.w[1] + "x + " + -SVM.b / SVM.w[0], options, fMeasure);
   };
 
   return StrategySVM;
@@ -2895,8 +2794,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _SVM_AlgorithmViewSVM__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./SVM/AlgorithmViewSVM */ "./Training/strategies/SVM/AlgorithmViewSVM.tsx");
 /* harmony import */ var _RL_DataRL__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./RL/DataRL */ "./Training/strategies/RL/DataRL.ts");
 /* harmony import */ var _SVM_DataSVM__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./SVM/DataSVM */ "./Training/strategies/SVM/DataSVM.ts");
-/* harmony import */ var _RL_OptionRL__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./RL/OptionRL */ "./Training/strategies/RL/OptionRL.ts");
-/* harmony import */ var _SVM_OptionSVM__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./SVM/OptionSVM */ "./Training/strategies/SVM/OptionSVM.ts");
+/* harmony import */ var _common_OptionsRL__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../common/OptionsRL */ "./common/OptionsRL.ts");
+/* harmony import */ var _common_OptionsSVM__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../common/OptionsSVM */ "./common/OptionsSVM.ts");
 
 
 
@@ -2906,21 +2805,160 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var strategies = {
-  'RL': new _RL_StrategyRL__WEBPACK_IMPORTED_MODULE_0__["default"](),
-  'SVM': new _SVM_StrategySVM__WEBPACK_IMPORTED_MODULE_1__["default"]()
+  RL: new _RL_StrategyRL__WEBPACK_IMPORTED_MODULE_0__["default"](),
+  SVM: new _SVM_StrategySVM__WEBPACK_IMPORTED_MODULE_1__["default"]()
 };
 var algview = {
-  'RL': _RL_AlgorithmViewRL__WEBPACK_IMPORTED_MODULE_2__["default"],
-  'SVM': _SVM_AlgorithmViewSVM__WEBPACK_IMPORTED_MODULE_3__["default"]
+  RL: _RL_AlgorithmViewRL__WEBPACK_IMPORTED_MODULE_2__["default"],
+  SVM: _SVM_AlgorithmViewSVM__WEBPACK_IMPORTED_MODULE_3__["default"]
 };
 var data = {
-  'RL': new _RL_DataRL__WEBPACK_IMPORTED_MODULE_4__["default"](),
-  'SVM': new _SVM_DataSVM__WEBPACK_IMPORTED_MODULE_5__["default"]()
+  RL: new _RL_DataRL__WEBPACK_IMPORTED_MODULE_4__["default"](),
+  SVM: new _SVM_DataSVM__WEBPACK_IMPORTED_MODULE_5__["default"]()
 };
 var opt = {
-  'RL': new _RL_OptionRL__WEBPACK_IMPORTED_MODULE_6__["default"](),
-  'SVM': new _SVM_OptionSVM__WEBPACK_IMPORTED_MODULE_7__["default"]()
+  RL: new _common_OptionsRL__WEBPACK_IMPORTED_MODULE_6__["default"](),
+  SVM: new _common_OptionsSVM__WEBPACK_IMPORTED_MODULE_7__["default"]()
 };
+
+/***/ }),
+
+/***/ "./common/OptionsRL.ts":
+/*!*****************************!*\
+  !*** ./common/OptionsRL.ts ***!
+  \*****************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var OptionRL =
+/** @class */
+function () {
+  function OptionRL() {
+    this.order = 2;
+    this.precision = 2;
+    this.toPredict = 0;
+  }
+
+  OptionRL.prototype.fromJSON = function (json) {
+    this.order = json.order;
+    this.precision = json.precision;
+    this.toPredict = json.toPredict || 0;
+    return this;
+  };
+
+  OptionRL.prototype.setValueFile = function (config) {
+    try {
+      var predictor = JSON.parse(config);
+      this.order = predictor.opt.order;
+      this.precision = predictor.opt.precision;
+    } catch (e) {
+      throw new Error('Predictor bad formatted');
+    }
+  };
+
+  OptionRL.prototype.getOrder = function () {
+    return this.order;
+  };
+
+  OptionRL.prototype.getPrecision = function () {
+    return this.precision;
+  };
+
+  OptionRL.prototype.getToPredict = function () {
+    return this.toPredict;
+  };
+
+  OptionRL.prototype.setPrecision = function (p) {
+    this.precision = p;
+  };
+
+  OptionRL.prototype.setToPredict = function (toPredict) {
+    this.toPredict = toPredict;
+  };
+
+  return OptionRL;
+}();
+
+/* harmony default export */ __webpack_exports__["default"] = (OptionRL);
+
+/***/ }),
+
+/***/ "./common/OptionsSVM.ts":
+/*!******************************!*\
+  !*** ./common/OptionsSVM.ts ***!
+  \******************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var OptionSVM =
+/** @class */
+function () {
+  function OptionSVM() {
+    this.C = 1;
+    this.maxiter = 10000;
+    this.numpass = 10;
+    this.firstQuery = 0;
+  }
+
+  OptionSVM.prototype.fromJSON = function (json) {
+    this.C = json.C;
+    this.maxiter = json.maxiter;
+    this.numpass = json.numpass;
+    this.firstQuery = json.firstQuery || 0;
+    return this;
+  };
+
+  OptionSVM.prototype.setValueFile = function (config) {
+    try {
+      var predictor = JSON.parse(config);
+      this.C = predictor.opt.C;
+      this.maxiter = predictor.opt.maxiter;
+      this.numpass = predictor.opt.numpass;
+    } catch (e) {
+      throw new Error('Predictor bad formatted');
+    }
+  };
+
+  OptionSVM.prototype.getC = function () {
+    return this.C;
+  };
+
+  OptionSVM.prototype.getMaxIter = function () {
+    return this.maxiter;
+  };
+
+  OptionSVM.prototype.getNumPass = function () {
+    return this.numpass;
+  };
+
+  OptionSVM.prototype.getFirstQuery = function () {
+    return this.firstQuery;
+  };
+
+  OptionSVM.prototype.setC = function (c) {
+    this.C = c;
+  };
+
+  OptionSVM.prototype.setMaxIter = function (m) {
+    this.maxiter = m;
+  };
+
+  OptionSVM.prototype.setNumPass = function (n) {
+    this.numpass = n;
+  };
+
+  OptionSVM.prototype.setFirstQuery = function (firstQuery) {
+    this.firstQuery = firstQuery;
+  };
+
+  return OptionSVM;
+}();
+
+/* harmony default export */ __webpack_exports__["default"] = (OptionSVM);
 
 /***/ }),
 
@@ -2970,7 +3008,7 @@ var plugin = new _grafana_data__WEBPACK_IMPORTED_MODULE_0__["AppPlugin"]().addCo
   body: AppView__WEBPACK_IMPORTED_MODULE_1__["AppView"],
   id: 'import'
 }).addConfigPage({
-  title: "Training",
+  title: 'Training',
   icon: '',
   body: Training_ViewModel__WEBPACK_IMPORTED_MODULE_2__["default"],
   id: 'training'

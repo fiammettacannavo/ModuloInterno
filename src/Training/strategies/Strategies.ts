@@ -11,23 +11,22 @@ import OptionRL from '../../common/OptionsRL';
 import OptionSVM from '../../common/OptionsSVM';
 import Option from '../../common/Options';
 
-
 export const strategies: { [index: string]: Strategy } = {
-    'RL': new StrategyRL(),
-    'SVM': new StrategySVM()
+    RL: new StrategyRL(),
+    SVM: new StrategySVM(),
 };
 
 export const algview: { [index: string]: typeof React.Component } = {
-    'RL': AlgViewRL,
-    'SVM': AlgViewSVM
+    RL: AlgViewRL,
+    SVM: AlgViewSVM,
 };
 
 export const data: { [index: string]: Data } = {
-    'RL': new DataRL(),
-    'SVM': new DataSVM()
+    RL: new DataRL(),
+    SVM: new DataSVM(),
 };
 
 export const opt: { [index: string]: Option } = {
-    'RL': new OptionRL(),
-    'SVM': new OptionSVM()
+    RL: new OptionRL(),
+    SVM: new OptionSVM(),
 };

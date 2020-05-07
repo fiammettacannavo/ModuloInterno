@@ -2,33 +2,40 @@ import React, { ChangeEvent } from 'react';
 import './App.css';
 
 interface Actions {
-    selectAlg: (event: any) => void,
-    buttonSelectAlg: () => void,
-    buttonInputData: (event: ChangeEvent<HTMLInputElement>) => void,
-    buttonInputOpt: (event: ChangeEvent<HTMLInputElement>) => void,
-    buttonTrain: () => void,
-    predictor: string,
-    nameAcc: string,
-    accuracy: number | undefined,
-    buttonDownload: () => void,
-    AlgView?: typeof React.Component,
-    options: any,
+    selectAlg: (event: any) => void;
+    buttonSelectAlg: () => void;
+    buttonInputData: (event: ChangeEvent<HTMLInputElement>) => void;
+    buttonInputOpt: (event: ChangeEvent<HTMLInputElement>) => void;
+    buttonTrain: () => void;
+    predictor: string;
+    nameAcc: string;
+    accuracy: number;
+    buttonDownload: () => void;
+    AlgView?: typeof React.Component;
+    options: any;
 }
 
 export default class View extends React.Component<Actions> {
-
     renderAlgorithmView() {
-        if (this.props.AlgView)
-            return (<this.props.AlgView
-                options={this.props.options}
-            />);
-        else
-            return (<div></div>);
+        if (this.props.AlgView) {
+            return <this.props.AlgView options={this.props.options} />;
+        } else {
+            return <div></div>;
+        }
     }
 
     render() {
-        const { buttonSelectAlg, selectAlg, buttonInputData, buttonInputOpt,
-            buttonTrain, predictor, nameAcc, accuracy, buttonDownload } = this.props;
+        const {
+            buttonSelectAlg,
+            selectAlg,
+            buttonInputData,
+            buttonInputOpt,
+            buttonTrain,
+            predictor,
+            nameAcc,
+            accuracy,
+            buttonDownload,
+        } = this.props;
         return (
             <div className="main">
                 <h1>Training Module</h1>
@@ -37,13 +44,18 @@ export default class View extends React.Component<Actions> {
                     <select disabled={false} id="alg" onChange={selectAlg}>
                         <option>Regressione Lineare (RL)</option>
                         <option>Support Vector Machine (SVM)</option>
-                    </select><br></br>
+                    </select>
+                    <br></br>
                     <button onClick={buttonSelectAlg}>Confirm</button>
                 </div>
 
-                <div id='import' style={{ display: 'none' }}>
+                <div>
+                    <div className="graph">{this.renderAlgorithmView()}</div>
+                </div>
+
+                <div id="import" style={{ display: 'none' }}>
                     <div>
-                        <h3 id="options" >Editor</h3>
+                        <h3 id="options">Editor</h3>
 
                         <label className="button">
                             Import data (.csv)
@@ -70,15 +82,21 @@ export default class View extends React.Component<Actions> {
 
                         <input
                             className="button"
-                            id='train'
+                            id="train"
                             type="button"
                             value="Train 🚂"
-                            onClick={() => { buttonTrain() }}
+                            onClick={() => {
+                                buttonTrain();
+                            }}
                             style={{ display: 'none' }}
                         />
 
-                        <p className='function' style={{ display: 'none' }}>Function: {predictor}</p>
-                        <p className='function'  style={{display: 'none'}}>{nameAcc}: {accuracy}</p>
+                        <p className="function" style={{ display: 'none' }}>
+                            Function: {predictor}
+                        </p>
+                        <p className="function" style={{ display: 'none' }}>
+                            {nameAcc}: {accuracy}
+                        </p>
 
                         <div>
                             <input
@@ -92,22 +110,18 @@ export default class View extends React.Component<Actions> {
 
                             <input
                                 className="button"
-                                id='reset'
+                                id="reset"
                                 type="button"
                                 value="Reset"
-                                onClick={() => { window.location.reload(false) }}
+                                onClick={() => {
+                                    window.location.reload(false);
+                                }}
                                 style={{ display: 'none' }}
                             />
                         </div>
                     </div>
                 </div>
-
-                <div>
-                    <div className="graph">
-                        {this.renderAlgorithmView()}
-                    </div>
-                </div>
-            </div >
+            </div>
         );
     }
 }

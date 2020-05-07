@@ -1,12 +1,12 @@
 import Option from './Options';
 
 export default class OptionSVM implements Option {
-    private C: number = 1;
-    private maxiter: number = 10000;
-    private numpass: number = 10;
-    private firstQuery: number = 0;
+    private C = 1;
+    private maxiter = 10000;
+    private numpass = 10;
+    private firstQuery = 0;
 
-    public fromJSON(json: { C: number; maxiter: number; numpass: number; firstQuery: number }) {
+    fromJSON(json: { C: number; maxiter: number; numpass: number; firstQuery: number }) {
         this.C = json.C;
         this.maxiter = json.maxiter;
         this.numpass = json.numpass;
@@ -14,46 +14,46 @@ export default class OptionSVM implements Option {
         return this;
     }
 
-    public setValueFile(config: string): void {
+    setValueFile(config: string): void {
         try {
             let predictor = JSON.parse(config);
             this.C = predictor.opt.C;
             this.maxiter = predictor.opt.maxiter;
             this.numpass = predictor.opt.numpass;
-        } catch (e){
+        } catch (e) {
             throw new Error('Predictor bad formatted');
         }
     }
 
-    public getC(): number {
+    getC(): number {
         return this.C;
     }
 
-    public getMaxIter(): number {
+    getMaxIter(): number {
         return this.maxiter;
     }
 
-    public getNumPass(): number {
+    getNumPass(): number {
         return this.numpass;
     }
 
-    public getFirstQuery(): number {
+    getFirstQuery(): number {
         return this.firstQuery;
     }
 
-    public setC(c: number): void {
+    setC(c: number): void {
         this.C = c;
     }
 
-    public setMaxIter(m: number): void {
+    setMaxIter(m: number): void {
         this.maxiter = m;
     }
 
-    public setNumPass(n: number): void {
+    setNumPass(n: number): void {
         this.numpass = n;
     }
 
-    public setFirstQuery(firstQuery: number): void {
+    setFirstQuery(firstQuery: number): void {
         this.firstQuery = firstQuery;
     }
 }

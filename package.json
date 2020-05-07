@@ -19,11 +19,12 @@
     "dependencies": {
         "@types/jest": "^25.2.1",
         "@types/jquery": "^3.3.34",
+        "@types/node": "^13.13.5",
         "@types/regression": "^2.0.0",
-        "babel": "^6.23.0",
         "file-saver": "^2.0.2",
         "regression": "^2.0.1",
         "svm": "^0.1.1",
-        "typescript": "^3.7.5"
+        "typescript": "^3.7.5",
+        "react": "^16.13.1"
     }
 }

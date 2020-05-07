@@ -1,51 +1,52 @@
 import Strategy from './strategies/Strategy';
 import { strategies, data } from './strategies/Strategies';
-import Predictor from './Predictor';    
+import Predictor from './Predictor';
 import Data from './strategies/Data';
-
 
 export default class Model {
     private data?: Data;
     private predictor: Predictor = new Predictor();
     private strategy?: Strategy;
-   
-    public getData(): Data | undefined {
+
+    getData(): Data | undefined {
         return this.data;
     }
 
-    public getPredictor(): Predictor {
+    getPredictor(): Predictor {
         return this.predictor;
     }
 
     /** Load file and save it in data */
-    public setData(input: number[][]): void {
-        if(this.data) this.data.setValue(input);
+    setData(input: number[][]): void {
+        if (this.data) {
+            this.data.setValue(input);
+        }
     }
 
     /** Set the algorithm to use thanks to the Context*/
-    public setAlgorithm(alg: string): void {
+    setAlgorithm(alg: string): void {
         this.predictor.setAlg(alg);
         this.strategy = strategies[alg];
         this.data = data[alg];
     }
 
-    public setPredictorOptions(config: string): void {
+    setPredictorOptions(config: string): void {
         this.predictor.setOpt(config);
     }
 
     /** Save the predictor in function */
-    public train(): void {
+    train(): void {
         const opt = this.predictor.getOpt();
-        if(this.strategy && this.data && opt)
-            this.predictor = this.strategy.train(this.data, opt);    
+        if (this.strategy && this.data && opt) {
+            this.predictor = this.strategy.train(this.data, opt);
+        }
     }
 
     /** Download predictor as JSON */
-    public downloadPredictor(): void {
+    downloadPredictor(): void {
         const FileSaver = require('file-saver'); // import file saver
         const text = this.predictor.toJSON();
         const file = new File([text], 'Training.json', { type: 'text/json;charset=utf-8' });
         FileSaver.saveAs(file); // download
     }
-
 }

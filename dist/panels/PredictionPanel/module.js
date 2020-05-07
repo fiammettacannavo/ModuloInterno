@@ -118,18 +118,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__classPrivateFieldGet", function() { return __classPrivateFieldGet; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__classPrivateFieldSet", function() { return __classPrivateFieldSet; });
 /*! *****************************************************************************
-Copyright (c) Microsoft Corporation. All rights reserved.
-Licensed under the Apache License, Version 2.0 (the "License"); you may not use
-this file except in compliance with the License. You may obtain a copy of the
-License at http://www.apache.org/licenses/LICENSE-2.0
+Copyright (c) Microsoft Corporation.
 
-THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
-WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
-MERCHANTABLITY OR NON-INFRINGEMENT.
+Permission to use, copy, modify, and/or distribute this software for any
+purpose with or without fee is hereby granted.
 
-See the Apache Version 2.0 License for specific language governing permissions
-and limitations under the License.
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
+AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
+LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
+PERFORMANCE OF THIS SOFTWARE.
 ***************************************************************************** */
 /* global Reflect, Promise */
 
@@ -334,6 +334,145 @@ function __classPrivateFieldSet(receiver, privateMap, value) {
 
 /***/ }),
 
+/***/ "./common/OptionsRL.ts":
+/*!*****************************!*\
+  !*** ./common/OptionsRL.ts ***!
+  \*****************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var OptionRL =
+/** @class */
+function () {
+  function OptionRL() {
+    this.order = 2;
+    this.precision = 2;
+    this.toPredict = 0;
+  }
+
+  OptionRL.prototype.fromJSON = function (json) {
+    this.order = json.order;
+    this.precision = json.precision;
+    this.toPredict = json.toPredict || 0;
+    return this;
+  };
+
+  OptionRL.prototype.setValueFile = function (config) {
+    try {
+      var predictor = JSON.parse(config);
+      this.order = predictor.opt.order;
+      this.precision = predictor.opt.precision;
+    } catch (e) {
+      throw new Error('Predictor bad formatted');
+    }
+  };
+
+  OptionRL.prototype.getOrder = function () {
+    return this.order;
+  };
+
+  OptionRL.prototype.getPrecision = function () {
+    return this.precision;
+  };
+
+  OptionRL.prototype.getToPredict = function () {
+    return this.toPredict;
+  };
+
+  OptionRL.prototype.setPrecision = function (p) {
+    this.precision = p;
+  };
+
+  OptionRL.prototype.setToPredict = function (toPredict) {
+    this.toPredict = toPredict;
+  };
+
+  return OptionRL;
+}();
+
+/* harmony default export */ __webpack_exports__["default"] = (OptionRL);
+
+/***/ }),
+
+/***/ "./common/OptionsSVM.ts":
+/*!******************************!*\
+  !*** ./common/OptionsSVM.ts ***!
+  \******************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var OptionSVM =
+/** @class */
+function () {
+  function OptionSVM() {
+    this.C = 1;
+    this.maxiter = 10000;
+    this.numpass = 10;
+    this.firstQuery = 0;
+  }
+
+  OptionSVM.prototype.fromJSON = function (json) {
+    this.C = json.C;
+    this.maxiter = json.maxiter;
+    this.numpass = json.numpass;
+    this.firstQuery = json.firstQuery || 0;
+    return this;
+  };
+
+  OptionSVM.prototype.setValueFile = function (config) {
+    try {
+      var predictor = JSON.parse(config);
+      this.C = predictor.opt.C;
+      this.maxiter = predictor.opt.maxiter;
+      this.numpass = predictor.opt.numpass;
+    } catch (e) {
+      throw new Error('Predictor bad formatted');
+    }
+  };
+
+  OptionSVM.prototype.getC = function () {
+    return this.C;
+  };
+
+  OptionSVM.prototype.getMaxIter = function () {
+    return this.maxiter;
+  };
+
+  OptionSVM.prototype.getNumPass = function () {
+    return this.numpass;
+  };
+
+  OptionSVM.prototype.getFirstQuery = function () {
+    return this.firstQuery;
+  };
+
+  OptionSVM.prototype.setC = function (c) {
+    this.C = c;
+  };
+
+  OptionSVM.prototype.setMaxIter = function (m) {
+    this.maxiter = m;
+  };
+
+  OptionSVM.prototype.setNumPass = function (n) {
+    this.numpass = n;
+  };
+
+  OptionSVM.prototype.setFirstQuery = function (firstQuery) {
+    this.firstQuery = firstQuery;
+  };
+
+  return OptionSVM;
+}();
+
+/* harmony default export */ __webpack_exports__["default"] = (OptionSVM);
+
+/***/ }),
+
 /***/ "./panels/PredictionPanel/EditorView.tsx":
 /*!***********************************************!*\
   !*** ./panels/PredictionPanel/EditorView.tsx ***!
@@ -352,7 +491,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _strategies_strategies__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./strategies/strategies */ "./panels/PredictionPanel/strategies/strategies.ts");
 /* harmony import */ var panels_PredictionPanel_utils_Predictor__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! panels/PredictionPanel/utils/Predictor */ "./panels/PredictionPanel/utils/Predictor.ts");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
 
 
 
@@ -892,51 +1030,6 @@ function (_super) {
 
 /***/ }),
 
-/***/ "./panels/PredictionPanel/strategies/RL/OptionsRL.ts":
-/*!***********************************************************!*\
-  !*** ./panels/PredictionPanel/strategies/RL/OptionsRL.ts ***!
-  \***********************************************************/
-/*! exports provided: OptionRL */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OptionRL", function() { return OptionRL; });
-var OptionRL =
-/** @class */
-function () {
-  function OptionRL() {}
-
-  OptionRL.prototype.fromJSON = function (json) {
-    this.order = json.order;
-    this.precision = json.precision;
-    this.toPredict = json.toPredict || 0;
-    return this;
-  };
-
-  OptionRL.prototype.getOrder = function () {
-    return this.order;
-  };
-
-  OptionRL.prototype.getPrecision = function () {
-    return this.precision;
-  };
-
-  OptionRL.prototype.getToPredict = function () {
-    return this.toPredict;
-  };
-
-  OptionRL.prototype.setToPredict = function (toPredict) {
-    this.toPredict = toPredict;
-  };
-
-  return OptionRL;
-}();
-
-
-
-/***/ }),
-
 /***/ "./panels/PredictionPanel/strategies/RL/StrategyRL.ts":
 /*!************************************************************!*\
   !*** ./panels/PredictionPanel/strategies/RL/StrategyRL.ts ***!
@@ -1105,56 +1198,6 @@ function (_super) {
 
 /***/ }),
 
-/***/ "./panels/PredictionPanel/strategies/SVM/OptionsSVM.ts":
-/*!*************************************************************!*\
-  !*** ./panels/PredictionPanel/strategies/SVM/OptionsSVM.ts ***!
-  \*************************************************************/
-/*! exports provided: OptionSVM */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OptionSVM", function() { return OptionSVM; });
-var OptionSVM =
-/** @class */
-function () {
-  function OptionSVM() {}
-
-  OptionSVM.prototype.fromJSON = function (json) {
-    this.C = json.C;
-    this.maxiter = json.maxiter;
-    this.numpass = json.numpass;
-    this.firstQuery = json.firstQuery || 0;
-    return this;
-  };
-
-  OptionSVM.prototype.getC = function () {
-    return this.C;
-  };
-
-  OptionSVM.prototype.getMaxIter = function () {
-    return this.maxiter;
-  };
-
-  OptionSVM.prototype.getNumPass = function () {
-    return this.numpass;
-  };
-
-  OptionSVM.prototype.getFirstQuery = function () {
-    return this.firstQuery;
-  };
-
-  OptionSVM.prototype.setFirstQuery = function (firstQuery) {
-    this.firstQuery = firstQuery;
-  };
-
-  return OptionSVM;
-}();
-
-
-
-/***/ }),
-
 /***/ "./panels/PredictionPanel/strategies/SVM/StrategySVM.ts":
 /*!**************************************************************!*\
   !*** ./panels/PredictionPanel/strategies/SVM/StrategySVM.ts ***!
@@ -1229,8 +1272,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _SVM_StrategySVM__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SVM/StrategySVM */ "./panels/PredictionPanel/strategies/SVM/StrategySVM.ts");
 /* harmony import */ var _RL_ConfigRL__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./RL/ConfigRL */ "./panels/PredictionPanel/strategies/RL/ConfigRL.tsx");
 /* harmony import */ var _SVM_ConfigSVM__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./SVM/ConfigSVM */ "./panels/PredictionPanel/strategies/SVM/ConfigSVM.tsx");
-/* harmony import */ var _RL_OptionsRL__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./RL/OptionsRL */ "./panels/PredictionPanel/strategies/RL/OptionsRL.ts");
-/* harmony import */ var _SVM_OptionsSVM__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./SVM/OptionsSVM */ "./panels/PredictionPanel/strategies/SVM/OptionsSVM.ts");
+/* harmony import */ var _common_OptionsRL__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../common/OptionsRL */ "./common/OptionsRL.ts");
+/* harmony import */ var _common_OptionsSVM__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../common/OptionsSVM */ "./common/OptionsSVM.ts");
 
 
 
@@ -1246,8 +1289,8 @@ var configs = {
   SVM: _SVM_ConfigSVM__WEBPACK_IMPORTED_MODULE_3__["ConfigSVM"]
 };
 var options = {
-  RL: new _RL_OptionsRL__WEBPACK_IMPORTED_MODULE_4__["OptionRL"](),
-  SVM: new _SVM_OptionsSVM__WEBPACK_IMPORTED_MODULE_5__["OptionSVM"]()
+  RL: new _common_OptionsRL__WEBPACK_IMPORTED_MODULE_4__["default"](),
+  SVM: new _common_OptionsSVM__WEBPACK_IMPORTED_MODULE_5__["default"]()
 };
 
 /***/ }),

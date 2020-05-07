@@ -1,5 +1,5 @@
-import Options from "../common/Options";
-import { opt } from "./strategies/Strategies";
+import Options from '../common/Options';
+import { opt } from './strategies/Strategies';
 
 export default class Predictor {
     private algorithm: string;
@@ -10,10 +10,14 @@ export default class Predictor {
 
     constructor(alg?: string, coef?: number[], func?: string, opt?: Options, acc?: number) {
         this.algorithm = alg ? alg : '';
-        this.coefficients = coef ? coef: [];
+        this.coefficients = coef ? coef : [];
         this.predFun = func ? func : '';
-        if(opt) this.opt = opt;
-        if(acc) this.accuracy = acc;
+        if (opt) {
+            this.opt = opt;
+        }
+        if (acc) {
+            this.accuracy = acc;
+        }
     }
 
     getAlg(): string {
@@ -23,11 +27,11 @@ export default class Predictor {
     getCoef(): number[] {
         return this.coefficients;
     }
-    
+
     getFun(): string {
         return this.predFun;
     }
-    
+
     getOpt(): Options | undefined {
         return this.opt;
     }
@@ -44,18 +48,17 @@ export default class Predictor {
     setCoef(coef: number[]) {
         this.coefficients = coef;
     }
-    
+
     setFun(fun: string) {
         this.predFun = fun;
     }
-    
-    setOpt(conf: string){
+
+    setOpt(conf: string) {
         this.opt?.setValueFile(conf);
     }
 
     toJSON(): string {
-        const textFile = 
-`{
+        const textFile = `{
     "GroupName": "ProApes",
     "Version": "1.5",
     "PluginName": "PredireInGrafana",

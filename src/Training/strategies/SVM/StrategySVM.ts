@@ -1,10 +1,9 @@
-import Strategy from "./../Strategy";
-import Predictor from "../../Predictor";
-import DataSVM from "./DataSVM";
-import OptionSVM from "../../../common/OptionsSVM";
+import Strategy from './../Strategy';
+import Predictor from '../../Predictor';
+import DataSVM from './DataSVM';
+import OptionSVM from '../../../common/OptionsSVM';
 
-export default class StrategySVM implements Strategy{
-
+export default class StrategySVM implements Strategy {
     /** SVM predictor: 
         {
          N: numero di punti
@@ -13,15 +12,61 @@ export default class StrategySVM implements Strategy{
          kernerlType: tipo di kernel
          w: a e b della retta in forma implicita
         }    
-    */
-    train(dataset: DataSVM,options: OptionSVM): Predictor {
+     */
+    train(dataset: DataSVM, options: OptionSVM): Predictor {
         const svm = require('svm');
         const SVM = new svm.SVM();
-        SVM.train(dataset.getPoints(),dataset.getLabels(),{C: options.getC(), maxiter: options.getMaxIter(), numpass: options.getNumPass()});
-        return new Predictor( 'SVM', 
-                              [SVM.b,SVM.w[0],SVM.w[1]], // [ w0, w1, w2 ] = [ c, a, b ]
-                              `y = ${-SVM.w[0]/SVM.w[1]}x + ${-SVM.b/SVM.w[0]}`,
-                              options);
+        SVM.train(dataset.getPoints(), dataset.getLabels(), {
+            C: options.getC(),
+            maxiter: options.getMaxIter(),
+            numpass: options.getNumPass(),
+        });
+        const pred = SVM.predict(dataset.getPoints());
+        let CM = [
+            [0, 0],
+            [0, 0],
+        ];
+        for (let i = 0; i < dataset.getLabels().length; i++) {
+            if (pred[i] > 0) {
+                //predicted positive
+                if (dataset.getLabels()[i] === 1) {
+                    //is positive
+                    CM[0][0]++;
+                } else {
+                    //is negative
+                    CM[0][1]++;
+                }
+            } else {
+                //predicted negative
+                if (dataset.getLabels()[i] === 1) {
+                    //is positive
+                    CM[1][0]++;
+                } else {
+                    //is negative
+                    CM[1][1]++;
+                }
+            }
+        }
+        let tp, fp, fn;
+        tp = CM[0][0];
+        // tn = CM[1][1];
+        fp = CM[0][1];
+        fn = CM[1][0];
+        //precision
+        let precision = tp / (tp + fp);
+        //recall/sensitivity
+        let recall = tp / (tp + fn);
+        //F-measure
+        let fMeasure = (2 * (precision * recall)) / (precision + recall);
+        if (tp + fp === 0 || tp + fn === 0) {
+            fMeasure = 0;
+        }
+        return new Predictor(
+            'SVM',
+            [SVM.b, SVM.w[0], SVM.w[1]], // [ w0, w1, w2 ] = [ c, a, b ]
+            `y = ${-SVM.w[0] / SVM.w[1]}x + ${-SVM.b / SVM.w[0]}`,
+            options,
+            fMeasure
+        );
     }
-    
 }
