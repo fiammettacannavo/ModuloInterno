@@ -23,10 +23,12 @@ export class StrategySVM implements Strategy {
         let it = new DataIterator(data);
         let val;
         while ((val = it.next())) {
-            const v = first === 0 ? f(val.a, val.b) : f(val.b, val.a);
-            let cls = v === 0 ? 0 : v > 0 ? 1 : -1; //classification 1 / -1
+            if (val.a || val.b) {
+                const v = first === 0 ? f(val.a, val.b) : f(val.b, val.a);
+                let cls = v === 0 ? 0 : v > 0 ? 1 : -1; //classification 1 / -1
 
-            predicted.addValues({ value: cls, time: val.time });
+                predicted.addValues({ value: cls, time: val.time });
+            }
         }
 
         return predicted;

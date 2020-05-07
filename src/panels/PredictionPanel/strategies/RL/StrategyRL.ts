@@ -22,7 +22,9 @@ export class StrategyRL implements Strategy {
         let it = new DataIterator(data);
         let val;
         while ((val = it.next())) {
-            predicted.addValues({ value: f(base === 0 ? val.a : val.b), time: val.time });
+            if (val.a || val.b) {
+                predicted.addValues({ value: f(base === 0 ? val.a : val.b), time: val.time });
+            }
         }
 
         return predicted;
