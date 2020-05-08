@@ -44,6 +44,8 @@ export default class View extends React.Component<Actions> {
                     <select disabled={false} id="alg" onChange={selectAlg}>
                         <option value="RL">Regressione Lineare (RL)</option>
                         <option value="SVM">Support Vector Machine (SVM)</option>
+                        <option value="RLOG">Regressione Logaritmica (RLOG)</option>
+                        <option value="REXP">Regressione Esponenziale (REXP)</option>
                     </select>
                     <br></br>
                     <button onClick={buttonSelectAlg}>Confirm</button>

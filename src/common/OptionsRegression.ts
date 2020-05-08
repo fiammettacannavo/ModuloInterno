@@ -1,6 +1,6 @@
 import Option from './Options';
 
-export default class OptionRL implements Option {
+export default class OptionRegression implements Option {
     private order = 2;
     private precision = 2;
     private toPredict = 0;

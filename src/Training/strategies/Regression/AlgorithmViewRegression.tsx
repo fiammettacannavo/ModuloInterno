@@ -1,11 +1,11 @@
 import React from 'react';
-import OptionRL from '../../../common/OptionsRL';
+import OptionRL from '../../../common/OptionsRegression';
 
 interface Actions {
     options: OptionRL;
 }
 
-export default class AlgorithmViewRL extends React.Component<Actions> {
+export default class AlgorithmViewRegression extends React.Component<Actions> {
     state = {
         prec: 2,
     };

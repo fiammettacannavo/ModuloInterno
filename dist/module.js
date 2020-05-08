@@ -1,3 +1,3839 @@
-/*! For license information please see module.js.LICENSE.txt */
-define(["react","@grafana/ui","@grafana/data"],(function(t,e,n){return function(t){var e={};function n(r){if(e[r])return e[r].exports;var o=e[r]={i:r,l:!1,exports:{}};return t[r].call(o.exports,o,o.exports,n),o.l=!0,o.exports}return n.m=t,n.c=e,n.d=function(t,e,r){n.o(t,e)||Object.defineProperty(t,e,{enumerable:!0,get:r})},n.r=function(t){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(t,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(t,"__esModule",{value:!0})},n.t=function(t,e){if(1&e&&(t=n(t)),8&e)return t;if(4&e&&"object"==typeof t&&t&&t.__esModule)return t;var r=Object.create(null);if(n.r(r),Object.defineProperty(r,"default",{enumerable:!0,value:t}),2&e&&"string"!=typeof t)for(var o in t)n.d(r,o,function(e){return t[e]}.bind(null,o));return r},n.n=function(t){var e=t&&t.__esModule?function(){return t.default}:function(){return t};return n.d(e,"a",e),e},n.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},n.p="/",n(n.s=21)}([function(e,n){e.exports=t},function(t,e,n){"use strict";n.d(e,"b",(function(){return o})),n.d(e,"a",(function(){return i})),n.d(e,"c",(function(){return a})),n.d(e,"d",(function(){return s}));var r=function(t,e){return(r=Object.setPrototypeOf||{__proto__:[]}instanceof Array&&function(t,e){t.__proto__=e}||function(t,e){for(var n in e)e.hasOwnProperty(n)&&(t[n]=e[n])})(t,e)};function o(t,e){function n(){this.constructor=t}r(t,e),t.prototype=null===e?Object.create(e):(n.prototype=e.prototype,new n)}function i(t,e,n,r){return new(n||(n=Promise))((function(o,i){function a(t){try{l(r.next(t))}catch(t){i(t)}}function s(t){try{l(r.throw(t))}catch(t){i(t)}}function l(t){var e;t.done?o(t.value):(e=t.value,e instanceof n?e:new n((function(t){t(e)}))).then(a,s)}l((r=r.apply(t,e||[])).next())}))}function a(t,e){var n,r,o,i,a={label:0,sent:function(){if(1&o[0])throw o[1];return o[1]},trys:[],ops:[]};return i={next:s(0),throw:s(1),return:s(2)},"function"==typeof Symbol&&(i[Symbol.iterator]=function(){return this}),i;function s(i){return function(s){return function(i){if(n)throw new TypeError("Generator is already executing.");for(;a;)try{if(n=1,r&&(o=2&i[0]?r.return:i[0]?r.throw||((o=r.return)&&o.call(r),0):r.next)&&!(o=o.call(r,i[1])).done)return o;switch(r=0,o&&(i=[2&i[0],o.value]),i[0]){case 0:case 1:o=i;break;case 4:return a.label++,{value:i[1],done:!1};case 5:a.label++,r=i[1],i=[0];continue;case 7:i=a.ops.pop(),a.trys.pop();continue;default:if(!(o=a.trys,(o=o.length>0&&o[o.length-1])||6!==i[0]&&2!==i[0])){a=0;continue}if(3===i[0]&&(!o||i[1]>o[0]&&i[1]<o[3])){a.label=i[1];break}if(6===i[0]&&a.label<o[1]){a.label=o[1],o=i;break}if(o&&a.label<o[2]){a.label=o[2],a.ops.push(i);break}o[2]&&a.ops.pop(),a.trys.pop();continue}i=e.call(t,a)}catch(t){i=[6,t],r=0}finally{n=o=0}if(5&i[0])throw i[1];return{value:i[0]?i[1]:void 0,done:!0}}([i,s])}}}function s(t){var e="function"==typeof Symbol&&Symbol.iterator,n=e&&t[e],r=0;if(n)return n.call(t);if(t&&"number"==typeof t.length)return{next:function(){return t&&r>=t.length&&(t=void 0),{value:t&&t[r++],done:!t}}};throw new TypeError(e?"Object is not iterable.":"Symbol.iterator is not defined.")}},function(t,n){t.exports=e},function(t,e,n){"use strict";n.d(e,"a",(function(){return r})),n.d(e,"b",(function(){return o}));var r=function(){function t(){this.data=[]}return t.prototype.clear=function(){this.data=[]},t.prototype.size=function(){return this.data.length},t}(),o=function(){function t(t){this.index=0,this.data=t}return t.prototype.next=function(){return this.index<this.data.size()?this.data.getAt(this.index++):null},t}()},function(t,e,n){"use strict";var r=n(7),o=function(){function t(t,e,n,r,o){this.algorithm=t,this.coefficients=e,this.predFun=n,this.opt=r,o&&(this.accuracy=o)}return t.prototype.getAlgorithm=function(){return this.algorithm},t.prototype.getCoefficients=function(){return this.coefficients},t.prototype.getPredFun=function(){return this.predFun},t.prototype.getOpt=function(){return this.opt},t.prototype.getAcc=function(){return this.accuracy},t.prototype.setOpt=function(t){var e;null===(e=this.opt)||void 0===e||e.setValueFile(t)},t.fromJSON=function(e){if(!e)throw Error("No file found");var n=JSON.parse(e),o=r.b[n.algorithm];if(!n.algorithm||!n.coefficients)throw Error("Error reading file");return new t(n.algorithm,n.coefficients,n.predFun||"",o.fromJSON(n.opt||{}))},t.prototype.toJSON=function(){return'{\n    "GroupName": "ProApes",\n    "Version": "1.5",\n    "PluginName": "PredireInGrafana",\n    "algorithm": "'+this.algorithm+'",\n    "coefficients": ['+this.coefficients+'],\n    "predFun": "'+this.predFun+'",\n    "opt": '+JSON.stringify(this.opt)+',\n    "accuracy": "'+this.accuracy+'"\n}'},t}();e.a=o},function(t,e,n){"use strict";n.d(e,"a",(function(){return i})),n.d(e,"b",(function(){return a}));var r=n(1),o=n(3),i=function(t){function e(){return null!==t&&t.apply(this,arguments)||this}return Object(r.b)(e,t),e.prototype.addValues=function(t){this.data.push([t.a,t.b,t.time])},e.prototype.getAt=function(t){return{a:this.data[t][0],b:this.data[t][1],time:this.data[t][2]}},e.fromSeries=function(t){var n,o;if(!t[0]||!t[1])throw Error("Set at least 2 query before");var i=t[0].fields[1].values.toArray(),a=[];t.forEach((function(t){a.push(t.fields[0].values.toArray())}));var s=new e;try{for(var l=Object(r.d)(i.keys()),u=l.next();!u.done;u=l.next()){var c=u.value;s.addValues({a:a[0][c],b:a[1][c],time:i[c]})}}catch(t){n={error:t}}finally{try{u&&!u.done&&(o=l.return)&&o.call(l)}finally{if(n)throw n.error}}return s},e}(o.a),a=function(t){function e(){return null!==t&&t.apply(this,arguments)||this}return Object(r.b)(e,t),e}(o.b)},function(t,e,n){"use strict";n.d(e,"b",(function(){return i})),n.d(e,"a",(function(){return a}));var r=n(1),o=n(3),i=function(t){function e(){return null!==t&&t.apply(this,arguments)||this}return Object(r.b)(e,t),e.prototype.addValues=function(t){this.data.push([t.value,t.time])},e.prototype.getAt=function(t){return{value:this.data[t][0],time:this.data[t][1]}},e}(o.a),a=function(t){function e(){return null!==t&&t.apply(this,arguments)||this}return Object(r.b)(e,t),e}(o.b)},function(t,e,n){"use strict";var r=n(5),o=n(6),i=function(){function t(){}return t.prototype.predict=function(t,e){var n=1-(e.getOpt().getToPredict()||0),i=e.getCoefficients(),a=new o.b;if(!t)throw Error("Data not found");for(var s,l,u=new r.b(t);s=u.next();)(s.a||s.b)&&a.addValues({value:(l=0===n?s.a:s.b,l?l*i[0]+i[1]:0),time:s.time});return a},t}(),a=function(){function t(){}return t.prototype.predict=function(t,e){var n=e.getOpt().getFirstQuery()||0,i=e.getCoefficients(),a=function(t,e){return t*i[0]+e*i[1]+i[2]},s=new o.b;if(!t)throw Error("Data not found");for(var l,u=new r.b(t);l=u.next();)if(l.a||l.b){var c=0===n?a(l.a,l.b):a(l.b,l.a),p=0===c?0:c>0?1:-1;s.addValues({value:p,time:l.time})}return s},t}(),s=n(1),l=n(0),u=n.n(l),c=n(2),p=function(t){function e(){return null!==t&&t.apply(this,arguments)||this}return Object(s.b)(e,t),e}(l.PureComponent),f=function(t){function e(){return null!==t&&t.apply(this,arguments)||this}return Object(s.b)(e,t),e.prototype.getSeriesNames=function(){return this.props.data.series.map((function(t){return t.name||"unknown"}))},e.prototype.renderQueryOptions=function(){var t,e,n,r=this.getSeriesNames(),o=[];try{for(var i=Object(s.d)(r.keys()),a=i.next();!a.done;a=i.next()){var l=a.value;o.push(u.a.createElement("option",{value:l,selected:(null===(n=this.predictor)||void 0===n?void 0:n.getOpt().getToPredict())===l},r[l]))}}catch(e){t={error:e}}finally{try{a&&!a.done&&(e=i.return)&&e.call(i)}finally{if(t)throw t.error}}return o},e.prototype.setToPredict=function(t){var e;(null===(e=this.props.options.predictor)||void 0===e?void 0:e.getOpt()).setToPredict(Number.parseInt(t,10)),this.render()},e.prototype.render=function(){var t,e,n,r,o=this;return this.predictor=this.props.options.predictor,(null===(t=this.predictor)||void 0===t?void 0:t.getOpt().getToPredict())||null===(e=this.predictor)||void 0===e||e.getOpt().setToPredict(0),u.a.createElement(c.PanelOptionsGroup,{title:"RL"},u.a.createElement("p",null,(null===(n=this.predictor)||void 0===n?void 0:n.getPredFun())?"Function: "+(null===(r=this.predictor)||void 0===r?void 0:r.getPredFun()):""),u.a.createElement("label",{className:"gf-form-label width-10",style:{display:"inline-block"}}," ","y (value to predict)"," "),u.a.createElement("div",{className:"gf-form-select-wrapper width-10",style:{display:"inline-block"}},u.a.createElement("select",{className:"input-small gf-form-input",onChange:function(t){return o.setToPredict(t.target.value)}},this.renderQueryOptions())))},e}(p),d=function(t){function e(){return null!==t&&t.apply(this,arguments)||this}return Object(s.b)(e,t),e.prototype.getSeriesNames=function(){return this.props.data.series.map((function(t){return t.name||"unknown"}))},e.prototype.renderQueryOptions=function(){var t,e,n,r=this.getSeriesNames(),o=[];try{for(var i=Object(s.d)(r.keys()),a=i.next();!a.done;a=i.next()){var l=a.value;o.push(u.a.createElement("option",{value:l,selected:(null===(n=this.predictor)||void 0===n?void 0:n.getOpt().getFirstQuery())===l},r[l]))}}catch(e){t={error:e}}finally{try{a&&!a.done&&(e=i.return)&&e.call(i)}finally{if(t)throw t.error}}return o},e.prototype.setFirstQuery=function(t){var e;(null===(e=this.props.options.predictor)||void 0===e?void 0:e.getOpt()).setFirstQuery(Number.parseInt(t,10)),this.render()},e.prototype.render=function(){var t,e,n,r,o=this;return this.predictor=this.props.options.predictor,(null===(t=this.predictor)||void 0===t?void 0:t.getOpt().getFirstQuery())||null===(e=this.predictor)||void 0===e||e.getOpt().setFirstQuery(0),u.a.createElement(c.PanelOptionsGroup,{title:"SVM"},u.a.createElement("p",null,(null===(n=this.predictor)||void 0===n?void 0:n.getPredFun())?"Function: "+(null===(r=this.predictor)||void 0===r?void 0:r.getPredFun()):""),u.a.createElement("label",{className:"gf-form-label width-10",style:{display:"inline-block"}}," ","x1 (first query)"," "),u.a.createElement("div",{className:"gf-form-select-wrapper width-10",style:{display:"inline-block"}},u.a.createElement("select",{className:"input-small gf-form-input",onChange:function(t){return o.setFirstQuery(t.target.value)}},this.renderQueryOptions())))},e}(p),h=n(8),m=n(9);n.d(e,"c",(function(){return g})),n.d(e,"a",(function(){return v})),n.d(e,"b",(function(){return y}));var g={RL:new i,SVM:new a},v={RL:f,SVM:d},y={RL:new h.a,SVM:new m.a}},function(t,e,n){"use strict";var r=function(){function t(){this.order=2,this.precision=2,this.toPredict=0}return t.prototype.fromJSON=function(t){return this.order=t.order,this.precision=t.precision,this.toPredict=t.toPredict||0,this},t.prototype.setValueFile=function(t){try{var e=JSON.parse(t);this.order=e.opt.order,this.precision=e.opt.precision}catch(t){throw new Error("Predictor bad formatted")}},t.prototype.getOrder=function(){return this.order},t.prototype.getPrecision=function(){return this.precision},t.prototype.getToPredict=function(){return this.toPredict},t.prototype.setPrecision=function(t){this.precision=t},t.prototype.setToPredict=function(t){this.toPredict=t},t}();e.a=r},function(t,e,n){"use strict";var r=function(){function t(){this.C=1,this.maxiter=1e4,this.numpass=10,this.firstQuery=0}return t.prototype.fromJSON=function(t){return this.C=t.C,this.maxiter=t.maxiter,this.numpass=t.numpass,this.firstQuery=t.firstQuery||0,this},t.prototype.setValueFile=function(t){try{var e=JSON.parse(t);this.C=e.opt.C,this.maxiter=e.opt.maxiter,this.numpass=e.opt.numpass}catch(t){throw new Error("Predictor bad formatted")}},t.prototype.getC=function(){return this.C},t.prototype.getMaxIter=function(){return this.maxiter},t.prototype.getNumPass=function(){return this.numpass},t.prototype.getFirstQuery=function(){return this.firstQuery},t.prototype.setC=function(t){this.C=t},t.prototype.setMaxIter=function(t){this.maxiter=t},t.prototype.setNumPass=function(t){this.numpass=t},t.prototype.setFirstQuery=function(t){this.firstQuery=t},t}();e.a=r},function(t,e){t.exports=n},function(t,e,n){var r,o,i;o=[t],void 0===(i="function"==typeof(r=function(t){"use strict";var e=Object.assign||function(t){for(var e=1;e<arguments.length;e++){var n=arguments[e];for(var r in n)Object.prototype.hasOwnProperty.call(n,r)&&(t[r]=n[r])}return t};function n(t){if(Array.isArray(t)){for(var e=0,n=Array(t.length);e<t.length;e++)n[e]=t[e];return n}return Array.from(t)}var r={order:2,precision:2,period:null};function o(t,e){var n=[],r=[];t.forEach((function(t,o){null!==t[1]&&(r.push(t),n.push(e[o]))}));var o=r.reduce((function(t,e){return t+e[1]}),0)/r.length,i=r.reduce((function(t,e){var n=e[1]-o;return t+n*n}),0);return 1-r.reduce((function(t,e,r){var o=n[r],i=e[1]-o[1];return t+i*i}),0)/i}function i(t,e){var n=Math.pow(10,e);return Math.round(t*n)/n}var a={linear:function(t,e){for(var n=[0,0,0,0,0],r=0,a=0;a<t.length;a++)null!==t[a][1]&&(r++,n[0]+=t[a][0],n[1]+=t[a][1],n[2]+=t[a][0]*t[a][0],n[3]+=t[a][0]*t[a][1],n[4]+=t[a][1]*t[a][1]);var s=r*n[2]-n[0]*n[0],l=r*n[3]-n[0]*n[1],u=0===s?0:i(l/s,e.precision),c=i(n[1]/r-u*n[0]/r,e.precision),p=function(t){return[i(t,e.precision),i(u*t+c,e.precision)]},f=t.map((function(t){return p(t[0])}));return{points:f,predict:p,equation:[u,c],r2:i(o(t,f),e.precision),string:0===c?"y = "+u+"x":"y = "+u+"x + "+c}},exponential:function(t,e){for(var n=[0,0,0,0,0,0],r=0;r<t.length;r++)null!==t[r][1]&&(n[0]+=t[r][0],n[1]+=t[r][1],n[2]+=t[r][0]*t[r][0]*t[r][1],n[3]+=t[r][1]*Math.log(t[r][1]),n[4]+=t[r][0]*t[r][1]*Math.log(t[r][1]),n[5]+=t[r][0]*t[r][1]);var a=n[1]*n[2]-n[5]*n[5],s=Math.exp((n[2]*n[3]-n[5]*n[4])/a),l=(n[1]*n[4]-n[5]*n[3])/a,u=i(s,e.precision),c=i(l,e.precision),p=function(t){return[i(t,e.precision),i(u*Math.exp(c*t),e.precision)]},f=t.map((function(t){return p(t[0])}));return{points:f,predict:p,equation:[u,c],string:"y = "+u+"e^("+c+"x)",r2:i(o(t,f),e.precision)}},logarithmic:function(t,e){for(var n=[0,0,0,0],r=t.length,a=0;a<r;a++)null!==t[a][1]&&(n[0]+=Math.log(t[a][0]),n[1]+=t[a][1]*Math.log(t[a][0]),n[2]+=t[a][1],n[3]+=Math.pow(Math.log(t[a][0]),2));var s=i((r*n[1]-n[2]*n[0])/(r*n[3]-n[0]*n[0]),e.precision),l=i((n[2]-s*n[0])/r,e.precision),u=function(t){return[i(t,e.precision),i(i(l+s*Math.log(t),e.precision),e.precision)]},c=t.map((function(t){return u(t[0])}));return{points:c,predict:u,equation:[l,s],string:"y = "+l+" + "+s+" ln(x)",r2:i(o(t,c),e.precision)}},power:function(t,e){for(var n=[0,0,0,0,0],r=t.length,a=0;a<r;a++)null!==t[a][1]&&(n[0]+=Math.log(t[a][0]),n[1]+=Math.log(t[a][1])*Math.log(t[a][0]),n[2]+=Math.log(t[a][1]),n[3]+=Math.pow(Math.log(t[a][0]),2));var s=(r*n[1]-n[0]*n[2])/(r*n[3]-Math.pow(n[0],2)),l=(n[2]-s*n[0])/r,u=i(Math.exp(l),e.precision),c=i(s,e.precision),p=function(t){return[i(t,e.precision),i(i(u*Math.pow(t,c),e.precision),e.precision)]},f=t.map((function(t){return p(t[0])}));return{points:f,predict:p,equation:[u,c],string:"y = "+u+"x^"+c,r2:i(o(t,f),e.precision)}},polynomial:function(t,e){for(var r=[],a=[],s=0,l=0,u=t.length,c=e.order+1,p=0;p<c;p++){for(var f=0;f<u;f++)null!==t[f][1]&&(s+=Math.pow(t[f][0],p)*t[f][1]);r.push(s),s=0;for(var d=[],h=0;h<c;h++){for(var m=0;m<u;m++)null!==t[m][1]&&(l+=Math.pow(t[m][0],p+h));d.push(l),l=0}a.push(d)}a.push(r);for(var g=function(t,e){for(var n=t,r=t.length-1,o=[e],i=0;i<r;i++){for(var a=i,s=i+1;s<r;s++)Math.abs(n[i][s])>Math.abs(n[i][a])&&(a=s);for(var l=i;l<r+1;l++){var u=n[l][i];n[l][i]=n[l][a],n[l][a]=u}for(var c=i+1;c<r;c++)for(var p=r;p>=i;p--)n[p][c]-=n[p][i]*n[i][c]/n[i][i]}for(var f=r-1;f>=0;f--){for(var d=0,h=f+1;h<r;h++)d+=n[h][f]*o[h];o[f]=(n[r][f]-d)/n[f][f]}return o}(a,c).map((function(t){return i(t,e.precision)})),v=function(t){return[i(t,e.precision),i(g.reduce((function(e,n,r){return e+n*Math.pow(t,r)}),0),e.precision)]},y=t.map((function(t){return v(t[0])})),b="y = ",A=g.length-1;A>=0;A--)b+=A>1?g[A]+"x^"+A+" + ":1===A?g[A]+"x + ":g[A];return{string:b,points:y,predict:v,equation:[].concat(n(g)).reverse(),r2:i(o(t,y),e.precision)}}};t.exports=Object.keys(a).reduce((function(t,n){return e({_round:i},t,(l=function(t,o){return a[n](t,e({},r,o))},(s=n)in(o={})?Object.defineProperty(o,s,{value:l,enumerable:!0,configurable:!0,writable:!0}):o[s]=l,o));var o,s,l}),{})})?r.apply(e,o):r)||(t.exports=i)},function(t,e,n){var r=n(14);"string"==typeof r&&(r=[[t.i,r,""]]);var o={hmr:!0,transform:void 0,insertInto:void 0};n(16)(r,o);r.locals&&(t.exports=r.locals)},function(t){t.exports=JSON.parse('{"annotations":{"list":[{"builtIn":1,"datasource":"-- Grafana --","enable":true,"hide":true,"iconColor":"rgba(0, 211, 255, 1)","name":"Annotations & Alerts","type":"dashboard"}]},"editable":true,"gnetId":null,"graphTooltip":0,"id":null,"links":[],"panels":[{"aliasColors":{},"bars":false,"dashLength":10,"dashes":false,"datasource":null,"fill":1,"fillGradient":0,"gridPos":{"h":9,"w":12,"x":0,"y":0},"hiddenSeries":false,"id":2,"legend":{"avg":false,"current":false,"max":false,"min":false,"show":true,"total":false,"values":false},"lines":true,"linewidth":1,"nullPointMode":"connected","options":{"dataLinks":[]},"percentage":false,"pointradius":2,"points":false,"renderer":"flot","seriesOverrides":[],"spaceLength":10,"stack":false,"steppedLine":false,"targets":[{"groupBy":[{"params":["$__interval"],"type":"time"},{"params":["null"],"type":"fill"}],"measurement":"prediction","orderByTime":"ASC","policy":"default","refId":"A","resultFormat":"time_series","select":[[{"params":["value"],"type":"field"},{"params":[],"type":"mean"}]],"tags":[]}],"thresholds":[],"timeFrom":null,"timeRegions":[],"timeShift":null,"title":"Prediction Graph","tooltip":{"shared":true,"sort":0,"value_type":"individual"},"type":"graph","xaxis":{"buckets":null,"mode":"time","name":null,"show":true,"values":[]},"yaxes":[{"format":"short","label":null,"logBase":1,"max":null,"min":null,"show":true},{"format":"short","label":null,"logBase":1,"max":null,"min":null,"show":true}],"yaxis":{"align":false,"alignLevel":null}},{"datasource":null,"gridPos":{"h":9,"w":8,"x":12,"y":0},"id":4,"options":{"predictor":{"algorithm":"RL","coefficients":[1.37,1.38],"opt":{"toPredict":0}}},"targets":[{"alias":"cpu0","groupBy":[{"params":["$__interval"],"type":"time"},{"params":["linear"],"type":"fill"}],"measurement":"cpu","orderByTime":"ASC","policy":"default","refId":"A","resultFormat":"time_series","select":[[{"params":["usage_system"],"type":"field"},{"params":[],"type":"mean"}]],"tags":[{"key":"cpu","operator":"=","value":"cpu0"}]},{"alias":"cpu1","groupBy":[{"params":["$__interval"],"type":"time"},{"params":["linear"],"type":"fill"}],"measurement":"cpu","orderByTime":"ASC","policy":"default","refId":"B","resultFormat":"time_series","select":[[{"params":["usage_system"],"type":"field"},{"params":[],"type":"mean"}]],"tags":[{"key":"cpu","operator":"=","value":"cpu1"}]}],"timeFrom":null,"timeShift":null,"title":"Prediction Settings","type":"prediction-panel"}],"refresh":"5s","schemaVersion":22,"style":"dark","tags":[],"templating":{"list":[]},"time":{"from":"now-5m","to":"now"},"timepicker":{"refresh_intervals":["5s","10s","30s","1m","5m","15m","30m","1h","2h","1d"]},"timezone":"","title":"Sample Dashboard","uid":"sample-dash","variables":{"list":[]},"version":51}')},function(t,e,n){(e=n(15)(!0)).push([t.i,'.main h1 {\n  text-align: center; }\n\n.main > div {\n  width: 100%;\n  margin: 1em;\n  padding: 1em;\n  background-color: #2c2c2c;\n  border-radius: 4px; }\n\n.button {\n  border: 1px solid #818181;\n  margin: .5em;\n  padding-left: 1em;\n  cursor: pointer; }\n\n.button input {\n  display: none; }\n\nbutton, .button {\n  display: inline-flex;\n  align-items: center;\n  font-weight: 500;\n  font-size: 14px;\n  font-family: "Roboto", "Helvetica Neue", Arial, sans-serif;\n  line-height: 1;\n  padding: 8px 16px;\n  vertical-align: middle;\n  cursor: pointer;\n  border: medium none;\n  height: 32px;\n  border-radius: 2px;\n  background: rgba(0, 0, 0, 0) linear-gradient(#3f84ac, #38779b) repeat scroll 0% 0%;\n  color: white;\n  text-shadow: rgba(0, 0, 0, 0.1) 0px -1px; }\n\nbutton:hover, .button:hover {\n  background: #3f84ac none repeat scroll 0% 0%;\n  color: white; }\n\nselect {\n  border: none;\n  border-radius: 4px; }\n',"",{version:3,sources:["App.css"],names:[],mappings:"AAAA;EACE,kBAAkB,EAAE;;AAEtB;EACE,WAAW;EACX,WAAW;EACX,YAAY;EACZ,yBAAyB;EACzB,kBAAkB,EAAE;;AAEtB;EACE,yBAAyB;EACzB,YAAY;EACZ,iBAAiB;EACjB,eAAe,EAAE;;AAEnB;EACE,aAAa,EAAE;;AAEjB;EACE,oBAAoB;EAEpB,mBAAmB;EACnB,gBAAgB;EAChB,eAAe;EACf,0DAA0D;EAC1D,cAAc;EACd,iBAAiB;EACjB,sBAAsB;EACtB,eAAe;EACf,mBAAmB;EACnB,YAAY;EACZ,kBAAkB;EAClB,kFAAkF;EAClF,YAAY;EACZ,wCAAwC,EAAE;;AAE5C;EACE,4CAA4C;EAC5C,YAAY,EAAE;;AAEhB;EACE,YAAY;EACZ,kBAAkB,EAAE",file:"App.css",sourcesContent:['.main h1 {\n  text-align: center; }\n\n.main > div {\n  width: 100%;\n  margin: 1em;\n  padding: 1em;\n  background-color: #2c2c2c;\n  border-radius: 4px; }\n\n.button {\n  border: 1px solid #818181;\n  margin: .5em;\n  padding-left: 1em;\n  cursor: pointer; }\n\n.button input {\n  display: none; }\n\nbutton, .button {\n  display: inline-flex;\n  -moz-box-align: center;\n  align-items: center;\n  font-weight: 500;\n  font-size: 14px;\n  font-family: "Roboto", "Helvetica Neue", Arial, sans-serif;\n  line-height: 1;\n  padding: 8px 16px;\n  vertical-align: middle;\n  cursor: pointer;\n  border: medium none;\n  height: 32px;\n  border-radius: 2px;\n  background: rgba(0, 0, 0, 0) linear-gradient(#3f84ac, #38779b) repeat scroll 0% 0%;\n  color: white;\n  text-shadow: rgba(0, 0, 0, 0.1) 0px -1px; }\n\nbutton:hover, .button:hover {\n  background: #3f84ac none repeat scroll 0% 0%;\n  color: white; }\n\nselect {\n  border: none;\n  border-radius: 4px; }\n']}]),t.exports=e},function(t,e,n){"use strict";t.exports=function(t){var e=[];return e.toString=function(){return this.map((function(e){var n=function(t,e){var n=t[1]||"",r=t[3];if(!r)return n;if(e&&"function"==typeof btoa){var o=(a=r,s=btoa(unescape(encodeURIComponent(JSON.stringify(a)))),l="sourceMappingURL=data:application/json;charset=utf-8;base64,".concat(s),"/*# ".concat(l," */")),i=r.sources.map((function(t){return"/*# sourceURL=".concat(r.sourceRoot||"").concat(t," */")}));return[n].concat(i).concat([o]).join("\n")}var a,s,l;return[n].join("\n")}(e,t);return e[2]?"@media ".concat(e[2]," {").concat(n,"}"):n})).join("")},e.i=function(t,n,r){"string"==typeof t&&(t=[[null,t,""]]);var o={};if(r)for(var i=0;i<this.length;i++){var a=this[i][0];null!=a&&(o[a]=!0)}for(var s=0;s<t.length;s++){var l=[].concat(t[s]);r&&o[l[0]]||(n&&(l[2]?l[2]="".concat(n," and ").concat(l[2]):l[2]=n),e.push(l))}},e}},function(t,e,n){var r,o,i={},a=(r=function(){return window&&document&&document.all&&!window.atob},function(){return void 0===o&&(o=r.apply(this,arguments)),o}),s=function(t,e){return e?e.querySelector(t):document.querySelector(t)},l=function(t){var e={};return function(t,n){if("function"==typeof t)return t();if(void 0===e[t]){var r=s.call(this,t,n);if(window.HTMLIFrameElement&&r instanceof window.HTMLIFrameElement)try{r=r.contentDocument.head}catch(t){r=null}e[t]=r}return e[t]}}(),u=null,c=0,p=[],f=n(17);function d(t,e){for(var n=0;n<t.length;n++){var r=t[n],o=i[r.id];if(o){o.refs++;for(var a=0;a<o.parts.length;a++)o.parts[a](r.parts[a]);for(;a<r.parts.length;a++)o.parts.push(b(r.parts[a],e))}else{var s=[];for(a=0;a<r.parts.length;a++)s.push(b(r.parts[a],e));i[r.id]={id:r.id,refs:1,parts:s}}}}function h(t,e){for(var n=[],r={},o=0;o<t.length;o++){var i=t[o],a=e.base?i[0]+e.base:i[0],s={css:i[1],media:i[2],sourceMap:i[3]};r[a]?r[a].parts.push(s):n.push(r[a]={id:a,parts:[s]})}return n}function m(t,e){var n=l(t.insertInto);if(!n)throw new Error("Couldn't find a style target. This probably means that the value for the 'insertInto' parameter is invalid.");var r=p[p.length-1];if("top"===t.insertAt)r?r.nextSibling?n.insertBefore(e,r.nextSibling):n.appendChild(e):n.insertBefore(e,n.firstChild),p.push(e);else if("bottom"===t.insertAt)n.appendChild(e);else{if("object"!=typeof t.insertAt||!t.insertAt.before)throw new Error("[Style Loader]\n\n Invalid value for parameter 'insertAt' ('options.insertAt') found.\n Must be 'top', 'bottom', or Object.\n (https://github.com/webpack-contrib/style-loader#insertat)\n");var o=l(t.insertAt.before,n);n.insertBefore(e,o)}}function g(t){if(null===t.parentNode)return!1;t.parentNode.removeChild(t);var e=p.indexOf(t);e>=0&&p.splice(e,1)}function v(t){var e=document.createElement("style");if(void 0===t.attrs.type&&(t.attrs.type="text/css"),void 0===t.attrs.nonce){var r=function(){0;return n.nc}();r&&(t.attrs.nonce=r)}return y(e,t.attrs),m(t,e),e}function y(t,e){Object.keys(e).forEach((function(n){t.setAttribute(n,e[n])}))}function b(t,e){var n,r,o,i;if(e.transform&&t.css){if(!(i="function"==typeof e.transform?e.transform(t.css):e.transform.default(t.css)))return function(){};t.css=i}if(e.singleton){var a=c++;n=u||(u=v(e)),r=E.bind(null,n,a,!1),o=E.bind(null,n,a,!0)}else t.sourceMap&&"function"==typeof URL&&"function"==typeof URL.createObjectURL&&"function"==typeof URL.revokeObjectURL&&"function"==typeof Blob&&"function"==typeof btoa?(n=function(t){var e=document.createElement("link");return void 0===t.attrs.type&&(t.attrs.type="text/css"),t.attrs.rel="stylesheet",y(e,t.attrs),m(t,e),e}(e),r=O.bind(null,n,e),o=function(){g(n),n.href&&URL.revokeObjectURL(n.href)}):(n=v(e),r=x.bind(null,n),o=function(){g(n)});return r(t),function(e){if(e){if(e.css===t.css&&e.media===t.media&&e.sourceMap===t.sourceMap)return;r(t=e)}else o()}}t.exports=function(t,e){if("undefined"!=typeof DEBUG&&DEBUG&&"object"!=typeof document)throw new Error("The style-loader cannot be used in a non-browser environment");(e=e||{}).attrs="object"==typeof e.attrs?e.attrs:{},e.singleton||"boolean"==typeof e.singleton||(e.singleton=a()),e.insertInto||(e.insertInto="head"),e.insertAt||(e.insertAt="bottom");var n=h(t,e);return d(n,e),function(t){for(var r=[],o=0;o<n.length;o++){var a=n[o];(s=i[a.id]).refs--,r.push(s)}t&&d(h(t,e),e);for(o=0;o<r.length;o++){var s;if(0===(s=r[o]).refs){for(var l=0;l<s.parts.length;l++)s.parts[l]();delete i[s.id]}}}};var A,w=(A=[],function(t,e){return A[t]=e,A.filter(Boolean).join("\n")});function E(t,e,n,r){var o=n?"":r.css;if(t.styleSheet)t.styleSheet.cssText=w(e,o);else{var i=document.createTextNode(o),a=t.childNodes;a[e]&&t.removeChild(a[e]),a.length?t.insertBefore(i,a[e]):t.appendChild(i)}}function x(t,e){var n=e.css,r=e.media;if(r&&t.setAttribute("media",r),t.styleSheet)t.styleSheet.cssText=n;else{for(;t.firstChild;)t.removeChild(t.firstChild);t.appendChild(document.createTextNode(n))}}function O(t,e,n){var r=n.css,o=n.sourceMap,i=void 0===e.convertToAbsoluteUrls&&o;(e.convertToAbsoluteUrls||i)&&(r=f(r)),o&&(r+="\n/*# sourceMappingURL=data:application/json;base64,"+btoa(unescape(encodeURIComponent(JSON.stringify(o))))+" */");var a=new Blob([r],{type:"text/css"}),s=t.href;t.href=URL.createObjectURL(a),s&&URL.revokeObjectURL(s)}},function(t,e){t.exports=function(t){var e="undefined"!=typeof window&&window.location;if(!e)throw new Error("fixUrls requires window.location");if(!t||"string"!=typeof t)return t;var n=e.protocol+"//"+e.host,r=n+e.pathname.replace(/\/[^\/]*$/,"/");return t.replace(/url\s*\(((?:[^)(]|\((?:[^)(]+|\([^)(]*\))*\))*)\)/gi,(function(t,e){var o,i=e.trim().replace(/^"(.*)"$/,(function(t,e){return e})).replace(/^'(.*)'$/,(function(t,e){return e}));return/^(#|data:|http:\/\/|https:\/\/|file:\/\/\/|\s*$)/i.test(i)?t:(o=0===i.indexOf("//")?i:0===i.indexOf("/")?n+i:r+i.replace(/^\.\//,""),"url("+JSON.stringify(o)+")")}))}},function(t,e,n){!function(t){var e=function(t){};function n(t){return function(e,n){for(var r=0,o=0;o<e.length;o++)r+=(e[o]-n[o])*(e[o]-n[o]);return Math.exp(-r/(2*t*t))}}function r(t,e){for(var n=0,r=0;r<t.length;r++)n+=t[r]*e[r];return n}e.prototype={train:function(t,e,o){this.data=t,this.labels=e;var i=(o=o||{}).C||1,a=o.tol||1e-4,s=o.alphatol||1e-7,l=o.maxiter||1e4,u=o.numpasses||10,c=r;if(this.kernelType="linear","kernel"in o)if("string"==typeof o.kernel){if("linear"===o.kernel&&(this.kernelType="linear",c=r),"rbf"===o.kernel){var p=o.rbfsigma||.5;this.rbfSigma=p,this.kernelType="rbf",c=n(p)}}else this.kernelType="custom",c=o.kernel;this.kernel=c,this.N=t.length;var f=this.N;this.D=t[0].length;this.D;this.alpha=function(t){for(var e=new Array(t),n=0;n<t;n++)e[n]=0;return e}(f),this.b=0,this.usew_=!1;for(var d,h,m=0,g=0;g<u&&m<l;){for(var v=0,y=0;y<f;y++){var b=this.marginOne(t[y])-e[y];if(e[y]*b<-a&&this.alpha[y]<i||e[y]*b>a&&this.alpha[y]>0){for(var A=y;A===y;)d=0,h=this.N,A=Math.floor(Math.random()*(h-d)+d);var w=this.marginOne(t[A])-e[A];ai=this.alpha[y],aj=this.alpha[A];var E=0,x=i;if(e[y]===e[A]?(E=Math.max(0,ai+aj-i),x=Math.min(i,ai+aj)):(E=Math.max(0,aj-ai),x=Math.min(i,i+aj-ai)),Math.abs(E-x)<1e-4)continue;var O=2*c(t[y],t[A])-c(t[y],t[y])-c(t[A],t[A]);if(O>=0)continue;var C=aj-e[A]*(b-w)/O;if(C>x&&(C=x),C<E&&(C=E),Math.abs(aj-C)<1e-4)continue;this.alpha[A]=C;var S=ai+e[y]*e[A]*(aj-C);this.alpha[y]=S;var k=this.b-b-e[y]*(S-ai)*c(t[y],t[y])-e[A]*(C-aj)*c(t[y],t[A]),j=this.b-w-e[y]*(S-ai)*c(t[y],t[A])-e[A]*(C-aj)*c(t[A],t[A]);this.b=.5*(k+j),S>0&&S<i&&(this.b=k),C>0&&C<i&&(this.b=j),v++}}m++,0==v?g++:g=0}if("linear"===this.kernelType){this.w=new Array(this.D);for(A=0;A<this.D;A++){var N=0;for(y=0;y<this.N;y++)N+=this.alpha[y]*e[y]*t[y][A];this.w[A]=N,this.usew_=!0}}else{var M=[],P=[],B=[];for(y=0;y<this.N;y++)this.alpha[y]>s&&(M.push(this.data[y]),P.push(this.labels[y]),B.push(this.alpha[y]));this.data=M,this.labels=P,this.alpha=B,this.N=this.data.length}var T={};return T.iters=m,T},marginOne:function(t){var e=this.b;if(this.usew_)for(var n=0;n<this.D;n++)e+=t[n]*this.w[n];else for(var r=0;r<this.N;r++)e+=this.alpha[r]*this.labels[r]*this.kernel(t,this.data[r]);return e},predictOne:function(t){return this.marginOne(t)>0?1:-1},margins:function(t){for(var e=t.length,n=new Array(e),r=0;r<e;r++)n[r]=this.marginOne(t[r]);return n},predict:function(t){for(var e=this.margins(t),n=0;n<e.length;n++)e[n]=e[n]>0?1:-1;return e},getWeights:function(){for(var t=new Array(this.D),e=0;e<this.D;e++){for(var n=0,r=0;r<this.N;r++)n+=this.alpha[r]*this.labels[r]*this.data[r][e];t[e]=n}return{w:t,b:this.b}},toJSON:function(){return"custom"===this.kernelType?(console.log("Can't save this SVM because it's using custom, unsupported kernel..."),{}):(json={},json.N=this.N,json.D=this.D,json.b=this.b,json.kernelType=this.kernelType,"linear"===this.kernelType&&(json.w=this.w),"rbf"===this.kernelType&&(json.rbfSigma=this.rbfSigma,json.data=this.data,json.labels=this.labels,json.alpha=this.alpha),json)},fromJSON:function(t){this.N=t.N,this.D=t.D,this.b=t.b,this.kernelType=t.kernelType,"linear"===this.kernelType?(this.w=t.w,this.usew_=!0,this.kernel=r):"rbf"==this.kernelType?(this.rbfSigma=t.rbfSigma,this.kernel=n(this.rbfSigma),this.data=t.data,this.labels=t.labels,this.alpha=t.alpha):console.log("ERROR! unrecognized kernel type."+this.kernelType)}},(t=t||{}).SVM=e,t.makeRbfKernel=n,t.linearKernel=r}(t.exports)},function(t,e,n){(function(n){var r,o,i;o=[],void 0===(i="function"==typeof(r=function(){"use strict";function e(t,e,n){var r=new XMLHttpRequest;r.open("GET",t),r.responseType="blob",r.onload=function(){a(r.response,e,n)},r.onerror=function(){console.error("could not download file")},r.send()}function r(t){var e=new XMLHttpRequest;e.open("HEAD",t,!1);try{e.send()}catch(t){}return 200<=e.status&&299>=e.status}function o(t){try{t.dispatchEvent(new MouseEvent("click"))}catch(n){var e=document.createEvent("MouseEvents");e.initMouseEvent("click",!0,!0,window,0,0,0,80,20,!1,!1,!1,!1,0,null),t.dispatchEvent(e)}}var i="object"==typeof window&&window.window===window?window:"object"==typeof self&&self.self===self?self:"object"==typeof n&&n.global===n?n:void 0,a=i.saveAs||("object"!=typeof window||window!==i?function(){}:"download"in HTMLAnchorElement.prototype?function(t,n,a){var s=i.URL||i.webkitURL,l=document.createElement("a");n=n||t.name||"download",l.download=n,l.rel="noopener","string"==typeof t?(l.href=t,l.origin===location.origin?o(l):r(l.href)?e(t,n,a):o(l,l.target="_blank")):(l.href=s.createObjectURL(t),setTimeout((function(){s.revokeObjectURL(l.href)}),4e4),setTimeout((function(){o(l)}),0))}:"msSaveOrOpenBlob"in navigator?function(t,n,i){if(n=n||t.name||"download","string"!=typeof t)navigator.msSaveOrOpenBlob(function(t,e){return void 0===e?e={autoBom:!1}:"object"!=typeof e&&(console.warn("Deprecated: Expected third argument to be a object"),e={autoBom:!e}),e.autoBom&&/^\s*(?:text\/\S*|application\/xml|\S*\/\S*\+xml)\s*;.*charset\s*=\s*utf-8/i.test(t.type)?new Blob(["\ufeff",t],{type:t.type}):t}(t,i),n);else if(r(t))e(t,n,i);else{var a=document.createElement("a");a.href=t,a.target="_blank",setTimeout((function(){o(a)}))}}:function(t,n,r,o){if((o=o||open("","_blank"))&&(o.document.title=o.document.body.innerText="downloading..."),"string"==typeof t)return e(t,n,r);var a="application/octet-stream"===t.type,s=/constructor/i.test(i.HTMLElement)||i.safari,l=/CriOS\/[\d]+/.test(navigator.userAgent);if((l||a&&s)&&"object"==typeof FileReader){var u=new FileReader;u.onloadend=function(){var t=u.result;t=l?t:t.replace(/^data:[^;]*;/,"data:attachment/file;"),o?o.location.href=t:location=t,o=null},u.readAsDataURL(t)}else{var c=i.URL||i.webkitURL,p=c.createObjectURL(t);o?o.location=p:location.href=p,o=null,setTimeout((function(){c.revokeObjectURL(p)}),4e4)}});i.saveAs=a.saveAs=a,t.exports=a})?r.apply(e,o):r)||(t.exports=i)}).call(this,n(20))},function(t,e){var n;n=function(){return this}();try{n=n||new Function("return this")()}catch(t){"object"==typeof window&&(n=window)}t.exports=n},function(t,e,n){"use strict";n.r(e);var r=n(10),o=n(1),i=n(0),a=n.n(i),s=n(2),l=function(t){function e(){return null!==t&&t.apply(this,arguments)||this}return Object(o.b)(e,t),e.prototype.makeDashboard=function(){return Object(o.a)(this,void 0,void 0,(function(){var t;return Object(o.c)(this,(function(e){return t={dashboard:n(13),overwrite:!0},$.post({url:"/api/dashboards/db",contentType:"application/json",dataType:"application/json",data:JSON.stringify(t),complete:function(e){alert("Dashboard: "+t.dashboard.title+"\nStatus: "+e.statusText),location.replace("/d/"+t.dashboard.uid)}}),[2]}))}))},e.prototype.render=function(){var t=this;return a.a.createElement("div",null,a.a.createElement(s.Button,{onClick:function(){return t.makeDashboard()}},"Sample Dashboard"))},e}(i.PureComponent),u=(n(12),function(t){function e(){return null!==t&&t.apply(this,arguments)||this}return Object(o.b)(e,t),e.prototype.renderAlgorithmView=function(){return this.props.AlgView?a.a.createElement(this.props.AlgView,{options:this.props.options}):a.a.createElement("div",null)},e.prototype.render=function(){var t=this.props,e=t.buttonSelectAlg,n=t.selectAlg,r=t.buttonInputData,o=t.buttonInputOpt,i=t.buttonTrain,s=t.predictor,l=t.nameAcc,u=t.accuracy,c=t.buttonDownload;return a.a.createElement("div",{className:"main"},a.a.createElement("h1",null,"Training Module"),a.a.createElement("div",null,a.a.createElement("span",null,"Choose the algorithm to use for the training: "),a.a.createElement("select",{disabled:!1,id:"alg",onChange:n},a.a.createElement("option",{value:"RL"},"Regressione Lineare (RL)"),a.a.createElement("option",{value:"SVM"},"Support Vector Machine (SVM)")),a.a.createElement("br",null),a.a.createElement("button",{onClick:e},"Confirm")),a.a.createElement("div",null,a.a.createElement("div",{className:"graph"},this.renderAlgorithmView())),a.a.createElement("div",{id:"import",style:{display:"none"}},a.a.createElement("div",null,a.a.createElement("h3",{id:"options"},"Editor"),a.a.createElement("label",{className:"button"},"Import data (.csv)",a.a.createElement("input",{className:"form-input",type:"file",name:"data",id:"data",onChange:r,accept:".csv,.txt"})),a.a.createElement("label",{className:"button"},"Import previous options (.json)",a.a.createElement("input",{className:"form-input",type:"file",name:"opt",id:"opt",onChange:o,accept:".json"})),a.a.createElement("input",{className:"button",id:"train",type:"button",value:"Train 🚂",onClick:function(){i()},style:{display:"none"}}),a.a.createElement("p",{className:"function",style:{display:"none"}},"Function: ",s),a.a.createElement("p",{className:"function",style:{display:"none"}},l,": ",u),a.a.createElement("div",null,a.a.createElement("input",{className:"button",type:"button",value:"Download Predictor",id:"download",onClick:c,style:{display:"none"}}),a.a.createElement("input",{className:"button",id:"reset",type:"button",value:"Reset",onClick:function(){window.location.reload(!1)},style:{display:"none"}})))))},e}(a.a.Component)),c=n(11),p=n.n(c),f=n(4),d=function(){function t(){}return t.prototype.train=function(t,e){return new f.a("RL",p.a.linear(t.getPoints(),{order:e.getOrder(),precision:e.getPrecision()}).equation,p.a.linear(t.getPoints(),{order:e.getOrder(),precision:e.getPrecision()}).string,e,p.a.linear(t.getPoints(),{order:e.getOrder(),precision:e.getPrecision()}).r2)},t}(),h=function(){function t(){}return t.prototype.train=function(t,e){var r=new(n(18).SVM);r.train(t.getPoints(),t.getLabels(),{C:e.getC(),maxiter:e.getMaxIter(),numpass:e.getNumPass()});for(var o,i,a,s=r.predict(t.getPoints()),l=[[0,0],[0,0]],u=0;u<t.getLabels().length;u++)s[u]>0?1===t.getLabels()[u]?l[0][0]++:l[0][1]++:1===t.getLabels()[u]?l[1][0]++:l[1][1]++;var c=(o=l[0][0])/(o+(i=l[0][1])),p=o/(o+(a=l[1][0])),d=c*p*2/(c+p);return o+i!==0&&o+a!==0||(d=0),new f.a("SVM",[r.b,r.w[0],r.w[1]],"y = "+-r.w[0]/r.w[1]+"x + "+-r.b/r.w[0],e,d)},t}(),m=function(t){function e(){var e=null!==t&&t.apply(this,arguments)||this;return e.state={prec:2},e}return Object(o.b)(e,t),e.prototype.render=function(){var t=this,e=this.props.options;return a.a.createElement("div",{className:"graph-container"},a.a.createElement("p",null,"Choose the algorithm options (if you want)"),a.a.createElement("div",{id:"RLopt"},a.a.createElement("div",{className:"form"},a.a.createElement("span",{className:"form-label"},a.a.createElement("strong",null,"Precision"),":"," "),a.a.createElement("select",{value:e.getPrecision(),onChange:function(n){e.setPrecision(Number(n.target.value)),t.setState({prec:e.getPrecision()})}},a.a.createElement("option",{value:"1"},"1"),a.a.createElement("option",{value:"2"},"2"),a.a.createElement("option",{value:"3"},"3"),a.a.createElement("option",{value:"4"},"4"),a.a.createElement("option",{value:"5"},"5")),a.a.createElement("br",null))))},e}(a.a.Component),g=function(t){function e(){var e=null!==t&&t.apply(this,arguments)||this;return e.state={opt:0},e}return Object(o.b)(e,t),e.prototype.render=function(){var t=this,e=this.props.options;return a.a.createElement("div",{className:"graph-container"},a.a.createElement("div",{className:"text-center"},a.a.createElement("h3",{id:"options"},"Choose the algorithm options (if you want)")),a.a.createElement("label",{className:"form-label form-label-2 mb-2"},a.a.createElement("strong",null,"Kernel type"),": linear"),a.a.createElement("label",{className:"form-label form-label-2 mb-2"},a.a.createElement("strong",null,"Alpha Tollerance"),": 1e-7"),a.a.createElement("label",{className:"form-label form-label-2 mb-10"},a.a.createElement("strong",null,"Tollerance"),": 1e-4"),a.a.createElement("div",{id:"SVMopt"},a.a.createElement("div",{className:"form"},a.a.createElement("label",{className:"form-label"},a.a.createElement("strong",null,"C"),":"),a.a.createElement("input",{type:"number",id:"C",value:e.getC(),onChange:function(n){e.setC(Number(n.target.value)),t.setState({opt:e.getC()})}})),a.a.createElement("div",{className:"form"},a.a.createElement("label",{className:"form-label"},a.a.createElement("strong",null,"Max iterations"),":"),a.a.createElement("input",{type:"number",id:"maxiter",value:e.getMaxIter(),onChange:function(n){e.setMaxIter(Number(n.target.value)),t.setState({opt:e.getMaxIter()})}})),a.a.createElement("div",{className:"form"},a.a.createElement("label",{className:"form-label"},a.a.createElement("strong",null,"Number passes"),":"),a.a.createElement("input",{type:"number",id:"numpas",value:e.getNumPass(),onChange:function(n){e.setNumPass(Number(n.target.value)),t.setState({opt:e.getNumPass()})}}))))},e}(a.a.Component),v=function(){function t(){this.points=[]}return t.prototype.setValue=function(t){var e=this;t.forEach((function(t){var n=[0,0];n[0]=t[0],n[1]=t[1],e.points.push(n)}))},t.prototype.getPoints=function(){return this.points},t}(),y=function(){function t(){this.points=[],this.labels=[]}return t.prototype.setValue=function(t){var e=this;t.forEach((function(t){e.points.push([t[0],t[1]]),e.labels.push(t[2])}))},t.prototype.getPoints=function(){return this.points},t.prototype.getLabels=function(){return this.labels},t}(),b=n(8),A=n(9),w={RL:new d,SVM:new h},E={RL:m,SVM:g},x={RL:new v,SVM:new y},O={RL:new b.a,SVM:new A.a},C=function(){function t(){}return t.prototype.getData=function(){return this.data},t.prototype.getPredictor=function(){return this.predictor},t.prototype.setData=function(t){this.data&&this.data.setValue(t)},t.prototype.setAlgorithm=function(t){this.predictor=new f.a(t,[],"",O[t]),this.strategy=w[t],this.data=x[t]},t.prototype.setPredictorOptions=function(t){var e;null===(e=this.predictor)||void 0===e||e.setOpt(t)},t.prototype.train=function(){var t,e=null===(t=this.predictor)||void 0===t?void 0:t.getOpt();this.strategy&&this.data&&e&&(this.predictor=this.strategy.train(this.data,e))},t.prototype.downloadPredictor=function(){if(this.predictor){var t=n(19),e=this.predictor.toJSON(),r=new File([e],"Training.json",{type:"text/json;charset=utf-8"});t.saveAs(r)}},t}(),S=function(t){function e(e){var n=t.call(this,e)||this;return n.state={algView:void 0,options:{},fun:"",acc:0},n.model=new C,n.algorithm="RL",n}return Object(o.b)(e,t),e.validateFile=function(t){if(!t.match(/^[-?\d.\d?,-?\d.\d?\n]+/))throw new Error("Data has wrong formattation!")},e.parseCSVtoData=function(t){var e=[];return t.trim().split("\n").forEach((function(t){var n=t.split(","),r=[];n.forEach((function(t){r.push(parseFloat(t))})),e.push(r)})),e},e.prototype.loadData=function(t){var n=this,r=new FileReader;if(t){r.readAsText(t);try{r.onload=function(t){e.validateFile(t.target&&t.target.result?t.target.result.toString():"");var r=e.parseCSVtoData(t.target&&t.target.result?t.target.result.toString():"");n.model.setData(r);var o=document.getElementById("train");o&&o.setAttribute("style","display: block")}}catch(t){alert(t)}}},e.prototype.loadOpt=function(t){var e=this;if(t){var n=new FileReader;if("json"===t.name.split(".").pop()){n.readAsText(t);try{n.onload=function(t){var n,r=t.target&&t.target.result?t.target.result.toString():"";e.model.setPredictorOptions(r),e.setState({options:null===(n=e.model.getPredictor())||void 0===n?void 0:n.getOpt()}),e.setState({fun:""}),e.setState({acc:0})}}catch(t){alert(t)}}else alert("File extension is not json!")}},e.prototype.setAlgorithm=function(t){this.algorithm=t},e.prototype.selectAlgorithm=function(){this.model.setAlgorithm(this.algorithm),this.setState({algView:E[this.algorithm]}),this.setState({options:O[this.algorithm]});var t=document.getElementById("alg");t&&t.setAttribute("disabled","true");var e=document.getElementById("import");e&&e.setAttribute("style","display: block")},e.prototype.train=function(){var t,e;if(this.model.getData()){this.model.train();var n=document.getElementsByClassName("function")[0],r=document.getElementsByClassName("function")[1];n&&r&&(n.setAttribute("style","display: block"),r.setAttribute("style","display: block"));var o=document.getElementById("reset");o&&o.setAttribute("style","display: block");var i=document.getElementById("download");i&&i.setAttribute("style","display: block"),this.setState({fun:null===(t=this.model.getPredictor())||void 0===t?void 0:t.getPredFun()}),this.setState({acc:null===(e=this.model.getPredictor())||void 0===e?void 0:e.getAcc()})}},e.prototype.render=function(){var t=this;return a.a.createElement(u,{selectAlg:function(e){t.setAlgorithm(e.target.value)},buttonSelectAlg:function(){t.selectAlgorithm()},buttonInputData:function(e){t.loadData(e.target&&e.target.files?e.target.files[0]:null)},buttonInputOpt:function(e){t.loadOpt(e.target&&e.target.files?e.target.files[0]:null)},buttonTrain:function(){return t.train()},predictor:this.state.fun,nameAcc:"RL"===this.algorithm?"R^2":"F-Measure",accuracy:this.state.acc,buttonDownload:function(){t.model.downloadPredictor()},AlgView:this.state.algView,options:this.state.options})},e}(i.PureComponent);n.d(e,"ConfigCtrl",(function(){return k})),n.d(e,"plugin",(function(){return j}));var k=function(){},j=(new r.AppPlugin).addConfigPage({title:"Wizard",icon:"fa fa-magic",body:l,id:"import"}).addConfigPage({title:"Training",icon:"",body:S,id:"training"})}])}));
+define(["@grafana/data","@grafana/ui","react"], function(__WEBPACK_EXTERNAL_MODULE__grafana_data__, __WEBPACK_EXTERNAL_MODULE__grafana_ui__, __WEBPACK_EXTERNAL_MODULE_react__) { return /******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "/";
+/******/
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = "./module.ts");
+/******/ })
+/************************************************************************/
+/******/ ({
+
+/***/ "../node_modules/css-loader/dist/cjs.js?!../node_modules/postcss-loader/src/index.js?!../node_modules/sass-loader/lib/loader.js!./Training/App.css":
+/*!******************************************************************************************************************************************************************!*\
+  !*** ../node_modules/css-loader/dist/cjs.js??ref--8-1!../node_modules/postcss-loader/src??ref--8-2!../node_modules/sass-loader/lib/loader.js!./Training/App.css ***!
+  \******************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// Imports
+var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "../node_modules/css-loader/dist/runtime/api.js");
+exports = ___CSS_LOADER_API_IMPORT___(true);
+// Module
+exports.push([module.i, ".main h1 {\n  text-align: center; }\n\n.main > div {\n  width: 100%;\n  margin: 1em;\n  padding: 1em;\n  background-color: #2c2c2c;\n  border-radius: 4px; }\n\n.button {\n  border: 1px solid #818181;\n  margin: .5em;\n  padding-left: 1em;\n  cursor: pointer; }\n\n.button input {\n  display: none; }\n\nbutton, .button {\n  display: inline-flex;\n  align-items: center;\n  font-weight: 500;\n  font-size: 14px;\n  font-family: \"Roboto\", \"Helvetica Neue\", Arial, sans-serif;\n  line-height: 1;\n  padding: 8px 16px;\n  vertical-align: middle;\n  cursor: pointer;\n  border: medium none;\n  height: 32px;\n  border-radius: 2px;\n  background: rgba(0, 0, 0, 0) linear-gradient(#3f84ac, #38779b) repeat scroll 0% 0%;\n  color: white;\n  text-shadow: rgba(0, 0, 0, 0.1) 0px -1px; }\n\nbutton:hover, .button:hover {\n  background: #3f84ac none repeat scroll 0% 0%;\n  color: white; }\n\nselect {\n  border: none;\n  border-radius: 4px; }\n", "",{"version":3,"sources":["App.css"],"names":[],"mappings":"AAAA;EACE,kBAAkB,EAAE;;AAEtB;EACE,WAAW;EACX,WAAW;EACX,YAAY;EACZ,yBAAyB;EACzB,kBAAkB,EAAE;;AAEtB;EACE,yBAAyB;EACzB,YAAY;EACZ,iBAAiB;EACjB,eAAe,EAAE;;AAEnB;EACE,aAAa,EAAE;;AAEjB;EACE,oBAAoB;EAEpB,mBAAmB;EACnB,gBAAgB;EAChB,eAAe;EACf,0DAA0D;EAC1D,cAAc;EACd,iBAAiB;EACjB,sBAAsB;EACtB,eAAe;EACf,mBAAmB;EACnB,YAAY;EACZ,kBAAkB;EAClB,kFAAkF;EAClF,YAAY;EACZ,wCAAwC,EAAE;;AAE5C;EACE,4CAA4C;EAC5C,YAAY,EAAE;;AAEhB;EACE,YAAY;EACZ,kBAAkB,EAAE","file":"App.css","sourcesContent":[".main h1 {\n  text-align: center; }\n\n.main > div {\n  width: 100%;\n  margin: 1em;\n  padding: 1em;\n  background-color: #2c2c2c;\n  border-radius: 4px; }\n\n.button {\n  border: 1px solid #818181;\n  margin: .5em;\n  padding-left: 1em;\n  cursor: pointer; }\n\n.button input {\n  display: none; }\n\nbutton, .button {\n  display: inline-flex;\n  -moz-box-align: center;\n  align-items: center;\n  font-weight: 500;\n  font-size: 14px;\n  font-family: \"Roboto\", \"Helvetica Neue\", Arial, sans-serif;\n  line-height: 1;\n  padding: 8px 16px;\n  vertical-align: middle;\n  cursor: pointer;\n  border: medium none;\n  height: 32px;\n  border-radius: 2px;\n  background: rgba(0, 0, 0, 0) linear-gradient(#3f84ac, #38779b) repeat scroll 0% 0%;\n  color: white;\n  text-shadow: rgba(0, 0, 0, 0.1) 0px -1px; }\n\nbutton:hover, .button:hover {\n  background: #3f84ac none repeat scroll 0% 0%;\n  color: white; }\n\nselect {\n  border: none;\n  border-radius: 4px; }\n"]}]);
+// Exports
+module.exports = exports;
+
+
+/***/ }),
+
+/***/ "../node_modules/css-loader/dist/runtime/api.js":
+/*!******************************************************!*\
+  !*** ../node_modules/css-loader/dist/runtime/api.js ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+/*
+  MIT License http://www.opensource.org/licenses/mit-license.php
+  Author Tobias Koppers @sokra
+*/
+// css base code, injected by the css-loader
+// eslint-disable-next-line func-names
+module.exports = function (useSourceMap) {
+  var list = []; // return the list of modules as css string
+
+  list.toString = function toString() {
+    return this.map(function (item) {
+      var content = cssWithMappingToString(item, useSourceMap);
+
+      if (item[2]) {
+        return "@media ".concat(item[2], " {").concat(content, "}");
+      }
+
+      return content;
+    }).join('');
+  }; // import a list of modules into the list
+  // eslint-disable-next-line func-names
+
+
+  list.i = function (modules, mediaQuery, dedupe) {
+    if (typeof modules === 'string') {
+      // eslint-disable-next-line no-param-reassign
+      modules = [[null, modules, '']];
+    }
+
+    var alreadyImportedModules = {};
+
+    if (dedupe) {
+      for (var i = 0; i < this.length; i++) {
+        // eslint-disable-next-line prefer-destructuring
+        var id = this[i][0];
+
+        if (id != null) {
+          alreadyImportedModules[id] = true;
+        }
+      }
+    }
+
+    for (var _i = 0; _i < modules.length; _i++) {
+      var item = [].concat(modules[_i]);
+
+      if (dedupe && alreadyImportedModules[item[0]]) {
+        // eslint-disable-next-line no-continue
+        continue;
+      }
+
+      if (mediaQuery) {
+        if (!item[2]) {
+          item[2] = mediaQuery;
+        } else {
+          item[2] = "".concat(mediaQuery, " and ").concat(item[2]);
+        }
+      }
+
+      list.push(item);
+    }
+  };
+
+  return list;
+};
+
+function cssWithMappingToString(item, useSourceMap) {
+  var content = item[1] || ''; // eslint-disable-next-line prefer-destructuring
+
+  var cssMapping = item[3];
+
+  if (!cssMapping) {
+    return content;
+  }
+
+  if (useSourceMap && typeof btoa === 'function') {
+    var sourceMapping = toComment(cssMapping);
+    var sourceURLs = cssMapping.sources.map(function (source) {
+      return "/*# sourceURL=".concat(cssMapping.sourceRoot || '').concat(source, " */");
+    });
+    return [content].concat(sourceURLs).concat([sourceMapping]).join('\n');
+  }
+
+  return [content].join('\n');
+} // Adapted from convert-source-map (MIT)
+
+
+function toComment(sourceMap) {
+  // eslint-disable-next-line no-undef
+  var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));
+  var data = "sourceMappingURL=data:application/json;charset=utf-8;base64,".concat(base64);
+  return "/*# ".concat(data, " */");
+}
+
+/***/ }),
+
+/***/ "../node_modules/file-saver/dist/FileSaver.min.js":
+/*!********************************************************!*\
+  !*** ../node_modules/file-saver/dist/FileSaver.min.js ***!
+  \********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(global) {var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function(a,b){if(true)!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_FACTORY__ = (b),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));else {}})(this,function(){"use strict";function b(a,b){return"undefined"==typeof b?b={autoBom:!1}:"object"!=typeof b&&(console.warn("Deprecated: Expected third argument to be a object"),b={autoBom:!b}),b.autoBom&&/^\s*(?:text\/\S*|application\/xml|\S*\/\S*\+xml)\s*;.*charset\s*=\s*utf-8/i.test(a.type)?new Blob(["\uFEFF",a],{type:a.type}):a}function c(b,c,d){var e=new XMLHttpRequest;e.open("GET",b),e.responseType="blob",e.onload=function(){a(e.response,c,d)},e.onerror=function(){console.error("could not download file")},e.send()}function d(a){var b=new XMLHttpRequest;b.open("HEAD",a,!1);try{b.send()}catch(a){}return 200<=b.status&&299>=b.status}function e(a){try{a.dispatchEvent(new MouseEvent("click"))}catch(c){var b=document.createEvent("MouseEvents");b.initMouseEvent("click",!0,!0,window,0,0,0,80,20,!1,!1,!1,!1,0,null),a.dispatchEvent(b)}}var f="object"==typeof window&&window.window===window?window:"object"==typeof self&&self.self===self?self:"object"==typeof global&&global.global===global?global:void 0,a=f.saveAs||("object"!=typeof window||window!==f?function(){}:"download"in HTMLAnchorElement.prototype?function(b,g,h){var i=f.URL||f.webkitURL,j=document.createElement("a");g=g||b.name||"download",j.download=g,j.rel="noopener","string"==typeof b?(j.href=b,j.origin===location.origin?e(j):d(j.href)?c(b,g,h):e(j,j.target="_blank")):(j.href=i.createObjectURL(b),setTimeout(function(){i.revokeObjectURL(j.href)},4E4),setTimeout(function(){e(j)},0))}:"msSaveOrOpenBlob"in navigator?function(f,g,h){if(g=g||f.name||"download","string"!=typeof f)navigator.msSaveOrOpenBlob(b(f,h),g);else if(d(f))c(f,g,h);else{var i=document.createElement("a");i.href=f,i.target="_blank",setTimeout(function(){e(i)})}}:function(a,b,d,e){if(e=e||open("","_blank"),e&&(e.document.title=e.document.body.innerText="downloading..."),"string"==typeof a)return c(a,b,d);var g="application/octet-stream"===a.type,h=/constructor/i.test(f.HTMLElement)||f.safari,i=/CriOS\/[\d]+/.test(navigator.userAgent);if((i||g&&h)&&"object"==typeof FileReader){var j=new FileReader;j.onloadend=function(){var a=j.result;a=i?a:a.replace(/^data:[^;]*;/,"data:attachment/file;"),e?e.location.href=a:location=a,e=null},j.readAsDataURL(a)}else{var k=f.URL||f.webkitURL,l=k.createObjectURL(a);e?e.location=l:location.href=l,e=null,setTimeout(function(){k.revokeObjectURL(l)},4E4)}});f.saveAs=a.saveAs=a, true&&(module.exports=a)});
+
+//# sourceMappingURL=FileSaver.min.js.map
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../webpack/buildin/global.js */ "../node_modules/webpack/buildin/global.js")))
+
+/***/ }),
+
+/***/ "../node_modules/regression/dist/regression.js":
+/*!*****************************************************!*\
+  !*** ../node_modules/regression/dist/regression.js ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (global, factory) {
+  if (true) {
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [module], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+  } else { var mod; }
+})(this, function (module) {
+  'use strict';
+
+  function _defineProperty(obj, key, value) {
+    if (key in obj) {
+      Object.defineProperty(obj, key, {
+        value: value,
+        enumerable: true,
+        configurable: true,
+        writable: true
+      });
+    } else {
+      obj[key] = value;
+    }
+
+    return obj;
+  }
+
+  var _extends = Object.assign || function (target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i];
+
+      for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          target[key] = source[key];
+        }
+      }
+    }
+
+    return target;
+  };
+
+  function _toConsumableArray(arr) {
+    if (Array.isArray(arr)) {
+      for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) {
+        arr2[i] = arr[i];
+      }
+
+      return arr2;
+    } else {
+      return Array.from(arr);
+    }
+  }
+
+  var DEFAULT_OPTIONS = { order: 2, precision: 2, period: null };
+
+  /**
+  * Determine the coefficient of determination (r^2) of a fit from the observations
+  * and predictions.
+  *
+  * @param {Array<Array<number>>} data - Pairs of observed x-y values
+  * @param {Array<Array<number>>} results - Pairs of observed predicted x-y values
+  *
+  * @return {number} - The r^2 value, or NaN if one cannot be calculated.
+  */
+  function determinationCoefficient(data, results) {
+    var predictions = [];
+    var observations = [];
+
+    data.forEach(function (d, i) {
+      if (d[1] !== null) {
+        observations.push(d);
+        predictions.push(results[i]);
+      }
+    });
+
+    var sum = observations.reduce(function (a, observation) {
+      return a + observation[1];
+    }, 0);
+    var mean = sum / observations.length;
+
+    var ssyy = observations.reduce(function (a, observation) {
+      var difference = observation[1] - mean;
+      return a + difference * difference;
+    }, 0);
+
+    var sse = observations.reduce(function (accum, observation, index) {
+      var prediction = predictions[index];
+      var residual = observation[1] - prediction[1];
+      return accum + residual * residual;
+    }, 0);
+
+    return 1 - sse / ssyy;
+  }
+
+  /**
+  * Determine the solution of a system of linear equations A * x = b using
+  * Gaussian elimination.
+  *
+  * @param {Array<Array<number>>} input - A 2-d matrix of data in row-major form [ A | b ]
+  * @param {number} order - How many degrees to solve for
+  *
+  * @return {Array<number>} - Vector of normalized solution coefficients matrix (x)
+  */
+  function gaussianElimination(input, order) {
+    var matrix = input;
+    var n = input.length - 1;
+    var coefficients = [order];
+
+    for (var i = 0; i < n; i++) {
+      var maxrow = i;
+      for (var j = i + 1; j < n; j++) {
+        if (Math.abs(matrix[i][j]) > Math.abs(matrix[i][maxrow])) {
+          maxrow = j;
+        }
+      }
+
+      for (var k = i; k < n + 1; k++) {
+        var tmp = matrix[k][i];
+        matrix[k][i] = matrix[k][maxrow];
+        matrix[k][maxrow] = tmp;
+      }
+
+      for (var _j = i + 1; _j < n; _j++) {
+        for (var _k = n; _k >= i; _k--) {
+          matrix[_k][_j] -= matrix[_k][i] * matrix[i][_j] / matrix[i][i];
+        }
+      }
+    }
+
+    for (var _j2 = n - 1; _j2 >= 0; _j2--) {
+      var total = 0;
+      for (var _k2 = _j2 + 1; _k2 < n; _k2++) {
+        total += matrix[_k2][_j2] * coefficients[_k2];
+      }
+
+      coefficients[_j2] = (matrix[n][_j2] - total) / matrix[_j2][_j2];
+    }
+
+    return coefficients;
+  }
+
+  /**
+  * Round a number to a precision, specificed in number of decimal places
+  *
+  * @param {number} number - The number to round
+  * @param {number} precision - The number of decimal places to round to:
+  *                             > 0 means decimals, < 0 means powers of 10
+  *
+  *
+  * @return {numbr} - The number, rounded
+  */
+  function round(number, precision) {
+    var factor = Math.pow(10, precision);
+    return Math.round(number * factor) / factor;
+  }
+
+  /**
+  * The set of all fitting methods
+  *
+  * @namespace
+  */
+  var methods = {
+    linear: function linear(data, options) {
+      var sum = [0, 0, 0, 0, 0];
+      var len = 0;
+
+      for (var n = 0; n < data.length; n++) {
+        if (data[n][1] !== null) {
+          len++;
+          sum[0] += data[n][0];
+          sum[1] += data[n][1];
+          sum[2] += data[n][0] * data[n][0];
+          sum[3] += data[n][0] * data[n][1];
+          sum[4] += data[n][1] * data[n][1];
+        }
+      }
+
+      var run = len * sum[2] - sum[0] * sum[0];
+      var rise = len * sum[3] - sum[0] * sum[1];
+      var gradient = run === 0 ? 0 : round(rise / run, options.precision);
+      var intercept = round(sum[1] / len - gradient * sum[0] / len, options.precision);
+
+      var predict = function predict(x) {
+        return [round(x, options.precision), round(gradient * x + intercept, options.precision)];
+      };
+
+      var points = data.map(function (point) {
+        return predict(point[0]);
+      });
+
+      return {
+        points: points,
+        predict: predict,
+        equation: [gradient, intercept],
+        r2: round(determinationCoefficient(data, points), options.precision),
+        string: intercept === 0 ? 'y = ' + gradient + 'x' : 'y = ' + gradient + 'x + ' + intercept
+      };
+    },
+    exponential: function exponential(data, options) {
+      var sum = [0, 0, 0, 0, 0, 0];
+
+      for (var n = 0; n < data.length; n++) {
+        if (data[n][1] !== null) {
+          sum[0] += data[n][0];
+          sum[1] += data[n][1];
+          sum[2] += data[n][0] * data[n][0] * data[n][1];
+          sum[3] += data[n][1] * Math.log(data[n][1]);
+          sum[4] += data[n][0] * data[n][1] * Math.log(data[n][1]);
+          sum[5] += data[n][0] * data[n][1];
+        }
+      }
+
+      var denominator = sum[1] * sum[2] - sum[5] * sum[5];
+      var a = Math.exp((sum[2] * sum[3] - sum[5] * sum[4]) / denominator);
+      var b = (sum[1] * sum[4] - sum[5] * sum[3]) / denominator;
+      var coeffA = round(a, options.precision);
+      var coeffB = round(b, options.precision);
+      var predict = function predict(x) {
+        return [round(x, options.precision), round(coeffA * Math.exp(coeffB * x), options.precision)];
+      };
+
+      var points = data.map(function (point) {
+        return predict(point[0]);
+      });
+
+      return {
+        points: points,
+        predict: predict,
+        equation: [coeffA, coeffB],
+        string: 'y = ' + coeffA + 'e^(' + coeffB + 'x)',
+        r2: round(determinationCoefficient(data, points), options.precision)
+      };
+    },
+    logarithmic: function logarithmic(data, options) {
+      var sum = [0, 0, 0, 0];
+      var len = data.length;
+
+      for (var n = 0; n < len; n++) {
+        if (data[n][1] !== null) {
+          sum[0] += Math.log(data[n][0]);
+          sum[1] += data[n][1] * Math.log(data[n][0]);
+          sum[2] += data[n][1];
+          sum[3] += Math.pow(Math.log(data[n][0]), 2);
+        }
+      }
+
+      var a = (len * sum[1] - sum[2] * sum[0]) / (len * sum[3] - sum[0] * sum[0]);
+      var coeffB = round(a, options.precision);
+      var coeffA = round((sum[2] - coeffB * sum[0]) / len, options.precision);
+
+      var predict = function predict(x) {
+        return [round(x, options.precision), round(round(coeffA + coeffB * Math.log(x), options.precision), options.precision)];
+      };
+
+      var points = data.map(function (point) {
+        return predict(point[0]);
+      });
+
+      return {
+        points: points,
+        predict: predict,
+        equation: [coeffA, coeffB],
+        string: 'y = ' + coeffA + ' + ' + coeffB + ' ln(x)',
+        r2: round(determinationCoefficient(data, points), options.precision)
+      };
+    },
+    power: function power(data, options) {
+      var sum = [0, 0, 0, 0, 0];
+      var len = data.length;
+
+      for (var n = 0; n < len; n++) {
+        if (data[n][1] !== null) {
+          sum[0] += Math.log(data[n][0]);
+          sum[1] += Math.log(data[n][1]) * Math.log(data[n][0]);
+          sum[2] += Math.log(data[n][1]);
+          sum[3] += Math.pow(Math.log(data[n][0]), 2);
+        }
+      }
+
+      var b = (len * sum[1] - sum[0] * sum[2]) / (len * sum[3] - Math.pow(sum[0], 2));
+      var a = (sum[2] - b * sum[0]) / len;
+      var coeffA = round(Math.exp(a), options.precision);
+      var coeffB = round(b, options.precision);
+
+      var predict = function predict(x) {
+        return [round(x, options.precision), round(round(coeffA * Math.pow(x, coeffB), options.precision), options.precision)];
+      };
+
+      var points = data.map(function (point) {
+        return predict(point[0]);
+      });
+
+      return {
+        points: points,
+        predict: predict,
+        equation: [coeffA, coeffB],
+        string: 'y = ' + coeffA + 'x^' + coeffB,
+        r2: round(determinationCoefficient(data, points), options.precision)
+      };
+    },
+    polynomial: function polynomial(data, options) {
+      var lhs = [];
+      var rhs = [];
+      var a = 0;
+      var b = 0;
+      var len = data.length;
+      var k = options.order + 1;
+
+      for (var i = 0; i < k; i++) {
+        for (var l = 0; l < len; l++) {
+          if (data[l][1] !== null) {
+            a += Math.pow(data[l][0], i) * data[l][1];
+          }
+        }
+
+        lhs.push(a);
+        a = 0;
+
+        var c = [];
+        for (var j = 0; j < k; j++) {
+          for (var _l = 0; _l < len; _l++) {
+            if (data[_l][1] !== null) {
+              b += Math.pow(data[_l][0], i + j);
+            }
+          }
+          c.push(b);
+          b = 0;
+        }
+        rhs.push(c);
+      }
+      rhs.push(lhs);
+
+      var coefficients = gaussianElimination(rhs, k).map(function (v) {
+        return round(v, options.precision);
+      });
+
+      var predict = function predict(x) {
+        return [round(x, options.precision), round(coefficients.reduce(function (sum, coeff, power) {
+          return sum + coeff * Math.pow(x, power);
+        }, 0), options.precision)];
+      };
+
+      var points = data.map(function (point) {
+        return predict(point[0]);
+      });
+
+      var string = 'y = ';
+      for (var _i = coefficients.length - 1; _i >= 0; _i--) {
+        if (_i > 1) {
+          string += coefficients[_i] + 'x^' + _i + ' + ';
+        } else if (_i === 1) {
+          string += coefficients[_i] + 'x + ';
+        } else {
+          string += coefficients[_i];
+        }
+      }
+
+      return {
+        string: string,
+        points: points,
+        predict: predict,
+        equation: [].concat(_toConsumableArray(coefficients)).reverse(),
+        r2: round(determinationCoefficient(data, points), options.precision)
+      };
+    }
+  };
+
+  function createWrapper() {
+    var reduce = function reduce(accumulator, name) {
+      return _extends({
+        _round: round
+      }, accumulator, _defineProperty({}, name, function (data, supplied) {
+        return methods[name](data, _extends({}, DEFAULT_OPTIONS, supplied));
+      }));
+    };
+
+    return Object.keys(methods).reduce(reduce, {});
+  }
+
+  module.exports = createWrapper();
+});
+
+
+/***/ }),
+
+/***/ "../node_modules/style-loader/lib/addStyles.js":
+/*!*****************************************************!*\
+  !*** ../node_modules/style-loader/lib/addStyles.js ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/*
+	MIT License http://www.opensource.org/licenses/mit-license.php
+	Author Tobias Koppers @sokra
+*/
+
+var stylesInDom = {};
+
+var	memoize = function (fn) {
+	var memo;
+
+	return function () {
+		if (typeof memo === "undefined") memo = fn.apply(this, arguments);
+		return memo;
+	};
+};
+
+var isOldIE = memoize(function () {
+	// Test for IE <= 9 as proposed by Browserhacks
+	// @see http://browserhacks.com/#hack-e71d8692f65334173fee715c222cb805
+	// Tests for existence of standard globals is to allow style-loader
+	// to operate correctly into non-standard environments
+	// @see https://github.com/webpack-contrib/style-loader/issues/177
+	return window && document && document.all && !window.atob;
+});
+
+var getTarget = function (target, parent) {
+  if (parent){
+    return parent.querySelector(target);
+  }
+  return document.querySelector(target);
+};
+
+var getElement = (function (fn) {
+	var memo = {};
+
+	return function(target, parent) {
+                // If passing function in options, then use it for resolve "head" element.
+                // Useful for Shadow Root style i.e
+                // {
+                //   insertInto: function () { return document.querySelector("#foo").shadowRoot }
+                // }
+                if (typeof target === 'function') {
+                        return target();
+                }
+                if (typeof memo[target] === "undefined") {
+			var styleTarget = getTarget.call(this, target, parent);
+			// Special case to return head of iframe instead of iframe itself
+			if (window.HTMLIFrameElement && styleTarget instanceof window.HTMLIFrameElement) {
+				try {
+					// This will throw an exception if access to iframe is blocked
+					// due to cross-origin restrictions
+					styleTarget = styleTarget.contentDocument.head;
+				} catch(e) {
+					styleTarget = null;
+				}
+			}
+			memo[target] = styleTarget;
+		}
+		return memo[target]
+	};
+})();
+
+var singleton = null;
+var	singletonCounter = 0;
+var	stylesInsertedAtTop = [];
+
+var	fixUrls = __webpack_require__(/*! ./urls */ "../node_modules/style-loader/lib/urls.js");
+
+module.exports = function(list, options) {
+	if (typeof DEBUG !== "undefined" && DEBUG) {
+		if (typeof document !== "object") throw new Error("The style-loader cannot be used in a non-browser environment");
+	}
+
+	options = options || {};
+
+	options.attrs = typeof options.attrs === "object" ? options.attrs : {};
+
+	// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
+	// tags it will allow on a page
+	if (!options.singleton && typeof options.singleton !== "boolean") options.singleton = isOldIE();
+
+	// By default, add <style> tags to the <head> element
+        if (!options.insertInto) options.insertInto = "head";
+
+	// By default, add <style> tags to the bottom of the target
+	if (!options.insertAt) options.insertAt = "bottom";
+
+	var styles = listToStyles(list, options);
+
+	addStylesToDom(styles, options);
+
+	return function update (newList) {
+		var mayRemove = [];
+
+		for (var i = 0; i < styles.length; i++) {
+			var item = styles[i];
+			var domStyle = stylesInDom[item.id];
+
+			domStyle.refs--;
+			mayRemove.push(domStyle);
+		}
+
+		if(newList) {
+			var newStyles = listToStyles(newList, options);
+			addStylesToDom(newStyles, options);
+		}
+
+		for (var i = 0; i < mayRemove.length; i++) {
+			var domStyle = mayRemove[i];
+
+			if(domStyle.refs === 0) {
+				for (var j = 0; j < domStyle.parts.length; j++) domStyle.parts[j]();
+
+				delete stylesInDom[domStyle.id];
+			}
+		}
+	};
+};
+
+function addStylesToDom (styles, options) {
+	for (var i = 0; i < styles.length; i++) {
+		var item = styles[i];
+		var domStyle = stylesInDom[item.id];
+
+		if(domStyle) {
+			domStyle.refs++;
+
+			for(var j = 0; j < domStyle.parts.length; j++) {
+				domStyle.parts[j](item.parts[j]);
+			}
+
+			for(; j < item.parts.length; j++) {
+				domStyle.parts.push(addStyle(item.parts[j], options));
+			}
+		} else {
+			var parts = [];
+
+			for(var j = 0; j < item.parts.length; j++) {
+				parts.push(addStyle(item.parts[j], options));
+			}
+
+			stylesInDom[item.id] = {id: item.id, refs: 1, parts: parts};
+		}
+	}
+}
+
+function listToStyles (list, options) {
+	var styles = [];
+	var newStyles = {};
+
+	for (var i = 0; i < list.length; i++) {
+		var item = list[i];
+		var id = options.base ? item[0] + options.base : item[0];
+		var css = item[1];
+		var media = item[2];
+		var sourceMap = item[3];
+		var part = {css: css, media: media, sourceMap: sourceMap};
+
+		if(!newStyles[id]) styles.push(newStyles[id] = {id: id, parts: [part]});
+		else newStyles[id].parts.push(part);
+	}
+
+	return styles;
+}
+
+function insertStyleElement (options, style) {
+	var target = getElement(options.insertInto)
+
+	if (!target) {
+		throw new Error("Couldn't find a style target. This probably means that the value for the 'insertInto' parameter is invalid.");
+	}
+
+	var lastStyleElementInsertedAtTop = stylesInsertedAtTop[stylesInsertedAtTop.length - 1];
+
+	if (options.insertAt === "top") {
+		if (!lastStyleElementInsertedAtTop) {
+			target.insertBefore(style, target.firstChild);
+		} else if (lastStyleElementInsertedAtTop.nextSibling) {
+			target.insertBefore(style, lastStyleElementInsertedAtTop.nextSibling);
+		} else {
+			target.appendChild(style);
+		}
+		stylesInsertedAtTop.push(style);
+	} else if (options.insertAt === "bottom") {
+		target.appendChild(style);
+	} else if (typeof options.insertAt === "object" && options.insertAt.before) {
+		var nextSibling = getElement(options.insertAt.before, target);
+		target.insertBefore(style, nextSibling);
+	} else {
+		throw new Error("[Style Loader]\n\n Invalid value for parameter 'insertAt' ('options.insertAt') found.\n Must be 'top', 'bottom', or Object.\n (https://github.com/webpack-contrib/style-loader#insertat)\n");
+	}
+}
+
+function removeStyleElement (style) {
+	if (style.parentNode === null) return false;
+	style.parentNode.removeChild(style);
+
+	var idx = stylesInsertedAtTop.indexOf(style);
+	if(idx >= 0) {
+		stylesInsertedAtTop.splice(idx, 1);
+	}
+}
+
+function createStyleElement (options) {
+	var style = document.createElement("style");
+
+	if(options.attrs.type === undefined) {
+		options.attrs.type = "text/css";
+	}
+
+	if(options.attrs.nonce === undefined) {
+		var nonce = getNonce();
+		if (nonce) {
+			options.attrs.nonce = nonce;
+		}
+	}
+
+	addAttrs(style, options.attrs);
+	insertStyleElement(options, style);
+
+	return style;
+}
+
+function createLinkElement (options) {
+	var link = document.createElement("link");
+
+	if(options.attrs.type === undefined) {
+		options.attrs.type = "text/css";
+	}
+	options.attrs.rel = "stylesheet";
+
+	addAttrs(link, options.attrs);
+	insertStyleElement(options, link);
+
+	return link;
+}
+
+function addAttrs (el, attrs) {
+	Object.keys(attrs).forEach(function (key) {
+		el.setAttribute(key, attrs[key]);
+	});
+}
+
+function getNonce() {
+	if (false) {}
+
+	return __webpack_require__.nc;
+}
+
+function addStyle (obj, options) {
+	var style, update, remove, result;
+
+	// If a transform function was defined, run it on the css
+	if (options.transform && obj.css) {
+	    result = typeof options.transform === 'function'
+		 ? options.transform(obj.css) 
+		 : options.transform.default(obj.css);
+
+	    if (result) {
+	    	// If transform returns a value, use that instead of the original css.
+	    	// This allows running runtime transformations on the css.
+	    	obj.css = result;
+	    } else {
+	    	// If the transform function returns a falsy value, don't add this css.
+	    	// This allows conditional loading of css
+	    	return function() {
+	    		// noop
+	    	};
+	    }
+	}
+
+	if (options.singleton) {
+		var styleIndex = singletonCounter++;
+
+		style = singleton || (singleton = createStyleElement(options));
+
+		update = applyToSingletonTag.bind(null, style, styleIndex, false);
+		remove = applyToSingletonTag.bind(null, style, styleIndex, true);
+
+	} else if (
+		obj.sourceMap &&
+		typeof URL === "function" &&
+		typeof URL.createObjectURL === "function" &&
+		typeof URL.revokeObjectURL === "function" &&
+		typeof Blob === "function" &&
+		typeof btoa === "function"
+	) {
+		style = createLinkElement(options);
+		update = updateLink.bind(null, style, options);
+		remove = function () {
+			removeStyleElement(style);
+
+			if(style.href) URL.revokeObjectURL(style.href);
+		};
+	} else {
+		style = createStyleElement(options);
+		update = applyToTag.bind(null, style);
+		remove = function () {
+			removeStyleElement(style);
+		};
+	}
+
+	update(obj);
+
+	return function updateStyle (newObj) {
+		if (newObj) {
+			if (
+				newObj.css === obj.css &&
+				newObj.media === obj.media &&
+				newObj.sourceMap === obj.sourceMap
+			) {
+				return;
+			}
+
+			update(obj = newObj);
+		} else {
+			remove();
+		}
+	};
+}
+
+var replaceText = (function () {
+	var textStore = [];
+
+	return function (index, replacement) {
+		textStore[index] = replacement;
+
+		return textStore.filter(Boolean).join('\n');
+	};
+})();
+
+function applyToSingletonTag (style, index, remove, obj) {
+	var css = remove ? "" : obj.css;
+
+	if (style.styleSheet) {
+		style.styleSheet.cssText = replaceText(index, css);
+	} else {
+		var cssNode = document.createTextNode(css);
+		var childNodes = style.childNodes;
+
+		if (childNodes[index]) style.removeChild(childNodes[index]);
+
+		if (childNodes.length) {
+			style.insertBefore(cssNode, childNodes[index]);
+		} else {
+			style.appendChild(cssNode);
+		}
+	}
+}
+
+function applyToTag (style, obj) {
+	var css = obj.css;
+	var media = obj.media;
+
+	if(media) {
+		style.setAttribute("media", media)
+	}
+
+	if(style.styleSheet) {
+		style.styleSheet.cssText = css;
+	} else {
+		while(style.firstChild) {
+			style.removeChild(style.firstChild);
+		}
+
+		style.appendChild(document.createTextNode(css));
+	}
+}
+
+function updateLink (link, options, obj) {
+	var css = obj.css;
+	var sourceMap = obj.sourceMap;
+
+	/*
+		If convertToAbsoluteUrls isn't defined, but sourcemaps are enabled
+		and there is no publicPath defined then lets turn convertToAbsoluteUrls
+		on by default.  Otherwise default to the convertToAbsoluteUrls option
+		directly
+	*/
+	var autoFixUrls = options.convertToAbsoluteUrls === undefined && sourceMap;
+
+	if (options.convertToAbsoluteUrls || autoFixUrls) {
+		css = fixUrls(css);
+	}
+
+	if (sourceMap) {
+		// http://stackoverflow.com/a/26603875
+		css += "\n/*# sourceMappingURL=data:application/json;base64," + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + " */";
+	}
+
+	var blob = new Blob([css], { type: "text/css" });
+
+	var oldSrc = link.href;
+
+	link.href = URL.createObjectURL(blob);
+
+	if(oldSrc) URL.revokeObjectURL(oldSrc);
+}
+
+
+/***/ }),
+
+/***/ "../node_modules/style-loader/lib/urls.js":
+/*!************************************************!*\
+  !*** ../node_modules/style-loader/lib/urls.js ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+
+/**
+ * When source maps are enabled, `style-loader` uses a link element with a data-uri to
+ * embed the css on the page. This breaks all relative urls because now they are relative to a
+ * bundle instead of the current page.
+ *
+ * One solution is to only use full urls, but that may be impossible.
+ *
+ * Instead, this function "fixes" the relative urls to be absolute according to the current page location.
+ *
+ * A rudimentary test suite is located at `test/fixUrls.js` and can be run via the `npm test` command.
+ *
+ */
+
+module.exports = function (css) {
+  // get current location
+  var location = typeof window !== "undefined" && window.location;
+
+  if (!location) {
+    throw new Error("fixUrls requires window.location");
+  }
+
+	// blank or null?
+	if (!css || typeof css !== "string") {
+	  return css;
+  }
+
+  var baseUrl = location.protocol + "//" + location.host;
+  var currentDir = baseUrl + location.pathname.replace(/\/[^\/]*$/, "/");
+
+	// convert each url(...)
+	/*
+	This regular expression is just a way to recursively match brackets within
+	a string.
+
+	 /url\s*\(  = Match on the word "url" with any whitespace after it and then a parens
+	   (  = Start a capturing group
+	     (?:  = Start a non-capturing group
+	         [^)(]  = Match anything that isn't a parentheses
+	         |  = OR
+	         \(  = Match a start parentheses
+	             (?:  = Start another non-capturing groups
+	                 [^)(]+  = Match anything that isn't a parentheses
+	                 |  = OR
+	                 \(  = Match a start parentheses
+	                     [^)(]*  = Match anything that isn't a parentheses
+	                 \)  = Match a end parentheses
+	             )  = End Group
+              *\) = Match anything and then a close parens
+          )  = Close non-capturing group
+          *  = Match anything
+       )  = Close capturing group
+	 \)  = Match a close parens
+
+	 /gi  = Get all matches, not the first.  Be case insensitive.
+	 */
+	var fixedCss = css.replace(/url\s*\(((?:[^)(]|\((?:[^)(]+|\([^)(]*\))*\))*)\)/gi, function(fullMatch, origUrl) {
+		// strip quotes (if they exist)
+		var unquotedOrigUrl = origUrl
+			.trim()
+			.replace(/^"(.*)"$/, function(o, $1){ return $1; })
+			.replace(/^'(.*)'$/, function(o, $1){ return $1; });
+
+		// already a full url? no change
+		if (/^(#|data:|http:\/\/|https:\/\/|file:\/\/\/|\s*$)/i.test(unquotedOrigUrl)) {
+		  return fullMatch;
+		}
+
+		// convert the url to a full url
+		var newUrl;
+
+		if (unquotedOrigUrl.indexOf("//") === 0) {
+		  	//TODO: should we add protocol?
+			newUrl = unquotedOrigUrl;
+		} else if (unquotedOrigUrl.indexOf("/") === 0) {
+			// path should be relative to the base url
+			newUrl = baseUrl + unquotedOrigUrl; // already starts with '/'
+		} else {
+			// path should be relative to current directory
+			newUrl = currentDir + unquotedOrigUrl.replace(/^\.\//, ""); // Strip leading './'
+		}
+
+		// send back the fixed url(...)
+		return "url(" + JSON.stringify(newUrl) + ")";
+	});
+
+	// send back the fixed css
+	return fixedCss;
+};
+
+
+/***/ }),
+
+/***/ "../node_modules/svm/lib/svm.js":
+/*!**************************************!*\
+  !*** ../node_modules/svm/lib/svm.js ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// MIT License
+// Andrej Karpathy
+
+var svmjs = (function(exports){
+
+  /*
+    This is a binary SVM and is trained using the SMO algorithm.
+    Reference: "The Simplified SMO Algorithm" (http://math.unt.edu/~hsp0009/smo.pdf)
+    
+    Simple usage example:
+    svm = svmjs.SVM();
+    svm.train(data, labels);
+    testlabels = svm.predict(testdata);
+  */
+  var SVM = function(options) {
+  }
+
+  SVM.prototype = {
+    
+    // data is NxD array of floats. labels are 1 or -1.
+    train: function(data, labels, options) {
+      
+      // we need these in helper functions
+      this.data = data;
+      this.labels = labels;
+
+      // parameters
+      options = options || {};
+      var C = options.C || 1.0; // C value. Decrease for more regularization
+      var tol = options.tol || 1e-4; // numerical tolerance. Don't touch unless you're pro
+      var alphatol = options.alphatol || 1e-7; // non-support vectors for space and time efficiency are truncated. To guarantee correct result set this to 0 to do no truncating. If you want to increase efficiency, experiment with setting this little higher, up to maybe 1e-4 or so.
+      var maxiter = options.maxiter || 10000; // max number of iterations
+      var numpasses = options.numpasses || 10; // how many passes over data with no change before we halt? Increase for more precision.
+      
+      // instantiate kernel according to options. kernel can be given as string or as a custom function
+      var kernel = linearKernel;
+      this.kernelType = "linear";
+      if("kernel" in options) {
+        if(typeof options.kernel === "string") {
+          // kernel was specified as a string. Handle these special cases appropriately
+          if(options.kernel === "linear") { 
+            this.kernelType = "linear"; 
+            kernel = linearKernel; 
+          }
+          if(options.kernel === "rbf") { 
+            var rbfSigma = options.rbfsigma || 0.5;
+            this.rbfSigma = rbfSigma; // back this up
+            this.kernelType = "rbf";
+            kernel = makeRbfKernel(rbfSigma);
+          }
+        } else {
+          // assume kernel was specified as a function. Let's just use it
+          this.kernelType = "custom";
+          kernel = options.kernel;
+        }
+      }
+
+      // initializations
+      this.kernel = kernel;
+      this.N = data.length; var N = this.N;
+      this.D = data[0].length; var D = this.D;
+      this.alpha = zeros(N);
+      this.b = 0.0;
+      this.usew_ = false; // internal efficiency flag
+
+      // run SMO algorithm
+      var iter = 0;
+      var passes = 0;
+      while(passes < numpasses && iter < maxiter) {
+        
+        var alphaChanged = 0;
+        for(var i=0;i<N;i++) {
+        
+          var Ei= this.marginOne(data[i]) - labels[i];
+          if( (labels[i]*Ei < -tol && this.alpha[i] < C)
+           || (labels[i]*Ei > tol && this.alpha[i] > 0) ){
+            
+            // alpha_i needs updating! Pick a j to update it with
+            var j = i;
+            while(j === i) j= randi(0, this.N);
+            var Ej= this.marginOne(data[j]) - labels[j];
+            
+            // calculate L and H bounds for j to ensure we're in [0 C]x[0 C] box
+            ai= this.alpha[i];
+            aj= this.alpha[j];
+            var L = 0; var H = C;
+            if(labels[i] === labels[j]) {
+              L = Math.max(0, ai+aj-C);
+              H = Math.min(C, ai+aj);
+            } else {
+              L = Math.max(0, aj-ai);
+              H = Math.min(C, C+aj-ai);
+            }
+            
+            if(Math.abs(L - H) < 1e-4) continue;
+            
+            var eta = 2*kernel(data[i],data[j]) - kernel(data[i],data[i]) - kernel(data[j],data[j]);
+            if(eta >= 0) continue;
+            
+            // compute new alpha_j and clip it inside [0 C]x[0 C] box
+            // then compute alpha_i based on it.
+            var newaj = aj - labels[j]*(Ei-Ej) / eta;
+            if(newaj>H) newaj = H;
+            if(newaj<L) newaj = L;
+            if(Math.abs(aj - newaj) < 1e-4) continue; 
+            this.alpha[j] = newaj;
+            var newai = ai + labels[i]*labels[j]*(aj - newaj);
+            this.alpha[i] = newai;
+            
+            // update the bias term
+            var b1 = this.b - Ei - labels[i]*(newai-ai)*kernel(data[i],data[i])
+                     - labels[j]*(newaj-aj)*kernel(data[i],data[j]);
+            var b2 = this.b - Ej - labels[i]*(newai-ai)*kernel(data[i],data[j])
+                     - labels[j]*(newaj-aj)*kernel(data[j],data[j]);
+            this.b = 0.5*(b1+b2);
+            if(newai > 0 && newai < C) this.b= b1;
+            if(newaj > 0 && newaj < C) this.b= b2;
+            
+            alphaChanged++;
+            
+          } // end alpha_i needed updating
+        } // end for i=1..N
+        
+        iter++;
+        //console.log("iter number %d, alphaChanged = %d", iter, alphaChanged);
+        if(alphaChanged == 0) passes++;
+        else passes= 0;
+        
+      } // end outer loop
+      
+      // if the user was using a linear kernel, lets also compute and store the
+      // weights. This will speed up evaluations during testing time
+      if(this.kernelType === "linear") {
+
+        // compute weights and store them
+        this.w = new Array(this.D);
+        for(var j=0;j<this.D;j++) {
+          var s= 0.0;
+          for(var i=0;i<this.N;i++) {
+            s+= this.alpha[i] * labels[i] * data[i][j];
+          }
+          this.w[j] = s;
+          this.usew_ = true;
+        }
+      } else {
+
+        // okay, we need to retain all the support vectors in the training data,
+        // we can't just get away with computing the weights and throwing it out
+
+        // But! We only need to store the support vectors for evaluation of testing
+        // instances. So filter here based on this.alpha[i]. The training data
+        // for which this.alpha[i] = 0 is irrelevant for future. 
+        var newdata = [];
+        var newlabels = [];
+        var newalpha = [];
+        for(var i=0;i<this.N;i++) {
+          //console.log("alpha=%f", this.alpha[i]);
+          if(this.alpha[i] > alphatol) {
+            newdata.push(this.data[i]);
+            newlabels.push(this.labels[i]);
+            newalpha.push(this.alpha[i]);
+          }
+        }
+
+        // store data and labels
+        this.data = newdata;
+        this.labels = newlabels;
+        this.alpha = newalpha;
+        this.N = this.data.length;
+        //console.log("filtered training data from %d to %d support vectors.", data.length, this.data.length);
+      }
+
+      var trainstats = {};
+      trainstats.iters= iter;
+      return trainstats;
+    }, 
+    
+    // inst is an array of length D. Returns margin of given example
+    // this is the core prediction function. All others are for convenience mostly
+    // and end up calling this one somehow.
+    marginOne: function(inst) {
+
+      var f = this.b;
+      // if the linear kernel was used and w was computed and stored,
+      // (i.e. the svm has fully finished training)
+      // the internal class variable usew_ will be set to true.
+      if(this.usew_) {
+
+        // we can speed this up a lot by using the computed weights
+        // we computed these during train(). This is significantly faster
+        // than the version below
+        for(var j=0;j<this.D;j++) {
+          f += inst[j] * this.w[j];
+        }
+
+      } else {
+
+        for(var i=0;i<this.N;i++) {
+          f += this.alpha[i] * this.labels[i] * this.kernel(inst, this.data[i]);
+        }
+      }
+
+      return f;
+    },
+    
+    predictOne: function(inst) { 
+      return this.marginOne(inst) > 0 ? 1 : -1; 
+    },
+    
+    // data is an NxD array. Returns array of margins.
+    margins: function(data) {
+      
+      // go over support vectors and accumulate the prediction. 
+      var N = data.length;
+      var margins = new Array(N);
+      for(var i=0;i<N;i++) {
+        margins[i] = this.marginOne(data[i]);
+      }
+      return margins;
+      
+    },
+    
+    // data is NxD array. Returns array of 1 or -1, predictions
+    predict: function(data) {
+      var margs = this.margins(data);
+      for(var i=0;i<margs.length;i++) {
+        margs[i] = margs[i] > 0 ? 1 : -1;
+      }
+      return margs;
+    },
+    
+    // THIS FUNCTION IS NOW DEPRECATED. WORKS FINE BUT NO NEED TO USE ANYMORE. 
+    // LEAVING IT HERE JUST FOR BACKWARDS COMPATIBILITY FOR A WHILE.
+    // if we trained a linear svm, it is possible to calculate just the weights and the offset
+    // prediction is then yhat = sign(X * w + b)
+    getWeights: function() {
+      
+      // DEPRECATED
+      var w= new Array(this.D);
+      for(var j=0;j<this.D;j++) {
+        var s= 0.0;
+        for(var i=0;i<this.N;i++) {
+          s+= this.alpha[i] * this.labels[i] * this.data[i][j];
+        }
+        w[j]= s;
+      }
+      return {w: w, b: this.b};
+    },
+
+    toJSON: function() {
+      
+      if(this.kernelType === "custom") {
+        console.log("Can't save this SVM because it's using custom, unsupported kernel...");
+        return {};
+      }
+
+      json = {}
+      json.N = this.N;
+      json.D = this.D;
+      json.b = this.b;
+
+      json.kernelType = this.kernelType;
+      if(this.kernelType === "linear") { 
+        // just back up the weights
+        json.w = this.w; 
+      }
+      if(this.kernelType === "rbf") { 
+        // we need to store the support vectors and the sigma
+        json.rbfSigma = this.rbfSigma; 
+        json.data = this.data;
+        json.labels = this.labels;
+        json.alpha = this.alpha;
+      }
+
+      return json;
+    },
+    
+    fromJSON: function(json) {
+      
+      this.N = json.N;
+      this.D = json.D;
+      this.b = json.b;
+
+      this.kernelType = json.kernelType;
+      if(this.kernelType === "linear") { 
+
+        // load the weights! 
+        this.w = json.w; 
+        this.usew_ = true; 
+        this.kernel = linearKernel; // this shouldn't be necessary
+      }
+      else if(this.kernelType == "rbf") {
+
+        // initialize the kernel
+        this.rbfSigma = json.rbfSigma; 
+        this.kernel = makeRbfKernel(this.rbfSigma);
+
+        // load the support vectors
+        this.data = json.data;
+        this.labels = json.labels;
+        this.alpha = json.alpha;
+      } else {
+        console.log("ERROR! unrecognized kernel type." + this.kernelType);
+      }
+    }
+  }
+  
+  // Kernels
+  function makeRbfKernel(sigma) {
+    return function(v1, v2) {
+      var s=0;
+      for(var q=0;q<v1.length;q++) { s += (v1[q] - v2[q])*(v1[q] - v2[q]); } 
+      return Math.exp(-s/(2.0*sigma*sigma));
+    }
+  }
+  
+  function linearKernel(v1, v2) {
+    var s=0; 
+    for(var q=0;q<v1.length;q++) { s += v1[q] * v2[q]; } 
+    return s;
+  }
+
+  // Misc utility functions
+  // generate random floating point number between a and b
+  function randf(a, b) {
+    return Math.random()*(b-a)+a;
+  }
+
+  // generate random integer between a and b (b excluded)
+  function randi(a, b) {
+     return Math.floor(Math.random()*(b-a)+a);
+  }
+
+  // create vector of zeros of length n
+  function zeros(n) {
+    var arr= new Array(n);
+    for(var i=0;i<n;i++) { arr[i]= 0; }
+    return arr;
+  }
+
+  // export public members
+  exports = exports || {};
+  exports.SVM = SVM;
+  exports.makeRbfKernel = makeRbfKernel;
+  exports.linearKernel = linearKernel;
+  return exports;
+
+})( true && module.exports);  // add exports to module.exports if in node.js
+
+
+/***/ }),
+
+/***/ "../node_modules/tslib/tslib.es6.js":
+/*!******************************************!*\
+  !*** ../node_modules/tslib/tslib.es6.js ***!
+  \******************************************/
+/*! exports provided: __extends, __assign, __rest, __decorate, __param, __metadata, __awaiter, __generator, __exportStar, __values, __read, __spread, __spreadArrays, __await, __asyncGenerator, __asyncDelegator, __asyncValues, __makeTemplateObject, __importStar, __importDefault, __classPrivateFieldGet, __classPrivateFieldSet */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__extends", function() { return __extends; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__assign", function() { return __assign; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__rest", function() { return __rest; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__decorate", function() { return __decorate; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__param", function() { return __param; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__metadata", function() { return __metadata; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__awaiter", function() { return __awaiter; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__generator", function() { return __generator; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__exportStar", function() { return __exportStar; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__values", function() { return __values; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__read", function() { return __read; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__spread", function() { return __spread; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__spreadArrays", function() { return __spreadArrays; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__await", function() { return __await; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__asyncGenerator", function() { return __asyncGenerator; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__asyncDelegator", function() { return __asyncDelegator; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__asyncValues", function() { return __asyncValues; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__makeTemplateObject", function() { return __makeTemplateObject; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__importStar", function() { return __importStar; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__importDefault", function() { return __importDefault; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__classPrivateFieldGet", function() { return __classPrivateFieldGet; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__classPrivateFieldSet", function() { return __classPrivateFieldSet; });
+/*! *****************************************************************************
+Copyright (c) Microsoft Corporation.
+
+Permission to use, copy, modify, and/or distribute this software for any
+purpose with or without fee is hereby granted.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
+AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
+LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
+PERFORMANCE OF THIS SOFTWARE.
+***************************************************************************** */
+/* global Reflect, Promise */
+
+var extendStatics = function(d, b) {
+    extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return extendStatics(d, b);
+};
+
+function __extends(d, b) {
+    extendStatics(d, b);
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+}
+
+var __assign = function() {
+    __assign = Object.assign || function __assign(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+        }
+        return t;
+    }
+    return __assign.apply(this, arguments);
+}
+
+function __rest(s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                t[p[i]] = s[p[i]];
+        }
+    return t;
+}
+
+function __decorate(decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+}
+
+function __param(paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+}
+
+function __metadata(metadataKey, metadataValue) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(metadataKey, metadataValue);
+}
+
+function __awaiter(thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+}
+
+function __generator(thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+}
+
+function __exportStar(m, exports) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+
+function __values(o) {
+    var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
+    if (m) return m.call(o);
+    if (o && typeof o.length === "number") return {
+        next: function () {
+            if (o && i >= o.length) o = void 0;
+            return { value: o && o[i++], done: !o };
+        }
+    };
+    throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
+}
+
+function __read(o, n) {
+    var m = typeof Symbol === "function" && o[Symbol.iterator];
+    if (!m) return o;
+    var i = m.call(o), r, ar = [], e;
+    try {
+        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
+    }
+    catch (error) { e = { error: error }; }
+    finally {
+        try {
+            if (r && !r.done && (m = i["return"])) m.call(i);
+        }
+        finally { if (e) throw e.error; }
+    }
+    return ar;
+}
+
+function __spread() {
+    for (var ar = [], i = 0; i < arguments.length; i++)
+        ar = ar.concat(__read(arguments[i]));
+    return ar;
+}
+
+function __spreadArrays() {
+    for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
+    for (var r = Array(s), k = 0, i = 0; i < il; i++)
+        for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
+            r[k] = a[j];
+    return r;
+};
+
+function __await(v) {
+    return this instanceof __await ? (this.v = v, this) : new __await(v);
+}
+
+function __asyncGenerator(thisArg, _arguments, generator) {
+    if (!Symbol.asyncIterator) throw new TypeError("Symbol.asyncIterator is not defined.");
+    var g = generator.apply(thisArg, _arguments || []), i, q = [];
+    return i = {}, verb("next"), verb("throw"), verb("return"), i[Symbol.asyncIterator] = function () { return this; }, i;
+    function verb(n) { if (g[n]) i[n] = function (v) { return new Promise(function (a, b) { q.push([n, v, a, b]) > 1 || resume(n, v); }); }; }
+    function resume(n, v) { try { step(g[n](v)); } catch (e) { settle(q[0][3], e); } }
+    function step(r) { r.value instanceof __await ? Promise.resolve(r.value.v).then(fulfill, reject) : settle(q[0][2], r); }
+    function fulfill(value) { resume("next", value); }
+    function reject(value) { resume("throw", value); }
+    function settle(f, v) { if (f(v), q.shift(), q.length) resume(q[0][0], q[0][1]); }
+}
+
+function __asyncDelegator(o) {
+    var i, p;
+    return i = {}, verb("next"), verb("throw", function (e) { throw e; }), verb("return"), i[Symbol.iterator] = function () { return this; }, i;
+    function verb(n, f) { i[n] = o[n] ? function (v) { return (p = !p) ? { value: __await(o[n](v)), done: n === "return" } : f ? f(v) : v; } : f; }
+}
+
+function __asyncValues(o) {
+    if (!Symbol.asyncIterator) throw new TypeError("Symbol.asyncIterator is not defined.");
+    var m = o[Symbol.asyncIterator], i;
+    return m ? m.call(o) : (o = typeof __values === "function" ? __values(o) : o[Symbol.iterator](), i = {}, verb("next"), verb("throw"), verb("return"), i[Symbol.asyncIterator] = function () { return this; }, i);
+    function verb(n) { i[n] = o[n] && function (v) { return new Promise(function (resolve, reject) { v = o[n](v), settle(resolve, reject, v.done, v.value); }); }; }
+    function settle(resolve, reject, d, v) { Promise.resolve(v).then(function(v) { resolve({ value: v, done: d }); }, reject); }
+}
+
+function __makeTemplateObject(cooked, raw) {
+    if (Object.defineProperty) { Object.defineProperty(cooked, "raw", { value: raw }); } else { cooked.raw = raw; }
+    return cooked;
+};
+
+function __importStar(mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
+    result.default = mod;
+    return result;
+}
+
+function __importDefault(mod) {
+    return (mod && mod.__esModule) ? mod : { default: mod };
+}
+
+function __classPrivateFieldGet(receiver, privateMap) {
+    if (!privateMap.has(receiver)) {
+        throw new TypeError("attempted to get private field on non-instance");
+    }
+    return privateMap.get(receiver);
+}
+
+function __classPrivateFieldSet(receiver, privateMap, value) {
+    if (!privateMap.has(receiver)) {
+        throw new TypeError("attempted to set private field on non-instance");
+    }
+    privateMap.set(receiver, value);
+    return value;
+}
+
+
+/***/ }),
+
+/***/ "../node_modules/webpack/buildin/global.js":
+/*!*************************************************!*\
+  !*** ../node_modules/webpack/buildin/global.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var g;
+
+// This works in non-strict mode
+g = (function() {
+	return this;
+})();
+
+try {
+	// This works if eval is allowed (see CSP)
+	g = g || new Function("return this")();
+} catch (e) {
+	// This works if the window reference is available
+	if (typeof window === "object") g = window;
+}
+
+// g can still be undefined, but nothing to do about it...
+// We return undefined, instead of nothing here, so it's
+// easier to handle this case. if(!global) { ...}
+
+module.exports = g;
+
+
+/***/ }),
+
+/***/ "./AppView.tsx":
+/*!*********************!*\
+  !*** ./AppView.tsx ***!
+  \*********************/
+/*! exports provided: AppView */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AppView", function() { return AppView; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _grafana_ui__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @grafana/ui */ "@grafana/ui");
+/* harmony import */ var _grafana_ui__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_grafana_ui__WEBPACK_IMPORTED_MODULE_2__);
+ // Libraries
+
+
+
+
+var AppView =
+/** @class */
+function (_super) {
+  Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"])(AppView, _super);
+
+  function AppView() {
+    return _super !== null && _super.apply(this, arguments) || this;
+  }
+
+  AppView.prototype.makeDashboard = function () {
+    return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function () {
+      var data;
+      return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"])(this, function (_a) {
+        data = {
+          dashboard: __webpack_require__(/*! dashboards/sample.json */ "./dashboards/sample.json"),
+          overwrite: true
+        };
+        $.post({
+          url: '/api/dashboards/db',
+          contentType: 'application/json',
+          dataType: 'application/json',
+          data: JSON.stringify(data),
+          complete: function complete(res) {
+            alert('Dashboard: ' + data.dashboard.title + '\nStatus: ' + res.statusText);
+            location.replace('/d/' + data.dashboard.uid);
+          }
+        });
+        return [2
+        /*return*/
+        ];
+      });
+    });
+  };
+
+  AppView.prototype.render = function () {
+    var _this = this;
+
+    return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_grafana_ui__WEBPACK_IMPORTED_MODULE_2__["Button"], {
+      onClick: function onClick() {
+        return _this.makeDashboard();
+      }
+    }, "Sample Dashboard"));
+  };
+
+  return AppView;
+}(react__WEBPACK_IMPORTED_MODULE_1__["PureComponent"]);
+
+
+
+/***/ }),
+
+/***/ "./Training/App.css":
+/*!**************************!*\
+  !*** ./Training/App.css ***!
+  \**************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../node_modules/css-loader/dist/cjs.js??ref--8-1!../../node_modules/postcss-loader/src??ref--8-2!../../node_modules/sass-loader/lib/loader.js!./App.css */ "../node_modules/css-loader/dist/cjs.js?!../node_modules/postcss-loader/src/index.js?!../node_modules/sass-loader/lib/loader.js!./Training/App.css");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../node_modules/style-loader/lib/addStyles.js */ "../node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
+/***/ "./Training/Model.ts":
+/*!***************************!*\
+  !*** ./Training/Model.ts ***!
+  \***************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _strategies_Strategies__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./strategies/Strategies */ "./Training/strategies/Strategies.ts");
+/* harmony import */ var _common_Predictor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../common/Predictor */ "./common/Predictor.ts");
+
+
+
+var Model =
+/** @class */
+function () {
+  function Model() {}
+
+  Model.prototype.getData = function () {
+    return this.data;
+  };
+
+  Model.prototype.getPredictor = function () {
+    return this.predictor;
+  };
+  /** Load file and save it in data */
+
+
+  Model.prototype.setData = function (input) {
+    if (this.data) {
+      this.data.setValue(input);
+    }
+  };
+  /** Set the algorithm to use thanks to the Context*/
+
+
+  Model.prototype.setAlgorithm = function (alg) {
+    this.predictor = new _common_Predictor__WEBPACK_IMPORTED_MODULE_1__["default"](alg, [], '', _strategies_Strategies__WEBPACK_IMPORTED_MODULE_0__["opt"][alg]);
+    this.strategy = _strategies_Strategies__WEBPACK_IMPORTED_MODULE_0__["strategies"][alg];
+    this.data = _strategies_Strategies__WEBPACK_IMPORTED_MODULE_0__["data"][alg];
+  };
+
+  Model.prototype.setPredictorOptions = function (config) {
+    var _a;
+
+    (_a = this.predictor) === null || _a === void 0 ? void 0 : _a.setOpt(config);
+  };
+  /** Save the predictor in function */
+
+
+  Model.prototype.train = function () {
+    var _a;
+
+    var opt = (_a = this.predictor) === null || _a === void 0 ? void 0 : _a.getOpt();
+
+    if (this.strategy && this.data && opt) {
+      this.predictor = this.strategy.train(this.data, opt);
+    }
+  };
+  /** Download predictor as JSON */
+
+
+  Model.prototype.downloadPredictor = function () {
+    if (this.predictor) {
+      var FileSaver = __webpack_require__(/*! file-saver */ "../node_modules/file-saver/dist/FileSaver.min.js"); // import file saver
+
+
+      var text = this.predictor.toJSON();
+      var file = new File([text], 'Training.json', {
+        type: 'text/json;charset=utf-8'
+      });
+      FileSaver.saveAs(file); // download
+    }
+  };
+
+  return Model;
+}();
+
+/* harmony default export */ __webpack_exports__["default"] = (Model);
+
+/***/ }),
+
+/***/ "./Training/View.tsx":
+/*!***************************!*\
+  !*** ./Training/View.tsx ***!
+  \***************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _App_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./App.css */ "./Training/App.css");
+/* harmony import */ var _App_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_App_css__WEBPACK_IMPORTED_MODULE_2__);
+
+
+
+
+var View =
+/** @class */
+function (_super) {
+  Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"])(View, _super);
+
+  function View() {
+    return _super !== null && _super.apply(this, arguments) || this;
+  }
+
+  View.prototype.renderAlgorithmView = function () {
+    if (this.props.AlgView) {
+      return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(this.props.AlgView, {
+        options: this.props.options
+      });
+    } else {
+      return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null);
+    }
+  };
+
+  View.prototype.render = function () {
+    var _a = this.props,
+        buttonSelectAlg = _a.buttonSelectAlg,
+        selectAlg = _a.selectAlg,
+        buttonInputData = _a.buttonInputData,
+        buttonInputOpt = _a.buttonInputOpt,
+        buttonTrain = _a.buttonTrain,
+        predictor = _a.predictor,
+        nameAcc = _a.nameAcc,
+        accuracy = _a.accuracy,
+        buttonDownload = _a.buttonDownload;
+    return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "main"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h1", null, "Training Module"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, "Choose the algorithm to use for the training: "), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("select", {
+      disabled: false,
+      id: "alg",
+      onChange: selectAlg
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
+      value: "RL"
+    }, "Regressione Lineare (RL)"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
+      value: "SVM"
+    }, "Support Vector Machine (SVM)"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
+      value: "RLOG"
+    }, "Regressione Logaritmica (RLOG)"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
+      value: "REXP"
+    }, "Regressione Esponenziale (REXP)")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+      onClick: buttonSelectAlg
+    }, "Confirm")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "graph"
+    }, this.renderAlgorithmView())), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      id: "import",
+      style: {
+        display: 'none'
+      }
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h3", {
+      id: "options"
+    }, "Editor"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
+      className: "button"
+    }, "Import data (.csv)", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+      className: "form-input",
+      type: "file",
+      name: "data",
+      id: "data",
+      onChange: buttonInputData,
+      accept: ".csv,.txt"
+    })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
+      className: "button"
+    }, "Import previous options (.json)", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+      className: "form-input",
+      type: "file",
+      name: "opt",
+      id: "opt",
+      onChange: buttonInputOpt,
+      accept: ".json"
+    })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+      className: "button",
+      id: "train",
+      type: "button",
+      value: "Train \uD83D\uDE82",
+      onClick: function onClick() {
+        buttonTrain();
+      },
+      style: {
+        display: 'none'
+      }
+    }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
+      className: "function",
+      style: {
+        display: 'none'
+      }
+    }, "Function: ", predictor), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
+      className: "function",
+      style: {
+        display: 'none'
+      }
+    }, nameAcc, ": ", accuracy), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+      className: "button",
+      type: "button",
+      value: "Download Predictor",
+      id: "download",
+      onClick: buttonDownload,
+      style: {
+        display: 'none'
+      }
+    }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+      className: "button",
+      id: "reset",
+      type: "button",
+      value: "Reset",
+      onClick: function onClick() {
+        window.location.reload(false);
+      },
+      style: {
+        display: 'none'
+      }
+    })))));
+  };
+
+  return View;
+}(react__WEBPACK_IMPORTED_MODULE_1___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (View);
+
+/***/ }),
+
+/***/ "./Training/ViewModel.tsx":
+/*!********************************!*\
+  !*** ./Training/ViewModel.tsx ***!
+  \********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _App_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./App.css */ "./Training/App.css");
+/* harmony import */ var _App_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_App_css__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _View__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./View */ "./Training/View.tsx");
+/* harmony import */ var _Model__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Model */ "./Training/Model.ts");
+/* harmony import */ var _strategies_Strategies__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./strategies/Strategies */ "./Training/strategies/Strategies.ts");
+
+
+
+
+
+
+
+var ViewModel =
+/** @class */
+function (_super) {
+  Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"])(ViewModel, _super);
+
+  function ViewModel(props) {
+    var _this = _super.call(this, props) || this;
+
+    _this.state = {
+      algView: undefined,
+      options: {},
+      fun: '',
+      acc: 0
+    };
+    _this.model = new _Model__WEBPACK_IMPORTED_MODULE_4__["default"]();
+    _this.algorithm = 'RL';
+    return _this;
+  }
+
+  ViewModel.validateFile = function (text) {
+    var fileReg = /^[-?\d.\d?,-?\d.\d?\n]+/;
+
+    if (!text.match(fileReg)) {
+      throw new Error('Data has wrong formattation!');
+    }
+  };
+  /** Data parsed from string to Array */
+
+
+  ViewModel.parseCSVtoData = function (text) {
+    /* csv delimiters */
+    var row = '\n';
+    var field = ',';
+    var result = []; //output
+
+    text.trim() //remove white spaces
+    .split(row) //separate rows
+    .forEach(function (element) {
+      var sPoint = element.split(field);
+      var point = [];
+      sPoint.forEach(function (e) {
+        point.push(parseFloat(e));
+      });
+      result.push(point);
+    });
+    return result;
+  };
+
+  ViewModel.prototype.loadData = function (input) {
+    var _this = this;
+
+    var reader = new FileReader(); // declare file reader
+
+    if (input) {
+      reader.readAsText(input); // read file
+
+      try {
+        reader.onload = function (event) {
+          // when loaded
+          ViewModel.validateFile(event.target ? event.target.result ? event.target.result.toString() : '' : '');
+          var data = ViewModel.parseCSVtoData(event.target ? event.target.result ? event.target.result.toString() : '' : '');
+
+          _this.model.setData(data);
+
+          var t = document.getElementById('train');
+
+          if (t) {
+            t.setAttribute('style', 'display: block');
+          }
+        };
+      } catch (e) {
+        alert(e);
+      }
+    }
+  };
+
+  ViewModel.prototype.loadOpt = function (input) {
+    var _this = this;
+
+    if (input) {
+      var reader = new FileReader(); // declare file reader
+
+      var exstension = input.name.split('.').pop();
+
+      if (exstension === 'json') {
+        reader.readAsText(input); // read file
+
+        try {
+          reader.onload = function (event) {
+            var _a; // when loaded
+
+
+            var config = event.target ? event.target.result ? event.target.result.toString() : '' : '';
+
+            _this.model.setPredictorOptions(config);
+
+            _this.setState({
+              options: (_a = _this.model.getPredictor()) === null || _a === void 0 ? void 0 : _a.getOpt()
+            });
+
+            _this.setState({
+              fun: ''
+            });
+
+            _this.setState({
+              acc: 0
+            });
+          };
+        } catch (e) {
+          alert(e);
+        }
+      } else {
+        alert('File extension is not json!');
+      }
+    }
+  };
+
+  ViewModel.prototype.setAlgorithm = function (alg) {
+    this.algorithm = alg;
+  };
+
+  ViewModel.prototype.selectAlgorithm = function () {
+    this.model.setAlgorithm(this.algorithm);
+    this.setState({
+      algView: _strategies_Strategies__WEBPACK_IMPORTED_MODULE_5__["algview"][this.algorithm]
+    });
+    this.setState({
+      options: _strategies_Strategies__WEBPACK_IMPORTED_MODULE_5__["opt"][this.algorithm]
+    });
+    var a = document.getElementById('alg');
+
+    if (a) {
+      a.setAttribute('disabled', 'true');
+    }
+
+    var i = document.getElementById('import');
+
+    if (i) {
+      i.setAttribute('style', 'display: block');
+    }
+  };
+
+  ViewModel.prototype.train = function () {
+    var _a, _b;
+
+    if (this.model.getData()) {
+      this.model.train();
+      var f = document.getElementsByClassName('function')[0];
+      var f1 = document.getElementsByClassName('function')[1];
+
+      if (f && f1) {
+        f.setAttribute('style', 'display: block');
+        f1.setAttribute('style', 'display: block');
+      }
+
+      var r = document.getElementById('reset');
+
+      if (r) {
+        r.setAttribute('style', 'display: block');
+      }
+
+      var d = document.getElementById('download');
+
+      if (d) {
+        d.setAttribute('style', 'display: block');
+      }
+
+      this.setState({
+        fun: (_a = this.model.getPredictor()) === null || _a === void 0 ? void 0 : _a.getPredFun()
+      });
+      this.setState({
+        acc: (_b = this.model.getPredictor()) === null || _b === void 0 ? void 0 : _b.getAcc()
+      });
+    }
+  };
+
+  ViewModel.prototype.render = function () {
+    var _this = this;
+
+    return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_View__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      selectAlg: function selectAlg(event) {
+        _this.setAlgorithm(event.target.value);
+      },
+      buttonSelectAlg: function buttonSelectAlg() {
+        _this.selectAlgorithm();
+      },
+      buttonInputData: function buttonInputData(e) {
+        _this.loadData(e.target ? e.target.files ? e.target.files[0] : null : null);
+      },
+      buttonInputOpt: function buttonInputOpt(e) {
+        _this.loadOpt(e.target ? e.target.files ? e.target.files[0] : null : null);
+      },
+      buttonTrain: function buttonTrain() {
+        return _this.train();
+      },
+      predictor: this.state.fun,
+      nameAcc: this.algorithm === 'RL' || 'RLOG' || 'REXP' ? 'R^2' : 'F-Measure',
+      accuracy: this.state.acc,
+      buttonDownload: function buttonDownload() {
+        _this.model.downloadPredictor();
+      },
+      AlgView: this.state.algView,
+      options: this.state.options
+    });
+  };
+
+  return ViewModel;
+}(react__WEBPACK_IMPORTED_MODULE_1__["PureComponent"]);
+
+/* harmony default export */ __webpack_exports__["default"] = (ViewModel);
+
+/***/ }),
+
+/***/ "./Training/strategies/Regression/AlgorithmViewRegression.tsx":
+/*!********************************************************************!*\
+  !*** ./Training/strategies/Regression/AlgorithmViewRegression.tsx ***!
+  \********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+
+
+
+var AlgorithmViewRegression =
+/** @class */
+function (_super) {
+  Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"])(AlgorithmViewRegression, _super);
+
+  function AlgorithmViewRegression() {
+    var _this = _super !== null && _super.apply(this, arguments) || this;
+
+    _this.state = {
+      prec: 2
+    };
+    return _this;
+  }
+
+  AlgorithmViewRegression.prototype.render = function () {
+    var _this = this;
+
+    var options = this.props.options;
+    return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "graph-container"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, "Choose the algorithm options (if you want)"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      id: "RLopt"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "form"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+      className: "form-label"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("strong", null, "Precision"), ":", ' '), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("select", {
+      value: options.getPrecision(),
+      onChange: function onChange(event) {
+        options.setPrecision(Number(event.target.value));
+
+        _this.setState({
+          prec: options.getPrecision()
+        });
+      }
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
+      value: "1"
+    }, "1"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
+      value: "2"
+    }, "2"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
+      value: "3"
+    }, "3"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
+      value: "4"
+    }, "4"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
+      value: "5"
+    }, "5")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null))));
+  };
+
+  return AlgorithmViewRegression;
+}(react__WEBPACK_IMPORTED_MODULE_1___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (AlgorithmViewRegression);
+
+/***/ }),
+
+/***/ "./Training/strategies/Regression/DataRegression.ts":
+/*!**********************************************************!*\
+  !*** ./Training/strategies/Regression/DataRegression.ts ***!
+  \**********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var DataRegression =
+/** @class */
+function () {
+  function DataRegression() {
+    this.points = [];
+  }
+
+  DataRegression.prototype.setValue = function (dataset) {
+    var _this = this;
+
+    dataset.forEach(function (p) {
+      var point = [0, 0];
+      point[0] = p[0];
+      point[1] = p[1];
+
+      _this.points.push(point);
+    });
+  };
+
+  DataRegression.prototype.getPoints = function () {
+    return this.points;
+  };
+
+  return DataRegression;
+}();
+
+/* harmony default export */ __webpack_exports__["default"] = (DataRegression);
+
+/***/ }),
+
+/***/ "./Training/strategies/Regression/REXP/StrategyRegExp.ts":
+/*!***************************************************************!*\
+  !*** ./Training/strategies/Regression/REXP/StrategyRegExp.ts ***!
+  \***************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var regression__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! regression */ "../node_modules/regression/dist/regression.js");
+/* harmony import */ var regression__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(regression__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _common_Predictor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../common/Predictor */ "./common/Predictor.ts");
+
+
+
+var StrategyRegExp =
+/** @class */
+function () {
+  function StrategyRegExp() {}
+
+  StrategyRegExp.prototype.train = function (dataset, options) {
+    return new _common_Predictor__WEBPACK_IMPORTED_MODULE_1__["default"]('REXP', regression__WEBPACK_IMPORTED_MODULE_0___default.a.exponential(dataset.getPoints(), {
+      order: options.getOrder(),
+      precision: options.getPrecision()
+    }).equation, regression__WEBPACK_IMPORTED_MODULE_0___default.a.exponential(dataset.getPoints(), {
+      order: options.getOrder(),
+      precision: options.getPrecision()
+    }).string, options, regression__WEBPACK_IMPORTED_MODULE_0___default.a.exponential(dataset.getPoints(), {
+      order: options.getOrder(),
+      precision: options.getPrecision()
+    }).r2);
+  };
+
+  return StrategyRegExp;
+}();
+
+/* harmony default export */ __webpack_exports__["default"] = (StrategyRegExp);
+
+/***/ }),
+
+/***/ "./Training/strategies/Regression/RL/StrategyRL.ts":
+/*!*********************************************************!*\
+  !*** ./Training/strategies/Regression/RL/StrategyRL.ts ***!
+  \*********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var regression__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! regression */ "../node_modules/regression/dist/regression.js");
+/* harmony import */ var regression__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(regression__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _common_Predictor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../common/Predictor */ "./common/Predictor.ts");
+
+
+
+var StrategyRL =
+/** @class */
+function () {
+  function StrategyRL() {}
+
+  StrategyRL.prototype.train = function (dataset, options) {
+    return new _common_Predictor__WEBPACK_IMPORTED_MODULE_1__["default"]('RL', regression__WEBPACK_IMPORTED_MODULE_0___default.a.linear(dataset.getPoints(), {
+      order: options.getOrder(),
+      precision: options.getPrecision()
+    }).equation, regression__WEBPACK_IMPORTED_MODULE_0___default.a.linear(dataset.getPoints(), {
+      order: options.getOrder(),
+      precision: options.getPrecision()
+    }).string, options, regression__WEBPACK_IMPORTED_MODULE_0___default.a.linear(dataset.getPoints(), {
+      order: options.getOrder(),
+      precision: options.getPrecision()
+    }).r2);
+  };
+
+  return StrategyRL;
+}();
+
+/* harmony default export */ __webpack_exports__["default"] = (StrategyRL);
+
+/***/ }),
+
+/***/ "./Training/strategies/Regression/RLOG/StrategyRegLog.ts":
+/*!***************************************************************!*\
+  !*** ./Training/strategies/Regression/RLOG/StrategyRegLog.ts ***!
+  \***************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var regression__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! regression */ "../node_modules/regression/dist/regression.js");
+/* harmony import */ var regression__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(regression__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _common_Predictor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../common/Predictor */ "./common/Predictor.ts");
+
+
+
+var StrategyRegLog =
+/** @class */
+function () {
+  function StrategyRegLog() {}
+
+  StrategyRegLog.prototype.train = function (dataset, options) {
+    return new _common_Predictor__WEBPACK_IMPORTED_MODULE_1__["default"]('RLOG', regression__WEBPACK_IMPORTED_MODULE_0___default.a.logarithmic(dataset.getPoints(), {
+      order: options.getOrder(),
+      precision: options.getPrecision()
+    }).equation, regression__WEBPACK_IMPORTED_MODULE_0___default.a.logarithmic(dataset.getPoints(), {
+      order: options.getOrder(),
+      precision: options.getPrecision()
+    }).string, options, regression__WEBPACK_IMPORTED_MODULE_0___default.a.logarithmic(dataset.getPoints(), {
+      order: options.getOrder(),
+      precision: options.getPrecision()
+    }).r2);
+  };
+
+  return StrategyRegLog;
+}();
+
+/* harmony default export */ __webpack_exports__["default"] = (StrategyRegLog);
+
+/***/ }),
+
+/***/ "./Training/strategies/SVM/AlgorithmViewSVM.tsx":
+/*!******************************************************!*\
+  !*** ./Training/strategies/SVM/AlgorithmViewSVM.tsx ***!
+  \******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+
+
+
+var AlgrithmViewSVM =
+/** @class */
+function (_super) {
+  Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"])(AlgrithmViewSVM, _super);
+
+  function AlgrithmViewSVM() {
+    var _this = _super !== null && _super.apply(this, arguments) || this;
+    /** Options:
+    {
+        C = 1.0; For C, Higher = you trust your data more. Lower = more regularization. Should be in range of around 1e-2 ... 1e5 at most.
+        tol = 1e-4; // do not touch this unless you're pro
+        alphatol = 1e-7; // used for pruning non-support vectors. do not touch unless you're pro
+        maxiter // if you have a larger problem, you may need to increase this
+        kernel // kernel type
+        numpasses = 10; // increase this for higher precision of the result. (but slower)
+    }
+     */
+
+
+    _this.state = {
+      opt: 0
+    };
+    return _this;
+  }
+
+  AlgrithmViewSVM.prototype.render = function () {
+    var _this = this;
+
+    var options = this.props.options;
+    return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "graph-container"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "text-center"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h3", {
+      id: "options"
+    }, "Choose the algorithm options (if you want)")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
+      className: "form-label form-label-2 mb-2"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("strong", null, "Kernel type"), ": linear"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
+      className: "form-label form-label-2 mb-2"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("strong", null, "Alpha Tollerance"), ": 1e-7"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
+      className: "form-label form-label-2 mb-10"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("strong", null, "Tollerance"), ": 1e-4"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      id: "SVMopt"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "form"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
+      className: "form-label"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("strong", null, "C"), ":"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+      type: "number",
+      id: "C",
+      value: options.getC(),
+      onChange: function onChange(event) {
+        options.setC(Number(event.target.value));
+
+        _this.setState({
+          opt: options.getC()
+        });
+      }
+    })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "form"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
+      className: "form-label"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("strong", null, "Max iterations"), ":"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+      type: "number",
+      id: "maxiter",
+      value: options.getMaxIter(),
+      onChange: function onChange(event) {
+        options.setMaxIter(Number(event.target.value));
+
+        _this.setState({
+          opt: options.getMaxIter()
+        });
+      }
+    })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "form"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
+      className: "form-label"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("strong", null, "Number passes"), ":"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+      type: "number",
+      id: "numpas",
+      value: options.getNumPass(),
+      onChange: function onChange(event) {
+        options.setNumPass(Number(event.target.value));
+
+        _this.setState({
+          opt: options.getNumPass()
+        });
+      }
+    }))));
+  };
+
+  return AlgrithmViewSVM;
+}(react__WEBPACK_IMPORTED_MODULE_1___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (AlgrithmViewSVM);
+
+/***/ }),
+
+/***/ "./Training/strategies/SVM/DataSVM.ts":
+/*!********************************************!*\
+  !*** ./Training/strategies/SVM/DataSVM.ts ***!
+  \********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var DataSVM =
+/** @class */
+function () {
+  function DataSVM() {
+    this.points = [];
+    this.labels = [];
+  }
+
+  DataSVM.prototype.setValue = function (dataset) {
+    var _this = this;
+
+    dataset.forEach(function (triple) {
+      _this.points.push([triple[0], triple[1]]);
+
+      _this.labels.push(triple[2]);
+    });
+  };
+
+  DataSVM.prototype.getPoints = function () {
+    return this.points;
+  };
+
+  DataSVM.prototype.getLabels = function () {
+    return this.labels;
+  };
+
+  return DataSVM;
+}();
+
+/* harmony default export */ __webpack_exports__["default"] = (DataSVM);
+
+/***/ }),
+
+/***/ "./Training/strategies/SVM/StrategySVM.ts":
+/*!************************************************!*\
+  !*** ./Training/strategies/SVM/StrategySVM.ts ***!
+  \************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _common_Predictor__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../common/Predictor */ "./common/Predictor.ts");
+
+
+var StrategySVM =
+/** @class */
+function () {
+  function StrategySVM() {}
+  /** SVM predictor:
+      {
+       N: numero di punti
+       D: dimensione dei punti (es. 2,3..)
+       b: c della retta in forma implicita
+       kernerlType: tipo di kernel
+       w: a e b della retta in forma implicita
+      }
+   */
+
+
+  StrategySVM.prototype.train = function (dataset, options) {
+    var svm = __webpack_require__(/*! svm */ "../node_modules/svm/lib/svm.js");
+
+    var SVM = new svm.SVM();
+    SVM.train(dataset.getPoints(), dataset.getLabels(), {
+      C: options.getC(),
+      maxiter: options.getMaxIter(),
+      numpass: options.getNumPass()
+    });
+    var pred = SVM.predict(dataset.getPoints());
+    var CM = [[0, 0], [0, 0]];
+
+    for (var i = 0; i < dataset.getLabels().length; i++) {
+      if (pred[i] > 0) {
+        //predicted positive
+        if (dataset.getLabels()[i] === 1) {
+          //is positive
+          CM[0][0]++;
+        } else {
+          //is negative
+          CM[0][1]++;
+        }
+      } else {
+        //predicted negative
+        if (dataset.getLabels()[i] === 1) {
+          //is positive
+          CM[1][0]++;
+        } else {
+          //is negative
+          CM[1][1]++;
+        }
+      }
+    }
+
+    var tp, fp, fn;
+    tp = CM[0][0]; // tn = CM[1][1];
+
+    fp = CM[0][1];
+    fn = CM[1][0]; //precision
+
+    var precision = tp / (tp + fp); //recall/sensitivity
+
+    var recall = tp / (tp + fn); //F-measure
+
+    var fMeasure = 2 * (precision * recall) / (precision + recall);
+
+    if (tp + fp === 0 || tp + fn === 0) {
+      fMeasure = 0;
+    }
+
+    return new _common_Predictor__WEBPACK_IMPORTED_MODULE_0__["default"]('SVM', [SVM.b, SVM.w[0], SVM.w[1]], // [ w0, w1, w2 ] = [ c, a, b ]
+    "y = " + -SVM.w[0] / SVM.w[1] + "x + " + -SVM.b / SVM.w[0], options, fMeasure);
+  };
+
+  return StrategySVM;
+}();
+
+/* harmony default export */ __webpack_exports__["default"] = (StrategySVM);
+
+/***/ }),
+
+/***/ "./Training/strategies/Strategies.ts":
+/*!*******************************************!*\
+  !*** ./Training/strategies/Strategies.ts ***!
+  \*******************************************/
+/*! exports provided: strategies, algview, data, opt */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "strategies", function() { return strategies; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "algview", function() { return algview; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "data", function() { return data; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "opt", function() { return opt; });
+/* harmony import */ var _Regression_RL_StrategyRL__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Regression/RL/StrategyRL */ "./Training/strategies/Regression/RL/StrategyRL.ts");
+/* harmony import */ var _SVM_StrategySVM__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SVM/StrategySVM */ "./Training/strategies/SVM/StrategySVM.ts");
+/* harmony import */ var _SVM_AlgorithmViewSVM__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./SVM/AlgorithmViewSVM */ "./Training/strategies/SVM/AlgorithmViewSVM.tsx");
+/* harmony import */ var _SVM_DataSVM__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./SVM/DataSVM */ "./Training/strategies/SVM/DataSVM.ts");
+/* harmony import */ var _common_OptionsRegression__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../common/OptionsRegression */ "./common/OptionsRegression.ts");
+/* harmony import */ var _common_OptionsSVM__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../common/OptionsSVM */ "./common/OptionsSVM.ts");
+/* harmony import */ var _Regression_DataRegression__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Regression/DataRegression */ "./Training/strategies/Regression/DataRegression.ts");
+/* harmony import */ var _Regression_AlgorithmViewRegression__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Regression/AlgorithmViewRegression */ "./Training/strategies/Regression/AlgorithmViewRegression.tsx");
+/* harmony import */ var _Regression_RLOG_StrategyRegLog__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Regression/RLOG/StrategyRegLog */ "./Training/strategies/Regression/RLOG/StrategyRegLog.ts");
+/* harmony import */ var _Regression_REXP_StrategyRegExp__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./Regression/REXP/StrategyRegExp */ "./Training/strategies/Regression/REXP/StrategyRegExp.ts");
+
+
+
+
+
+
+
+
+
+
+var strategies = {
+  RL: new _Regression_RL_StrategyRL__WEBPACK_IMPORTED_MODULE_0__["default"](),
+  SVM: new _SVM_StrategySVM__WEBPACK_IMPORTED_MODULE_1__["default"](),
+  RLOG: new _Regression_RLOG_StrategyRegLog__WEBPACK_IMPORTED_MODULE_8__["default"](),
+  REXP: new _Regression_REXP_StrategyRegExp__WEBPACK_IMPORTED_MODULE_9__["default"]()
+};
+var algview = {
+  RL: _Regression_AlgorithmViewRegression__WEBPACK_IMPORTED_MODULE_7__["default"],
+  SVM: _SVM_AlgorithmViewSVM__WEBPACK_IMPORTED_MODULE_2__["default"],
+  RLOG: _Regression_AlgorithmViewRegression__WEBPACK_IMPORTED_MODULE_7__["default"],
+  REXP: _Regression_AlgorithmViewRegression__WEBPACK_IMPORTED_MODULE_7__["default"]
+};
+var data = {
+  RL: new _Regression_DataRegression__WEBPACK_IMPORTED_MODULE_6__["default"](),
+  SVM: new _SVM_DataSVM__WEBPACK_IMPORTED_MODULE_3__["default"](),
+  RLOG: new _Regression_DataRegression__WEBPACK_IMPORTED_MODULE_6__["default"](),
+  REXP: new _Regression_DataRegression__WEBPACK_IMPORTED_MODULE_6__["default"]()
+};
+var opt = {
+  RL: new _common_OptionsRegression__WEBPACK_IMPORTED_MODULE_4__["default"](),
+  SVM: new _common_OptionsSVM__WEBPACK_IMPORTED_MODULE_5__["default"](),
+  RLOG: new _common_OptionsRegression__WEBPACK_IMPORTED_MODULE_4__["default"](),
+  REXP: new _common_OptionsRegression__WEBPACK_IMPORTED_MODULE_4__["default"]()
+};
+
+/***/ }),
+
+/***/ "./common/OptionsRegression.ts":
+/*!*************************************!*\
+  !*** ./common/OptionsRegression.ts ***!
+  \*************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var OptionRegression =
+/** @class */
+function () {
+  function OptionRegression() {
+    this.order = 2;
+    this.precision = 2;
+    this.toPredict = 0;
+  }
+
+  OptionRegression.prototype.fromJSON = function (json) {
+    this.order = json.order;
+    this.precision = json.precision;
+    this.toPredict = json.toPredict || 0;
+    return this;
+  };
+
+  OptionRegression.prototype.setValueFile = function (config) {
+    try {
+      var predictor = JSON.parse(config);
+      this.order = predictor.opt.order;
+      this.precision = predictor.opt.precision;
+    } catch (e) {
+      throw new Error('Predictor bad formatted');
+    }
+  };
+
+  OptionRegression.prototype.getOrder = function () {
+    return this.order;
+  };
+
+  OptionRegression.prototype.getPrecision = function () {
+    return this.precision;
+  };
+
+  OptionRegression.prototype.getToPredict = function () {
+    return this.toPredict;
+  };
+
+  OptionRegression.prototype.setPrecision = function (p) {
+    this.precision = p;
+  };
+
+  OptionRegression.prototype.setToPredict = function (toPredict) {
+    this.toPredict = toPredict;
+  };
+
+  return OptionRegression;
+}();
+
+/* harmony default export */ __webpack_exports__["default"] = (OptionRegression);
+
+/***/ }),
+
+/***/ "./common/OptionsSVM.ts":
+/*!******************************!*\
+  !*** ./common/OptionsSVM.ts ***!
+  \******************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var OptionSVM =
+/** @class */
+function () {
+  function OptionSVM() {
+    this.C = 1;
+    this.maxiter = 10000;
+    this.numpass = 10;
+    this.firstQuery = 0;
+  }
+
+  OptionSVM.prototype.fromJSON = function (json) {
+    this.C = json.C;
+    this.maxiter = json.maxiter;
+    this.numpass = json.numpass;
+    this.firstQuery = json.firstQuery || 0;
+    return this;
+  };
+
+  OptionSVM.prototype.setValueFile = function (config) {
+    try {
+      var predictor = JSON.parse(config);
+      this.C = predictor.opt.C;
+      this.maxiter = predictor.opt.maxiter;
+      this.numpass = predictor.opt.numpass;
+    } catch (e) {
+      throw new Error('Predictor bad formatted');
+    }
+  };
+
+  OptionSVM.prototype.getC = function () {
+    return this.C;
+  };
+
+  OptionSVM.prototype.getMaxIter = function () {
+    return this.maxiter;
+  };
+
+  OptionSVM.prototype.getNumPass = function () {
+    return this.numpass;
+  };
+
+  OptionSVM.prototype.getFirstQuery = function () {
+    return this.firstQuery;
+  };
+
+  OptionSVM.prototype.setC = function (c) {
+    this.C = c;
+  };
+
+  OptionSVM.prototype.setMaxIter = function (m) {
+    this.maxiter = m;
+  };
+
+  OptionSVM.prototype.setNumPass = function (n) {
+    this.numpass = n;
+  };
+
+  OptionSVM.prototype.setFirstQuery = function (firstQuery) {
+    this.firstQuery = firstQuery;
+  };
+
+  return OptionSVM;
+}();
+
+/* harmony default export */ __webpack_exports__["default"] = (OptionSVM);
+
+/***/ }),
+
+/***/ "./common/Predictor.ts":
+/*!*****************************!*\
+  !*** ./common/Predictor.ts ***!
+  \*****************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _panels_PredictionPanel_strategies_strategies__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../panels/PredictionPanel/strategies/strategies */ "./panels/PredictionPanel/strategies/strategies.ts");
+/**
+ * Project: Predire in Grafana
+ * File: Predictor.ts
+ * Author: Federico Carboni
+ * Created: 2020-04-16
+ * Version: 0.1
+ * -----------------------------------------------------------------------------------------
+ * Copyright 2020 ProApesGroup.
+ * Licensed under the MIT License. See LICENSE in the project root for license informations.
+ * -----------------------------------------------------------------------------------------
+ * Changelog:
+ * 0.1 - Writing Predictor class for incpsulation of pred info.
+ */
+
+
+var Predictor =
+/** @class */
+function () {
+  function Predictor(algorithm, coefficients, predFun, opt, acc) {
+    this.algorithm = algorithm;
+    this.coefficients = coefficients;
+    this.predFun = predFun;
+    this.opt = opt;
+
+    if (acc) {
+      this.accuracy = acc;
+    }
+  }
+
+  Predictor.prototype.getAlgorithm = function () {
+    return this.algorithm;
+  };
+
+  Predictor.prototype.getCoefficients = function () {
+    return this.coefficients;
+  };
+
+  Predictor.prototype.getPredFun = function () {
+    return this.predFun;
+  };
+
+  Predictor.prototype.getOpt = function () {
+    return this.opt;
+  };
+
+  Predictor.prototype.getAcc = function () {
+    return this.accuracy;
+  };
+
+  Predictor.prototype.setOpt = function (conf) {
+    var _a;
+
+    (_a = this.opt) === null || _a === void 0 ? void 0 : _a.setValueFile(conf);
+  };
+
+  Predictor.fromJSON = function (str) {
+    if (!str) {
+      throw Error('No file found');
+    }
+
+    var json = JSON.parse(str);
+    var opt = _panels_PredictionPanel_strategies_strategies__WEBPACK_IMPORTED_MODULE_0__["options"][json.algorithm];
+
+    if (!json.algorithm || !json.coefficients) {
+      throw Error('Error reading file');
+    }
+
+    var predictor = new Predictor(json.algorithm, json.coefficients, json.predFun || '', opt.fromJSON(json.opt || {}));
+    return predictor;
+  };
+
+  Predictor.prototype.toJSON = function () {
+    var textFile = "{\n    \"GroupName\": \"ProApes\",\n    \"Version\": \"1.5\",\n    \"PluginName\": \"PredireInGrafana\",\n    \"algorithm\": \"" + this.algorithm + "\",\n    \"coefficients\": [" + this.coefficients + "],\n    \"predFun\": \"" + this.predFun + "\",\n    \"opt\": " + JSON.stringify(this.opt) + ",\n    \"accuracy\": \"" + this.accuracy + "\"\n}"; // string output
+
+    return textFile;
+  };
+
+  return Predictor;
+}();
+
+/* harmony default export */ __webpack_exports__["default"] = (Predictor);
+
+/***/ }),
+
+/***/ "./dashboards/sample.json":
+/*!********************************!*\
+  !*** ./dashboards/sample.json ***!
+  \********************************/
+/*! exports provided: annotations, editable, gnetId, graphTooltip, id, links, panels, refresh, schemaVersion, style, tags, templating, time, timepicker, timezone, title, uid, variables, version, default */
+/***/ (function(module) {
+
+module.exports = JSON.parse("{\"annotations\":{\"list\":[{\"builtIn\":1,\"datasource\":\"-- Grafana --\",\"enable\":true,\"hide\":true,\"iconColor\":\"rgba(0, 211, 255, 1)\",\"name\":\"Annotations & Alerts\",\"type\":\"dashboard\"}]},\"editable\":true,\"gnetId\":null,\"graphTooltip\":0,\"id\":null,\"links\":[],\"panels\":[{\"aliasColors\":{},\"bars\":false,\"dashLength\":10,\"dashes\":false,\"datasource\":null,\"fill\":1,\"fillGradient\":0,\"gridPos\":{\"h\":9,\"w\":12,\"x\":0,\"y\":0},\"hiddenSeries\":false,\"id\":2,\"legend\":{\"avg\":false,\"current\":false,\"max\":false,\"min\":false,\"show\":true,\"total\":false,\"values\":false},\"lines\":true,\"linewidth\":1,\"nullPointMode\":\"connected\",\"options\":{\"dataLinks\":[]},\"percentage\":false,\"pointradius\":2,\"points\":false,\"renderer\":\"flot\",\"seriesOverrides\":[],\"spaceLength\":10,\"stack\":false,\"steppedLine\":false,\"targets\":[{\"groupBy\":[{\"params\":[\"$__interval\"],\"type\":\"time\"},{\"params\":[\"null\"],\"type\":\"fill\"}],\"measurement\":\"prediction\",\"orderByTime\":\"ASC\",\"policy\":\"default\",\"refId\":\"A\",\"resultFormat\":\"time_series\",\"select\":[[{\"params\":[\"value\"],\"type\":\"field\"},{\"params\":[],\"type\":\"mean\"}]],\"tags\":[]}],\"thresholds\":[],\"timeFrom\":null,\"timeRegions\":[],\"timeShift\":null,\"title\":\"Prediction Graph\",\"tooltip\":{\"shared\":true,\"sort\":0,\"value_type\":\"individual\"},\"type\":\"graph\",\"xaxis\":{\"buckets\":null,\"mode\":\"time\",\"name\":null,\"show\":true,\"values\":[]},\"yaxes\":[{\"format\":\"short\",\"label\":null,\"logBase\":1,\"max\":null,\"min\":null,\"show\":true},{\"format\":\"short\",\"label\":null,\"logBase\":1,\"max\":null,\"min\":null,\"show\":true}],\"yaxis\":{\"align\":false,\"alignLevel\":null}},{\"datasource\":null,\"gridPos\":{\"h\":9,\"w\":8,\"x\":12,\"y\":0},\"id\":4,\"options\":{\"predictor\":{\"algorithm\":\"RL\",\"coefficients\":[1.37,1.38],\"opt\":{\"toPredict\":0}}},\"targets\":[{\"alias\":\"cpu0\",\"groupBy\":[{\"params\":[\"$__interval\"],\"type\":\"time\"},{\"params\":[\"linear\"],\"type\":\"fill\"}],\"measurement\":\"cpu\",\"orderByTime\":\"ASC\",\"policy\":\"default\",\"refId\":\"A\",\"resultFormat\":\"time_series\",\"select\":[[{\"params\":[\"usage_system\"],\"type\":\"field\"},{\"params\":[],\"type\":\"mean\"}]],\"tags\":[{\"key\":\"cpu\",\"operator\":\"=\",\"value\":\"cpu0\"}]},{\"alias\":\"cpu1\",\"groupBy\":[{\"params\":[\"$__interval\"],\"type\":\"time\"},{\"params\":[\"linear\"],\"type\":\"fill\"}],\"measurement\":\"cpu\",\"orderByTime\":\"ASC\",\"policy\":\"default\",\"refId\":\"B\",\"resultFormat\":\"time_series\",\"select\":[[{\"params\":[\"usage_system\"],\"type\":\"field\"},{\"params\":[],\"type\":\"mean\"}]],\"tags\":[{\"key\":\"cpu\",\"operator\":\"=\",\"value\":\"cpu1\"}]}],\"timeFrom\":null,\"timeShift\":null,\"title\":\"Prediction Settings\",\"type\":\"prediction-panel\"}],\"refresh\":\"5s\",\"schemaVersion\":22,\"style\":\"dark\",\"tags\":[],\"templating\":{\"list\":[]},\"time\":{\"from\":\"now-5m\",\"to\":\"now\"},\"timepicker\":{\"refresh_intervals\":[\"5s\",\"10s\",\"30s\",\"1m\",\"5m\",\"15m\",\"30m\",\"1h\",\"2h\",\"1d\"]},\"timezone\":\"\",\"title\":\"Sample Dashboard\",\"uid\":\"sample-dash\",\"variables\":{\"list\":[]},\"version\":51}");
+
+/***/ }),
+
+/***/ "./module.ts":
+/*!*******************!*\
+  !*** ./module.ts ***!
+  \*******************/
+/*! exports provided: ConfigCtrl, plugin */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ConfigCtrl", function() { return ConfigCtrl; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "plugin", function() { return plugin; });
+/* harmony import */ var _grafana_data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @grafana/data */ "@grafana/data");
+/* harmony import */ var _grafana_data__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_grafana_data__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var AppView__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! AppView */ "./AppView.tsx");
+/* harmony import */ var Training_ViewModel__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! Training/ViewModel */ "./Training/ViewModel.tsx");
+
+
+
+
+var ConfigCtrl =
+/** @class */
+function () {
+  function ConfigCtrl() {}
+
+  return ConfigCtrl;
+}(); // Placeholer class just for enable app.. waiting for grafana updates
+
+
+
+var plugin = new _grafana_data__WEBPACK_IMPORTED_MODULE_0__["AppPlugin"]().addConfigPage({
+  title: 'Wizard',
+  icon: 'fa fa-magic',
+  body: AppView__WEBPACK_IMPORTED_MODULE_1__["AppView"],
+  id: 'import'
+}).addConfigPage({
+  title: 'Training',
+  icon: '',
+  body: Training_ViewModel__WEBPACK_IMPORTED_MODULE_2__["default"],
+  id: 'training'
+});
+
+/***/ }),
+
+/***/ "./panels/PredictionPanel/strategies/Config.ts":
+/*!*****************************************************!*\
+  !*** ./panels/PredictionPanel/strategies/Config.ts ***!
+  \*****************************************************/
+/*! exports provided: Config */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Config", function() { return Config; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+
+
+
+var Config =
+/** @class */
+function (_super) {
+  Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"])(Config, _super);
+
+  function Config() {
+    return _super !== null && _super.apply(this, arguments) || this;
+  }
+
+  return Config;
+}(react__WEBPACK_IMPORTED_MODULE_1__["PureComponent"]);
+
+
+
+/***/ }),
+
+/***/ "./panels/PredictionPanel/strategies/RL/ConfigRL.tsx":
+/*!***********************************************************!*\
+  !*** ./panels/PredictionPanel/strategies/RL/ConfigRL.tsx ***!
+  \***********************************************************/
+/*! exports provided: ConfigRL */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ConfigRL", function() { return ConfigRL; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _grafana_ui__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @grafana/ui */ "@grafana/ui");
+/* harmony import */ var _grafana_ui__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_grafana_ui__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _Config__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Config */ "./panels/PredictionPanel/strategies/Config.ts");
+
+
+
+
+
+var ConfigRL =
+/** @class */
+function (_super) {
+  Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"])(ConfigRL, _super);
+
+  function ConfigRL() {
+    return _super !== null && _super.apply(this, arguments) || this;
+  }
+
+  ConfigRL.prototype.getSeriesNames = function () {
+    return this.props.data.series.map(function (serie) {
+      return serie.name || 'unknown';
+    });
+  };
+
+  ConfigRL.prototype.renderQueryOptions = function () {
+    var e_1, _a;
+
+    var _b;
+
+    var seriesName = this.getSeriesNames();
+    var options = [];
+
+    try {
+      for (var _c = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__values"])(seriesName.keys()), _d = _c.next(); !_d.done; _d = _c.next()) {
+        var i = _d.value;
+        options.push(react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
+          value: i,
+          selected: ((_b = this.predictor) === null || _b === void 0 ? void 0 : _b.getOpt().getToPredict()) === i
+        }, seriesName[i]));
+      }
+    } catch (e_1_1) {
+      e_1 = {
+        error: e_1_1
+      };
+    } finally {
+      try {
+        if (_d && !_d.done && (_a = _c["return"])) _a.call(_c);
+      } finally {
+        if (e_1) throw e_1.error;
+      }
+    }
+
+    return options;
+  };
+
+  ConfigRL.prototype.setToPredict = function (value) {
+    var _a;
+
+    var opt = (_a = this.props.options.predictor) === null || _a === void 0 ? void 0 : _a.getOpt();
+    opt.setToPredict(Number.parseInt(value, 10));
+    this.render();
+  };
+
+  ConfigRL.prototype.render = function () {
+    var _this = this;
+
+    var _a, _b, _c, _d;
+
+    this.predictor = this.props.options.predictor;
+
+    if (!((_a = this.predictor) === null || _a === void 0 ? void 0 : _a.getOpt().getToPredict())) {
+      (_b = this.predictor) === null || _b === void 0 ? void 0 : _b.getOpt().setToPredict(0);
+    }
+
+    return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_grafana_ui__WEBPACK_IMPORTED_MODULE_2__["PanelOptionsGroup"], {
+      title: "RL"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, ((_c = this.predictor) === null || _c === void 0 ? void 0 : _c.getPredFun()) ? 'Function: ' + ((_d = this.predictor) === null || _d === void 0 ? void 0 : _d.getPredFun()) : ''), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
+      className: "gf-form-label width-10",
+      style: {
+        display: 'inline-block'
+      }
+    }, ' ', "y (value to predict)", ' '), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "gf-form-select-wrapper width-10",
+      style: {
+        display: 'inline-block'
+      }
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("select", {
+      className: "input-small gf-form-input",
+      onChange: function onChange(event) {
+        return _this.setToPredict(event.target.value);
+      }
+    }, this.renderQueryOptions())));
+  };
+
+  return ConfigRL;
+}(_Config__WEBPACK_IMPORTED_MODULE_3__["Config"]);
+
+
+
+/***/ }),
+
+/***/ "./panels/PredictionPanel/strategies/RL/StrategyRL.ts":
+/*!************************************************************!*\
+  !*** ./panels/PredictionPanel/strategies/RL/StrategyRL.ts ***!
+  \************************************************************/
+/*! exports provided: StrategyRL */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "StrategyRL", function() { return StrategyRL; });
+/* harmony import */ var _utils_Data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../utils/Data */ "./panels/PredictionPanel/utils/Data.ts");
+/* harmony import */ var _utils_Predicted__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../utils/Predicted */ "./panels/PredictionPanel/utils/Predicted.ts");
+
+
+
+var StrategyRL =
+/** @class */
+function () {
+  function StrategyRL() {}
+
+  StrategyRL.prototype.predict = function (data, predictor) {
+    var base = 1 - (predictor.getOpt().getToPredict() || 0); //the other one
+
+    var coeff = predictor.getCoefficients();
+
+    var f = function f(x) {
+      return x ? x * coeff[0] + coeff[1] : 0;
+    };
+
+    var predicted = new _utils_Predicted__WEBPACK_IMPORTED_MODULE_1__["Predicted"]();
+
+    if (!data) {
+      throw Error('Data not found');
+    }
+
+    var it = new _utils_Data__WEBPACK_IMPORTED_MODULE_0__["DataIterator"](data);
+    var val;
+
+    while (val = it.next()) {
+      if (val.a || val.b) {
+        predicted.addValues({
+          value: f(base === 0 ? val.a : val.b),
+          time: val.time
+        });
+      }
+    }
+
+    return predicted;
+  };
+
+  return StrategyRL;
+}();
+
+
+
+/***/ }),
+
+/***/ "./panels/PredictionPanel/strategies/SVM/ConfigSVM.tsx":
+/*!*************************************************************!*\
+  !*** ./panels/PredictionPanel/strategies/SVM/ConfigSVM.tsx ***!
+  \*************************************************************/
+/*! exports provided: ConfigSVM */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ConfigSVM", function() { return ConfigSVM; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _grafana_ui__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @grafana/ui */ "@grafana/ui");
+/* harmony import */ var _grafana_ui__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_grafana_ui__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _Config__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Config */ "./panels/PredictionPanel/strategies/Config.ts");
+
+
+
+
+
+var ConfigSVM =
+/** @class */
+function (_super) {
+  Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"])(ConfigSVM, _super);
+
+  function ConfigSVM() {
+    return _super !== null && _super.apply(this, arguments) || this;
+  }
+
+  ConfigSVM.prototype.getSeriesNames = function () {
+    return this.props.data.series.map(function (serie) {
+      return serie.name || 'unknown';
+    });
+  };
+
+  ConfigSVM.prototype.renderQueryOptions = function () {
+    var e_1, _a;
+
+    var _b;
+
+    var seriesName = this.getSeriesNames();
+    var options = [];
+
+    try {
+      for (var _c = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__values"])(seriesName.keys()), _d = _c.next(); !_d.done; _d = _c.next()) {
+        var i = _d.value;
+        options.push(react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
+          value: i,
+          selected: ((_b = this.predictor) === null || _b === void 0 ? void 0 : _b.getOpt().getFirstQuery()) === i
+        }, seriesName[i]));
+      }
+    } catch (e_1_1) {
+      e_1 = {
+        error: e_1_1
+      };
+    } finally {
+      try {
+        if (_d && !_d.done && (_a = _c["return"])) _a.call(_c);
+      } finally {
+        if (e_1) throw e_1.error;
+      }
+    }
+
+    return options;
+  };
+
+  ConfigSVM.prototype.setFirstQuery = function (value) {
+    var _a;
+
+    var opt = (_a = this.props.options.predictor) === null || _a === void 0 ? void 0 : _a.getOpt();
+    opt.setFirstQuery(Number.parseInt(value, 10));
+    this.render();
+  };
+
+  ConfigSVM.prototype.render = function () {
+    var _this = this;
+
+    var _a, _b, _c, _d;
+
+    this.predictor = this.props.options.predictor;
+
+    if (!((_a = this.predictor) === null || _a === void 0 ? void 0 : _a.getOpt().getFirstQuery())) {
+      (_b = this.predictor) === null || _b === void 0 ? void 0 : _b.getOpt().setFirstQuery(0);
+    }
+
+    return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_grafana_ui__WEBPACK_IMPORTED_MODULE_2__["PanelOptionsGroup"], {
+      title: "SVM"
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, ((_c = this.predictor) === null || _c === void 0 ? void 0 : _c.getPredFun()) ? 'Function: ' + ((_d = this.predictor) === null || _d === void 0 ? void 0 : _d.getPredFun()) : ''), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
+      className: "gf-form-label width-10",
+      style: {
+        display: 'inline-block'
+      }
+    }, ' ', "x1 (first query)", ' '), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "gf-form-select-wrapper width-10",
+      style: {
+        display: 'inline-block'
+      }
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("select", {
+      className: "input-small gf-form-input",
+      onChange: function onChange(event) {
+        return _this.setFirstQuery(event.target.value);
+      }
+    }, this.renderQueryOptions())));
+  };
+
+  return ConfigSVM;
+}(_Config__WEBPACK_IMPORTED_MODULE_3__["Config"]);
+
+
+
+/***/ }),
+
+/***/ "./panels/PredictionPanel/strategies/SVM/StrategySVM.ts":
+/*!**************************************************************!*\
+  !*** ./panels/PredictionPanel/strategies/SVM/StrategySVM.ts ***!
+  \**************************************************************/
+/*! exports provided: StrategySVM */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "StrategySVM", function() { return StrategySVM; });
+/* harmony import */ var _utils_Data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../utils/Data */ "./panels/PredictionPanel/utils/Data.ts");
+/* harmony import */ var _utils_Predicted__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../utils/Predicted */ "./panels/PredictionPanel/utils/Predicted.ts");
+
+
+
+var StrategySVM =
+/** @class */
+function () {
+  function StrategySVM() {}
+
+  StrategySVM.prototype.predict = function (data, predictor) {
+    // predict(data: Data, predictor: Predictor) {
+    var first = predictor.getOpt().getFirstQuery() || 0;
+    var coeff = predictor.getCoefficients();
+
+    var f = function f(x1, x2) {
+      return x1 * coeff[0] + x2 * coeff[1] + coeff[2];
+    };
+
+    var predicted = new _utils_Predicted__WEBPACK_IMPORTED_MODULE_1__["Predicted"]();
+
+    if (!data) {
+      throw Error('Data not found');
+    }
+
+    var it = new _utils_Data__WEBPACK_IMPORTED_MODULE_0__["DataIterator"](data);
+    var val;
+
+    while (val = it.next()) {
+      if (val.a || val.b) {
+        var v = first === 0 ? f(val.a, val.b) : f(val.b, val.a);
+        var cls = v === 0 ? 0 : v > 0 ? 1 : -1; //classification 1 / -1
+
+        predicted.addValues({
+          value: cls,
+          time: val.time
+        });
+      }
+    }
+
+    return predicted;
+  };
+
+  return StrategySVM;
+}();
+
+
+
+/***/ }),
+
+/***/ "./panels/PredictionPanel/strategies/strategies.ts":
+/*!*********************************************************!*\
+  !*** ./panels/PredictionPanel/strategies/strategies.ts ***!
+  \*********************************************************/
+/*! exports provided: strategies, configs, options */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "strategies", function() { return strategies; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "configs", function() { return configs; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "options", function() { return options; });
+/* harmony import */ var _RL_StrategyRL__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./RL/StrategyRL */ "./panels/PredictionPanel/strategies/RL/StrategyRL.ts");
+/* harmony import */ var _SVM_StrategySVM__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SVM/StrategySVM */ "./panels/PredictionPanel/strategies/SVM/StrategySVM.ts");
+/* harmony import */ var _RL_ConfigRL__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./RL/ConfigRL */ "./panels/PredictionPanel/strategies/RL/ConfigRL.tsx");
+/* harmony import */ var _SVM_ConfigSVM__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./SVM/ConfigSVM */ "./panels/PredictionPanel/strategies/SVM/ConfigSVM.tsx");
+/* harmony import */ var _common_OptionsRegression__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../common/OptionsRegression */ "./common/OptionsRegression.ts");
+/* harmony import */ var _common_OptionsSVM__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../common/OptionsSVM */ "./common/OptionsSVM.ts");
+
+
+
+
+
+
+var strategies = {
+  RL: new _RL_StrategyRL__WEBPACK_IMPORTED_MODULE_0__["StrategyRL"](),
+  SVM: new _SVM_StrategySVM__WEBPACK_IMPORTED_MODULE_1__["StrategySVM"]()
+};
+var configs = {
+  RL: _RL_ConfigRL__WEBPACK_IMPORTED_MODULE_2__["ConfigRL"],
+  SVM: _SVM_ConfigSVM__WEBPACK_IMPORTED_MODULE_3__["ConfigSVM"]
+};
+var options = {
+  RL: new _common_OptionsRegression__WEBPACK_IMPORTED_MODULE_4__["default"](),
+  SVM: new _common_OptionsSVM__WEBPACK_IMPORTED_MODULE_5__["default"]()
+};
+
+/***/ }),
+
+/***/ "./panels/PredictionPanel/utils/AbstractData.ts":
+/*!******************************************************!*\
+  !*** ./panels/PredictionPanel/utils/AbstractData.ts ***!
+  \******************************************************/
+/*! exports provided: AbstractData, Iterator */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AbstractData", function() { return AbstractData; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Iterator", function() { return Iterator; });
+/**
+ * Project: Predire in Grafana
+ * File: AbstractData.ts
+ * Author: Federico Carboni
+ * Created: 2020-04-27
+ * Version: 0.1
+ * -----------------------------------------------------------------------------------------
+ * Copyright 2020 ProApesGroup.
+ * Licensed under the MIT License. See LICENSE in the project root for license informations.
+ * -----------------------------------------------------------------------------------------
+ * Changelog:
+ * 0.1 - Abstract class for Data and Predicted.
+ */
+var AbstractData =
+/** @class */
+function () {
+  function AbstractData() {
+    this.data = [];
+  }
+
+  AbstractData.prototype.clear = function () {
+    this.data = [];
+  };
+
+  AbstractData.prototype.size = function () {
+    return this.data.length;
+  };
+
+  return AbstractData;
+}();
+
+
+
+var Iterator =
+/** @class */
+function () {
+  function Iterator(data) {
+    this.index = 0;
+    this.data = data;
+  }
+
+  Iterator.prototype.next = function () {
+    return this.index < this.data.size() ? this.data.getAt(this.index++) : null;
+  };
+
+  return Iterator;
+}();
+
+
+
+/***/ }),
+
+/***/ "./panels/PredictionPanel/utils/Data.ts":
+/*!**********************************************!*\
+  !*** ./panels/PredictionPanel/utils/Data.ts ***!
+  \**********************************************/
+/*! exports provided: Data, DataIterator */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Data", function() { return Data; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DataIterator", function() { return DataIterator; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _AbstractData__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AbstractData */ "./panels/PredictionPanel/utils/AbstractData.ts");
+/**
+ * Project: Predire in Grafana
+ * File: Data.ts
+ * Author: Federico Carboni
+ * Created: 2020-04-15
+ * Version: 0.1
+ * -----------------------------------------------------------------------------------------
+ * Copyright 2020 ProApesGroup.
+ * Licensed under the MIT License. See LICENSE in the project root for license informations.
+ * -----------------------------------------------------------------------------------------
+ * Changelog:
+ * 0.1 - Writing Data class for incpsulation of measured data.
+ */
+
+
+
+var Data =
+/** @class */
+function (_super) {
+  Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"])(Data, _super);
+
+  function Data() {
+    return _super !== null && _super.apply(this, arguments) || this;
+  }
+
+  Data.prototype.addValues = function (val) {
+    this.data.push([val.a, val.b, val.time]);
+  };
+
+  Data.prototype.getAt = function (index) {
+    return {
+      a: this.data[index][0],
+      b: this.data[index][1],
+      time: this.data[index][2]
+    };
+  };
+
+  Data.fromSeries = function (series) {
+    var e_1, _a;
+
+    if (!series[0] || !series[1]) {
+      throw Error('Set at least 2 query before');
+    }
+
+    var time = series[0].fields[1].values.toArray();
+    var s = []; // [ [valA, valA ...] [valB, valB ...] ]
+
+    series.forEach(function (serie) {
+      s.push(serie.fields[0].values.toArray());
+    });
+    var data = new Data();
+
+    try {
+      for (var _b = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__values"])(time.keys()), _c = _b.next(); !_c.done; _c = _b.next()) {
+        var i = _c.value;
+        data.addValues({
+          a: s[0][i],
+          b: s[1][i],
+          time: time[i]
+        });
+      }
+    } catch (e_1_1) {
+      e_1 = {
+        error: e_1_1
+      };
+    } finally {
+      try {
+        if (_c && !_c.done && (_a = _b["return"])) _a.call(_b);
+      } finally {
+        if (e_1) throw e_1.error;
+      }
+    }
+
+    return data;
+  };
+
+  return Data;
+}(_AbstractData__WEBPACK_IMPORTED_MODULE_1__["AbstractData"]);
+
+
+
+var DataIterator =
+/** @class */
+function (_super) {
+  Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"])(DataIterator, _super);
+
+  function DataIterator() {
+    return _super !== null && _super.apply(this, arguments) || this;
+  }
+
+  return DataIterator;
+}(_AbstractData__WEBPACK_IMPORTED_MODULE_1__["Iterator"]);
+
+
+
+/***/ }),
+
+/***/ "./panels/PredictionPanel/utils/Predicted.ts":
+/*!***************************************************!*\
+  !*** ./panels/PredictionPanel/utils/Predicted.ts ***!
+  \***************************************************/
+/*! exports provided: Predicted, PredIterator */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Predicted", function() { return Predicted; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PredIterator", function() { return PredIterator; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _AbstractData__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AbstractData */ "./panels/PredictionPanel/utils/AbstractData.ts");
+/**
+ * Project: Predire in Grafana
+ * File: Predicted.ts
+ * Author: Federico Carboni
+ * Created: 2020-04-15
+ * Version: 0.1
+ * -----------------------------------------------------------------------------------------
+ * Copyright 2020 ProApesGroup.
+ * Licensed under the MIT License. See LICENSE in the project root for license informations.
+ * -----------------------------------------------------------------------------------------
+ * Changelog:
+ * 0.1 - Writing Predicted class for incpsulation of predicted data.
+ */
+
+
+
+var Predicted =
+/** @class */
+function (_super) {
+  Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"])(Predicted, _super);
+
+  function Predicted() {
+    return _super !== null && _super.apply(this, arguments) || this;
+  }
+
+  Predicted.prototype.addValues = function (val) {
+    this.data.push([val.value, val.time]);
+  };
+
+  Predicted.prototype.getAt = function (index) {
+    return {
+      value: this.data[index][0],
+      time: this.data[index][1]
+    };
+  };
+
+  return Predicted;
+}(_AbstractData__WEBPACK_IMPORTED_MODULE_1__["AbstractData"]);
+
+
+
+var PredIterator =
+/** @class */
+function (_super) {
+  Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"])(PredIterator, _super);
+
+  function PredIterator() {
+    return _super !== null && _super.apply(this, arguments) || this;
+  }
+
+  return PredIterator;
+}(_AbstractData__WEBPACK_IMPORTED_MODULE_1__["Iterator"]);
+
+
+
+/***/ }),
+
+/***/ "@grafana/data":
+/*!********************************!*\
+  !*** external "@grafana/data" ***!
+  \********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE__grafana_data__;
+
+/***/ }),
+
+/***/ "@grafana/ui":
+/*!******************************!*\
+  !*** external "@grafana/ui" ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE__grafana_ui__;
+
+/***/ }),
+
+/***/ "react":
+/*!************************!*\
+  !*** external "react" ***!
+  \************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_react__;
+
+/***/ })
+
+/******/ })});;
 //# sourceMappingURL=module.js.map

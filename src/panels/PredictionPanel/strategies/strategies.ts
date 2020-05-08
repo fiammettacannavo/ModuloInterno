@@ -5,7 +5,7 @@ import { Strategy } from './Strategy';
 import { ConfigRL } from './RL/ConfigRL';
 import { ConfigSVM } from './SVM/ConfigSVM';
 import Option from '../../../common/Options';
-import OptionRL from '../../../common/OptionsRL';
+import OptionRL from '../../../common/OptionsRegression';
 import OptionSVM from '../../../common/OptionsSVM';
 
 export const strategies: { [index: string]: Strategy } = {
