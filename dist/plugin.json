@@ -13,7 +13,7 @@
             "large": "img/logo.png"
         },
         "version": "1.0.0",
-        "updated": "2020-05-08"
+        "updated": "2020-05-09"
     },
 
     "includes": [{
@@ -23,6 +23,13 @@
             "role": "Editor",
             "addToNav": true,
             "defaultNav": true
+        },
+        {
+            "type": "page",
+            "name": "Training",
+            "path": "/plugins/prediction-app/?page=training",
+            "role": "Editor",
+            "addToNav": true
         },
         {
             "type": "panel",

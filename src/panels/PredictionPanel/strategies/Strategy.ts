@@ -4,6 +4,6 @@ import Option from '../../../common/Options';
 import Predictor from 'common/Predictor';
 
 export interface Strategy {
-    /* predict: (data: Data, predictor: Predictor) => Predicted; */
     predict(data: Data, predictor: Predictor<Option>): Predicted;
+    saveToInflux(): void;
 }

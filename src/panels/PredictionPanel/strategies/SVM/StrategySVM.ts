@@ -5,16 +5,17 @@ import OptionSVM from '../../../../common/OptionsSVM';
 import Predictor from '../../../../common/Predictor';
 
 export class StrategySVM implements Strategy {
+    predicted: Predicted = new Predicted();
+
     predict(data: Data, predictor: Predictor<OptionSVM>) {
-        // predict(data: Data, predictor: Predictor) {
+        this.predicted.clear();
+
         const first = predictor.getOpt().getFirstQuery() || 0;
         const coeff = predictor.getCoefficients();
 
         const f = (x1: number, x2: number) => {
             return x1 * coeff[0] + x2 * coeff[1] + coeff[2];
         };
-
-        let predicted = new Predicted();
 
         if (!data) {
             throw Error('Data not found');
@@ -27,10 +28,18 @@ export class StrategySVM implements Strategy {
                 const v = first === 0 ? f(val.a, val.b) : f(val.b, val.a);
                 let cls = v === 0 ? 0 : v > 0 ? 1 : -1; //classification 1 / -1
 
-                predicted.addValues({ value: cls, time: val.time });
+                this.predicted.addValues({ value: cls, time: val.time });
             }
         }
 
-        return predicted;
+        return this.predicted;
+    }
+
+    saveToInflux() {
+        const meas = this.predicted.getAt(this.predicted.size() - 1);
+        $.post({
+            url: 'http://localhost:8086/write?db=telegraf',
+            data: 'predictionSVM value=' + meas.value + ' ' + meas.time + '000000', // + zeros for wrong time format
+        });
     }
 }

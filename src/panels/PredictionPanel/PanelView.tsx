@@ -1,9 +1,11 @@
 import React, { PureComponent } from 'react';
+import Option from 'common/Options';
 
 interface Props {
     algorithm: string;
     coefficients: any[];
-    opt: any;
+    opt: Option;
+    accuracy?: number;
     lastValue?: number;
     pause: () => void;
     start: () => void;
@@ -39,13 +41,13 @@ export class PanelView extends PureComponent<Props> {
     };
 
     render() {
-        const { algorithm, coefficients, opt, lastValue } = this.props;
+        const { algorithm, coefficients, opt, lastValue, accuracy } = this.props;
 
         return (
             <div>
                 <pre>
                     - Algorithm: {algorithm + '\n'}- Coefficients: {coefficients + '\n'}
-                    {opt != null ? '- Options: ' + JSON.stringify(opt) + '\n' : ''}
+                    {opt ? '- Options: ' + JSON.stringify(opt, null, 4) + '\n' : ''}- Accuracy: {accuracy + '\n'}
                 </pre>
                 <div style={{ textAlign: 'center' }}>
                     <h1>{lastValue}</h1>

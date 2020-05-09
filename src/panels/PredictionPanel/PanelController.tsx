@@ -54,8 +54,8 @@ export class PanelController extends PureComponent<PanelProps<Props>> {
         try {
             this.props.options.predictor?.getAlgorithm();
         } catch (e) {
-            const json = this.props.options.predictor;
-            this.props.options.predictor = Predictor.fromJSON(JSON.stringify(json));
+            const json: any = this.props.options.predictor;
+            this.props.options.predictor = Predictor.fromJSON(json);
         }
     }
 
@@ -77,6 +77,7 @@ export class PanelController extends PureComponent<PanelProps<Props>> {
                     algorithm={predictor.getAlgorithm()}
                     coefficients={predictor.getCoefficients()}
                     opt={predictor.getOpt()}
+                    accuracy={predictor.getAcc()}
                     lastValue={this.lastValue}
                     pause={() => this.pause()}
                     start={() => this.start()}

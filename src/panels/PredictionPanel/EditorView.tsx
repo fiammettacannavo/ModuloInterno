@@ -26,8 +26,8 @@ export class EditorView extends PureComponent<PanelEditorProps<Props>> {
         try {
             this.props.options.predictor?.getAlgorithm();
         } catch (e) {
-            const json = this.props.options.predictor;
-            this.props.options.predictor = Predictor.fromJSON(JSON.stringify(json));
+            const json: any = this.props.options.predictor;
+            this.props.options.predictor = Predictor.fromJSON(json);
         }
     }
 

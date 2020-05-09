@@ -1516,18 +1516,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__classPrivateFieldGet", function() { return __classPrivateFieldGet; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__classPrivateFieldSet", function() { return __classPrivateFieldSet; });
 /*! *****************************************************************************
-Copyright (c) Microsoft Corporation.
+Copyright (c) Microsoft Corporation. All rights reserved.
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use
+this file except in compliance with the License. You may obtain a copy of the
+License at http://www.apache.org/licenses/LICENSE-2.0
 
-Permission to use, copy, modify, and/or distribute this software for any
-purpose with or without fee is hereby granted.
+THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
+WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
+MERCHANTABLITY OR NON-INFRINGEMENT.
 
-THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
-REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
-AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
-INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
-LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
-OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
-PERFORMANCE OF THIS SOFTWARE.
+See the Apache Version 2.0 License for specific language governing permissions
+and limitations under the License.
 ***************************************************************************** */
 /* global Reflect, Promise */
 
@@ -3069,17 +3069,26 @@ function () {
 
     var json = JSON.parse(str);
     var opt = _panels_PredictionPanel_strategies_strategies__WEBPACK_IMPORTED_MODULE_0__["options"][json.algorithm];
+    console.log(str);
+    console.log(json); // if (!json.algorithm || !json.coefficients) {
+    //     throw Error('Error reading file');
+    // }
 
-    if (!json.algorithm || !json.coefficients) {
-      throw Error('Error reading file');
-    }
-
-    var predictor = new Predictor(json.algorithm, json.coefficients, json.predFun || '', opt.fromJSON(json.opt || {}));
+    var predictor = new Predictor(json.algorithm, json.coefficients, json.predFun || '', opt.fromJSON(json.opt || {}), json.accuracy);
     return predictor;
   };
 
   Predictor.prototype.toJSON = function () {
-    var textFile = "{\n    \"GroupName\": \"ProApes\",\n    \"Version\": \"1.5\",\n    \"PluginName\": \"PredireInGrafana\",\n    \"algorithm\": \"" + this.algorithm + "\",\n    \"coefficients\": [" + this.coefficients + "],\n    \"predFun\": \"" + this.predFun + "\",\n    \"opt\": " + JSON.stringify(this.opt) + ",\n    \"accuracy\": \"" + this.accuracy + "\"\n}"; // string output
+    var textFile = JSON.stringify({
+      GroupName: 'ProApes',
+      Version: '1.5',
+      PluginName: 'PredireInGrafana',
+      algorithm: this.algorithm,
+      coefficients: this.coefficients,
+      predFun: this.predFun,
+      opt: this.opt,
+      accuracy: this.accuracy
+    }, null, 2); // string output
 
     return textFile;
   };
@@ -3098,7 +3107,7 @@ function () {
 /*! exports provided: annotations, editable, gnetId, graphTooltip, id, links, panels, refresh, schemaVersion, style, tags, templating, time, timepicker, timezone, title, uid, variables, version, default */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"annotations\":{\"list\":[{\"builtIn\":1,\"datasource\":\"-- Grafana --\",\"enable\":true,\"hide\":true,\"iconColor\":\"rgba(0, 211, 255, 1)\",\"name\":\"Annotations & Alerts\",\"type\":\"dashboard\"}]},\"editable\":true,\"gnetId\":null,\"graphTooltip\":0,\"id\":null,\"links\":[],\"panels\":[{\"aliasColors\":{},\"bars\":false,\"dashLength\":10,\"dashes\":false,\"datasource\":null,\"fill\":1,\"fillGradient\":0,\"gridPos\":{\"h\":9,\"w\":12,\"x\":0,\"y\":0},\"hiddenSeries\":false,\"id\":2,\"legend\":{\"avg\":false,\"current\":false,\"max\":false,\"min\":false,\"show\":true,\"total\":false,\"values\":false},\"lines\":true,\"linewidth\":1,\"nullPointMode\":\"connected\",\"options\":{\"dataLinks\":[]},\"percentage\":false,\"pointradius\":2,\"points\":false,\"renderer\":\"flot\",\"seriesOverrides\":[],\"spaceLength\":10,\"stack\":false,\"steppedLine\":false,\"targets\":[{\"groupBy\":[{\"params\":[\"$__interval\"],\"type\":\"time\"},{\"params\":[\"null\"],\"type\":\"fill\"}],\"measurement\":\"prediction\",\"orderByTime\":\"ASC\",\"policy\":\"default\",\"refId\":\"A\",\"resultFormat\":\"time_series\",\"select\":[[{\"params\":[\"value\"],\"type\":\"field\"},{\"params\":[],\"type\":\"mean\"}]],\"tags\":[]}],\"thresholds\":[],\"timeFrom\":null,\"timeRegions\":[],\"timeShift\":null,\"title\":\"Prediction Graph\",\"tooltip\":{\"shared\":true,\"sort\":0,\"value_type\":\"individual\"},\"type\":\"graph\",\"xaxis\":{\"buckets\":null,\"mode\":\"time\",\"name\":null,\"show\":true,\"values\":[]},\"yaxes\":[{\"format\":\"short\",\"label\":null,\"logBase\":1,\"max\":null,\"min\":null,\"show\":true},{\"format\":\"short\",\"label\":null,\"logBase\":1,\"max\":null,\"min\":null,\"show\":true}],\"yaxis\":{\"align\":false,\"alignLevel\":null}},{\"datasource\":null,\"gridPos\":{\"h\":9,\"w\":8,\"x\":12,\"y\":0},\"id\":4,\"options\":{\"predictor\":{\"algorithm\":\"RL\",\"coefficients\":[1.37,1.38],\"opt\":{\"toPredict\":0}}},\"targets\":[{\"alias\":\"cpu0\",\"groupBy\":[{\"params\":[\"$__interval\"],\"type\":\"time\"},{\"params\":[\"linear\"],\"type\":\"fill\"}],\"measurement\":\"cpu\",\"orderByTime\":\"ASC\",\"policy\":\"default\",\"refId\":\"A\",\"resultFormat\":\"time_series\",\"select\":[[{\"params\":[\"usage_system\"],\"type\":\"field\"},{\"params\":[],\"type\":\"mean\"}]],\"tags\":[{\"key\":\"cpu\",\"operator\":\"=\",\"value\":\"cpu0\"}]},{\"alias\":\"cpu1\",\"groupBy\":[{\"params\":[\"$__interval\"],\"type\":\"time\"},{\"params\":[\"linear\"],\"type\":\"fill\"}],\"measurement\":\"cpu\",\"orderByTime\":\"ASC\",\"policy\":\"default\",\"refId\":\"B\",\"resultFormat\":\"time_series\",\"select\":[[{\"params\":[\"usage_system\"],\"type\":\"field\"},{\"params\":[],\"type\":\"mean\"}]],\"tags\":[{\"key\":\"cpu\",\"operator\":\"=\",\"value\":\"cpu1\"}]}],\"timeFrom\":null,\"timeShift\":null,\"title\":\"Prediction Settings\",\"type\":\"prediction-panel\"}],\"refresh\":\"5s\",\"schemaVersion\":22,\"style\":\"dark\",\"tags\":[],\"templating\":{\"list\":[]},\"time\":{\"from\":\"now-5m\",\"to\":\"now\"},\"timepicker\":{\"refresh_intervals\":[\"5s\",\"10s\",\"30s\",\"1m\",\"5m\",\"15m\",\"30m\",\"1h\",\"2h\",\"1d\"]},\"timezone\":\"\",\"title\":\"Sample Dashboard\",\"uid\":\"sample-dash\",\"variables\":{\"list\":[]},\"version\":51}");
+module.exports = JSON.parse("{\"annotations\":{\"list\":[{\"builtIn\":1,\"datasource\":\"-- Grafana --\",\"enable\":true,\"hide\":true,\"iconColor\":\"rgba(0, 211, 255, 1)\",\"name\":\"Annotations & Alerts\",\"type\":\"dashboard\"}]},\"editable\":true,\"gnetId\":null,\"graphTooltip\":0,\"id\":null,\"links\":[],\"panels\":[{\"datasource\":null,\"gridPos\":{\"h\":9,\"w\":10,\"x\":0,\"y\":0},\"id\":2,\"options\":{\"predictor\":\"{\\n  \\\"GroupName\\\": \\\"ProApes\\\",\\n  \\\"Version\\\": \\\"1.5\\\",\\n  \\\"PluginName\\\": \\\"PredireInGrafana\\\",\\n  \\\"algorithm\\\": \\\"RL\\\",\\n  \\\"coefficients\\\": [\\n    1.07,\\n    0.46\\n  ],\\n  \\\"predFun\\\": \\\"y = 1.07x + 0.46\\\",\\n  \\\"opt\\\": {\\n    \\\"order\\\": 2,\\n    \\\"precision\\\": 2,\\n    \\\"toPredict\\\": 0\\n  },\\n  \\\"accuracy\\\": 0.29\\n}\"},\"targets\":[{\"groupBy\":[{\"params\":[\"$__interval\"],\"type\":\"time\"},{\"params\":[\"null\"],\"type\":\"fill\"}],\"measurement\":\"cpu\",\"orderByTime\":\"ASC\",\"policy\":\"default\",\"query\":\"SELECT mean(\\\"usage_system\\\") FROM \\\"cpu\\\" WHERE (\\\"cpu\\\" = 'cpu0') AND $timeFilter GROUP BY time($__interval) fill(null)\",\"rawQuery\":false,\"refId\":\"A\",\"resultFormat\":\"time_series\",\"select\":[[{\"params\":[\"usage_system\"],\"type\":\"field\"},{\"params\":[],\"type\":\"mean\"}]],\"tags\":[{\"key\":\"cpu\",\"operator\":\"=\",\"value\":\"cpu0\"}]},{\"groupBy\":[{\"params\":[\"$__interval\"],\"type\":\"time\"},{\"params\":[\"null\"],\"type\":\"fill\"}],\"measurement\":\"cpu\",\"orderByTime\":\"ASC\",\"policy\":\"default\",\"query\":\"SELECT mean(\\\"usage_system\\\") FROM \\\"cpu\\\" WHERE (\\\"cpu\\\" = 'cpu0') AND $timeFilter GROUP BY time($__interval) fill(null)\",\"rawQuery\":false,\"refId\":\"B\",\"resultFormat\":\"time_series\",\"select\":[[{\"params\":[\"usage_system\"],\"type\":\"field\"},{\"params\":[],\"type\":\"mean\"}]],\"tags\":[{\"key\":\"cpu\",\"operator\":\"=\",\"value\":\"cpu1\"}]}],\"timeFrom\":null,\"timeShift\":null,\"title\":\"Prediction Panel\",\"type\":\"prediction-panel\"},{\"alert\":{\"alertRuleTags\":{},\"conditions\":[{\"evaluator\":{\"params\":[10],\"type\":\"gt\"},\"operator\":{\"type\":\"and\"},\"query\":{\"params\":[\"A\",\"5m\",\"now\"]},\"reducer\":{\"params\":[],\"type\":\"avg\"},\"type\":\"query\"}],\"executionErrorState\":\"alerting\",\"for\":\"5m\",\"frequency\":\"5s\",\"handler\":1,\"name\":\"Diff alert\",\"noDataState\":\"no_data\",\"notifications\":[]},\"aliasColors\":{},\"bars\":false,\"dashLength\":10,\"dashes\":false,\"datasource\":null,\"fill\":1,\"fillGradient\":0,\"gridPos\":{\"h\":9,\"w\":12,\"x\":10,\"y\":0},\"hiddenSeries\":false,\"id\":4,\"legend\":{\"avg\":false,\"current\":false,\"max\":false,\"min\":false,\"show\":true,\"total\":false,\"values\":false},\"lines\":true,\"linewidth\":1,\"nullPointMode\":\"null\",\"options\":{\"dataLinks\":[]},\"percentage\":false,\"pointradius\":2,\"points\":false,\"renderer\":\"flot\",\"seriesOverrides\":[],\"spaceLength\":10,\"stack\":false,\"steppedLine\":false,\"targets\":[{\"groupBy\":[{\"params\":[\"$__interval\"],\"type\":\"time\"},{\"params\":[\"linear\"],\"type\":\"fill\"}],\"measurement\":\"predictionDiffRL\",\"orderByTime\":\"ASC\",\"policy\":\"default\",\"refId\":\"A\",\"resultFormat\":\"time_series\",\"select\":[[{\"params\":[\"value\"],\"type\":\"field\"},{\"params\":[],\"type\":\"mean\"}]],\"tags\":[]}],\"thresholds\":[{\"colorMode\":\"critical\",\"fill\":true,\"line\":true,\"op\":\"gt\",\"value\":10}],\"timeFrom\":null,\"timeRegions\":[],\"timeShift\":null,\"title\":\"Prediction diff\",\"tooltip\":{\"shared\":true,\"sort\":0,\"value_type\":\"individual\"},\"type\":\"graph\",\"xaxis\":{\"buckets\":null,\"mode\":\"time\",\"name\":null,\"show\":true,\"values\":[]},\"yaxes\":[{\"format\":\"short\",\"label\":null,\"logBase\":1,\"max\":null,\"min\":null,\"show\":true},{\"format\":\"short\",\"label\":null,\"logBase\":1,\"max\":null,\"min\":null,\"show\":true}],\"yaxis\":{\"align\":false,\"alignLevel\":null}}],\"refresh\":\"5s\",\"schemaVersion\":22,\"style\":\"dark\",\"tags\":[],\"templating\":{\"list\":[]},\"time\":{\"from\":\"now-5m\",\"to\":\"now\"},\"timepicker\":{\"refresh_intervals\":[\"5s\",\"10s\",\"30s\",\"1m\",\"5m\",\"15m\",\"30m\",\"1h\",\"2h\",\"1d\"]},\"timezone\":\"\",\"title\":\"Sample Panel\",\"uid\":\"sample-panel\",\"variables\":{\"list\":[]},\"version\":11}");
 
 /***/ }),
 
@@ -3138,7 +3147,7 @@ var plugin = new _grafana_data__WEBPACK_IMPORTED_MODULE_0__["AppPlugin"]().addCo
   id: 'import'
 }).addConfigPage({
   title: 'Training',
-  icon: '',
+  icon: 'fa fa-arrow-down',
   body: Training_ViewModel__WEBPACK_IMPORTED_MODULE_2__["default"],
   id: 'training'
 });
@@ -3308,10 +3317,14 @@ __webpack_require__.r(__webpack_exports__);
 var StrategyRL =
 /** @class */
 function () {
-  function StrategyRL() {}
+  function StrategyRL() {
+    this.predicted = new _utils_Predicted__WEBPACK_IMPORTED_MODULE_1__["Predicted"]();
+  }
 
   StrategyRL.prototype.predict = function (data, predictor) {
-    var base = 1 - (predictor.getOpt().getToPredict() || 0); //the other one
+    this.predicted.clear();
+    this.toPredict = predictor.getOpt().getToPredict();
+    var base = 1 - (this.toPredict || 0); //the other one
 
     var coeff = predictor.getCoefficients();
 
@@ -3319,25 +3332,45 @@ function () {
       return x ? x * coeff[0] + coeff[1] : 0;
     };
 
-    var predicted = new _utils_Predicted__WEBPACK_IMPORTED_MODULE_1__["Predicted"]();
-
     if (!data) {
       throw Error('Data not found');
     }
 
-    var it = new _utils_Data__WEBPACK_IMPORTED_MODULE_0__["DataIterator"](data);
+    this.data = data;
+    var it = new _utils_Data__WEBPACK_IMPORTED_MODULE_0__["DataIterator"](this.data);
     var val;
 
     while (val = it.next()) {
       if (val.a || val.b) {
-        predicted.addValues({
+        this.predicted.addValues({
           value: f(base === 0 ? val.a : val.b),
           time: val.time
         });
       }
     }
 
-    return predicted;
+    return this.predicted;
+  };
+
+  StrategyRL.prototype.saveToInflux = function () {
+    var index = this.predicted.size() - 1;
+    $.post({
+      url: 'http://localhost:8086/write?db=telegraf',
+      data: 'predictionRL value=' + this.predicted.getAt(index).value + ' ' + this.predicted.getAt(index).time + '000000'
+    });
+    var time = this.predicted.getAt(index).time;
+    var diff;
+
+    if (!this.toPredict || this.toPredict === 0) {
+      diff = this.data.getAt(index).a - this.predicted.getAt(index).value;
+    } else {
+      diff = this.data.getAt(index).b - this.predicted.getAt(index).value;
+    }
+
+    $.post({
+      url: 'http://localhost:8086/write?db=telegraf',
+      data: 'predictionDiffRL value=' + Math.abs(diff) + ' ' + time + '000000'
+    });
   };
 
   return StrategyRL;
@@ -3478,18 +3511,18 @@ __webpack_require__.r(__webpack_exports__);
 var StrategySVM =
 /** @class */
 function () {
-  function StrategySVM() {}
+  function StrategySVM() {
+    this.predicted = new _utils_Predicted__WEBPACK_IMPORTED_MODULE_1__["Predicted"]();
+  }
 
   StrategySVM.prototype.predict = function (data, predictor) {
-    // predict(data: Data, predictor: Predictor) {
+    this.predicted.clear();
     var first = predictor.getOpt().getFirstQuery() || 0;
     var coeff = predictor.getCoefficients();
 
     var f = function f(x1, x2) {
       return x1 * coeff[0] + x2 * coeff[1] + coeff[2];
     };
-
-    var predicted = new _utils_Predicted__WEBPACK_IMPORTED_MODULE_1__["Predicted"]();
 
     if (!data) {
       throw Error('Data not found');
@@ -3503,14 +3536,22 @@ function () {
         var v = first === 0 ? f(val.a, val.b) : f(val.b, val.a);
         var cls = v === 0 ? 0 : v > 0 ? 1 : -1; //classification 1 / -1
 
-        predicted.addValues({
+        this.predicted.addValues({
           value: cls,
           time: val.time
         });
       }
     }
 
-    return predicted;
+    return this.predicted;
+  };
+
+  StrategySVM.prototype.saveToInflux = function () {
+    var meas = this.predicted.getAt(this.predicted.size() - 1);
+    $.post({
+      url: 'http://localhost:8086/write?db=telegraf',
+      data: 'predictionSVM value=' + meas.value + ' ' + meas.time + '000000'
+    });
   };
 
   return StrategySVM;

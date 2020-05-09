@@ -60,34 +60,44 @@ export default class Predictor<Opt extends Option> {
         if (!str) {
             throw Error('No file found');
         }
+
         let json = JSON.parse(str);
         let opt = options[json.algorithm];
 
-        if (!json.algorithm || !json.coefficients) {
-            throw Error('Error reading file');
-        }
+        console.log(str);
+        console.log(json);
+
+        // if (!json.algorithm || !json.coefficients) {
+        //     throw Error('Error reading file');
+        // }
 
         let predictor = new Predictor(
             json.algorithm,
             json.coefficients,
             json.predFun || '',
-            opt.fromJSON(json.opt || {})
+            opt.fromJSON(json.opt || {}),
+            json.accuracy
         );
 
         return predictor;
     }
 
     toJSON(): string {
-        const textFile = `{
-    "GroupName": "ProApes",
-    "Version": "1.5",
-    "PluginName": "PredireInGrafana",
-    "algorithm": "${this.algorithm}",
-    "coefficients": [${this.coefficients}],
-    "predFun": "${this.predFun}",
-    "opt": ${JSON.stringify(this.opt)},
-    "accuracy": "${this.accuracy}"
-}`; // string output
+        const textFile = JSON.stringify(
+            {
+                GroupName: 'ProApes',
+                Version: '1.5',
+                PluginName: 'PredireInGrafana',
+                algorithm: this.algorithm,
+                coefficients: this.coefficients,
+                predFun: this.predFun,
+                opt: this.opt,
+                accuracy: this.accuracy,
+            },
+            null,
+            2
+        ); // string output
+
         return textFile;
     }
 }

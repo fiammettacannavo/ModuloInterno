@@ -1,6 +1,6 @@
 import Predictor from 'common/Predictor';
 import { Data } from 'panels/PredictionPanel/utils/Data';
-import { Predicted, PredIterator } from 'panels/PredictionPanel/utils/Predicted';
+import { Predicted } from 'panels/PredictionPanel/utils/Predicted';
 import { strategies } from './strategies/strategies';
 import { Strategy } from './strategies/Strategy';
 import Option from '../../common/Options';
@@ -37,16 +37,12 @@ export class Model {
 
     async saveToInflux() {
         if (!this.predicted) {
-            throw Error('data.predicted not found');
+            throw Error('Predicted data not found');
+        }
+        if (!this.strategy) {
+            throw Error('Algorithm not found');
         }
 
-        let it = new PredIterator(this.predicted);
-        let meas;
-        while ((meas = it.next())) {
-            $.post({
-                url: 'http://localhost:8086/write?db=telegraf',
-                data: 'prediction value=' + meas.value + ' ' + meas.time + '000000', // + zeros for wrong time format
-            });
-        }
+        this.strategy.saveToInflux();
     }
 }

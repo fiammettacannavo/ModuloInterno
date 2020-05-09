@@ -118,18 +118,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__classPrivateFieldGet", function() { return __classPrivateFieldGet; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__classPrivateFieldSet", function() { return __classPrivateFieldSet; });
 /*! *****************************************************************************
-Copyright (c) Microsoft Corporation.
+Copyright (c) Microsoft Corporation. All rights reserved.
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use
+this file except in compliance with the License. You may obtain a copy of the
+License at http://www.apache.org/licenses/LICENSE-2.0
 
-Permission to use, copy, modify, and/or distribute this software for any
-purpose with or without fee is hereby granted.
+THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
+WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
+MERCHANTABLITY OR NON-INFRINGEMENT.
 
-THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
-REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
-AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
-INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
-LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
-OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
-PERFORMANCE OF THIS SOFTWARE.
+See the Apache Version 2.0 License for specific language governing permissions
+and limitations under the License.
 ***************************************************************************** */
 /* global Reflect, Promise */
 
@@ -545,17 +545,26 @@ function () {
 
     var json = JSON.parse(str);
     var opt = _panels_PredictionPanel_strategies_strategies__WEBPACK_IMPORTED_MODULE_0__["options"][json.algorithm];
+    console.log(str);
+    console.log(json); // if (!json.algorithm || !json.coefficients) {
+    //     throw Error('Error reading file');
+    // }
 
-    if (!json.algorithm || !json.coefficients) {
-      throw Error('Error reading file');
-    }
-
-    var predictor = new Predictor(json.algorithm, json.coefficients, json.predFun || '', opt.fromJSON(json.opt || {}));
+    var predictor = new Predictor(json.algorithm, json.coefficients, json.predFun || '', opt.fromJSON(json.opt || {}), json.accuracy);
     return predictor;
   };
 
   Predictor.prototype.toJSON = function () {
-    var textFile = "{\n    \"GroupName\": \"ProApes\",\n    \"Version\": \"1.5\",\n    \"PluginName\": \"PredireInGrafana\",\n    \"algorithm\": \"" + this.algorithm + "\",\n    \"coefficients\": [" + this.coefficients + "],\n    \"predFun\": \"" + this.predFun + "\",\n    \"opt\": " + JSON.stringify(this.opt) + ",\n    \"accuracy\": \"" + this.accuracy + "\"\n}"; // string output
+    var textFile = JSON.stringify({
+      GroupName: 'ProApes',
+      Version: '1.5',
+      PluginName: 'PredireInGrafana',
+      algorithm: this.algorithm,
+      coefficients: this.coefficients,
+      predFun: this.predFun,
+      opt: this.opt,
+      accuracy: this.accuracy
+    }, null, 2); // string output
 
     return textFile;
   };
@@ -632,7 +641,7 @@ function (_super) {
       (_a = this.props.options.predictor) === null || _a === void 0 ? void 0 : _a.getAlgorithm();
     } catch (e) {
       var json = this.props.options.predictor;
-      this.props.options.predictor = common_Predictor__WEBPACK_IMPORTED_MODULE_4__["default"].fromJSON(JSON.stringify(json));
+      this.props.options.predictor = common_Predictor__WEBPACK_IMPORTED_MODULE_4__["default"].fromJSON(json);
     }
   };
 
@@ -684,9 +693,7 @@ function (_super) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Model", function() { return Model; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../node_modules/tslib/tslib.es6.js");
-/* harmony import */ var panels_PredictionPanel_utils_Predicted__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! panels/PredictionPanel/utils/Predicted */ "./panels/PredictionPanel/utils/Predicted.ts");
-/* harmony import */ var _strategies_strategies__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./strategies/strategies */ "./panels/PredictionPanel/strategies/strategies.ts");
-
+/* harmony import */ var _strategies_strategies__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./strategies/strategies */ "./panels/PredictionPanel/strategies/strategies.ts");
 
 
 
@@ -702,11 +709,11 @@ function () {
   Model.prototype.setPredictor = function (predictor) {
     this.predictor = predictor;
 
-    if (!_strategies_strategies__WEBPACK_IMPORTED_MODULE_2__["strategies"][predictor.getAlgorithm()]) {
+    if (!_strategies_strategies__WEBPACK_IMPORTED_MODULE_1__["strategies"][predictor.getAlgorithm()]) {
       throw Error('Wrong algorithm');
     }
 
-    this.strategy = _strategies_strategies__WEBPACK_IMPORTED_MODULE_2__["strategies"][predictor.getAlgorithm()];
+    this.strategy = _strategies_strategies__WEBPACK_IMPORTED_MODULE_1__["strategies"][predictor.getAlgorithm()];
   };
 
   Model.prototype.predict = function () {
@@ -727,21 +734,16 @@ function () {
 
   Model.prototype.saveToInflux = function () {
     return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function () {
-      var it, meas;
       return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"])(this, function (_a) {
         if (!this.predicted) {
-          throw Error('data.predicted not found');
+          throw Error('Predicted data not found');
         }
 
-        it = new panels_PredictionPanel_utils_Predicted__WEBPACK_IMPORTED_MODULE_1__["PredIterator"](this.predicted);
-
-        while (meas = it.next()) {
-          $.post({
-            url: 'http://localhost:8086/write?db=telegraf',
-            data: 'prediction value=' + meas.value + ' ' + meas.time + '000000'
-          });
+        if (!this.strategy) {
+          throw Error('Algorithm not found');
         }
 
+        this.strategy.saveToInflux();
         return [2
         /*return*/
         ];
@@ -834,7 +836,7 @@ function (_super) {
       (_a = this.props.options.predictor) === null || _a === void 0 ? void 0 : _a.getAlgorithm();
     } catch (e) {
       var json = this.props.options.predictor;
-      this.props.options.predictor = _common_Predictor__WEBPACK_IMPORTED_MODULE_5__["default"].fromJSON(JSON.stringify(json));
+      this.props.options.predictor = _common_Predictor__WEBPACK_IMPORTED_MODULE_5__["default"].fromJSON(json);
     }
   };
 
@@ -856,6 +858,7 @@ function (_super) {
       algorithm: predictor.getAlgorithm(),
       coefficients: predictor.getCoefficients(),
       opt: predictor.getOpt(),
+      accuracy: predictor.getAcc(),
       lastValue: this.lastValue,
       pause: function pause() {
         return _this.pause();
@@ -934,8 +937,9 @@ function (_super) {
         algorithm = _a.algorithm,
         coefficients = _a.coefficients,
         opt = _a.opt,
-        lastValue = _a.lastValue;
-    return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("pre", null, "- Algorithm: ", algorithm + '\n', "- Coefficients: ", coefficients + '\n', opt != null ? '- Options: ' + JSON.stringify(opt) + '\n' : ''), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        lastValue = _a.lastValue,
+        accuracy = _a.accuracy;
+    return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("pre", null, "- Algorithm: ", algorithm + '\n', "- Coefficients: ", coefficients + '\n', opt ? '- Options: ' + JSON.stringify(opt, null, 4) + '\n' : '', "- Accuracy: ", accuracy + '\n'), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
       style: {
         textAlign: 'center'
       }
@@ -1142,10 +1146,14 @@ __webpack_require__.r(__webpack_exports__);
 var StrategyRL =
 /** @class */
 function () {
-  function StrategyRL() {}
+  function StrategyRL() {
+    this.predicted = new _utils_Predicted__WEBPACK_IMPORTED_MODULE_1__["Predicted"]();
+  }
 
   StrategyRL.prototype.predict = function (data, predictor) {
-    var base = 1 - (predictor.getOpt().getToPredict() || 0); //the other one
+    this.predicted.clear();
+    this.toPredict = predictor.getOpt().getToPredict();
+    var base = 1 - (this.toPredict || 0); //the other one
 
     var coeff = predictor.getCoefficients();
 
@@ -1153,25 +1161,45 @@ function () {
       return x ? x * coeff[0] + coeff[1] : 0;
     };
 
-    var predicted = new _utils_Predicted__WEBPACK_IMPORTED_MODULE_1__["Predicted"]();
-
     if (!data) {
       throw Error('Data not found');
     }
 
-    var it = new _utils_Data__WEBPACK_IMPORTED_MODULE_0__["DataIterator"](data);
+    this.data = data;
+    var it = new _utils_Data__WEBPACK_IMPORTED_MODULE_0__["DataIterator"](this.data);
     var val;
 
     while (val = it.next()) {
       if (val.a || val.b) {
-        predicted.addValues({
+        this.predicted.addValues({
           value: f(base === 0 ? val.a : val.b),
           time: val.time
         });
       }
     }
 
-    return predicted;
+    return this.predicted;
+  };
+
+  StrategyRL.prototype.saveToInflux = function () {
+    var index = this.predicted.size() - 1;
+    $.post({
+      url: 'http://localhost:8086/write?db=telegraf',
+      data: 'predictionRL value=' + this.predicted.getAt(index).value + ' ' + this.predicted.getAt(index).time + '000000'
+    });
+    var time = this.predicted.getAt(index).time;
+    var diff;
+
+    if (!this.toPredict || this.toPredict === 0) {
+      diff = this.data.getAt(index).a - this.predicted.getAt(index).value;
+    } else {
+      diff = this.data.getAt(index).b - this.predicted.getAt(index).value;
+    }
+
+    $.post({
+      url: 'http://localhost:8086/write?db=telegraf',
+      data: 'predictionDiffRL value=' + Math.abs(diff) + ' ' + time + '000000'
+    });
   };
 
   return StrategyRL;
@@ -1312,18 +1340,18 @@ __webpack_require__.r(__webpack_exports__);
 var StrategySVM =
 /** @class */
 function () {
-  function StrategySVM() {}
+  function StrategySVM() {
+    this.predicted = new _utils_Predicted__WEBPACK_IMPORTED_MODULE_1__["Predicted"]();
+  }
 
   StrategySVM.prototype.predict = function (data, predictor) {
-    // predict(data: Data, predictor: Predictor) {
+    this.predicted.clear();
     var first = predictor.getOpt().getFirstQuery() || 0;
     var coeff = predictor.getCoefficients();
 
     var f = function f(x1, x2) {
       return x1 * coeff[0] + x2 * coeff[1] + coeff[2];
     };
-
-    var predicted = new _utils_Predicted__WEBPACK_IMPORTED_MODULE_1__["Predicted"]();
 
     if (!data) {
       throw Error('Data not found');
@@ -1337,14 +1365,22 @@ function () {
         var v = first === 0 ? f(val.a, val.b) : f(val.b, val.a);
         var cls = v === 0 ? 0 : v > 0 ? 1 : -1; //classification 1 / -1
 
-        predicted.addValues({
+        this.predicted.addValues({
           value: cls,
           time: val.time
         });
       }
     }
 
-    return predicted;
+    return this.predicted;
+  };
+
+  StrategySVM.prototype.saveToInflux = function () {
+    var meas = this.predicted.getAt(this.predicted.size() - 1);
+    $.post({
+      url: 'http://localhost:8086/write?db=telegraf',
+      data: 'predictionSVM value=' + meas.value + ' ' + meas.time + '000000'
+    });
   };
 
   return StrategySVM;

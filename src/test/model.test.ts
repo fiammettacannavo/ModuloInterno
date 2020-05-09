@@ -105,7 +105,7 @@ test('modelPredictionNoData', () => {
 test('modelPredictionNoData', () => {
     model.saveToInflux().catch(e => {
         expect(e).toBeInstanceOf(Error);
-        expect(e).toEqual(Error('data.predicted not found'));
+        expect(e).toEqual(Error('Predicted data not found'));
     });
 });
 

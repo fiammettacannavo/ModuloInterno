@@ -48,6 +48,7 @@ export default class Model {
         if (this.predictor) {
             const FileSaver = require('file-saver'); // import file saver
             const text = this.predictor.toJSON();
+
             const file = new File([text], 'Training.json', { type: 'text/json;charset=utf-8' });
             FileSaver.saveAs(file); // download
         }

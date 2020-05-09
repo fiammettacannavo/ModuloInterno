@@ -13,7 +13,7 @@ export const plugin = new AppPlugin()
     })
     .addConfigPage({
         title: 'Training',
-        icon: '',
+        icon: 'fa fa-arrow-down',
         body: ViewModel,
         id: 'training',
     });
