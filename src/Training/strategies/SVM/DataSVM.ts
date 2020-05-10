@@ -5,6 +5,7 @@ export default class DataSVM implements Data {
     private labels: number[] = [];
 
     setValue(dataset: number[][]): void {
+        this.points = this.labels = [];
         dataset.forEach(triple => {
             this.points.push([triple[0], triple[1]]);
             this.labels.push(triple[2]);

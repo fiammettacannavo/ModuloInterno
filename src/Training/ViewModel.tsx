@@ -122,22 +122,31 @@ export default class ViewModel extends PureComponent<PluginConfigPageProps<AppPl
     train(): void {
         if (this.model.getData()) {
             this.model.train();
-            let f = document.getElementsByClassName('function')[0];
-            let f1 = document.getElementsByClassName('function')[1];
-            if (f && f1) {
-                f.setAttribute('style', 'display: block');
-                f1.setAttribute('style', 'display: block');
+            if (
+                !this.model
+                    .getPredictor()
+                    ?.getPredFun()
+                    .match(/NaN/)
+            ) {
+                let f = document.getElementsByClassName('function')[0];
+                let f1 = document.getElementsByClassName('function')[1];
+                if (f && f1) {
+                    f.setAttribute('style', 'display: block');
+                    f1.setAttribute('style', 'display: block');
+                }
+                let r = document.getElementById('reset');
+                if (r) {
+                    r.setAttribute('style', 'display: block');
+                }
+                let d = document.getElementById('download');
+                if (d) {
+                    d.setAttribute('style', 'display: block');
+                }
+                this.setState({ fun: this.model.getPredictor()?.getPredFun() });
+                this.setState({ acc: this.model.getPredictor()?.getAcc() });
+            } else {
+                alert('Dataset is not relevant to the algorithm!');
             }
-            let r = document.getElementById('reset');
-            if (r) {
-                r.setAttribute('style', 'display: block');
-            }
-            let d = document.getElementById('download');
-            if (d) {
-                d.setAttribute('style', 'display: block');
-            }
-            this.setState({ fun: this.model.getPredictor()?.getPredFun() });
-            this.setState({ acc: this.model.getPredictor()?.getAcc() });
         }
     }
 

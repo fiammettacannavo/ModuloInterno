@@ -13,15 +13,14 @@ export default class AlgorithmViewRegression extends React.Component<Actions> {
     render() {
         const { options } = this.props;
         return (
-            <div className="graph-container">
-                <p>Choose the algorithm options (if you want)</p>
+            <div className="container">
+                <h1>Options</h1>
 
-                <div id="RLopt">
-                    <div className="form">
-                        <span className="form-label">
-                            <strong>Precision</strong>:{' '}
-                        </span>
+                <div id="RLopt" className="gf-form">
+                    <label className="gf-form-label width-10">Precision:</label>
+                    <div className="gf-form-select-wrapper max-width-15">
                         <select
+                            className="input-small gf-form-input"
                             value={options.getPrecision()}
                             onChange={event => {
                                 options.setPrecision(Number(event.target.value));
@@ -34,7 +33,6 @@ export default class AlgorithmViewRegression extends React.Component<Actions> {
                             <option value="4">4</option>
                             <option value="5">5</option>
                         </select>
-                        <br></br>
                     </div>
                 </div>
             </div>

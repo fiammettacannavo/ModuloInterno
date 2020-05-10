@@ -23,27 +23,17 @@ export default class AlgrithmViewSVM extends React.Component<Actions> {
     render() {
         const { options } = this.props;
         return (
-            <div className="graph-container">
-                <div className="text-center">
-                    <h3 id="options">Choose the algorithm options (if you want)</h3>
-                </div>
+            <div className="container">
+                <h1 id="options">Options</h1>
+                <div id="SVMopt" className="mb-2">
+                    <label className="gf-form-label width-10 mb-2">Kernel type: linear</label>
+                    <label className="gf-form-label width-10 mb-2">Alpha Tollerance: 1e-7</label>
+                    <label className="gf-form-label width-10 mb-2">Tollerance: 1e-4</label>
 
-                <label className="form-label form-label-2 mb-2">
-                    <strong>Kernel type</strong>: linear
-                </label>
-                <label className="form-label form-label-2 mb-2">
-                    <strong>Alpha Tollerance</strong>: 1e-7
-                </label>
-                <label className="form-label form-label-2 mb-10">
-                    <strong>Tollerance</strong>: 1e-4
-                </label>
-
-                <div id="SVMopt">
-                    <div className="form">
-                        <label className="form-label">
-                            <strong>C</strong>:
-                        </label>
+                    <div className="gf-form">
+                        <label className="gf-form-label width-10">C:</label>
                         <input
+                            className="input-small gf-form-input width-15"
                             type="number"
                             id="C"
                             value={options.getC()}
@@ -54,11 +44,10 @@ export default class AlgrithmViewSVM extends React.Component<Actions> {
                         />
                     </div>
 
-                    <div className="form">
-                        <label className="form-label">
-                            <strong>Max iterations</strong>:
-                        </label>
+                    <div className="gf-form">
+                        <label className="gf-form-label width-10">Max iterations:</label>
                         <input
+                            className="input-small gf-form-input width-15"
                             type="number"
                             id="maxiter"
                             value={options.getMaxIter()}
@@ -69,11 +58,10 @@ export default class AlgrithmViewSVM extends React.Component<Actions> {
                         />
                     </div>
 
-                    <div className="form">
-                        <label className="form-label">
-                            <strong>Number passes</strong>:
-                        </label>
+                    <div className="gf-form">
+                        <label className="gf-form-label width-10">Number passes:</label>
                         <input
+                            className="input-small gf-form-input width-15"
                             type="number"
                             id="numpas"
                             value={options.getNumPass()}

@@ -5,6 +5,7 @@ export default class DataRegression implements Data {
     private points: DataPoint[] = [];
 
     setValue(dataset: number[][]): void {
+        this.points = [];
         dataset.forEach(p => {
             let point: DataPoint = [0, 0];
             point[0] = p[0];

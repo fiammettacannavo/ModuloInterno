@@ -38,88 +38,105 @@ export default class View extends React.Component<Actions> {
         } = this.props;
         return (
             <div className="main">
-                <h1>Training Module</h1>
-                <div>
-                    <span>Choose the algorithm to use for the training: </span>
-                    <select disabled={false} id="alg" onChange={selectAlg}>
-                        <option value="RL">Regressione Lineare (RL)</option>
-                        <option value="SVM">Support Vector Machine (SVM)</option>
-                        <option value="RLOG">Regressione Logaritmica (RLOG)</option>
-                        <option value="REXP">Regressione Esponenziale (REXP)</option>
-                    </select>
-                    <br></br>
-                    <button onClick={buttonSelectAlg}>Confirm</button>
+                <div className="container">
+                    <h1>Training Module</h1>
+                    <div className="gf-form">
+                        <label htmlFor="alg" className="gf-form-label width-15">
+                            Choose the algorithm:
+                        </label>
+                        <div className="gf-form-select-wrapper max-width-20">
+                            <select
+                                className="input-small gf-form-input"
+                                disabled={false}
+                                id="alg"
+                                onChange={selectAlg}
+                            >
+                                <option value="RL">Regressione Lineare (RL)</option>
+                                <option value="SVM">Support Vector Machine (SVM)</option>
+                                <option value="RLOG">Regressione Logaritmica (RLOG)</option>
+                                <option value="REXP">Regressione Esponenziale (REXP)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div className="gf-form">
+                        <button className="css-370vzt-button" onClick={buttonSelectAlg}>
+                            Confirm
+                        </button>
+                    </div>
                 </div>
-
                 <div>
                     <div className="graph">{this.renderAlgorithmView()}</div>
                 </div>
 
                 <div id="import" style={{ display: 'none' }}>
-                    <div>
-                        <h3 id="options">Editor</h3>
-
-                        <label className="button">
-                            Import data (.csv)
-                            <input
-                                className="form-input"
-                                type="file"
-                                name="data"
-                                id="data"
-                                onChange={buttonInputData}
-                                accept=".csv,.txt"
-                            />
-                        </label>
-                        <label className="button">
-                            Import previous options (.json)
-                            <input
-                                className="form-input"
-                                type="file"
-                                name="opt"
-                                id="opt"
-                                onChange={buttonInputOpt}
-                                accept=".json"
-                            />
-                        </label>
-
-                        <input
-                            className="button"
-                            id="train"
-                            type="button"
-                            value="Train 🚂"
-                            onClick={() => {
-                                buttonTrain();
-                            }}
-                            style={{ display: 'none' }}
-                        />
-
-                        <p className="function" style={{ display: 'none' }}>
-                            Function: {predictor}
-                        </p>
-                        <p className="function" style={{ display: 'none' }}>
-                            {nameAcc}: {accuracy}
-                        </p>
-
+                    <div className="container">
                         <div>
-                            <input
-                                className="button"
-                                type="button"
-                                value="Download Predictor"
-                                id="download"
-                                onClick={buttonDownload}
-                                style={{ display: 'none' }}
-                            />
+                            <label className="button">
+                                Import data (.csv)
+                                <input
+                                    className="form-input"
+                                    type="file"
+                                    name="data"
+                                    id="data"
+                                    onChange={buttonInputData}
+                                    accept=".csv,.txt"
+                                />
+                            </label>
+                            <label className="button">
+                                Import previous options (.json)
+                                <input
+                                    className="form-input"
+                                    type="file"
+                                    name="opt"
+                                    id="opt"
+                                    onChange={buttonInputOpt}
+                                    accept=".json"
+                                />
+                            </label>
 
                             <input
                                 className="button"
-                                id="reset"
+                                id="train"
                                 type="button"
-                                value="Reset"
+                                value="Train 🚂"
                                 onClick={() => {
-                                    window.location.reload(false);
+                                    buttonTrain();
                                 }}
                                 style={{ display: 'none' }}
                             />
+                        </div>
+                    </div>
+                    <div className="container">
+                        <h1>Results</h1>
+                        <div>
+                            <p className="function gf-form-label mr-0" style={{ display: 'none' }}>
+                                Function: {predictor}
+                            </p>
+                            <p className="function gf-form-label mr-0" style={{ display: 'none' }}>
+                                {nameAcc}: {accuracy}
+                            </p>
+
+                            <div>
+                                <input
+                                    className="button"
+                                    type="button"
+                                    value="Download Predictor"
+                                    id="download"
+                                    onClick={buttonDownload}
+                                    style={{ display: 'none' }}
+                                />
+
+                                <input
+                                    className="button"
+                                    id="reset"
+                                    type="button"
+                                    value="Reset"
+                                    onClick={() => {
+                                        window.location.reload(false);
+                                    }}
+                                    style={{ display: 'none' }}
+                                />
+                            </div>
                         </div>
                     </div>
                 </div>
