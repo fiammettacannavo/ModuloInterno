@@ -4,7 +4,7 @@ import { Predicted } from '../../../utils/Predicted';
 import Predictor from '../../../../../common/Predictor';
 import OptionRL from '../../../../../common/OptionsRegression';
 
-export class StrategyREXP implements Strategy {
+export class StrategyRegExp implements Strategy {
     predicted: Predicted = new Predicted();
     data!: Data;
     toPredict?: number;

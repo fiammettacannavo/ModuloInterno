@@ -1,7 +1,7 @@
 import { PureComponent } from 'react';
 import { StrategyRL } from './Regression/RL/StrategyRL';
-import { StrategyREXP } from './Regression/REXP/StrategyREXP';
-import { StrategyRLOG } from './Regression/RLOG/StrategyRLOG';
+import { StrategyRegExp } from './Regression/REXP/StrategyRegExp';
+import { StrategyRegLog } from './Regression/RLOG/StrategyRegLog';
 import { StrategySVM } from './SVM/StrategySVM';
 import { Strategy } from './Strategy';
 import { ConfigRegression } from './Regression/ConfigRegression';
@@ -13,8 +13,8 @@ import OptionSVM from '../../../common/OptionsSVM';
 export const strategies: { [index: string]: Strategy } = {
     RL: new StrategyRL(),
     SVM: new StrategySVM(),
-    REXP: new StrategyREXP(),
-    RLOG: new StrategyRLOG(),
+    REXP: new StrategyRegExp(),
+    RLOG: new StrategyRegLog(),
 };
 
 export const configs: { [index: string]: typeof PureComponent } = {

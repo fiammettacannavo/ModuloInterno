@@ -3326,29 +3326,29 @@ function (_super) {
 
 /***/ }),
 
-/***/ "./panels/PredictionPanel/strategies/Regression/REXP/StrategyREXP.ts":
-/*!***************************************************************************!*\
-  !*** ./panels/PredictionPanel/strategies/Regression/REXP/StrategyREXP.ts ***!
-  \***************************************************************************/
-/*! exports provided: StrategyREXP */
+/***/ "./panels/PredictionPanel/strategies/Regression/REXP/StrategyRegExp.ts":
+/*!*****************************************************************************!*\
+  !*** ./panels/PredictionPanel/strategies/Regression/REXP/StrategyRegExp.ts ***!
+  \*****************************************************************************/
+/*! exports provided: StrategyRegExp */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "StrategyREXP", function() { return StrategyREXP; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "StrategyRegExp", function() { return StrategyRegExp; });
 /* harmony import */ var _utils_Data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../utils/Data */ "./panels/PredictionPanel/utils/Data.ts");
 /* harmony import */ var _utils_Predicted__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../utils/Predicted */ "./panels/PredictionPanel/utils/Predicted.ts");
 
 
 
-var StrategyREXP =
+var StrategyRegExp =
 /** @class */
 function () {
-  function StrategyREXP() {
+  function StrategyRegExp() {
     this.predicted = new _utils_Predicted__WEBPACK_IMPORTED_MODULE_1__["Predicted"]();
   }
 
-  StrategyREXP.prototype.predict = function (data, predictor) {
+  StrategyRegExp.prototype.predict = function (data, predictor) {
     this.predicted.clear();
     this.toPredict = predictor.getOpt().getToPredict();
     var base = 1 - (this.toPredict || 0); //the other one
@@ -3379,7 +3379,7 @@ function () {
     return this.predicted;
   };
 
-  StrategyREXP.prototype.saveToInflux = function () {
+  StrategyRegExp.prototype.saveToInflux = function () {
     var index = this.predicted.size() - 1;
     $.post({
       url: 'http://localhost:8086/write?db=telegraf',
@@ -3400,7 +3400,7 @@ function () {
     });
   };
 
-  return StrategyREXP;
+  return StrategyRegExp;
 }();
 
 
@@ -3488,29 +3488,29 @@ function () {
 
 /***/ }),
 
-/***/ "./panels/PredictionPanel/strategies/Regression/RLOG/StrategyRLOG.ts":
-/*!***************************************************************************!*\
-  !*** ./panels/PredictionPanel/strategies/Regression/RLOG/StrategyRLOG.ts ***!
-  \***************************************************************************/
-/*! exports provided: StrategyRLOG */
+/***/ "./panels/PredictionPanel/strategies/Regression/RLOG/StrategyRegLog.ts":
+/*!*****************************************************************************!*\
+  !*** ./panels/PredictionPanel/strategies/Regression/RLOG/StrategyRegLog.ts ***!
+  \*****************************************************************************/
+/*! exports provided: StrategyRegLog */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "StrategyRLOG", function() { return StrategyRLOG; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "StrategyRegLog", function() { return StrategyRegLog; });
 /* harmony import */ var _utils_Data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../utils/Data */ "./panels/PredictionPanel/utils/Data.ts");
 /* harmony import */ var _utils_Predicted__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../utils/Predicted */ "./panels/PredictionPanel/utils/Predicted.ts");
 
 
 
-var StrategyRLOG =
+var StrategyRegLog =
 /** @class */
 function () {
-  function StrategyRLOG() {
+  function StrategyRegLog() {
     this.predicted = new _utils_Predicted__WEBPACK_IMPORTED_MODULE_1__["Predicted"]();
   }
 
-  StrategyRLOG.prototype.predict = function (data, predictor) {
+  StrategyRegLog.prototype.predict = function (data, predictor) {
     this.predicted.clear();
     this.toPredict = predictor.getOpt().getToPredict();
     var base = 1 - (this.toPredict || 0); //the other one
@@ -3541,7 +3541,7 @@ function () {
     return this.predicted;
   };
 
-  StrategyRLOG.prototype.saveToInflux = function () {
+  StrategyRegLog.prototype.saveToInflux = function () {
     var index = this.predicted.size() - 1;
     $.post({
       url: 'http://localhost:8086/write?db=telegraf',
@@ -3562,7 +3562,7 @@ function () {
     });
   };
 
-  return StrategyRLOG;
+  return StrategyRegLog;
 }();
 
 
@@ -3763,8 +3763,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "configs", function() { return configs; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "options", function() { return options; });
 /* harmony import */ var _Regression_RL_StrategyRL__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Regression/RL/StrategyRL */ "./panels/PredictionPanel/strategies/Regression/RL/StrategyRL.ts");
-/* harmony import */ var _Regression_REXP_StrategyREXP__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Regression/REXP/StrategyREXP */ "./panels/PredictionPanel/strategies/Regression/REXP/StrategyREXP.ts");
-/* harmony import */ var _Regression_RLOG_StrategyRLOG__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Regression/RLOG/StrategyRLOG */ "./panels/PredictionPanel/strategies/Regression/RLOG/StrategyRLOG.ts");
+/* harmony import */ var _Regression_REXP_StrategyRegExp__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Regression/REXP/StrategyRegExp */ "./panels/PredictionPanel/strategies/Regression/REXP/StrategyRegExp.ts");
+/* harmony import */ var _Regression_RLOG_StrategyRegLog__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Regression/RLOG/StrategyRegLog */ "./panels/PredictionPanel/strategies/Regression/RLOG/StrategyRegLog.ts");
 /* harmony import */ var _SVM_StrategySVM__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./SVM/StrategySVM */ "./panels/PredictionPanel/strategies/SVM/StrategySVM.ts");
 /* harmony import */ var _Regression_ConfigRegression__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Regression/ConfigRegression */ "./panels/PredictionPanel/strategies/Regression/ConfigRegression.tsx");
 /* harmony import */ var _SVM_ConfigSVM__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./SVM/ConfigSVM */ "./panels/PredictionPanel/strategies/SVM/ConfigSVM.tsx");
@@ -3781,8 +3781,8 @@ __webpack_require__.r(__webpack_exports__);
 var strategies = {
   RL: new _Regression_RL_StrategyRL__WEBPACK_IMPORTED_MODULE_0__["StrategyRL"](),
   SVM: new _SVM_StrategySVM__WEBPACK_IMPORTED_MODULE_3__["StrategySVM"](),
-  REXP: new _Regression_REXP_StrategyREXP__WEBPACK_IMPORTED_MODULE_1__["StrategyREXP"](),
-  RLOG: new _Regression_RLOG_StrategyRLOG__WEBPACK_IMPORTED_MODULE_2__["StrategyRLOG"]()
+  REXP: new _Regression_REXP_StrategyRegExp__WEBPACK_IMPORTED_MODULE_1__["StrategyRegExp"](),
+  RLOG: new _Regression_RLOG_StrategyRegLog__WEBPACK_IMPORTED_MODULE_2__["StrategyRegLog"]()
 };
 var configs = {
   RL: _Regression_ConfigRegression__WEBPACK_IMPORTED_MODULE_4__["ConfigRegression"],
