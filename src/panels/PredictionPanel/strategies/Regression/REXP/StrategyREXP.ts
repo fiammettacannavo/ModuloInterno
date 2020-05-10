@@ -1,10 +1,10 @@
-import { Strategy } from '../Strategy';
-import { Data, DataIterator } from '../../utils/Data';
-import { Predicted } from '../../utils/Predicted';
-import Predictor from '../../../../common/Predictor';
-import OptionRL from '../../../../common/OptionsRegression';
+import { Strategy } from '../../Strategy';
+import { Data, DataIterator } from '../../../utils/Data';
+import { Predicted } from '../../../utils/Predicted';
+import Predictor from '../../../../../common/Predictor';
+import OptionRL from '../../../../../common/OptionsRegression';
 
-export class StrategyRLOG implements Strategy {
+export class StrategyREXP implements Strategy {
     predicted: Predicted = new Predicted();
     data!: Data;
     toPredict?: number;
@@ -17,7 +17,7 @@ export class StrategyRLOG implements Strategy {
         const coeff = predictor.getCoefficients();
 
         const f = (x: number) => {
-            return coeff[0] + coeff[1] * Math.log(x);
+            return coeff[0] * Math.exp(coeff[1] * x);
         };
 
         if (!data) {
@@ -43,7 +43,7 @@ export class StrategyRLOG implements Strategy {
         $.post({
             url: 'http://localhost:8086/write?db=telegraf',
             data:
-                'predictionRLOG value=' +
+                'predictionREXP value=' +
                 this.predicted.getAt(index).value +
                 ' ' +
                 this.predicted.getAt(index).time +
@@ -60,7 +60,7 @@ export class StrategyRLOG implements Strategy {
 
         $.post({
             url: 'http://localhost:8086/write?db=telegraf',
-            data: 'predictionDiffRLOG value=' + Math.abs(diff) + ' ' + time + '000000', // + zeros for wrong time format
+            data: 'predictionDiffREXP value=' + Math.abs(diff) + ' ' + time + '000000', // + zeros for wrong time format
         });
     }
 }

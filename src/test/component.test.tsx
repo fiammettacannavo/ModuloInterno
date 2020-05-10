@@ -1,5 +1,5 @@
 import 'react';
-import { ConfigRL } from 'panels/PredictionPanel/strategies/RL/ConfigRL';
+import { ConfigRegression } from 'panels/PredictionPanel/strategies/Regression/ConfigRegression';
 import { LoadingState, dateTime, DefaultTimeZone, FieldType, ArrayVector } from '@grafana/data';
 
 import { ConfigSVM } from 'panels/PredictionPanel/strategies/SVM/ConfigSVM';
@@ -83,7 +83,7 @@ let controllerMock = new PanelController({
 });
 
 test('renderOptionsRL', () => {
-    let configRL = new ConfigRL({
+    let configRL = new ConfigRegression({
         data: data,
         options: optionsRL,
         onOptionsChange: () => {},

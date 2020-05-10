@@ -4,7 +4,7 @@ import { Config } from '../Config';
 import OptionRL from '../../../../common/OptionsRegression';
 import Predictor from '../../../../common/Predictor';
 
-export class ConfigRLOG extends Config {
+export class ConfigRegression extends Config {
     private predictor?: Predictor<OptionRL>;
 
     private getSeriesNames() {
@@ -39,7 +39,7 @@ export class ConfigRLOG extends Config {
             this.predictor?.getOpt().setToPredict(0);
         }
         return (
-            <PanelOptionsGroup title="RLOG">
+            <PanelOptionsGroup title={'Regression - ' + this.predictor?.getAlgorithm()}>
                 <p>{this.predictor?.getPredFun() ? 'Function: ' + this.predictor?.getPredFun() : ''}</p>
                 <label className="gf-form-label width-10" style={{ display: 'inline-block' }}>
                     {' '}

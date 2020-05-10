@@ -1,12 +1,10 @@
 import { PureComponent } from 'react';
-import { StrategyRL } from './RL/StrategyRL';
-import { StrategyREXP } from './REXP/StrategyREXP';
-import { StrategyRLOG } from './RLOG/StrategyRLOG';
+import { StrategyRL } from './Regression/RL/StrategyRL';
+import { StrategyREXP } from './Regression/REXP/StrategyREXP';
+import { StrategyRLOG } from './Regression/RLOG/StrategyRLOG';
 import { StrategySVM } from './SVM/StrategySVM';
 import { Strategy } from './Strategy';
-import { ConfigRL } from './RL/ConfigRL';
-import { ConfigREXP } from './REXP/ConfigREXP';
-import { ConfigRLOG } from './RLOG/ConfigRLOG';
+import { ConfigRegression } from './Regression/ConfigRegression';
 import { ConfigSVM } from './SVM/ConfigSVM';
 import Option from '../../../common/Options';
 import OptionRL from '../../../common/OptionsRegression';
@@ -20,10 +18,10 @@ export const strategies: { [index: string]: Strategy } = {
 };
 
 export const configs: { [index: string]: typeof PureComponent } = {
-    RL: ConfigRL,
+    RL: ConfigRegression,
     SVM: ConfigSVM,
-    REXP: ConfigREXP,
-    RLOG: ConfigRLOG,
+    REXP: ConfigRegression,
+    RLOG: ConfigRegression,
 };
 
 export const options: { [index: string]: Option } = {

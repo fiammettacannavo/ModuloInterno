@@ -1516,18 +1516,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__classPrivateFieldGet", function() { return __classPrivateFieldGet; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__classPrivateFieldSet", function() { return __classPrivateFieldSet; });
 /*! *****************************************************************************
-Copyright (c) Microsoft Corporation.
+Copyright (c) Microsoft Corporation. All rights reserved.
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use
+this file except in compliance with the License. You may obtain a copy of the
+License at http://www.apache.org/licenses/LICENSE-2.0
 
-Permission to use, copy, modify, and/or distribute this software for any
-purpose with or without fee is hereby granted.
+THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
+WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
+MERCHANTABLITY OR NON-INFRINGEMENT.
 
-THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
-REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
-AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
-INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
-LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
-OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
-PERFORMANCE OF THIS SOFTWARE.
+See the Apache Version 2.0 License for specific language governing permissions
+and limitations under the License.
 ***************************************************************************** */
 /* global Reflect, Promise */
 
@@ -2713,7 +2713,8 @@ function () {
   DataSVM.prototype.setValue = function (dataset) {
     var _this = this;
 
-    this.points = this.labels = [];
+    this.points = [];
+    this.labels = [];
     dataset.forEach(function (triple) {
       _this.points.push([triple[0], triple[1]]);
 
@@ -3212,16 +3213,16 @@ function (_super) {
 
 /***/ }),
 
-/***/ "./panels/PredictionPanel/strategies/REXP/ConfigREXP.tsx":
-/*!***************************************************************!*\
-  !*** ./panels/PredictionPanel/strategies/REXP/ConfigREXP.tsx ***!
-  \***************************************************************/
-/*! exports provided: ConfigREXP */
+/***/ "./panels/PredictionPanel/strategies/Regression/ConfigRegression.tsx":
+/*!***************************************************************************!*\
+  !*** ./panels/PredictionPanel/strategies/Regression/ConfigRegression.tsx ***!
+  \***************************************************************************/
+/*! exports provided: ConfigRegression */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ConfigREXP", function() { return ConfigREXP; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ConfigRegression", function() { return ConfigRegression; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../node_modules/tslib/tslib.es6.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
@@ -3233,22 +3234,22 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var ConfigREXP =
+var ConfigRegression =
 /** @class */
 function (_super) {
-  Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"])(ConfigREXP, _super);
+  Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"])(ConfigRegression, _super);
 
-  function ConfigREXP() {
+  function ConfigRegression() {
     return _super !== null && _super.apply(this, arguments) || this;
   }
 
-  ConfigREXP.prototype.getSeriesNames = function () {
+  ConfigRegression.prototype.getSeriesNames = function () {
     return this.props.data.series.map(function (serie) {
       return serie.name || 'unknown';
     });
   };
 
-  ConfigREXP.prototype.renderQueryOptions = function () {
+  ConfigRegression.prototype.renderQueryOptions = function () {
     var e_1, _a;
 
     var _b;
@@ -3279,7 +3280,7 @@ function (_super) {
     return options;
   };
 
-  ConfigREXP.prototype.setToPredict = function (value) {
+  ConfigRegression.prototype.setToPredict = function (value) {
     var _a;
 
     var opt = (_a = this.props.options.predictor) === null || _a === void 0 ? void 0 : _a.getOpt();
@@ -3287,10 +3288,10 @@ function (_super) {
     this.render();
   };
 
-  ConfigREXP.prototype.render = function () {
+  ConfigRegression.prototype.render = function () {
     var _this = this;
 
-    var _a, _b, _c, _d;
+    var _a, _b, _c, _d, _e;
 
     this.predictor = this.props.options.predictor;
 
@@ -3299,8 +3300,8 @@ function (_super) {
     }
 
     return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_grafana_ui__WEBPACK_IMPORTED_MODULE_2__["PanelOptionsGroup"], {
-      title: "REXP"
-    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, ((_c = this.predictor) === null || _c === void 0 ? void 0 : _c.getPredFun()) ? 'Function: ' + ((_d = this.predictor) === null || _d === void 0 ? void 0 : _d.getPredFun()) : ''), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
+      title: 'Regression - ' + ((_c = this.predictor) === null || _c === void 0 ? void 0 : _c.getAlgorithm())
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, ((_d = this.predictor) === null || _d === void 0 ? void 0 : _d.getPredFun()) ? 'Function: ' + ((_e = this.predictor) === null || _e === void 0 ? void 0 : _e.getPredFun()) : ''), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
       className: "gf-form-label width-10",
       style: {
         display: 'inline-block'
@@ -3318,25 +3319,25 @@ function (_super) {
     }, this.renderQueryOptions())));
   };
 
-  return ConfigREXP;
+  return ConfigRegression;
 }(_Config__WEBPACK_IMPORTED_MODULE_3__["Config"]);
 
 
 
 /***/ }),
 
-/***/ "./panels/PredictionPanel/strategies/REXP/StrategyREXP.ts":
-/*!****************************************************************!*\
-  !*** ./panels/PredictionPanel/strategies/REXP/StrategyREXP.ts ***!
-  \****************************************************************/
+/***/ "./panels/PredictionPanel/strategies/Regression/REXP/StrategyREXP.ts":
+/*!***************************************************************************!*\
+  !*** ./panels/PredictionPanel/strategies/Regression/REXP/StrategyREXP.ts ***!
+  \***************************************************************************/
 /*! exports provided: StrategyREXP */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "StrategyREXP", function() { return StrategyREXP; });
-/* harmony import */ var _utils_Data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../utils/Data */ "./panels/PredictionPanel/utils/Data.ts");
-/* harmony import */ var _utils_Predicted__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../utils/Predicted */ "./panels/PredictionPanel/utils/Predicted.ts");
+/* harmony import */ var _utils_Data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../utils/Data */ "./panels/PredictionPanel/utils/Data.ts");
+/* harmony import */ var _utils_Predicted__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../utils/Predicted */ "./panels/PredictionPanel/utils/Predicted.ts");
 
 
 
@@ -3406,131 +3407,18 @@ function () {
 
 /***/ }),
 
-/***/ "./panels/PredictionPanel/strategies/RL/ConfigRL.tsx":
-/*!***********************************************************!*\
-  !*** ./panels/PredictionPanel/strategies/RL/ConfigRL.tsx ***!
-  \***********************************************************/
-/*! exports provided: ConfigRL */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ConfigRL", function() { return ConfigRL; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../node_modules/tslib/tslib.es6.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _grafana_ui__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @grafana/ui */ "@grafana/ui");
-/* harmony import */ var _grafana_ui__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_grafana_ui__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _Config__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Config */ "./panels/PredictionPanel/strategies/Config.ts");
-
-
-
-
-
-var ConfigRL =
-/** @class */
-function (_super) {
-  Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"])(ConfigRL, _super);
-
-  function ConfigRL() {
-    return _super !== null && _super.apply(this, arguments) || this;
-  }
-
-  ConfigRL.prototype.getSeriesNames = function () {
-    return this.props.data.series.map(function (serie) {
-      return serie.name || 'unknown';
-    });
-  };
-
-  ConfigRL.prototype.renderQueryOptions = function () {
-    var e_1, _a;
-
-    var _b;
-
-    var seriesName = this.getSeriesNames();
-    var options = [];
-
-    try {
-      for (var _c = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__values"])(seriesName.keys()), _d = _c.next(); !_d.done; _d = _c.next()) {
-        var i = _d.value;
-        options.push(react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
-          value: i,
-          selected: ((_b = this.predictor) === null || _b === void 0 ? void 0 : _b.getOpt().getToPredict()) === i
-        }, seriesName[i]));
-      }
-    } catch (e_1_1) {
-      e_1 = {
-        error: e_1_1
-      };
-    } finally {
-      try {
-        if (_d && !_d.done && (_a = _c["return"])) _a.call(_c);
-      } finally {
-        if (e_1) throw e_1.error;
-      }
-    }
-
-    return options;
-  };
-
-  ConfigRL.prototype.setToPredict = function (value) {
-    var _a;
-
-    var opt = (_a = this.props.options.predictor) === null || _a === void 0 ? void 0 : _a.getOpt();
-    opt.setToPredict(Number.parseInt(value, 10));
-    this.render();
-  };
-
-  ConfigRL.prototype.render = function () {
-    var _this = this;
-
-    var _a, _b, _c, _d;
-
-    this.predictor = this.props.options.predictor;
-
-    if (!((_a = this.predictor) === null || _a === void 0 ? void 0 : _a.getOpt().getToPredict())) {
-      (_b = this.predictor) === null || _b === void 0 ? void 0 : _b.getOpt().setToPredict(0);
-    }
-
-    return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_grafana_ui__WEBPACK_IMPORTED_MODULE_2__["PanelOptionsGroup"], {
-      title: "RL"
-    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, ((_c = this.predictor) === null || _c === void 0 ? void 0 : _c.getPredFun()) ? 'Function: ' + ((_d = this.predictor) === null || _d === void 0 ? void 0 : _d.getPredFun()) : ''), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
-      className: "gf-form-label width-10",
-      style: {
-        display: 'inline-block'
-      }
-    }, ' ', "y (value to predict)", ' '), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-      className: "gf-form-select-wrapper width-10",
-      style: {
-        display: 'inline-block'
-      }
-    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("select", {
-      className: "input-small gf-form-input",
-      onChange: function onChange(event) {
-        return _this.setToPredict(event.target.value);
-      }
-    }, this.renderQueryOptions())));
-  };
-
-  return ConfigRL;
-}(_Config__WEBPACK_IMPORTED_MODULE_3__["Config"]);
-
-
-
-/***/ }),
-
-/***/ "./panels/PredictionPanel/strategies/RL/StrategyRL.ts":
-/*!************************************************************!*\
-  !*** ./panels/PredictionPanel/strategies/RL/StrategyRL.ts ***!
-  \************************************************************/
+/***/ "./panels/PredictionPanel/strategies/Regression/RL/StrategyRL.ts":
+/*!***********************************************************************!*\
+  !*** ./panels/PredictionPanel/strategies/Regression/RL/StrategyRL.ts ***!
+  \***********************************************************************/
 /*! exports provided: StrategyRL */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "StrategyRL", function() { return StrategyRL; });
-/* harmony import */ var _utils_Data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../utils/Data */ "./panels/PredictionPanel/utils/Data.ts");
-/* harmony import */ var _utils_Predicted__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../utils/Predicted */ "./panels/PredictionPanel/utils/Predicted.ts");
+/* harmony import */ var _utils_Data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../utils/Data */ "./panels/PredictionPanel/utils/Data.ts");
+/* harmony import */ var _utils_Predicted__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../utils/Predicted */ "./panels/PredictionPanel/utils/Predicted.ts");
 
 
 
@@ -3600,131 +3488,18 @@ function () {
 
 /***/ }),
 
-/***/ "./panels/PredictionPanel/strategies/RLOG/ConfigRLOG.tsx":
-/*!***************************************************************!*\
-  !*** ./panels/PredictionPanel/strategies/RLOG/ConfigRLOG.tsx ***!
-  \***************************************************************/
-/*! exports provided: ConfigRLOG */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ConfigRLOG", function() { return ConfigRLOG; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../node_modules/tslib/tslib.es6.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _grafana_ui__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @grafana/ui */ "@grafana/ui");
-/* harmony import */ var _grafana_ui__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_grafana_ui__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _Config__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Config */ "./panels/PredictionPanel/strategies/Config.ts");
-
-
-
-
-
-var ConfigRLOG =
-/** @class */
-function (_super) {
-  Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"])(ConfigRLOG, _super);
-
-  function ConfigRLOG() {
-    return _super !== null && _super.apply(this, arguments) || this;
-  }
-
-  ConfigRLOG.prototype.getSeriesNames = function () {
-    return this.props.data.series.map(function (serie) {
-      return serie.name || 'unknown';
-    });
-  };
-
-  ConfigRLOG.prototype.renderQueryOptions = function () {
-    var e_1, _a;
-
-    var _b;
-
-    var seriesName = this.getSeriesNames();
-    var options = [];
-
-    try {
-      for (var _c = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__values"])(seriesName.keys()), _d = _c.next(); !_d.done; _d = _c.next()) {
-        var i = _d.value;
-        options.push(react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
-          value: i,
-          selected: ((_b = this.predictor) === null || _b === void 0 ? void 0 : _b.getOpt().getToPredict()) === i
-        }, seriesName[i]));
-      }
-    } catch (e_1_1) {
-      e_1 = {
-        error: e_1_1
-      };
-    } finally {
-      try {
-        if (_d && !_d.done && (_a = _c["return"])) _a.call(_c);
-      } finally {
-        if (e_1) throw e_1.error;
-      }
-    }
-
-    return options;
-  };
-
-  ConfigRLOG.prototype.setToPredict = function (value) {
-    var _a;
-
-    var opt = (_a = this.props.options.predictor) === null || _a === void 0 ? void 0 : _a.getOpt();
-    opt.setToPredict(Number.parseInt(value, 10));
-    this.render();
-  };
-
-  ConfigRLOG.prototype.render = function () {
-    var _this = this;
-
-    var _a, _b, _c, _d;
-
-    this.predictor = this.props.options.predictor;
-
-    if (!((_a = this.predictor) === null || _a === void 0 ? void 0 : _a.getOpt().getToPredict())) {
-      (_b = this.predictor) === null || _b === void 0 ? void 0 : _b.getOpt().setToPredict(0);
-    }
-
-    return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_grafana_ui__WEBPACK_IMPORTED_MODULE_2__["PanelOptionsGroup"], {
-      title: "RLOG"
-    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, ((_c = this.predictor) === null || _c === void 0 ? void 0 : _c.getPredFun()) ? 'Function: ' + ((_d = this.predictor) === null || _d === void 0 ? void 0 : _d.getPredFun()) : ''), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
-      className: "gf-form-label width-10",
-      style: {
-        display: 'inline-block'
-      }
-    }, ' ', "y (value to predict)", ' '), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-      className: "gf-form-select-wrapper width-10",
-      style: {
-        display: 'inline-block'
-      }
-    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("select", {
-      className: "input-small gf-form-input",
-      onChange: function onChange(event) {
-        return _this.setToPredict(event.target.value);
-      }
-    }, this.renderQueryOptions())));
-  };
-
-  return ConfigRLOG;
-}(_Config__WEBPACK_IMPORTED_MODULE_3__["Config"]);
-
-
-
-/***/ }),
-
-/***/ "./panels/PredictionPanel/strategies/RLOG/StrategyRLOG.ts":
-/*!****************************************************************!*\
-  !*** ./panels/PredictionPanel/strategies/RLOG/StrategyRLOG.ts ***!
-  \****************************************************************/
+/***/ "./panels/PredictionPanel/strategies/Regression/RLOG/StrategyRLOG.ts":
+/*!***************************************************************************!*\
+  !*** ./panels/PredictionPanel/strategies/Regression/RLOG/StrategyRLOG.ts ***!
+  \***************************************************************************/
 /*! exports provided: StrategyRLOG */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "StrategyRLOG", function() { return StrategyRLOG; });
-/* harmony import */ var _utils_Data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../utils/Data */ "./panels/PredictionPanel/utils/Data.ts");
-/* harmony import */ var _utils_Predicted__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../utils/Predicted */ "./panels/PredictionPanel/utils/Predicted.ts");
+/* harmony import */ var _utils_Data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../utils/Data */ "./panels/PredictionPanel/utils/Data.ts");
+/* harmony import */ var _utils_Predicted__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../utils/Predicted */ "./panels/PredictionPanel/utils/Predicted.ts");
 
 
 
@@ -3987,18 +3762,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "strategies", function() { return strategies; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "configs", function() { return configs; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "options", function() { return options; });
-/* harmony import */ var _RL_StrategyRL__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./RL/StrategyRL */ "./panels/PredictionPanel/strategies/RL/StrategyRL.ts");
-/* harmony import */ var _REXP_StrategyREXP__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./REXP/StrategyREXP */ "./panels/PredictionPanel/strategies/REXP/StrategyREXP.ts");
-/* harmony import */ var _RLOG_StrategyRLOG__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./RLOG/StrategyRLOG */ "./panels/PredictionPanel/strategies/RLOG/StrategyRLOG.ts");
+/* harmony import */ var _Regression_RL_StrategyRL__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Regression/RL/StrategyRL */ "./panels/PredictionPanel/strategies/Regression/RL/StrategyRL.ts");
+/* harmony import */ var _Regression_REXP_StrategyREXP__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Regression/REXP/StrategyREXP */ "./panels/PredictionPanel/strategies/Regression/REXP/StrategyREXP.ts");
+/* harmony import */ var _Regression_RLOG_StrategyRLOG__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Regression/RLOG/StrategyRLOG */ "./panels/PredictionPanel/strategies/Regression/RLOG/StrategyRLOG.ts");
 /* harmony import */ var _SVM_StrategySVM__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./SVM/StrategySVM */ "./panels/PredictionPanel/strategies/SVM/StrategySVM.ts");
-/* harmony import */ var _RL_ConfigRL__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./RL/ConfigRL */ "./panels/PredictionPanel/strategies/RL/ConfigRL.tsx");
-/* harmony import */ var _REXP_ConfigREXP__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./REXP/ConfigREXP */ "./panels/PredictionPanel/strategies/REXP/ConfigREXP.tsx");
-/* harmony import */ var _RLOG_ConfigRLOG__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./RLOG/ConfigRLOG */ "./panels/PredictionPanel/strategies/RLOG/ConfigRLOG.tsx");
-/* harmony import */ var _SVM_ConfigSVM__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./SVM/ConfigSVM */ "./panels/PredictionPanel/strategies/SVM/ConfigSVM.tsx");
-/* harmony import */ var _common_OptionsRegression__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../common/OptionsRegression */ "./common/OptionsRegression.ts");
-/* harmony import */ var _common_OptionsSVM__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../common/OptionsSVM */ "./common/OptionsSVM.ts");
-
-
+/* harmony import */ var _Regression_ConfigRegression__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Regression/ConfigRegression */ "./panels/PredictionPanel/strategies/Regression/ConfigRegression.tsx");
+/* harmony import */ var _SVM_ConfigSVM__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./SVM/ConfigSVM */ "./panels/PredictionPanel/strategies/SVM/ConfigSVM.tsx");
+/* harmony import */ var _common_OptionsRegression__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../common/OptionsRegression */ "./common/OptionsRegression.ts");
+/* harmony import */ var _common_OptionsSVM__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../common/OptionsSVM */ "./common/OptionsSVM.ts");
 
 
 
@@ -4008,22 +3779,22 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var strategies = {
-  RL: new _RL_StrategyRL__WEBPACK_IMPORTED_MODULE_0__["StrategyRL"](),
+  RL: new _Regression_RL_StrategyRL__WEBPACK_IMPORTED_MODULE_0__["StrategyRL"](),
   SVM: new _SVM_StrategySVM__WEBPACK_IMPORTED_MODULE_3__["StrategySVM"](),
-  REXP: new _REXP_StrategyREXP__WEBPACK_IMPORTED_MODULE_1__["StrategyREXP"](),
-  RLOG: new _RLOG_StrategyRLOG__WEBPACK_IMPORTED_MODULE_2__["StrategyRLOG"]()
+  REXP: new _Regression_REXP_StrategyREXP__WEBPACK_IMPORTED_MODULE_1__["StrategyREXP"](),
+  RLOG: new _Regression_RLOG_StrategyRLOG__WEBPACK_IMPORTED_MODULE_2__["StrategyRLOG"]()
 };
 var configs = {
-  RL: _RL_ConfigRL__WEBPACK_IMPORTED_MODULE_4__["ConfigRL"],
-  SVM: _SVM_ConfigSVM__WEBPACK_IMPORTED_MODULE_7__["ConfigSVM"],
-  REXP: _REXP_ConfigREXP__WEBPACK_IMPORTED_MODULE_5__["ConfigREXP"],
-  RLOG: _RLOG_ConfigRLOG__WEBPACK_IMPORTED_MODULE_6__["ConfigRLOG"]
+  RL: _Regression_ConfigRegression__WEBPACK_IMPORTED_MODULE_4__["ConfigRegression"],
+  SVM: _SVM_ConfigSVM__WEBPACK_IMPORTED_MODULE_5__["ConfigSVM"],
+  REXP: _Regression_ConfigRegression__WEBPACK_IMPORTED_MODULE_4__["ConfigRegression"],
+  RLOG: _Regression_ConfigRegression__WEBPACK_IMPORTED_MODULE_4__["ConfigRegression"]
 };
 var options = {
-  RL: new _common_OptionsRegression__WEBPACK_IMPORTED_MODULE_8__["default"](),
-  SVM: new _common_OptionsSVM__WEBPACK_IMPORTED_MODULE_9__["default"](),
-  REXP: new _common_OptionsRegression__WEBPACK_IMPORTED_MODULE_8__["default"](),
-  RLOG: new _common_OptionsRegression__WEBPACK_IMPORTED_MODULE_8__["default"]()
+  RL: new _common_OptionsRegression__WEBPACK_IMPORTED_MODULE_6__["default"](),
+  SVM: new _common_OptionsSVM__WEBPACK_IMPORTED_MODULE_7__["default"](),
+  REXP: new _common_OptionsRegression__WEBPACK_IMPORTED_MODULE_6__["default"](),
+  RLOG: new _common_OptionsRegression__WEBPACK_IMPORTED_MODULE_6__["default"]()
 };
 
 /***/ }),
