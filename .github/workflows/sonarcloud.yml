@@ -5,6 +5,7 @@ on:
     branches:
       - develop
       - master
+      - add-interno
   pull_request:
       types: [opened, synchronize, reopened]
 
