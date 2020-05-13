@@ -86,7 +86,7 @@ export default class Predictor<Opt extends Option> {
         const textFile = JSON.stringify(
             {
                 GroupName: 'ProApes',
-                Version: '1.5',
+                Version: '3.0.0-1.9',
                 PluginName: 'PredireInGrafana',
                 algorithm: this.algorithm,
                 coefficients: this.coefficients,
