@@ -1,12 +1,12 @@
 import 'react';
-import { ConfigRegression } from 'panels/PredictionPanel/strategies/Regression/ConfigRegression';
+import { ConfigRegression } from '../panels/PredictionPanel/strategies/Regression/ConfigRegression';
 import { LoadingState, dateTime, DefaultTimeZone, FieldType, ArrayVector } from '@grafana/data';
 
-import { ConfigSVM } from 'panels/PredictionPanel/strategies/SVM/ConfigSVM';
-import Predictor from 'common/Predictor';
-import { PanelController } from 'panels/PredictionPanel/PanelController';
-import OptionRL from 'common/OptionsRegression';
-import OptionSVM from 'common/OptionsSVM';
+import { ConfigSVM } from '../panels/PredictionPanel/strategies/SVM/ConfigSVM';
+import Predictor from '../common/Predictor';
+import { PanelController } from '../panels/PredictionPanel/PanelController';
+import OptionRL from '../common/OptionsRegression';
+import OptionSVM from '../common/OptionsSVM';
 
 let data = {
     series: [

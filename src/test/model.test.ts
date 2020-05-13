@@ -1,9 +1,9 @@
 import 'jest';
 import { Model } from '../panels/PredictionPanel/Model';
-import { Data } from 'panels/PredictionPanel/utils/Data';
-import Predictor from 'common/Predictor';
-import OptionRL from 'common/OptionsRegression';
-import OptionSVM from 'common/OptionsSVM';
+import { Data } from '../panels/PredictionPanel/utils/Data';
+import Predictor from '../common/Predictor';
+import OptionRL from '../common/OptionsRegression';
+import OptionSVM from '../common/OptionsSVM';
 
 let model: Model;
 let data: Data;

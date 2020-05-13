@@ -11,8 +11,6 @@ import StrategyRegLog from '../Training/strategies/Regression/RLOG/StrategyRegLo
 import StrategyRegExp from '../Training/strategies/Regression/REXP/StrategyRegExp';
 import DataRegression from '../Training/strategies/Regression/DataRegression';
 
-jest.mock('react-plotlyjs-ts', () => {});
-
 let model: Model;
 let vm: ViewModel;
 beforeAll(() => {
@@ -40,17 +38,18 @@ test('setPredictor', () => {
 
 test('parseStringtoJSONPredictor', () => {
     let pred = new Predictor('RL', [1, 2], 'y=2x+1', new OptionRegression(), 0.3);
-    expect(pred.toJSON()).toEqual(
-        `{
-    "GroupName": "ProApes",
-    "Version": "3.0.0-1.9",
-    "PluginName": "PredireInGrafana",
-    "algorithm": "RL",
-    "coefficients": [1,2],
-    "predFun": "y=2x+1",
-    "opt": {"order":2,"precision":2},
-    "accuracy": "0.3"
-}`
+    expect(pred.toJSON()).toEqual(JSON.stringify({
+        GroupName: 'ProApes',
+        Version: '3.0.0-1.9',
+        PluginName: 'PredireInGrafana',
+        algorithm: 'RL',
+        coefficients: [1,2],
+        predFun: 'y=2x+1',
+        opt: new OptionRegression(),
+        accuracy: 0.3,
+        },
+        null,
+        2)
     );
 });
 
@@ -66,9 +65,12 @@ test('setPredictorOptions', () => {
         "algorithm": "RL",
         "coefficients": [1.3691,1.3827],
         "predFun": "y = 1.3691x + 1.3827",
-        "opt": {"order":2,"precision":2}
+        "opt": {"order":2,"precision":2,"toPredict":0}
     }`);
-    expect(model.getPredictor()?.getOpt()).toEqual(new OptionRegression());
+    let p = model.getPredictor();
+    if(p) expect(p.getOpt()).toEqual(new OptionRegression());
+    let mod = new Model();
+    mod.setPredictorOptions('{}');
 });
 
 test('setData', () => {
@@ -95,6 +97,8 @@ test('trainOnModel', () => {
 
 test('downloadPredictor', () => {
     model.downloadPredictor();
+    let mod = new Model();
+    mod.downloadPredictor();
 });
 
 // TEST DATARegression
@@ -152,6 +156,15 @@ test('importJSONSVM', () => {
     expect(op.getC()).toBe(2);
     expect(op.getMaxIter()).toBe(10100);
     expect(op.getNumPass()).toBe(12);
+});
+
+test('fromJSON',()=>{
+    let op = new OptionSVM();
+    op.fromJSON({ C: 2, maxiter: 10010, numpass: 11, firstQuery: 0 });
+    expect(op.getC()).toBe(2);
+    expect(op.getMaxIter()).toBe(10010);
+    expect(op.getNumPass()).toBe(11);
+    expect(op.getFirstQuery()).toBe(0);
 });
 
 //TEST STRATEGYRL

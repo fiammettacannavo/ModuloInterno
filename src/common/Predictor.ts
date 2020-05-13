@@ -64,9 +64,6 @@ export default class Predictor<Opt extends Option> {
         let json = JSON.parse(str);
         let opt = options[json.algorithm];
 
-        console.log(str);
-        console.log(json);
-
         // if (!json.algorithm || !json.coefficients) {
         //     throw Error('Error reading file');
         // }

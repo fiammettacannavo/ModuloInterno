@@ -1,8 +1,8 @@
-import { StrategyRL } from 'panels/PredictionPanel/strategies/Regression/RL/StrategyRL';
-import { Strategy } from 'panels/PredictionPanel/strategies/Strategy';
-import { Data } from 'panels/PredictionPanel/utils/Data';
-import Predictor from 'common/Predictor';
-import OptionRL from 'common/OptionsRegression';
+import { StrategyRL } from '../panels/PredictionPanel/strategies/Regression/RL/StrategyRL';
+import { Strategy } from '../panels/PredictionPanel/strategies/Strategy';
+import { Data } from '../panels/PredictionPanel/utils/Data';
+import Predictor from '../common/Predictor';
+import OptionRL from '../common/OptionsRegression';
 
 let rl: Strategy;
 

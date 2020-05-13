@@ -5,4 +5,13 @@
 const standard = require('@grafana/toolkit/src/config/jest.plugin.config');
 
 // This process will use the same config that `yarn test` is using
-module.exports = standard.jestConfig();
+module.exports = {
+    preset: 'ts-jest',
+    testEnvironment: 'jsdom',
+    setupFiles: ['<rootDir>/jest.config.js', 'jest-canvas-mock'],
+    coveragePathIgnorePatterns: ['jest.config.js','src/Training/App.css','src/Training/View.tsx','src/Training/strategies/Regression/AlgorithmViewRegression.tsx','src/Training/strategies/SVM/AlgorithmViewSVM.tsx','src/test/*','src/appView.tsx','src/module.ts','src/panels/PredictionPanel/module.ts','src/panels/PredictionPanel/PanelView.tsx','src/panels/PredictionPanel/EditorView.tsx'],
+    moduleNameMapper: {
+        "^.+\\.(css|less|scss)$": "identity-obj-proxy"
+    },
+    resolver: null
+};

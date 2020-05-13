@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import { PanelProps } from '@grafana/data';
 
 import { Props } from './Props';
-import { Data } from 'panels/PredictionPanel/utils/Data';
+import { Data } from './utils/Data';
 import { Model } from './Model';
 import { PanelView } from './PanelView';
 import Predictor from '../../common/Predictor';

@@ -14,7 +14,8 @@
         "@grafana/data": "next",
         "@grafana/toolkit": "next",
         "@grafana/ui": "next",
-        "ts-loader": "^6.2.2"
+        "ts-loader": "^6.2.2",
+        "identity-obj-proxy": "^3.0.0"
     },
     "dependencies": {
         "@types/jest": "^25.2.1",
