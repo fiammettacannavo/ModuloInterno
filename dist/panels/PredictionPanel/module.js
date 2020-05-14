@@ -223,16 +223,13 @@ function __generator(thisArg, body) {
     }
 }
 
-const __createBinding = Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
+function __createBinding(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     o[k2] = m[k];
-});
+}
 
 function __exportStar(m, exports) {
-    for (var p in m) if (p !== "default" && !exports.hasOwnProperty(p)) __createBinding(exports, m, p);
+    for (var p in m) if (p !== "default" && !exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 
 function __values(o) {
@@ -313,17 +310,11 @@ function __makeTemplateObject(cooked, raw) {
     return cooked;
 };
 
-const __setModuleDefault = Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-};
-
 function __importStar(mod) {
     if (mod && mod.__esModule) return mod;
     var result = {};
-    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
+    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
+    result.default = mod;
     return result;
 }
 
@@ -559,9 +550,7 @@ function () {
     }
 
     var json = JSON.parse(str);
-    var opt = _panels_PredictionPanel_strategies_strategies__WEBPACK_IMPORTED_MODULE_0__["options"][json.algorithm];
-    console.log(str);
-    console.log(json); // if (!json.algorithm || !json.coefficients) {
+    var opt = _panels_PredictionPanel_strategies_strategies__WEBPACK_IMPORTED_MODULE_0__["options"][json.algorithm]; // if (!json.algorithm || !json.coefficients) {
     //     throw Error('Error reading file');
     // }
 
@@ -786,7 +775,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../node_modules/tslib/tslib.es6.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var panels_PredictionPanel_utils_Data__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! panels/PredictionPanel/utils/Data */ "./panels/PredictionPanel/utils/Data.ts");
+/* harmony import */ var _utils_Data__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./utils/Data */ "./panels/PredictionPanel/utils/Data.ts");
 /* harmony import */ var _Model__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Model */ "./panels/PredictionPanel/Model.ts");
 /* harmony import */ var _PanelView__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./PanelView */ "./panels/PredictionPanel/PanelView.tsx");
 /* harmony import */ var _common_Predictor__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../common/Predictor */ "./common/Predictor.ts");
@@ -811,7 +800,7 @@ function (_super) {
   }
 
   PanelController.prototype.setData = function () {
-    var d = panels_PredictionPanel_utils_Data__WEBPACK_IMPORTED_MODULE_2__["Data"].fromSeries(this.props.data.series);
+    var d = _utils_Data__WEBPACK_IMPORTED_MODULE_2__["Data"].fromSeries(this.props.data.series);
     this.model.setData(d);
   };
 

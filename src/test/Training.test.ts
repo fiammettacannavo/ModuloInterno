@@ -38,18 +38,21 @@ test('setPredictor', () => {
 
 test('parseStringtoJSONPredictor', () => {
     let pred = new Predictor('RL', [1, 2], 'y=2x+1', new OptionRegression(), 0.3);
-    expect(pred.toJSON()).toEqual(JSON.stringify({
-        GroupName: 'ProApes',
-        Version: '3.0.0-1.9',
-        PluginName: 'PredireInGrafana',
-        algorithm: 'RL',
-        coefficients: [1,2],
-        predFun: 'y=2x+1',
-        opt: new OptionRegression(),
-        accuracy: 0.3,
-        },
-        null,
-        2)
+    expect(pred.toJSON()).toEqual(
+        JSON.stringify(
+            {
+                GroupName: 'ProApes',
+                Version: '3.0.0-1.9',
+                PluginName: 'PredireInGrafana',
+                algorithm: 'RL',
+                coefficients: [1, 2],
+                predFun: 'y=2x+1',
+                opt: new OptionRegression(),
+                accuracy: 0.3,
+            },
+            null,
+            2
+        )
     );
 });
 
@@ -68,7 +71,9 @@ test('setPredictorOptions', () => {
         "opt": {"order":2,"precision":2,"toPredict":0}
     }`);
     let p = model.getPredictor();
-    if(p) expect(p.getOpt()).toEqual(new OptionRegression());
+    if (p) {
+        expect(p.getOpt()).toEqual(new OptionRegression());
+    }
     let mod = new Model();
     mod.setPredictorOptions('{}');
 });
@@ -158,7 +163,7 @@ test('importJSONSVM', () => {
     expect(op.getNumPass()).toBe(12);
 });
 
-test('fromJSON',()=>{
+test('fromJSON', () => {
     let op = new OptionSVM();
     op.fromJSON({ C: 2, maxiter: 10010, numpass: 11, firstQuery: 0 });
     expect(op.getC()).toBe(2);

@@ -1621,16 +1621,13 @@ function __generator(thisArg, body) {
     }
 }
 
-const __createBinding = Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
+function __createBinding(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     o[k2] = m[k];
-});
+}
 
 function __exportStar(m, exports) {
-    for (var p in m) if (p !== "default" && !exports.hasOwnProperty(p)) __createBinding(exports, m, p);
+    for (var p in m) if (p !== "default" && !exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 
 function __values(o) {
@@ -1711,17 +1708,11 @@ function __makeTemplateObject(cooked, raw) {
     return cooked;
 };
 
-const __setModuleDefault = Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-};
-
 function __importStar(mod) {
     if (mod && mod.__esModule) return mod;
     var result = {};
-    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
+    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
+    result.default = mod;
     return result;
 }
 
@@ -1890,6 +1881,19 @@ if(false) {}
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _strategies_Strategies__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./strategies/Strategies */ "./Training/strategies/Strategies.ts");
 /* harmony import */ var _common_Predictor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../common/Predictor */ "./common/Predictor.ts");
+/**
+ * Project: Predire in Grafana
+ * File: Model.ts
+ * Author: Igor Biolcati Rinaldi
+ * Created: 2020-05-06
+ * Version: 3.0.0-1.10
+ * -----------------------------------------------------------------------------------------
+ * Copyright 2020 ProApesGroup.
+ * Licensed under the MIT License. See LICENSE in the project root for license informations.
+ * -----------------------------------------------------------------------------------------
+ * Changelog:
+ * 3.0.0-1.10 - Writing Model class for incpsulation of buisness logic.
+ */
 
 
 
@@ -1976,6 +1980,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _App_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./App.css */ "./Training/App.css");
 /* harmony import */ var _App_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_App_css__WEBPACK_IMPORTED_MODULE_2__);
+/**
+ * Project: Predire in Grafana
+ * File: View.tsx
+ * Author: Igor Biolcati Rinaldi
+ * Created: 2020-05-06
+ * Version: 3.0.0-1.10
+ * -----------------------------------------------------------------------------------------
+ * Copyright 2020 ProApesGroup.
+ * Licensed under the MIT License. See LICENSE in the project root for license informations.
+ * -----------------------------------------------------------------------------------------
+ * Changelog:
+ * 3.0.0-1.10 - Writing View class for incpsulation of presentation logic.
+ */
 
 
 
@@ -2136,6 +2153,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _View__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./View */ "./Training/View.tsx");
 /* harmony import */ var _Model__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Model */ "./Training/Model.ts");
 /* harmony import */ var _strategies_Strategies__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./strategies/Strategies */ "./Training/strategies/Strategies.ts");
+/**
+ * Project: Predire in Grafana
+ * File: ViewModel.tsx
+ * Author: Igor Biolcati Rinaldi
+ * Created: 2020-05-06
+ * Version: 3.0.0-1.10
+ * -----------------------------------------------------------------------------------------
+ * Copyright 2020 ProApesGroup.
+ * Licensed under the MIT License. See LICENSE in the project root for license informations.
+ * -----------------------------------------------------------------------------------------
+ * Changelog:
+ * 3.0.0-1.10 - Writing ViewModel class for manage the Model and the View.
+ */
 
 
 
@@ -2373,6 +2403,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../node_modules/tslib/tslib.es6.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/**
+ * Project: Predire in Grafana
+ * File: AlgorithmViewRegression.tsx
+ * Author: Igor Biolcati Rinaldi
+ * Created: 2020-05-06
+ * Version: 3.0.0-1.10
+ * -----------------------------------------------------------------------------------------
+ * Copyright 2020 ProApesGroup.
+ * Licensed under the MIT License. See LICENSE in the project root for license informations.
+ * -----------------------------------------------------------------------------------------
+ * Changelog:
+ * 3.0.0-1.10 - Writing AlgorithmViewRegression class for presentation logic only of the algortihm Regression-like.
+ */
 
 
 
@@ -2442,6 +2485,19 @@ function (_super) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/**
+ * Project: Predire in Grafana
+ * File: DataRegression.ts
+ * Author: Igor Biolcati Rinaldi
+ * Created: 2020-05-07
+ * Version: 3.0.0-1.10
+ * -----------------------------------------------------------------------------------------
+ * Copyright 2020 ProApesGroup.
+ * Licensed under the MIT License. See LICENSE in the project root for license informations.
+ * -----------------------------------------------------------------------------------------
+ * Changelog:
+ * 3.0.0-1.10 - Writing DataRegression class for the algortihm Regression-like.
+ */
 var DataRegression =
 /** @class */
 function () {
@@ -2485,6 +2541,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var regression__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! regression */ "../node_modules/regression/dist/regression.js");
 /* harmony import */ var regression__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(regression__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _common_Predictor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../common/Predictor */ "./common/Predictor.ts");
+/**
+ * Project: Predire in Grafana
+ * File: StrategyRegExp.ts
+ * Author: Igor Biolcati Rinaldi
+ * Created: 2020-05-07
+ * Version: 3.0.0-1.10
+ * -----------------------------------------------------------------------------------------
+ * Copyright 2020 ProApesGroup.
+ * Licensed under the MIT License. See LICENSE in the project root for license informations.
+ * -----------------------------------------------------------------------------------------
+ * Changelog:
+ * 3.0.0-1.10 - Writing StrategyRegExp class for the algortihm Exponential Regression.
+ */
 
 
 
@@ -2525,6 +2594,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var regression__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! regression */ "../node_modules/regression/dist/regression.js");
 /* harmony import */ var regression__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(regression__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _common_Predictor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../common/Predictor */ "./common/Predictor.ts");
+/**
+ * Project: Predire in Grafana
+ * File: StrategyRL.ts
+ * Author: Igor Biolcati Rinaldi
+ * Created: 2020-05-06
+ * Version: 3.0.0-1.10
+ * -----------------------------------------------------------------------------------------
+ * Copyright 2020 ProApesGroup.
+ * Licensed under the MIT License. See LICENSE in the project root for license informations.
+ * -----------------------------------------------------------------------------------------
+ * Changelog:
+ * 3.0.0-1.10 - Writing StrategyRL class for the algortihm Linear Regression.
+ */
 
 
 
@@ -2565,6 +2647,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var regression__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! regression */ "../node_modules/regression/dist/regression.js");
 /* harmony import */ var regression__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(regression__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _common_Predictor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../common/Predictor */ "./common/Predictor.ts");
+/**
+ * Project: Predire in Grafana
+ * File: StrategyRegLog.ts
+ * Author: Igor Biolcati Rinaldi
+ * Created: 2020-05-07
+ * Version: 3.0.0-1.10
+ * -----------------------------------------------------------------------------------------
+ * Copyright 2020 ProApesGroup.
+ * Licensed under the MIT License. See LICENSE in the project root for license informations.
+ * -----------------------------------------------------------------------------------------
+ * Changelog:
+ * 3.0.0-1.10 - Writing StrategyRegLog class for the algortihm Logarithmic Regression.
+ */
 
 
 
@@ -2605,6 +2700,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "../node_modules/tslib/tslib.es6.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/**
+ * Project: Predire in Grafana
+ * File: AlgorithmViewSVM.tsx
+ * Author: Igor Biolcati Rinaldi
+ * Created: 2020-05-06
+ * Version: 3.0.0-1.10
+ * -----------------------------------------------------------------------------------------
+ * Copyright 2020 ProApesGroup.
+ * Licensed under the MIT License. See LICENSE in the project root for license informations.
+ * -----------------------------------------------------------------------------------------
+ * Changelog:
+ * 3.0.0-1.10 - Writing AlgorithmViewSVM class for presentation logic only of the algortihm SVM.
+ */
 
 
 
@@ -2717,6 +2825,19 @@ function (_super) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/**
+ * Project: Predire in Grafana
+ * File: DataSVM.ts
+ * Author: Igor Biolcati Rinaldi
+ * Created: 2020-05-06
+ * Version: 3.0.0-1.10
+ * -----------------------------------------------------------------------------------------
+ * Copyright 2020 ProApesGroup.
+ * Licensed under the MIT License. See LICENSE in the project root for license informations.
+ * -----------------------------------------------------------------------------------------
+ * Changelog:
+ * 3.0.0-1.10 - Writing DataSVM class for the algortihm SVM.
+ */
 var DataSVM =
 /** @class */
 function () {
@@ -2762,6 +2883,19 @@ function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _common_Predictor__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../common/Predictor */ "./common/Predictor.ts");
+/**
+ * Project: Predire in Grafana
+ * File: StrategySVM.ts
+ * Author: Igor Biolcati Rinaldi
+ * Created: 2020-05-06
+ * Version: 3.0.0-1.10
+ * -----------------------------------------------------------------------------------------
+ * Copyright 2020 ProApesGroup.
+ * Licensed under the MIT License. See LICENSE in the project root for license informations.
+ * -----------------------------------------------------------------------------------------
+ * Changelog:
+ * 3.0.0-1.10 - Writing StrategySVM class for the algortihm SVM.
+ */
 
 
 var StrategySVM =
@@ -3110,9 +3244,7 @@ function () {
     }
 
     var json = JSON.parse(str);
-    var opt = _panels_PredictionPanel_strategies_strategies__WEBPACK_IMPORTED_MODULE_0__["options"][json.algorithm];
-    console.log(str);
-    console.log(json); // if (!json.algorithm || !json.coefficients) {
+    var opt = _panels_PredictionPanel_strategies_strategies__WEBPACK_IMPORTED_MODULE_0__["options"][json.algorithm]; // if (!json.algorithm || !json.coefficients) {
     //     throw Error('Error reading file');
     // }
 
