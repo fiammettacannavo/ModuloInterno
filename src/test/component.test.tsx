@@ -7,6 +7,7 @@ import Predictor from '../common/Predictor';
 import { PanelController } from '../panels/PredictionPanel/PanelController';
 import OptionRL from '../common/OptionsRegression';
 import OptionSVM from '../common/OptionsSVM';
+import { Data } from '../panels/PredictionPanel/utils/Data';
 
 let data = {
     series: [
@@ -117,4 +118,8 @@ test('renderOptionsSVMWithoutOpt', () => {
 
 test('conrtollerRender', () => {
     controllerMock.render();
+});
+
+test('dataFromSeriesThrowError', () => {
+    expect(()=>{Data.fromSeries([])}).toThrowError(new Error('Set at least 2 query before'));
 });

@@ -113,4 +113,5 @@ test('predictorFromJSON', () => {
     let s = Predictor.fromJSON('{"algorithm": "RL", "coefficients": [1,1]}');
     expect(s.getAlgorithm()).toStrictEqual('RL');
     expect(s.getCoefficients()).toStrictEqual([1, 1]);
+    expect(()=>{Predictor.fromJSON(undefined)}).toThrowError(new Error('No file found'));
 });

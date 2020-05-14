@@ -53,7 +53,7 @@ export default class Predictor<Opt extends Option> {
     }
 
     setOpt(conf: string) {
-        this.opt?.setValueFile(conf);
+        this.opt.setValueFile(conf);
     }
 
     static fromJSON(str: string | undefined): Predictor<Option> {
