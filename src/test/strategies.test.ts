@@ -48,7 +48,7 @@ test('strategyRlRandomOpts', () => {
     expect(res.getAt(0)).toEqual({ value: 2, time: 1 });
 });
 
-test('strategyRegExpPredict',()=>{
+test('strategyRegExpPredict', () => {
     let data = new Data();
     data.addValues({ a: 1, b: 1, time: 1 });
     const res = re.predict(
@@ -58,7 +58,7 @@ test('strategyRegExpPredict',()=>{
     expect(res.getAt(0)).toEqual({ value: Math.E, time: 1 });
 });
 
-test('strategyRegLogPredict',()=>{
+test('strategyRegLogPredict', () => {
     let data = new Data();
     data.addValues({ a: 1, b: 1, time: 1 });
     const res = rlog.predict(
@@ -67,5 +67,3 @@ test('strategyRegLogPredict',()=>{
     );
     expect(res.getAt(0)).toEqual({ value: 1, time: 1 });
 });
-
-

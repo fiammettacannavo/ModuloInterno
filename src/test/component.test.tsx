@@ -121,5 +121,7 @@ test('conrtollerRender', () => {
 });
 
 test('dataFromSeriesThrowError', () => {
-    expect(()=>{Data.fromSeries([])}).toThrowError(new Error('Set at least 2 query before'));
+    expect(() => {
+        Data.fromSeries([]);
+    }).toThrowError(new Error('Set at least 2 query before'));
 });

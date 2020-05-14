@@ -539,9 +539,7 @@ function () {
   };
 
   Predictor.prototype.setOpt = function (conf) {
-    var _a;
-
-    (_a = this.opt) === null || _a === void 0 ? void 0 : _a.setValueFile(conf);
+    this.opt.setValueFile(conf);
   };
 
   Predictor.fromJSON = function (str) {
