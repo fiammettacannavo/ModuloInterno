@@ -1,3 +1,17 @@
+/**
+ * Project: Predire in Grafana
+ * File: ViewModel.tsx
+ * Author: Igor Biolcati Rinaldi
+ * Created: 2020-05-06
+ * Version: 3.0.0-1.10
+ * -----------------------------------------------------------------------------------------
+ * Copyright 2020 ProApesGroup.
+ * Licensed under the MIT License. See LICENSE in the project root for license informations.
+ * -----------------------------------------------------------------------------------------
+ * Changelog:
+ * 3.0.0-1.10 - Writing ViewModel class for manage the Model and the View.
+ */
+
 import React, { PureComponent } from 'react';
 import './App.css';
 import View from './View';

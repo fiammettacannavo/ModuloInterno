@@ -1,3 +1,17 @@
+/**
+ * Project: Predire in Grafana
+ * File: View.tsx
+ * Author: Igor Biolcati Rinaldi
+ * Created: 2020-05-06
+ * Version: 3.0.0-1.10
+ * -----------------------------------------------------------------------------------------
+ * Copyright 2020 ProApesGroup.
+ * Licensed under the MIT License. See LICENSE in the project root for license informations.
+ * -----------------------------------------------------------------------------------------
+ * Changelog:
+ * 3.0.0-1.10 - Writing View class for incpsulation of presentation logic.
+ */
+
 import React, { ChangeEvent } from 'react';
 import './App.css';
 
