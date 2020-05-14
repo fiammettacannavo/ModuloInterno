@@ -1,3 +1,17 @@
+/**
+ * Project: Predire in Grafana
+ * File: StrategyRegExp.ts
+ * Author: Federico Carboni
+ * Created: 2020-05-10
+ * Version: 3.0.0-1.10
+ * -----------------------------------------------------------------------------------------
+ * Copyright 2020 ProApesGroup.
+ * Licensed under the MIT License. See LICENSE in the project root for license informations.
+ * -----------------------------------------------------------------------------------------
+ * Changelog:
+ * 3.0.0-1.10 - Writing of Exponential Regression Strategy.
+ */
+
 import { Strategy } from '../../Strategy';
 import { Data, DataIterator } from '../../../utils/Data';
 import { Predicted } from '../../../utils/Predicted';
@@ -11,6 +25,7 @@ export class StrategyRegExp implements Strategy {
 
     predict(data: Data, predictor: Predictor<OptionRL>) {
         this.predicted.clear();
+        this.data = new Data();
 
         this.toPredict = predictor.getOpt().getToPredict();
         const base = 1 - (this.toPredict || 0); //the other one
@@ -20,17 +35,12 @@ export class StrategyRegExp implements Strategy {
             return coeff[0] * Math.exp(coeff[1] * x);
         };
 
-        if (!data) {
-            throw Error('Data not found');
-        }
-
-        this.data = data;
-
-        let it = new DataIterator(this.data);
+        let it = new DataIterator(data);
         let val;
         while ((val = it.next())) {
             if (val.a || val.b) {
                 this.predicted.addValues({ value: f(base === 0 ? val.a : val.b), time: val.time });
+                this.data.addValues({ a: val.a, b: val.b, time: val.time });
             }
         }
 

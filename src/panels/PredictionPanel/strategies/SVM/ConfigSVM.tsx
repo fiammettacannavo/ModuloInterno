@@ -1,3 +1,17 @@
+/**
+ * Project: Predire in Grafana
+ * File: ConfigSVM.tsx
+ * Author: Federico Carboni
+ * Created: 2020-05-01
+ * Version: 3.0.0-1.10
+ * -----------------------------------------------------------------------------------------
+ * Copyright 2020 ProApesGroup.
+ * Licensed under the MIT License. See LICENSE in the project root for license informations.
+ * -----------------------------------------------------------------------------------------
+ * Changelog:
+ * 3.0.0-1.10 - Writing of SVM Configs.
+ */
+
 import React from 'react';
 import { PanelOptionsGroup } from '@grafana/ui';
 import { Config } from '../Config';

@@ -18,7 +18,7 @@
 
     "includes": [{
             "type": "page",
-            "name": "Import",
+            "name": "Wizard",
             "path": "/plugins/prediction-app/?page=import",
             "role": "Editor",
             "addToNav": true,

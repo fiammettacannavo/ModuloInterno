@@ -1,3 +1,17 @@
+/**
+ * Project: Predire in Grafana
+ * File: PanelView.tsx
+ * Author: Carboni Federico
+ * Created: 2020-02-30
+ * Version: 3.0.0-1.10
+ * -----------------------------------------------------------------------------------------
+ * Copyright 2020 ProApesGroup.
+ * Licensed under the MIT License. See LICENSE in the project root for license informations.
+ * -----------------------------------------------------------------------------------------
+ * Changelog:
+ * 3.0.0-1.10 - Writing Panel View for the MVVM.
+ */
+
 import React, { PureComponent } from 'react';
 import Option from 'common/Options';
 

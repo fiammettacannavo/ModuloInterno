@@ -1,3 +1,17 @@
+/**
+ * Project: Predire in Grafana
+ * File: StrategySVM.ts
+ * Author: Federico Carboni
+ * Created: 2020-04-04
+ * Version: 3.0.0-1.10
+ * -----------------------------------------------------------------------------------------
+ * Copyright 2020 ProApesGroup.
+ * Licensed under the MIT License. See LICENSE in the project root for license informations.
+ * -----------------------------------------------------------------------------------------
+ * Changelog:
+ * 3.0.0-1.10 - Writing of SVM Strategy.
+ */
+
 import { Strategy } from '../Strategy';
 import { Data, DataIterator } from '../../utils/Data';
 import { Predicted } from '../../utils/Predicted';
@@ -16,10 +30,6 @@ export class StrategySVM implements Strategy {
         const f = (x1: number, x2: number) => {
             return x1 * coeff[0] + x2 * coeff[1] + coeff[2];
         };
-
-        if (!data) {
-            throw Error('Data not found');
-        }
 
         let it = new DataIterator(data);
         let val;

@@ -1,3 +1,17 @@
+/**
+ * Project: Predire in Grafana
+ * File: PanelController.tsx
+ * Author: Carboni Federico
+ * Created: 2020-03-04
+ * Version: 3.0.0-1.10
+ * -----------------------------------------------------------------------------------------
+ * Copyright 2020 ProApesGroup.
+ * Licensed under the MIT License. See LICENSE in the project root for license informations.
+ * -----------------------------------------------------------------------------------------
+ * Changelog:
+ * 3.0.0-1.10 - Writing Panel Controller.
+ */
+
 import React, { PureComponent } from 'react';
 import { PanelProps } from '@grafana/data';
 

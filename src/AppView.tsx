@@ -1,4 +1,17 @@
-// Libraries
+/**
+ * Project: Predire in Grafana
+ * File: AppView.tsx
+ * Author: Federico Carboni
+ * Created: 2020-03-12
+ * Version: 3.0.0-1.10
+ * -----------------------------------------------------------------------------------------
+ * Copyright 2020 ProApesGroup.
+ * Licensed under the MIT License. See LICENSE in the project root for license informations.
+ * -----------------------------------------------------------------------------------------
+ * Changelog:
+ * 3.0.0-1.10 - Writing App view.
+ */
+
 import React, { PureComponent } from 'react';
 import { Button } from '@grafana/ui';
 import { AppPluginMeta, PluginConfigPageProps } from '@grafana/data';
