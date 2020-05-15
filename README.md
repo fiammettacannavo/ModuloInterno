@@ -1,21 +1,35 @@
-# Simple App Plugin
+# Modulo interno - Predire in Grafana
+## Descrizione
+**Prediction Module**: modulo di predizione interno alla piattaforma Grafana.
+- Università degli Studi di Padova
+- **Gruppo** ProApes
+- **Versione** 3.0.0-1.10
 
-This is just a stub to show how you can create a basic visualization plugin.
+## Componenti del team
+- Bari Francesco
+- Biolcati Rinaldi Igor
+- Cannavò Fiammetta
+- Carboni Federico
+- Discalzi Alessandro
+- Piran Giacomo
+- Signor Valentina
 
-To work with this plugin run:
-```
-yarn dev
-```
+## Installazione
 
-or
-```
-yarn watch
-```
+Clonare il contenuto della repository corrente nella directory `plugin` di Grafana
 
-This will run linting tools and apply prettier fix.
+Per lavorare al progetto:
 
+    yarn dev
+    
+oppure (questo eseguirà i tools linting e prettier per formattazioni di stile) :
 
-To build the plugin run:
-```
-yarn build
-```
+    yarn watch
+
+Per compilare il progetto (completo per il rilascio):
+
+    yarn build
+
+Quindi avviare (o riavviare) il servizio Grafana con il comando:
+    
+    sudo systemctl [re]start grafana-server 

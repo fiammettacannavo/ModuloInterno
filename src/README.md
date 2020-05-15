@@ -1,4 +1,15 @@
-# Example App -  Native Plugin
+# Modulo interno - Predire in Grafana
+## Descrizione
+Modulo di predizione interno alla piattaforma Grafana.
+- Università degli Studi di Padova
+- **Gruppo** ProApes
+- **Versione** 3.0.0-1.10
 
-This is an example app.  It has no real use other than making sure external apps are supported.
-
+## Componenti del team
+- Bari Francesco
+- Biolcati Rinaldi Igor
+- Cannavò Fiammetta
+- Carboni Federico
+- Discalzi Alessandro
+- Piran Giacomo
+- Signor Valentina
