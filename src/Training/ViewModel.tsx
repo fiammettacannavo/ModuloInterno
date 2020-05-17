@@ -181,7 +181,7 @@ export default class ViewModel extends PureComponent<PluginConfigPageProps<AppPl
                 }}
                 buttonTrain={() => this.train()}
                 predictor={this.state.fun}
-                nameAcc={this.algorithm === 'RL' || 'RLOG' || 'REXP' ? 'R^2' : 'F-Measure'}
+                nameAcc={this.model.getPredictor()?.getAlgorithm() === 'SVM' ? 'F-Measure' : 'R^2'}
                 accuracy={this.state.acc}
                 buttonDownload={() => {
                     this.model.downloadPredictor();
